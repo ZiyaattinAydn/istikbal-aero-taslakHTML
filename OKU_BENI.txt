@@ -1,0 +1,8 @@
+İSTİKBAL AEROSPACE — SİNEMATİK KAYDIRMA PROTOTİPİ
+
+index.html dosyasını çıkartılmış klasörden açın.
+Masaüstü fare tekerleği: Ana sayfada her adım bir bölüme yavaş ve kontrollü kayar. İlk adımda uçuş → hangar sahnesi daha uzun geçişle görünür.
+Touchpad, dokunmatik ve scrollbar doğal kaydırma yapar; iç sayfalarda yumuşak kaydırma bulunur.
+Metinler ve kartlar aşağı/yukarı yönlerinde tekrar animasyonla görünür.
+
+Görseller temsilîdir. Form örnektir, veri göndermez.

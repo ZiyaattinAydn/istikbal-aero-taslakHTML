@@ -1,0 +1,97 @@
+/* V4's one-wheel-per-section rhythm + a genuinely visible flight-to-hangar crossfade. */
+:root { --site-top:82px; }
+@media(max-width:960px) { :root { --site-top:72px; } }
+/* Keep the hero in view while the wheel moves through the first slow scene. */
+.hero.hero-story {
+  height: calc(100svh - var(--site-top) + clamp(360px, 57svh, 610px));
+  min-height: 0;
+  overflow: clip;
+  position: relative;
+}
+.hero-story .hero-stage {
+  position: sticky;
+  top: var(--site-top);
+  height: calc(100svh - var(--site-top));
+  min-height: 520px;
+  overflow: hidden;
+  isolation: isolate;
+}
+.hero-story .hero-story-layout { height: 100%; }
+.hero-story .hero-scene-flight { opacity: calc(1 - var(--scene-progress, 0)); }
+.hero-story .hero-scene-hangar { opacity: var(--scene-progress, 0); }
+.hero-story .hero-story-content {
+  opacity: calc(1 - var(--story-copy-fade, 0) * .44);
+  translate: 0 calc(var(--story-copy-fade, 0) * -17px);
+  transition: none;
+}
+/* Override the older container-level reveal to prevent duplicated transforms. */
+.reveal-ready, .reveal-ready.reveal-in, .reveal-ready.reveal-out-up, .reveal-ready.reveal-out-down,
+.reveal-ready.platform-card:nth-child(even), .reveal-ready.tech-card:nth-child(odd),
+.reveal-ready.platform-card:nth-child(odd), .reveal-ready.tech-card:nth-child(even) {
+  opacity: 1;
+  translate: none;
+  transition: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  body.cinematic-ready .cinematic-actor {
+    opacity: 0;
+    translate: var(--actor-x, 0px) 34px;
+    transition-property: opacity, translate;
+    transition-duration: 770ms, 960ms;
+    transition-timing-function: cubic-bezier(.19,.7,.16,1), cubic-bezier(.14,.72,.16,1);
+    transition-delay: 0ms;
+  }
+  body.cinematic-ready .cinematic-actor[data-actor-state="in"] {
+    opacity: 1;
+    translate: 0 0;
+    transition-delay: var(--actor-delay, 50ms);
+  }
+  body.cinematic-ready .cinematic-actor[data-actor-state="above"] {
+    opacity: 0;
+    translate: calc(var(--actor-x, 0px) * -.33) -29px;
+    transition-duration: 350ms, 400ms;
+    transition-delay: 0ms;
+  }
+  body.cinematic-ready .cinematic-actor[data-actor-state="below"] {
+    opacity: 0;
+    translate: var(--actor-x, 0px) 32px;
+    transition-duration: 450ms, 500ms;
+    transition-delay: 0ms;
+  }
+  body.cinematic-ready .cinematic-actor[data-actor-arrival="up"][data-actor-state="in"] {
+    transition-duration: 710ms, 760ms;
+  }
+  /* Photos have separate optical movement while parent cards arrive. */
+  .platform-card .card-image { transition: transform 900ms cubic-bezier(.19,.7,.18,1); }
+  .platform-card.cinematic-actor:not([data-actor-state="in"]) .card-image { transform:scale(1.065); }
+  .platform-card.cinematic-actor[data-actor-state="in"] .card-image { transform:scale(1); }
+  .platform-card.cinematic-actor[data-actor-state="in"]:hover .card-image { transform:scale(1.035); }
+  .cinematic-actor:focus-within {opacity:1 !important;translate:0 0 !important;transition-delay:0ms!important;}
+}
+@media(max-width:960px) {
+  .hero.hero-story { height: calc(100svh - var(--site-top) + 26svh); min-height:0; }
+  .hero-story .hero-stage { min-height: 0; }
+  .cinematic-actor { --actor-x:0px !important; }
+  body.cinematic-ready .cinematic-actor { transition-duration:420ms,520ms; }
+}
+@media(max-width:650px) {
+  .hero.hero-story { height:calc(100svh - var(--site-top) + 20svh); }
+  .hero-story .hero-stage { height:calc(100svh - var(--site-top));min-height:0; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .hero.hero-story {height:calc(100svh - var(--site-top));}
+  .hero-story .hero-stage {position:relative;top:0;height:100%;}
+  .hero-story .hero-scene-flight {opacity:1!important;}
+  .hero-story .hero-scene-hangar {opacity:0!important;}
+  body.cinematic-ready .cinematic-actor {opacity:1!important;translate:none!important;transition:none!important;}
+}
+
+/* A single desktop wheel movement resolves to one full, deliberate visual chapter. */
+@media (min-width: 961px) and (min-height: 700px) {
+  main > section.section, main > section.tengri-band {
+    min-height: calc(100svh - var(--site-top));
+    display: flex;
+    align-items: center;
+  }
+  main > section.section > .wrapper, main > section.tengri-band > .wrapper { width:100%; }
+}
