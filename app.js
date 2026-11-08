@@ -39,7 +39,7 @@ const PUBLIC_NEWS = [
   }
 ];
 
-const brand=`<a class="brand" href="index.html" aria-label="İstikbal Aerospace ana sayfa"><span class="logo-mark"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 1L39 20L20 39L1 20Z" stroke="#35b7e6" stroke-width="1.2" fill="none"/><path d="M20 10L23 17L30 20L23 23L20 30L17 23L10 20L17 17Z" fill="#35b7e6"/></svg></span><span class="brand-text">İSTİKBAL AEROSPACE</span></a>`;
+const brand=`<a class="brand" href="index.html" aria-label="İstikbal Aerospace ana sayfa"><span class="logo-mark"><svg viewBox="0 0 40 40" aria-hidden="true" focusable="false"><path d="M20 3.5 36 12.4 20 21.3 4 12.4Z" fill="#35b7e6"/><path d="m4 18.1 16 8.8 16-8.8v5.9L20 32.8 4 24Z" fill="#35b7e6"/><path d="m4 26 16 8.8L36 26v5.7L20 40.2 4 31.7Z" fill="#35b7e6"/></svg></span><span class="brand-text">İSTİKBAL AEROSPACE</span></a>`;
 function platformTrigger(mobile = false) {
   const buttonId = mobile ? 'mobile-platform' : 'platform-trigger';
   const panelId = mobile ? 'mobile-platform-sub' : 'platform-menu';
