@@ -101,3 +101,30 @@ Kaynak: https://tr.linkedin.com/company/i%CC%87stikbal-aerospace
 Kaynaklar:
 - https://tr.linkedin.com/company/i%CC%87stikbal-aerospace
 - https://www.crunchbase.com/organization/i-stikbal-aerospace
+
+## Aşama 4/6 — Tengri AI sayfası (08.11.2026)
+
+**Yayınlanan değişiklik:** `app.js` içindeki `tengri()` sayfası özgün kart ve bölüm tasarımı korunarak genişletildi.
+
+**Eklenen açıklama alanları:**
+- Çok katmanlı yapay zekâ ve bağlantılı savunma ağı vizyonu
+- Sensör ve veri kaynaklarının bir arada değerlendirilmesi
+- Çoklu hedef takibi kavramı
+- Tehdit değerlendirmesi ve öngörüsel analiz
+- Komuta-kontrol ve ağ tabanlı sistem koordinasyonu
+- İHA, savunma alt sistemleri ve haberleşme katmanı arasında kavramsal entegrasyon
+- Kritik altyapılar ve stratejik bölgelerde durumsal farkındalık hedefleri
+
+**Yayın politikası ve onay bekleyen iddialar:**
+- Şirketin LinkedIn paylaşımı bu başlıklardan tamamlanmış yetenekler gibi söz etse de bağımsız teknik kanıt, doğrulama raporu veya ürün olgunluk seviyesi erişilebilir değil; bu yüzden site metni tümünü **vizyon, hedef veya konsept** olarak ele alır.
+- **Yayımlanmadı:** 6. nesil süpersonik İHA geliştirildiği, entegre sistemin sahada çalıştığı, motor ve tüm elektroniklerin üretildiği, düşük radar izi veya uzun menzil elde edildiği, ülke çapında operasyonel ağ kurulduğu, dünya çapında ilk olma beyanı.
+- **Gerekli müşteri onayı:** teknik kabiliyetin fiilen durumu, test/verifikasyon, yayın izni, gerçek görseller ve teknik doküman.
+- Orijinal `https://istikbalaerospace.com/tengri.html` adresi erişilemediği için kaynak sayfayla satır satır karşılaştırma yapılamadı.
+
+**Teknik kontrol:** JavaScript sözdizimi, 6 kartın ilgili sayfalara bağlantıları, beş içerik bölümünün oluşturulması ve `app.js` dışında dosya değişikliği yapılmaması kaynak düzeyinde doğrulandı. Gerçek tarayıcı / cihaz testi bu aşamada yapılmadı.
+
+**Aşama 5:** Platformlar, projeler ve haberleri yalnızca doğrulanabilir kaynak ve müşteri onayına göre güncelle.
+
+**Kaynak:**
+- https://tr.linkedin.com/posts/i%CC%87stikbal-aerospace_tengriai-defenseai-savunmasanayi-activity-7370532002627878912-WIXo
+- https://www.crunchbase.com/organization/i-stikbal-aerospace
