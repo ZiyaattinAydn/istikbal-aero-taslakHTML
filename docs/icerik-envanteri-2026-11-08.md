@@ -128,3 +128,26 @@ Kaynaklar:
 **Kaynak:**
 - https://tr.linkedin.com/posts/i%CC%87stikbal-aerospace_tengriai-defenseai-savunmasanayi-activity-7370532002627878912-WIXo
 - https://www.crunchbase.com/organization/i-stikbal-aerospace
+
+## Aşama 5/6 — Platformlar, Projeler ve Haberler (08.11.2026)
+
+**Yapılan değişiklikler:**
+- **Platformlar:** İnsansız Hava Sistemleri, Gömülü Uçuş Mimarileri ve Hava Savunma Ağları, kesinleşmiş ürün kataloğu yerine *mühendislik alanları* olarak yeniden tanımlandı. Kamuya açık yeni nesil uçuş kontrolcüsü tanıtımına ayrı bağlantı eklendi.
+- **Projeler & AR-GE:** Kamuya açık paylaşımı bulunan iki çalışma (Tengri AI ve yapay zekâ destekli uçuş kontrolcüsü) ayrı tanıtım kartlarında toplandı. PCB, otonomi ve sensör çalışmalarının tek tek tamamlanmış proje olmadığı açıkça ayrıldı. Mevcut AR-GE süreç anlatısı korundu.
+- **Haberler & Duyurular:** İki kamuya açık teknoloji paylaşımı ayrı açıklamalarla listelendi. Kaynağı doğrulanmamış tarihler eklenmedi. Duyurular filtresi boşsa kullanıcıya açık bir boş durum mesajı gösterilecek.
+- **Yeni detay:** `ucus-kontrol-paylasimi.html` ve `flightControlNews` rota/başlık kaydı eklendi. Tengri AI haber detayına şirketin doğrudan orijinal LinkedIn paylaşımı bağlantısı eklendi.
+- **Görsel koruma:** Uçuş–hangar vitrini, diğer sayfa animasyonları, genel renk paleti, header/footer değiştirilmedi. Mevcut temsili görseller korundu.
+
+**Doğrulama sınırları:**
+- Tengri AI paylaşılan vizyon/konsepttir; operasyonel başarı veya doğrulanmış ürün performansı iddia edilmez.
+- Şirketin kamuya açık yeniden paylaşımında “Yapay Zekâ ile Entegre Edilmiş Yeni Nesil Flight Controller” tanıtımı görülmektedir. Doğrudan orijinal gönderi URL'si, yayın tarihi, doğrulanmış test/sertifikasyon ve gerçek ürün görselleri henüz edinilmedi. Bu bilgiler doğrulanmadan teknik spesifikasyon yayımlanmadı.
+- Eski resmî site arşivi ve tamamlanmış proje listesi halen erişilebilir değil; tüm geçmiş çalışmaların aktarılmış olduğu iddia edilmez.
+- Prototipte gösterilen iki paylaşımın dışında doğrulanmış tarihli yeni haber/duyuru kaydı bulunmadığı için diğer haberler uydurulmadı.
+
+**Kaynaklar:**
+- Şirket LinkedIn profil ve paylaşımları: https://tr.linkedin.com/company/i%CC%87stikbal-aerospace
+- Tengri AI paylaşımı: https://tr.linkedin.com/posts/i%CC%87stikbal-aerospace_tengriai-defenseai-savunmasanayi-activity-7370532002627878912-WIXo
+- Uçuş kontrolcüsü paylaşımı görülen Abdullah Demiral profili: https://tr.linkedin.com/in/abdullah-demiral-26828b191
+- Şirketin faaliyet alanları özeti: https://www.crunchbase.com/organization/i-stikbal-aerospace
+
+**Kalanlar (Aşama 6):** gerçek marka/ürün görselleri, logo, son içerik karşılaştırması, kaynak onayları, form altyapısı durumunun açıklığı, responsive ve erişilebilirlik testleri, kırık bağlantılar, SEO/GitHub Pages yayın kontrolü.
