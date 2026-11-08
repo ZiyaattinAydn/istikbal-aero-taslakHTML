@@ -364,3 +364,8 @@ html{scroll-behavior:smooth;scroll-padding-top:84px}body{background:#071526;colo
   .hero-story-eyebrow { font-size: 12px; letter-spacing: .09em; }
   .hero-story-actions .btn { font-size: 12px; }
 }
+
+/* Review #6: real semantic markup for informational article illustrations.
+   Card backdrops remain decorative because headings already convey their meaning. */
+.article-img { overflow: hidden; }
+.article-img img { display: block; width: 100%; height: 100%; object-fit: cover; }
