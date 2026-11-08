@@ -109,7 +109,7 @@ function chapterNavigation(){
     '<button type="button" class="chapter-nav-toggle" aria-expanded="false" aria-controls="chapter-nav-list">Bölümler <span aria-hidden="true">▦</span></button>' +
     '<ol id="chapter-nav-list">'+
     chapters.map((label,index)=>'<li><button type="button" class="chapter-step'+(index===0?' is-active':'')+
-      '" data-chapter-index="'+index+'" aria-label="'+label+' bölümüne git" title="'+label+'"'+
+      '" data-chapter-index="'+index+'" aria-label="'+label+' bölümüne git"'+
       (index===0?' aria-current="location"':'')+'><span class="chapter-label" aria-hidden="true">'+label+
       '</span><span class="chapter-dot" aria-hidden="true"></span></button></li>').join('')+
     '</ol></nav>';
