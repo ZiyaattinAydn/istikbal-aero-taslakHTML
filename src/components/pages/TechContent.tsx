@@ -1,5 +1,55 @@
-import { Section, SectionHeading, InnerHero } from '@/components/ui/content';
-import { TechnologyCard } from '@/components/cards/Cards';
-import { cards } from '@/data/cards';
+import { Section, SectionHeading, InnerHero } from "@/components/ui/content";
+import { TechnologyCard } from "@/components/cards/Cards";
+import { cards } from "@/data/cards";
 
-export function TechContent() { return <><InnerHero title={"Teknolojiler"} description={"Donanım, kontrol, algılama ve yapay zekâ tabanlı sistemlerin buluştuğu mühendislik alanları."} image={"platform-systems.svg"} breadcrumb={"TEKNOLOJILER"} kicker={"İSTİKBAL AEROSPACE"} /><Section><SectionHeading kicker={"TEKNOLOJİ ALANLARI"} title={"Donanımdan otonomiye."} lead={"Elektronik tasarım, gömülü yazılım, sensör füzyonu ve sistem entegrasyonu birbirini tamamlayan disiplinlerdir. Teknoloji alanları, sistemlerin alt katmanlarını birlikte ele alır."} /><div className={"cards-2"}><TechnologyCard {...cards.technology[19]} /><TechnologyCard {...cards.technology[20]} /><TechnologyCard {...cards.technology[21]} /><TechnologyCard {...cards.technology[22]} /><TechnologyCard {...cards.technology[23]} /><TechnologyCard {...cards.technology[24]} /></div></Section><Section className={"inner-panel"}><div className={"split-feature"}><div className={"visual"} style={{"backgroundImage":"url('/assets/tengri-network.svg')"}}></div><div className={"copy"}><span className={"eyebrow no-rule"}>{"YAPAY ZEKÂ / TENGRİ AI"}</span><h2>{"Ağ bağlantılı karar destek."}</h2><p>{"Tengri AI, şirketin kamuya açık tanıtımında bağlı hava ve kara sistemlerinin koordinasyonunu hedefleyen yapay zekâ yaklaşımı olarak anlatılıyor."}</p></div></div></Section></>; }
+export function TechContent() {
+  return (
+    <>
+      <InnerHero
+        title={"Teknolojiler"}
+        description={
+          "Donanım, kontrol, algılama ve yapay zekâ tabanlı sistemlerin buluştuğu mühendislik alanları."
+        }
+        image={"platform-systems.svg"}
+        breadcrumb={"TEKNOLOJILER"}
+        kicker={"İSTİKBAL AEROSPACE"}
+      />
+      <Section>
+        <SectionHeading
+          kicker={"TEKNOLOJİ ALANLARI"}
+          title={"Donanımdan otonomiye."}
+          lead={
+            "Elektronik tasarım, gömülü yazılım, sensör füzyonu ve sistem entegrasyonu birbirini tamamlayan disiplinlerdir. Teknoloji alanları, sistemlerin alt katmanlarını birlikte ele alır."
+          }
+        />
+        <div className={"cards-2"}>
+          <TechnologyCard {...cards.technology[19]} />
+          <TechnologyCard {...cards.technology[20]} />
+          <TechnologyCard {...cards.technology[21]} />
+          <TechnologyCard {...cards.technology[22]} />
+          <TechnologyCard {...cards.technology[23]} />
+          <TechnologyCard {...cards.technology[24]} />
+        </div>
+      </Section>
+      <Section className={"inner-panel"}>
+        <div className={"split-feature"}>
+          <div
+            className={"visual"}
+            style={{ backgroundImage: "url('/assets/tengri-network.svg')" }}
+          ></div>
+          <div className={"copy"}>
+            <span className={"eyebrow no-rule"}>
+              {"YAPAY ZEKÂ / TENGRİ AI"}
+            </span>
+            <h2>{"Ağ bağlantılı karar destek."}</h2>
+            <p>
+              {
+                "Tengri AI, şirketin kamuya açık tanıtımında bağlı hava ve kara sistemlerinin koordinasyonunu hedefleyen yapay zekâ yaklaşımı olarak anlatılıyor."
+              }
+            </p>
+          </div>
+        </div>
+      </Section>
+    </>
+  );
+}

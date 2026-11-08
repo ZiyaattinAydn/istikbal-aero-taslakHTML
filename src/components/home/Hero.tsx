@@ -1,2 +1,78 @@
-import { SiteLink } from '@/components/ui/SiteLink';
-export function Hero() { return <section className={"hero hero-story"} aria-label={"İstikbal Aerospace havacılık vitrini"}><div className={"hero-stage"}>{"\n  "}<div className={"hero-scene hero-scene-flight"} role={"img"} aria-label={"Gün doğumunda dağların üzerinde uçan markasız temsili hava aracı"}></div>{"\n  "}<div className={"hero-scene hero-scene-hangar"} role={"img"} aria-label={"Alacakaranlıkta havacılık hangarındaki markasız temsili hava aracı"}></div>{"\n  "}<div className={"hero-story-vignette"} aria-hidden={"true"}></div>{"\n  "}<div className={"hero-story-lines"} aria-hidden={"true"}></div>{"\n  "}<div className={"wrapper hero-story-layout"}>{"\n    "}<div className={"hero-story-content"}>{"\n      "}<div className={"hero-story-eyebrow"}><span className={"hero-kicker-dash"} aria-hidden={"true"}></span>{" HAVACILIK "}<span className={"slash"}>{"/"}</span>{" OTONOM SİSTEMLER"}</div>{"\n      "}<h1><span className={"hero-title-line"}>{"Geleceğin"}</span><span className={"hero-title-line accent"}>{"sistemlerini"}</span><span className={"hero-title-line"}>{"tasarlıyoruz."}</span></h1>{"\n      "}<div className={"hero-subline"} aria-hidden={"true"}></div>{"\n      "}<p className={"hero-story-copy"}>{"Havacılık, gömülü elektronik ve otonom sistemlerin kesişiminde mühendislik."}</p>{"\n      "}<div className={"hero-story-actions"}><SiteLink className={"btn solid"} href={"platformlar.html"}>{"Platformları Keşfet "}<span className={"arrow"} aria-hidden={"true"}>{"↗"}</span></SiteLink><SiteLink className={"btn outline"} href={"iletisim.html"}>{"İletişime Geç "}<span className={"arrow"} aria-hidden={"true"}>{"↗"}</span></SiteLink></div>{"\n    "}</div>{"\n  "}</div>{"\n  "}</div>{"\n"}</section>; }
+import { SiteLink } from "@/components/ui/SiteLink";
+export function Hero() {
+  return (
+    <section
+      className={"hero hero-story"}
+      aria-label={"İstikbal Aerospace havacılık vitrini"}
+    >
+      <div className={"hero-stage"}>
+        {"\n  "}
+        <div
+          className={"hero-scene hero-scene-flight"}
+          role={"img"}
+          aria-label={
+            "Gün doğumunda dağların üzerinde uçan markasız temsili hava aracı"
+          }
+        ></div>
+        {"\n  "}
+        <div
+          className={"hero-scene hero-scene-hangar"}
+          role={"img"}
+          aria-label={
+            "Alacakaranlıkta havacılık hangarındaki markasız temsili hava aracı"
+          }
+        ></div>
+        {"\n  "}
+        <div className={"hero-story-vignette"} aria-hidden={"true"}></div>
+        {"\n  "}
+        <div className={"hero-story-lines"} aria-hidden={"true"}></div>
+        {"\n  "}
+        <div className={"wrapper hero-story-layout"}>
+          {"\n    "}
+          <div className={"hero-story-content"}>
+            {"\n      "}
+            <div className={"hero-story-eyebrow"}>
+              <span className={"hero-kicker-dash"} aria-hidden={"true"}></span>
+              {" HAVACILIK "}
+              <span className={"slash"}>{"/"}</span>
+              {" OTONOM SİSTEMLER"}
+            </div>
+            {"\n      "}
+            <h1>
+              <span className={"hero-title-line"}>{"Geleceğin"}</span>
+              <span className={"hero-title-line accent"}>{"sistemlerini"}</span>
+              <span className={"hero-title-line"}>{"tasarlıyoruz."}</span>
+            </h1>
+            {"\n      "}
+            <div className={"hero-subline"} aria-hidden={"true"}></div>
+            {"\n      "}
+            <p className={"hero-story-copy"}>
+              {
+                "Havacılık, gömülü elektronik ve otonom sistemlerin kesişiminde mühendislik."
+              }
+            </p>
+            {"\n      "}
+            <div className={"hero-story-actions"}>
+              <SiteLink className={"btn solid"} href={"platformlar.html"}>
+                {"Platformları Keşfet "}
+                <span className={"arrow"} aria-hidden={"true"}>
+                  {"↗"}
+                </span>
+              </SiteLink>
+              <SiteLink className={"btn outline"} href={"iletisim.html"}>
+                {"İletişime Geç "}
+                <span className={"arrow"} aria-hidden={"true"}>
+                  {"↗"}
+                </span>
+              </SiteLink>
+            </div>
+            {"\n    "}
+          </div>
+          {"\n  "}
+        </div>
+        {"\n  "}
+      </div>
+      {"\n"}
+    </section>
+  );
+}

@@ -1,10 +1,100 @@
-import { focusData, platformFocusData } from '@/data/focus';
-import { Section, SectionHeading, InnerHero, FocusModule } from '@/components/ui/content';
+import { focusData, platformFocusData } from "@/data/focus";
+import {
+  Section,
+  SectionHeading,
+  InnerHero,
+  FocusModule,
+} from "@/components/ui/content";
 export function FocusContent({ name }: { name: keyof typeof focusData }) {
   const x = focusData[name];
-  return <><InnerHero title={x.title} description={x.tagline} image={x.bg} breadcrumb={'TEKNOLOJİLER / ' + x.title.toUpperCase()} kicker={x.kicker} /><Section><div className="focus-intro"><div><span className="eyebrow">TEKNOLOJİYE YAKINDAN BAKIŞ</span><h2>Bir disiplinin farklı katmanları.</h2></div><p>{x.intro}</p></div></Section><Section className="inner-panel"><SectionHeading kicker="TEMEL YAKLAŞIM" title="Mühendislik bileşenleri." lead="Konuya ait kavramlar ve çalışma ilkeleri; doğrulanmış proje bilgileri ayrıca yayınlanacaktır." /><div className="focus-modules">{x.modules.map(([number, title, description]) => <FocusModule key={number} number={`${number} / 03`} title={title} description={description} />)}</div><p className="editorial-note">Sistemler birlikte çalışır: {x.title} ile {x.related} birbirini tamamlayan mühendislik alanlarıdır. Teknoloji başlıkları birbirinden bağımsız değildir.</p></Section></>;
+  return (
+    <>
+      <InnerHero
+        title={x.title}
+        description={x.tagline}
+        image={x.bg}
+        breadcrumb={"TEKNOLOJİLER / " + x.title.toUpperCase()}
+        kicker={x.kicker}
+      />
+      <Section>
+        <div className="focus-intro">
+          <div>
+            <span className="eyebrow">TEKNOLOJİYE YAKINDAN BAKIŞ</span>
+            <h2>Bir disiplinin farklı katmanları.</h2>
+          </div>
+          <p>{x.intro}</p>
+        </div>
+      </Section>
+      <Section className="inner-panel">
+        <SectionHeading
+          kicker="TEMEL YAKLAŞIM"
+          title="Mühendislik bileşenleri."
+          lead="Konuya ait kavramlar ve çalışma ilkeleri; doğrulanmış proje bilgileri ayrıca yayınlanacaktır."
+        />
+        <div className="focus-modules">
+          {x.modules.map(([number, title, description]) => (
+            <FocusModule
+              key={number}
+              number={`${number} / 03`}
+              title={title}
+              description={description}
+            />
+          ))}
+        </div>
+        <p className="editorial-note">
+          Sistemler birlikte çalışır: {x.title} ile {x.related} birbirini
+          tamamlayan mühendislik alanlarıdır. Teknoloji başlıkları birbirinden
+          bağımsız değildir.
+        </p>
+      </Section>
+    </>
+  );
 }
-export function PlatformFocusContent({ name }: { name: keyof typeof platformFocusData }) {
+export function PlatformFocusContent({
+  name,
+}: {
+  name: keyof typeof platformFocusData;
+}) {
   const x = platformFocusData[name];
-  return <><InnerHero title={x.title} description={x.description} image={x.image} breadcrumb={'PLATFORMLAR / ' + x.title.toUpperCase()} kicker={x.kicker} /><Section><div className="focus-intro"><div><span className="eyebrow">SİSTEM ODAĞI</span><h2>Birlikte çalışan teknolojiler.</h2></div><p>{x.intro}</p></div></Section><Section className="inner-panel"><SectionHeading kicker="MÜHENDİSLİK KATMANLARI" title="Sistem bütünlüğü." lead="Havacılık çalışmalarında birbirini tamamlayan temel mühendislik başlıkları." /><div className="focus-modules">{x.modules.map(([title, description], index) => <FocusModule key={title} number={`0${index + 1} / 03`} title={title} description={description} />)}</div><p className="editorial-note">Otonom sistemler, gömülü donanım ve sensör füzyonu bu mimarilerle ilişkili mühendislik disiplinleridir.</p></Section></>;
+  return (
+    <>
+      <InnerHero
+        title={x.title}
+        description={x.description}
+        image={x.image}
+        breadcrumb={"PLATFORMLAR / " + x.title.toUpperCase()}
+        kicker={x.kicker}
+      />
+      <Section>
+        <div className="focus-intro">
+          <div>
+            <span className="eyebrow">SİSTEM ODAĞI</span>
+            <h2>Birlikte çalışan teknolojiler.</h2>
+          </div>
+          <p>{x.intro}</p>
+        </div>
+      </Section>
+      <Section className="inner-panel">
+        <SectionHeading
+          kicker="MÜHENDİSLİK KATMANLARI"
+          title="Sistem bütünlüğü."
+          lead="Havacılık çalışmalarında birbirini tamamlayan temel mühendislik başlıkları."
+        />
+        <div className="focus-modules">
+          {x.modules.map(([title, description], index) => (
+            <FocusModule
+              key={title}
+              number={`0${index + 1} / 03`}
+              title={title}
+              description={description}
+            />
+          ))}
+        </div>
+        <p className="editorial-note">
+          Otonom sistemler, gömülü donanım ve sensör füzyonu bu mimarilerle
+          ilişkili mühendislik disiplinleridir.
+        </p>
+      </Section>
+    </>
+  );
 }

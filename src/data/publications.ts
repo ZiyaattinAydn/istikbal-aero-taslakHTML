@@ -1,3 +1,79 @@
-import type { PublicNews, PublicWork } from './models';
-export const publicWorks: readonly PublicWork[] = [{"id":"tengri-ai","title":"Tengri AI — Yapay zekâ ve savunma ağı konsepti","summary":"Bağlantılı hava ve kara sistemleri arasında durumsal farkındalık ve karar desteği vizyonu.","image":"tengri-network.svg","href":"tengri-ai.html","category":"Çalışma","visibility":"public-introduction","technicalApproval":false},{"id":"flight-controller","title":"Yeni nesil uçuş kontrolcüsü tanıtımı","summary":"Yapay zekâ destekli kontrol algoritmalarını ve uçuş sistemlerini bir araya getirmeyi hedefleyen teknoloji paylaşımı.","image":"platform-systems.svg","href":"ucus-kontrol-paylasimi.html","category":"Çalışma","visibility":"public-introduction","technicalApproval":false}];
-export const publicNews: readonly PublicNews[] = [{"id":"tengri-ai-announcement","workId":"tengri-ai","title":"Tengri AI: Yapay zekâ ve karar destek vizyonu","summary":"Şirketin Tengri AI tanıtımında ağ bağlantılı savunma sistemleri ve çok katmanlı yapay zekâ vizyonu anlatılıyor.","image":"tengri-network.svg","href":"haber-detay.html","category":"Paylaşım","publishedAt":null,"sourceUrl":"https://tr.linkedin.com/posts/i%CC%87stikbal-aerospace_tengriai-defenseai-savunmasanayi-activity-7370532002627878912-WIXo","article":{"heroTitle":"Tengri AI","heroDescription":"Yapay zekâ destekli savunma ağı yaklaşımı üzerine şirket paylaşımı.","eyebrow":"ŞİRKETİN KAMUYA AÇIK PAYLAŞIMI","heading":"Tengri AI ve bağlantılı savunma sistemleri.","intro":"İstikbal Aerospace, Tengri AI tanıtımında çok katmanlı yapay zekâ, tehdit değerlendirme, hava ve kara sistemleri arasında koordinasyon ve ağ tabanlı karar desteği hedeflerini paylaştı.","sectionHeading":"Teknoloji vizyonu","sectionBody":"Sensör verilerinin bir araya getirilmesi, çoklu hedeflerin değerlendirilmesi ve bilgi paylaşımı, tanıtımda öne çıkan ana başlıklardır. Açıklanan konseptler doğrulanmış operasyonel performans bilgisi olarak sunulmamaktadır.","breadcrumb":"HABERLER / TENGRİ AI"}},{"id":"flight-controller-announcement","workId":"flight-controller","title":"Yapay zekâ destekli yeni nesil uçuş kontrolcüsü","summary":"Şirketin uçuş kontrol sistemlerine yönelik yapay zekâ ve kontrol algoritmaları odaklı teknoloji paylaşımı.","image":"platform-systems.svg","href":"ucus-kontrol-paylasimi.html","category":"Paylaşım","publishedAt":null,"sourceUrl":null,"article":{"heroTitle":"Uçuş Kontrolcüsü","heroDescription":"Yapay zekâ ile entegre yeni nesil uçuş kontrolcüsü tanıtımı.","eyebrow":"KAMUYA AÇIK TEKNOLOJİ TANITIMI","heading":"Yapay zekâ ile entegre uçuş kontrolü.","intro":"İstikbal Aerospace’in LinkedIn üzerinden paylaşılan yeni nesil uçuş kontrolcüsü tanıtımında, yapay zekâ destekli kontrol algoritmaları ve uçuş sistemlerinde güvenlik ile verimlilik hedefleri öne çıkarılıyor.","sectionHeading":"Mühendislik yaklaşımı","sectionBody":"Uçuş elektroniği; gömülü işlem birimleri, sensör verileri, kontrol yazılımı ve geri bildirim mekanizmalarını bir araya getirir. Bu tanıtım, doğrulanmış test sonuçları veya sertifikasyon bilgisi içermediğinden performans değerleri yayımlanmamaktadır.","note":"Şirketin kamuya açık paylaşımı LinkedIn faaliyetinde yer almakta; tam yayın tarihi ve ayrıntılı teknik dokümanları henüz doğrulanmamıştır.","breadcrumb":"HABERLER / UÇUŞ KONTROLCÜSÜ"}}];
+import type { PublicNews, PublicWork } from "./models";
+export const publicWorks: readonly PublicWork[] = [
+  {
+    id: "tengri-ai",
+    title: "Tengri AI — Yapay zekâ ve savunma ağı konsepti",
+    summary:
+      "Bağlantılı hava ve kara sistemleri arasında durumsal farkındalık ve karar desteği vizyonu.",
+    image: "tengri-network.svg",
+    href: "tengri-ai.html",
+    category: "Çalışma",
+    visibility: "public-introduction",
+    technicalApproval: false,
+  },
+  {
+    id: "flight-controller",
+    title: "Yeni nesil uçuş kontrolcüsü tanıtımı",
+    summary:
+      "Yapay zekâ destekli kontrol algoritmalarını ve uçuş sistemlerini bir araya getirmeyi hedefleyen teknoloji paylaşımı.",
+    image: "platform-systems.svg",
+    href: "ucus-kontrol-paylasimi.html",
+    category: "Çalışma",
+    visibility: "public-introduction",
+    technicalApproval: false,
+  },
+];
+export const publicNews: readonly PublicNews[] = [
+  {
+    id: "tengri-ai-announcement",
+    workId: "tengri-ai",
+    title: "Tengri AI: Yapay zekâ ve karar destek vizyonu",
+    summary:
+      "Şirketin Tengri AI tanıtımında ağ bağlantılı savunma sistemleri ve çok katmanlı yapay zekâ vizyonu anlatılıyor.",
+    image: "tengri-network.svg",
+    href: "haber-detay.html",
+    category: "Paylaşım",
+    publishedAt: null,
+    sourceUrl:
+      "https://tr.linkedin.com/posts/i%CC%87stikbal-aerospace_tengriai-defenseai-savunmasanayi-activity-7370532002627878912-WIXo",
+    article: {
+      heroTitle: "Tengri AI",
+      heroDescription:
+        "Yapay zekâ destekli savunma ağı yaklaşımı üzerine şirket paylaşımı.",
+      eyebrow: "ŞİRKETİN KAMUYA AÇIK PAYLAŞIMI",
+      heading: "Tengri AI ve bağlantılı savunma sistemleri.",
+      intro:
+        "İstikbal Aerospace, Tengri AI tanıtımında çok katmanlı yapay zekâ, tehdit değerlendirme, hava ve kara sistemleri arasında koordinasyon ve ağ tabanlı karar desteği hedeflerini paylaştı.",
+      sectionHeading: "Teknoloji vizyonu",
+      sectionBody:
+        "Sensör verilerinin bir araya getirilmesi, çoklu hedeflerin değerlendirilmesi ve bilgi paylaşımı, tanıtımda öne çıkan ana başlıklardır. Açıklanan konseptler doğrulanmış operasyonel performans bilgisi olarak sunulmamaktadır.",
+      breadcrumb: "HABERLER / TENGRİ AI",
+    },
+  },
+  {
+    id: "flight-controller-announcement",
+    workId: "flight-controller",
+    title: "Yapay zekâ destekli yeni nesil uçuş kontrolcüsü",
+    summary:
+      "Şirketin uçuş kontrol sistemlerine yönelik yapay zekâ ve kontrol algoritmaları odaklı teknoloji paylaşımı.",
+    image: "platform-systems.svg",
+    href: "ucus-kontrol-paylasimi.html",
+    category: "Paylaşım",
+    publishedAt: null,
+    sourceUrl: null,
+    article: {
+      heroTitle: "Uçuş Kontrolcüsü",
+      heroDescription:
+        "Yapay zekâ ile entegre yeni nesil uçuş kontrolcüsü tanıtımı.",
+      eyebrow: "KAMUYA AÇIK TEKNOLOJİ TANITIMI",
+      heading: "Yapay zekâ ile entegre uçuş kontrolü.",
+      intro:
+        "İstikbal Aerospace’in LinkedIn üzerinden paylaşılan yeni nesil uçuş kontrolcüsü tanıtımında, yapay zekâ destekli kontrol algoritmaları ve uçuş sistemlerinde güvenlik ile verimlilik hedefleri öne çıkarılıyor.",
+      sectionHeading: "Mühendislik yaklaşımı",
+      sectionBody:
+        "Uçuş elektroniği; gömülü işlem birimleri, sensör verileri, kontrol yazılımı ve geri bildirim mekanizmalarını bir araya getirir. Bu tanıtım, doğrulanmış test sonuçları veya sertifikasyon bilgisi içermediğinden performans değerleri yayımlanmamaktadır.",
+      note: "Şirketin kamuya açık paylaşımı LinkedIn faaliyetinde yer almakta; tam yayın tarihi ve ayrıntılı teknik dokümanları henüz doğrulanmamıştır.",
+      breadcrumb: "HABERLER / UÇUŞ KONTROLCÜSÜ",
+    },
+  },
+];
