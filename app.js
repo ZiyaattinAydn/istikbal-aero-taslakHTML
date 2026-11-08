@@ -82,7 +82,36 @@ function newsCard(title,cat,bg,href='haber-detay.html',description='İstikbal Ae
 function innerHero(title,sub,bg,crumb='',kicker='İSTİKBAL AEROSPACE'){return `<section class="inner-hero"><div class="inner-bg" ${cardImg(bg)}></div><div class="wrapper"><div class="breadcrumb"><a href="index.html">ANA SAYFA</a> &nbsp; / &nbsp; <b>${crumb||title.toUpperCase()}</b></div><span class="eyebrow">${kicker}</span><h1>${title}</h1><p>${sub}</p></div></section>`}
 function feature(title,kicker,copy,bg,reverse=false,link='',label='Daha Fazla'){return `<article class="feature-row ${reverse?'flip':''}"><div class="feature-art" ${cardImg(bg)}></div><div class="feature-copy"><span class="eyebrow no-rule">${kicker}</span><h2>${title}</h2><p>${copy}</p>${link?btn(label,link,'text'):''}</div></article>`}
 function notice(){return `<div class="notice"><strong>BİLGİLENDİRME</strong> — Platform ve proje görselleri temsili çalışmalardır. Teknik özellikler ve kurumsal bilgiler resmî içerik onayından sonra güncellenecektir.</div>`}
-function footer(){return `<footer class="footer">${wrap(`<div class="footer-columns footer-minimal"><div class="footer-brand">${brand}<p class="footer-intro">Antalya merkezli İstikbal Aerospace; gömülü donanım, PCB tasarımı, otonom sistemler ve havacılık mühendisliği alanlarında çalışmalar yürütür.</p></div><div class="footer-identity"><span class="eyebrow no-rule">KONUM</span><p>Kepez, Antalya / Türkiye</p><span class="footer-identity-focus">HAVACILIK · GÖMÜLÜ SİSTEMLER · OTONOMİ</span></div></div><div class="footer-bottom"><span>© 2026 İSTİKBAL AEROSPACE</span><span>TEKNOLOJİ VE AR-GE</span></div>`)}</footer>`}
+function footer(){
+  return '<footer class="footer" id="site-footer">'+wrap(
+    '<div class="footer-columns footer-refined">' +
+      '<div class="footer-brand">' + brand +
+        '<p class="footer-intro">Antalya merkezli İstikbal Aerospace; gömülü donanım, PCB tasarımı, otonom sistemler ve havacılık mühendisliği alanlarında çalışmalar yürütür.</p>' +
+        '<div class="footer-loc">ANTALYA · TÜRKİYE</div>' +
+      '</div>' +
+      '<div class="footer-contact-panel">' +
+        '<span class="eyebrow no-rule">İLETİŞİM BİLGİLERİ</span>' +
+        '<div class="footer-contact-lines">' +
+          '<div><span>KONUM</span><p>Kepez, Antalya / Türkiye</p></div>' +
+          '<div><span>E-POSTA</span><p><a href="mailto:abdullahdemiral@istikbalaerospace.com">abdullahdemiral@istikbalaerospace.com</a></p></div>' +
+          '<div><span>TELEFON</span><p><a href="tel:+905462781931">+90 546 278 19 31</a></p></div>' +
+        '</div>' +
+      '</div>' +
+    '</div>' +
+    '<div class="footer-bottom"><span>© 2026 İSTİKBAL AEROSPACE</span><span>HAVACILIK · GÖMÜLÜ SİSTEMLER · OTONOMİ</span></div>'
+  )+'</footer>';
+}
+// Lightweight chapter navigator for the long home page.
+function chapterNavigation(){
+  if(page!=='home') return '';
+  const chapters=['Giriş','Mühendislik','Platformlar','Teknolojiler','Tengri AI','Projeler & AR-GE','Haberler','Kurumsal'];
+  return '<nav class="chapter-nav" aria-label="Ana sayfa bölüm navigasyonu"><ol>'+
+    chapters.map((label,index)=>'<li><button type="button" class="chapter-step'+(index===0?' is-active':'')+
+      '" data-chapter-index="'+index+'" aria-label="'+label+' bölümüne git" title="'+label+'"'+
+      (index===0?' aria-current="location"':'')+'><span class="chapter-label" aria-hidden="true">'+label+
+      '</span><span class="chapter-dot" aria-hidden="true"></span></button></li>').join('')+
+    '</ol></nav>';
+}
 function homepage(){return `<section class="hero hero-story" aria-label="İstikbal Aerospace havacılık vitrini" style="--scene-progress:0"><div class="hero-stage">
   <div class="hero-scene hero-scene-flight" role="img" aria-label="Gün doğumunda dağların üzerinde uçan markasız temsili hava aracı"></div>
   <div class="hero-scene hero-scene-hangar" role="img" aria-label="Alacakaranlıkta havacılık hangarındaki markasız temsili hava aracı"></div>
@@ -341,7 +370,7 @@ function platformFocus(key){
 const titles={iha:'İnsansız Hava Sistemleri',flightArch:'Gömülü Uçuş Mimarileri',airDefense:'Hava Savunma Ağları',autonomy:'Otonom Sistemler',embedded:'Gömülü Sistemler',sensors:'Sensör Füzyonu',rockets:'Roket Sistemleri',communications:'İleri Haberleşme',home:'Ana Sayfa',platforms:'Platformlar',tech:'Teknolojiler',capabilities:'Kabiliyetler',tengri:'Tengri AI',projects:'Projeler & AR-GE',news:'Haberler & Duyurular',about:'Kurumsal',contact:'İletişim',platformDetail:'Platform Detayı',projectDetail:'Proje Detayı',newsDetail:'Haber Detayı',flightControlNews:'Uçuş Kontrolcüsü'};
 const pages={iha:()=>platformFocus('iha'),flightArch:()=>platformFocus('flightArch'),airDefense:()=>platformFocus('airDefense'),autonomy:()=>focusPage('autonomy'),embedded:()=>focusPage('embedded'),sensors:()=>focusPage('sensors'),rockets:()=>focusPage('rockets'),communications:()=>focusPage('communications'),home:homepage,platforms,tech:technologies,capabilities,tengri,projects,news,about,contact,platformDetail:()=>detail('platformDetail'),projectDetail:()=>detail('projectDetail'),newsDetail:()=>detail('newsDetail'),flightControlNews:()=>detail('flightControlNews')};
 document.title=`${titles[page]||'Ana Sayfa'} | İstikbal Aerospace`;
-document.querySelector('#app').innerHTML=header()+`<main id="main" tabindex="-1">${(pages[page]||homepage)()}</main>`+footer();
+document.querySelector('#app').innerHTML=header()+`<main id="main" tabindex="-1">${(pages[page]||homepage)()}</main>`+footer()+chapterNavigation();
 // The technology trigger is a disclosure. Only real links can revisit a document.
 const siteHeader = document.querySelector('.site-header');
 const techTrigger = document.getElementById('tech-trigger');
