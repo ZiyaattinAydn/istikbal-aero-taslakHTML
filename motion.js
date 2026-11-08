@@ -6,7 +6,9 @@
   const $ = selector => document.querySelector(selector);
   const home = document.body.dataset.page === 'home';
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-  const desktopMouse = matchMedia('(min-width: 961px) and (hover: hover) and (pointer: fine)');
+  // Browser zoom changes CSS viewport width without changing the physical input device.
+  // Use pointer capability—not the responsive breakpoint—to retain wheel chapters.
+  const desktopMouse = matchMedia('(hover: hover) and (pointer: fine)');
   const header = $('.site-header');
   const hero = $('.hero-story');
   const stage = $('.hero-stage');
@@ -291,7 +293,9 @@
     const delta = event.deltaY * (event.deltaMode===1?16:event.deltaMode===2?innerHeight:1);
     const dir = Math.sign(delta);
     if (!dir) return;
-    if (event.deltaMode===0 && (Math.abs(delta)<48 || Math.abs(event.deltaX)>2 || !Number.isInteger(delta))) touchpadGesture=true;
+    // A physical mouse wheel can report fractional/smaller deltas at 125–300% browser zoom.
+    // Do not classify a wheel as a touchpad solely because its delta is non-integer.
+    if (event.deltaMode===0 && (Math.abs(delta)<18 || Math.abs(event.deltaX)>4)) touchpadGesture=true;
     if (touchpadGesture) {
       // Touchpads retain native momentum, and do not get forced through wheel steps.
       stopMovement();
@@ -323,6 +327,9 @@
   }
   setWheel();
   desktopMouse.addEventListener('change',setWheel);
+  // Resizes (including browser zoom) always invalidate snap positions and restore the
+  // active wheel mode without forcing a page reload.
+  addEventListener('resize',setWheel,{passive:true});
   reduced.addEventListener('change',()=>{setWheel();connectObserver();queueHero();});
   // Native navigation inputs always override the wheel animation.
   addEventListener('keydown',stopByUser,{capture:true});
