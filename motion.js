@@ -1,4 +1,4 @@
-/* İstikbal Aerospace — reversible cinematic scenes and direction-aware reveal.
+/* İstikbal Aerospace — cinematic chapters with one-time content reveals.
  * Self-contained, runs over file:// and on any static host; no libraries needed.
  */
 (() => {
@@ -10,11 +10,12 @@
   const header = $('.site-header');
   const hero = $('.hero-story');
   const stage = $('.hero-stage');
-  const sections = [...document.querySelectorAll('main > section'), $('.contact-cta'), $('.footer')].filter(Boolean);
+  const sections = [...document.querySelectorAll('main > section'), $('.footer')].filter(Boolean);
+  const chapterButtons = home ? [...document.querySelectorAll('.chapter-step')] : [];
+  const chapterNav = home ? $('.chapter-nav') : null;
+  const chapterToggle = home ? $('.chapter-nav-toggle') : null;
   let travel = null;
   let raf = 0;
-  let lastY = scrollY;
-  let scrollDirection = 1;
   let lastWheel = -Infinity;
   let tailUntil = 0;
   let tailDirection = 0;
@@ -48,8 +49,7 @@
   addEventListener('scroll', queueHero, {passive:true});
   addEventListener('resize', queueHero, {passive:true});
 
-  /* Individual elements, not whole sections, animate in staggered directions.
-     Reset them after leaving either edge so upward visits replay the reveal. */
+  /* Reveal content only on first encounter. Never hide it when scrolling back up. */
   const actors = [];
   const seen = new Set();
   function pick(selector, side = 0, baseDelay = 0, step = 85) {
@@ -84,34 +84,40 @@
   pick('.footer-bottom > *', 0, 80, 70);
   pick('.inner-hero .wrapper > .eyebrow, .inner-hero .wrapper > h1, .inner-hero .wrapper > p', -1, 45, 80);
   let observer;
-  function setReveal(node, state, direction) {
-    if (node.dataset.actorState === state) return;
-    node.dataset.actorState = state;
-    if (state === 'in') node.dataset.actorArrival = direction < 0 ? 'up' : 'down';
+  function revealOnce(node) {
+    if (node.dataset.actorState === 'in') return;
+    node.dataset.actorState = 'in';
+    node.dataset.actorArrival = 'down';
+    observer?.unobserve(node);
   }
   function connectObserver() {
     observer?.disconnect();
     if (reduced.matches || !('IntersectionObserver' in window)) {
-      for (const node of actors) node.dataset.actorState = 'in';
+      for (const node of actors) revealOnce(node);
       return;
     }
+    const bar = heightOfHeader();
     for (const node of actors) {
+      // Already visited actors stay visible through resize and direction changes.
+      if (node.dataset.actorState === 'in') continue;
       const rect = node.getBoundingClientRect();
-      node.dataset.actorState = rect.bottom < heightOfHeader() + 34 ? 'above' : 'below';
+      if (rect.bottom <= bar + 6) {
+        // A direct load at a deep scroll position must not hide earlier sections.
+        node.dataset.actorState = 'in';
+      } else {
+        node.dataset.actorState = 'below';
+      }
     }
-    // Flush initial hidden state before moving visible actors to their final pose.
     document.body.classList.add('cinematic-ready');
     observer = new IntersectionObserver(entries => {
-      const direction = scrollDirection;
       for (const entry of entries) {
-        const node = entry.target;
-        if (entry.isIntersecting) setReveal(node, 'in', direction);
-        else setReveal(node, entry.boundingClientRect.bottom < (entry.rootBounds?.top ?? 0) + 2 ? 'above' : 'below', direction);
+        if (entry.isIntersecting) revealOnce(entry.target);
       }
-    }, {rootMargin:`-${heightOfHeader() + 6}px 0px -10% 0px`, threshold:0.04});
-    for (const node of actors) observer.observe(node);
+    }, {rootMargin:'-'+(bar + 6)+'px 0px -10% 0px', threshold:0.04});
+    for (const node of actors) {
+      if (node.dataset.actorState !== 'in') observer.observe(node);
+    }
   }
-  addEventListener('scroll', () => { const next = scrollY; if (Math.abs(next-lastY) > .5) scrollDirection = Math.sign(next-lastY); lastY=next; }, {passive:true});
   connectObserver();
 
   function sectionStops() {
@@ -148,7 +154,7 @@
     }
     const distance = Math.abs(target-from);
     // Hero has a long, intentional crossfade; other section steps remain soft and readable.
-    const duration = kind === 'hero' ? 2050 : kind === 'top' ? 1250 : clamp(900 + distance*.17, 1070, 1450);
+    const duration = kind === 'hero' ? 2050 : kind === 'top' ? 1250 : kind === 'jump' ? clamp(800 + distance*.075, 1000, 1600) : clamp(900 + distance*.17, 1070, 1450);
     const direction = Math.sign(target - from);
     travel = {kind, direction, target};
     const started = performance.now();
@@ -166,6 +172,57 @@
     }
     raf = requestAnimationFrame(frame);
   }
+  /* Fixed chapter navigator: labels are exposed on hover/focus, and every dot
+     jumps directly to its section without changing page or wheel-step semantics. */
+  let chapterRAF = 0;
+  function refreshChapterState() {
+    chapterRAF = 0;
+    if (!home || !chapterButtons.length) return;
+    const stops = sectionStops();
+    if (stops.length < chapterButtons.length) return;
+    const referenceY = scrollY + Math.min(180, innerHeight * .18);
+    let active = 0;
+    for (let i = 0; i < chapterButtons.length; i++) {
+      if (stops[i].at <= referenceY) active = i;
+    }
+    for (const [index, button] of chapterButtons.entries()) {
+      const selected = index === active;
+      button.classList.toggle('is-active', selected);
+      if (selected) button.setAttribute('aria-current', 'location');
+      else button.removeAttribute('aria-current');
+    }
+  }
+  function queueChapterState() {
+    if (!chapterRAF) chapterRAF = requestAnimationFrame(refreshChapterState);
+  }
+  function closeChapterMenu() {
+    chapterNav?.classList.remove('is-open');
+    chapterToggle?.setAttribute('aria-expanded','false');
+  }
+  if (home && chapterButtons.length) {
+    chapterButtons.forEach(button => button.addEventListener('click', () => {
+      const index = Number(button.dataset.chapterIndex);
+      const target = sectionStops()[index];
+      if (!target) return;
+      closeChapterMenu();
+      animateTo(target.at, 'jump');
+      queueChapterState();
+    }));
+    chapterToggle?.addEventListener('click', () => {
+      const opened = chapterNav.classList.toggle('is-open');
+      chapterToggle.setAttribute('aria-expanded', String(opened));
+    });
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') closeChapterMenu();
+    });
+    document.addEventListener('pointerdown', event => {
+      if (chapterNav && !chapterNav.contains(event.target)) closeChapterMenu();
+    });
+    addEventListener('scroll', queueChapterState, {passive:true});
+    addEventListener('resize', queueChapterState, {passive:true});
+    queueChapterState();
+  }
+
   function smoothWheel(delta) {
     const max = document.documentElement.scrollHeight - innerHeight;
     if (travel?.kind === 'free') {
@@ -274,17 +331,17 @@
   addEventListener('pagehide',stopByUser);
   document.addEventListener('visibilitychange',()=>{if(document.hidden) stopByUser();});
   let resizeTimer;
-  addEventListener('resize',()=>{stopByUser();geometry=null;cancelAnimationFrame(resizeTimer);resizeTimer=requestAnimationFrame(()=>{connectObserver();queueHero();});},{passive:true});
+  addEventListener('resize',()=>{stopByUser();geometry=null;cancelAnimationFrame(resizeTimer);resizeTimer=requestAnimationFrame(()=>{connectObserver();queueHero();queueChapterState();});},{passive:true});
   if ('ResizeObserver' in window) {
     const ro=new ResizeObserver(()=>{geometry=null;queueHero();});
     [header,...sections].filter(Boolean).forEach(el=>ro.observe(el));
   }
-  document.fonts?.ready.then(()=>geometry=null);
+  document.fonts?.ready.then(()=>{geometry=null;queueChapterState();});
 
   /* Same-page nav links and logo return smoothly to the top, no reload. */
   const currentURL = new URL(location.href);
   const normal = p => p.endsWith('/') ? p+'index.html':p;
-  document.querySelectorAll('.site-header a[href], .footer a[href], .contact-cta a[href]').forEach(link=>{
+  document.querySelectorAll('.site-header a[href], .footer a[href]').forEach(link=>{
     const dest = new URL(link.href);
     if (dest.protocol!==currentURL.protocol || dest.host!==currentURL.host ||
         normal(dest.pathname)!==normal(currentURL.pathname) || dest.hash || dest.search!==currentURL.search) return;
