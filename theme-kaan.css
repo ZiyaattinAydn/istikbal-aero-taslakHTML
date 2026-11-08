@@ -1016,6 +1016,7 @@ html,body{max-width:100%;overflow-x:clip}
   .header-inner .mobile-trigger{display:flex!important;flex:0 0 auto;order:3}
   .site-header .mega{display:none!important}
   .site-header .mobile-nav{
+    display:block!important;
     position:absolute;
     top:calc(100% - 1px);
     left:0;
