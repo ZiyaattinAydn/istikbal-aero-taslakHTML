@@ -215,3 +215,15 @@ main:focus { outline: 0; }
   [data-page="home"] .stage-actor[data-stage="future"] { translate:0 18px; }
   [data-page="home"] .stage-actor[data-stage="past"] { translate:0 -18px; }
 }
+
+/* Platform navigation: same reversible behavior as the existing Technologies menu. */
+.platform-current { display:inline-flex; align-items:stretch; position:relative; height:100%; }
+.platform-current::after { content:''; position:absolute; inset:auto 0 0; height:2px; background:var(--cyan); pointer-events:none; }
+.platform-current .nav-link::after { display:none; }
+.platform-current button { padding-inline:5px; }
+.close-platform { background:none; border:0; color:var(--muted); font-size:20px; line-height:1; }
+#platform-menu .mega-inner { min-height:330px; }
+.mobile-platform-current { display:flex; border-bottom:1px solid var(--line); }
+.mobile-platform-current a, .mobile-platform-current button { display:flex; align-items:center; padding:16px 3px; font-size:14px; }
+.mobile-platform-current a { flex:1; }
+.mobile-platform-current button { justify-content:flex-end; min-width:44px; background:none; border:0; color:var(--white); }
