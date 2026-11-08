@@ -1837,3 +1837,241 @@ body[data-page="capabilities"] .cards-3 {
     transition: none !important;
   }
 }
+
+
+/* ==========================================================
+   RESPONSIVE QA / PHASE 2 — EDITORIAL CARDS AND CONTACT
+   Applies to Projeler & AR-GE, Haberler & Duyurular and İletişim.
+   Keep the existing copy, imagery and routes unchanged.
+   ========================================================== */
+
+/* Two substantial editorial cards read better than three cramped columns.
+   This class is only on the PUBLIC_WORKS and PUBLIC_NEWS lists, not on
+   the separate AR-GE / technology-card grid. */
+.editorial-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: clamp(22px,2.5vw,36px);
+  align-items: stretch;
+  max-width: 1260px;
+  min-width: 0;
+  margin-inline: auto;
+}
+.editorial-grid > .news-card {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  padding: 0;
+  overflow: hidden;
+  isolation: isolate;
+  box-sizing: border-box;
+  border: 1px solid rgba(80,149,219,.30);
+  background: linear-gradient(155deg,#08213d,#051830);
+  box-shadow: inset 0 1px 0 rgba(115,180,238,.045);
+  transform: translate3d(0,0,0);
+  transition: transform .48s cubic-bezier(.2,.73,.21,1),
+    border-color .38s ease,box-shadow .48s ease;
+}
+.editorial-grid .news-card > .news-visual {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 0;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-bottom: 1px solid rgba(68,148,225,.30);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+  transform: none;
+  filter: saturate(.81) hue-rotate(160deg);
+  transition: filter .5s ease;
+}
+.editorial-grid .news-card > .news-content {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  max-width: 100%;
+  gap: 0;
+  padding: clamp(24px,2.6vw,39px);
+  box-sizing: border-box;
+}
+.editorial-grid .news-meta {
+  display: block;
+  max-width: 100%;
+  font: 600 12px/1.55 var(--mono);
+  color: #72c7ff;
+  letter-spacing: .115em;
+  overflow-wrap: anywhere;
+}
+.editorial-grid .news-card h3 {
+  width: 100%;
+  max-width: 100%;
+  margin: 17px 0 14px;
+  font: 800 clamp(30px,2.8vw,43px)/1.2 var(--head);
+  letter-spacing: .005em;
+  color: #f5f9ff;
+  text-wrap: pretty;
+  overflow-wrap: break-word;
+}
+.editorial-grid .news-card p {
+  max-width: 100%;
+  margin: 0;
+  color: #bdcfe2;
+  font-size: 16px;
+  line-height: 1.75;
+  overflow-wrap: break-word;
+}
+.editorial-grid .news-card a:not(.btn) {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  max-width: 100%;
+  min-height: 44px;
+  margin-top: auto;
+  padding: 27px 0 0;
+  color: #85ccff;
+  font: 700 15px/1.45 var(--head);
+  letter-spacing: .045em;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  transition: color .3s ease;
+}
+@media(hover:hover) and (pointer:fine) {
+  .editorial-grid .news-card:hover,
+  .editorial-grid .news-card:focus-within {
+    transform: translate3d(0,-4px,0);
+    border-color: rgba(76,161,242,.63);
+    box-shadow: 0 19px 34px rgba(0,8,25,.26);
+  }
+  .editorial-grid .news-card:hover .news-visual,
+  .editorial-grid .news-card:focus-within .news-visual {
+    transform: none;
+    filter: saturate(.87) hue-rotate(160deg) brightness(1.065);
+  }
+  .editorial-grid .news-card a:not(.btn):hover,
+  .editorial-grid .news-card a:not(.btn):focus-visible { color:#fff; }
+}
+
+/* Contact: a real information card rather than a tall, cramped column.
+   align-self:start avoids the empty stretched panel beside the form. */
+body[data-page="contact"] .contact-grid {
+  display: grid;
+  grid-template-columns: minmax(0,1.02fr) minmax(0,1fr);
+  gap: clamp(26px,3.5vw,52px);
+  align-items: start;
+  min-width: 0;
+  max-width: 100%;
+}
+body[data-page="contact"] .contact-grid > * { min-width: 0; max-width: 100%; }
+body[data-page="contact"] .contact-infos {
+  display: block;
+  align-self: start;
+  min-height: 0;
+  width: 100%;
+  padding: clamp(26px,3.1vw,46px);
+  box-sizing: border-box;
+  background: linear-gradient(145deg,#092441 0%,#071a35 100%);
+  border: 1px solid rgba(84,157,230,.37);
+  box-shadow: inset 0 1px 0 rgba(91,163,230,.06);
+}
+body[data-page="contact"] .contact-line {
+  min-width: 0;
+  margin: 0;
+  padding: 19px 0;
+  border-bottom: 1px solid rgba(84,154,219,.25);
+}
+body[data-page="contact"] .contact-line:first-child { padding-top: 0; }
+body[data-page="contact"] .contact-line > span {
+  display: block;
+  margin: 0 0 9px;
+  font: 600 12px/1.4 var(--mono);
+  letter-spacing: .08em;
+  color: #75bce8;
+}
+body[data-page="contact"] .contact-line > strong {
+  display: block;
+  max-width: 100%;
+  font-size: clamp(16px,1.25vw,18px);
+  font-weight: 600;
+  line-height: 1.55;
+  color: #f2f8ff;
+  overflow-wrap: anywhere;
+}
+body[data-page="contact"] .contact-line a {
+  color: inherit;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+body[data-page="contact"] .contact-line a:hover { color: #79c8ff; }
+body[data-page="contact"] .contact-infos > p.small {
+  display: block;
+  margin-top: 25px !important;
+  margin-bottom: 0;
+  padding-top: 19px;
+  font-size: 14px;
+  line-height: 1.75;
+  color: #b4cbe0;
+  overflow-wrap: break-word;
+}
+body[data-page="contact"] .form-shell {
+  align-self: start;
+  width: 100%;
+  padding: clamp(27px,3vw,45px);
+  box-sizing: border-box;
+}
+body[data-page="contact"] .form-grid {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: clamp(15px,1.6vw,22px);
+  min-width: 0;
+}
+body[data-page="contact"] .field,
+body[data-page="contact"] .field.wide { min-width: 0; }
+body[data-page="contact"] .field input,
+body[data-page="contact"] .field select,
+body[data-page="contact"] .field textarea { max-width: 100%; box-sizing: border-box; }
+body[data-page="contact"] .form-note { line-height: 1.65; }
+
+/* Zoomed desktop/tablet: whole editorial cards and the two contact panels
+   stack early, so neither title nor email has to squeeze into 300px columns. */
+@media(max-width:1099px) {
+  .editorial-grid {
+    grid-template-columns: minmax(0,1fr);
+    max-width: 700px;
+  }
+  body[data-page="contact"] .contact-grid {
+    grid-template-columns: minmax(0,1fr);
+    gap: 25px;
+  }
+}
+@media(max-width:699px) {
+  .editorial-grid { gap: 22px; }
+  .editorial-grid .news-card > .news-content { padding: 25px 23px 28px; }
+  .editorial-grid .news-card h3 { font-size: clamp(30px,7.5vw,39px); }
+  .editorial-grid .news-card p { font-size: 15px; }
+  body[data-page="contact"] .contact-infos,
+  body[data-page="contact"] .form-shell { padding: 25px 22px; }
+  body[data-page="contact"] .form-grid { grid-template-columns: minmax(0,1fr); }
+  body[data-page="contact"] .field.wide { grid-column: auto; }
+}
+@media(max-width:400px){
+  .editorial-grid .news-card > .news-content { padding: 23px 19px 25px; }
+  body[data-page="contact"] .contact-infos,
+  body[data-page="contact"] .form-shell { padding: 23px 19px; }
+}
+@media(prefers-reduced-motion:reduce){
+  .editorial-grid > .news-card,
+  .editorial-grid .news-visual,
+  .editorial-grid .news-card a:not(.btn) { transition:none!important; }
+}
