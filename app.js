@@ -92,7 +92,7 @@ function technologyTrigger(mobile = false) {
   return `<button ${attrs}>Teknolojiler ${arrow}</button>`;
 }
 function header(){let nav=NAV.map(([k,l,h])=>k==='platforms'?platformTrigger():k==='tech'?technologyTrigger():`<a class="nav-link ${page===k||(k==='platforms'&&['platformDetail','iha','flightArch','airDefense'].includes(page))||(k==='projects'&&page==='projectDetail')||(k==='news'&&['newsDetail','flightControlNews'].includes(page))?'active':''}" href="${h}">${l}</a>`).join('');
-let pm=PLATFORMS.map(([n,u,d])=>`<a class="mega-item" href="${u}"><span><strong>${n}</strong><span>${d}</span></span><span class="arrow" aria-hidden="true">↗</span></a>`).join('');let ml=TECH.map(([n,u,d])=>`<a class="mega-item" href="${u}"><span><strong>${n}</strong><span>${d}</span></span><span class="arrow">↗</span></a>`).join('');let mobile=NAV.map(([k,l,h])=>k==='platforms'?`${platformTrigger(true)}<div id="mobile-platform-sub" class="mobile-sub" hidden>${PLATFORMS.map(x=>`<a href="${x[1]}">${x[0]}</a>`).join('')}</div>`:k==='tech'?`${technologyTrigger(true)}<div id="mobile-sub" class="mobile-sub" hidden>${TECH.map(x=>`<a href="${x[1]}">${x[0]}</a>`).join('')}</div>`:`<a href="${h}">${l}<span>↗</span></a>`).join('');return `<header class="site-header"><div class="header-inner">${brand}<nav class="desktop-nav" aria-label="Ana menü">${nav}</nav><div class="header-tools"><span class="lang" aria-label="Sayfa dili Türkçe">TR</span></div><button class="mobile-trigger" id="mobile-trigger" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="mobile-nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button></div><div id="platform-menu" class="mega" role="region" aria-label="Platformlar alt menü"><div class="mega-inner"><div class="mega-image" style="background-image:linear-gradient(0deg,rgba(7,17,27,.97),transparent 60%),url(&quot;assets/hero-hangar-photo.webp&quot;)"><span class="eyebrow no-rule">PLATFORMLAR / 01—04</span><h3>Platformdan sisteme.</h3><p>İnsansız hava platformları, uçuş elektroniği ve bağlantılı sistemler.</p></div><div class="mega-links"><div class="mega-links-head"><span class="eyebrow no-rule">PLATFORM ALANLARI</span><button class="close-platform" type="button" aria-label="Platform menüsünü kapat">×</button></div><div class="mega-list">${pm}</div></div></div></div><div id="mega-menu" class="mega" role="region" aria-label="Teknolojiler mega menü"><div class="mega-inner"><div class="mega-image"><span class="eyebrow no-rule">TEKNOLOJİLER / 01—08</span><h3>Fikirden sisteme.</h3><p>İstikbal Aerospace'in teknoloji ve mühendislik çalışma alanlarını keşfedin.</p></div><div class="mega-links"><div class="mega-links-head"><span class="eyebrow no-rule">TEKNOLOJİ ALANLARI</span><button class="close-mega" type="button" aria-label="Mega menüyü kapat" id="close-mega">×</button></div><div class="mega-list">${ml}</div></div></div></div><nav class="mobile-nav" id="mobile-nav" aria-label="Mobil menü">${mobile}</nav></header>`}
+let pm=PLATFORMS.map(([n,u,d])=>`<a class="mega-item" href="${u}"><span><strong>${n}</strong><span>${d}</span></span><span class="arrow" aria-hidden="true">↗</span></a>`).join('');let ml=TECH.map(([n,u,d])=>`<a class="mega-item" href="${u}"><span><strong>${n}</strong><span>${d}</span></span><span class="arrow">↗</span></a>`).join('');let mobile=NAV.map(([k,l,h])=>k==='platforms'?`${platformTrigger(true)}<div id="mobile-platform-sub" class="mobile-sub" hidden>${PLATFORMS.map(x=>`<a href="${x[1]}">${x[0]}</a>`).join('')}</div>`:k==='tech'?`${technologyTrigger(true)}<div id="mobile-sub" class="mobile-sub" hidden>${TECH.map(x=>`<a href="${x[1]}">${x[0]}</a>`).join('')}</div>`:`<a href="${h}">${l}<span>↗</span></a>`).join('');return `<header class="site-header"><div class="header-inner">${brand}<nav class="desktop-nav" aria-label="Ana menü">${nav}</nav><div class="header-tools"><div class="language-picker"><button type="button" id="language-trigger" class="lang" aria-controls="language-menu" aria-expanded="false" aria-haspopup="true" aria-label="Dil seçimi: Türkçe">TR <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="m5 7 5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></button><div id="language-menu" class="language-menu" hidden><span class="language-current" aria-current="true">TR · Türkçe</span><button type="button" class="language-unavailable" disabled title="İngilizce çeviri henüz hazır değil">EN · English <small>Yakında</small></button></div></div></div><button class="mobile-trigger" id="mobile-trigger" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="mobile-nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button></div><div id="platform-menu" class="mega" role="region" aria-label="Platformlar alt menü"><div class="mega-inner"><div class="mega-image" style="background-image:linear-gradient(0deg,rgba(7,17,27,.97),transparent 60%),url(&quot;assets/hero-hangar-photo.webp&quot;)"><span class="eyebrow no-rule">PLATFORMLAR / 01—04</span><h3>Platformdan sisteme.</h3><p>İnsansız hava platformları, uçuş elektroniği ve bağlantılı sistemler.</p></div><div class="mega-links"><div class="mega-links-head"><span class="eyebrow no-rule">PLATFORM ALANLARI</span><button class="close-platform" type="button" aria-label="Platform menüsünü kapat">×</button></div><div class="mega-list">${pm}</div></div></div></div><div id="mega-menu" class="mega" role="region" aria-label="Teknolojiler mega menü"><div class="mega-inner"><div class="mega-image"><span class="eyebrow no-rule">TEKNOLOJİLER / 01—08</span><h3>Fikirden sisteme.</h3><p>İstikbal Aerospace'in teknoloji ve mühendislik çalışma alanlarını keşfedin.</p></div><div class="mega-links"><div class="mega-links-head"><span class="eyebrow no-rule">TEKNOLOJİ ALANLARI</span><button class="close-mega" type="button" aria-label="Mega menüyü kapat" id="close-mega">×</button></div><div class="mega-list">${ml}</div></div></div></div><nav class="mobile-nav" id="mobile-nav" aria-label="Mobil menü">${mobile}</nav></header>`}
 function btn(label,href,kind='outline'){return `<a class="btn ${kind}" href="${href}">${label}<span class="arrow" aria-hidden="true">↗</span></a>`}
 function head(kicker,title,lead='',right=''){return `<div class="section-header"><div><span class="eyebrow">${kicker}</span><h2 class="section-title">${title}</h2>${lead?`<p class="lead">${lead}</p>`:''}</div>${right}</div>`}
 function wrap(c){return `<div class="wrapper">${c}</div>`}
@@ -399,7 +399,7 @@ const mobileTech = document.getElementById('mobile-tech');
 const mobilePlatform = document.getElementById('mobile-platform');
 const mobilePlatformSub = document.getElementById('mobile-platform-sub');
 const mobileSub = document.getElementById('mobile-sub');
-const mobileLayout = matchMedia('(max-width: 960px)');
+const mobileLayout = matchMedia('(max-width: 1160px)');
 
 // Keep optional navigation controls from breaking news filters or the contact form
 // if a template is changed or a disclosure button is missing.
@@ -506,6 +506,31 @@ mobileLayout.addEventListener('change', closeMenus);
 window.addEventListener('pageshow', closeMenus);
 
 } // navigation controls are optional; other page behaviors still initialize.
+
+// Language selection is a disclosure; English is listed but intentionally not active.
+const languageTrigger = document.getElementById('language-trigger');
+const languageMenu = document.getElementById('language-menu');
+if (languageTrigger && languageMenu) {
+  function closeLanguageMenu() {
+    languageMenu.hidden = true;
+    languageTrigger.setAttribute('aria-expanded', 'false');
+  }
+  languageTrigger.addEventListener('click', event => {
+    event.stopPropagation();
+    const willOpen = languageMenu.hidden;
+    languageMenu.hidden = !willOpen;
+    languageTrigger.setAttribute('aria-expanded', String(willOpen));
+  });
+  document.addEventListener('pointerdown', event => {
+    if (!languageTrigger.closest('.language-picker')?.contains(event.target)) closeLanguageMenu();
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && !languageMenu.hidden) {
+      closeLanguageMenu();
+      languageTrigger.focus({preventScroll:true});
+    }
+  });
+}
 
 // Lightweight working category filter on the example project/news pages.
 document.querySelectorAll('.filter').forEach(b=>b.addEventListener('click',()=>{const group=b.closest('.listing-toolbar');group.querySelectorAll('.filter').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));const key=b.dataset.filter,list=group.nextElementSibling;let shown=0;list.querySelectorAll('[data-category]').forEach(card=>{card.hidden=key!=='all'&&card.dataset.category!==key;if(!card.hidden)shown++;});const empty=list.parentElement.querySelector('.filter-empty');if(empty)empty.hidden=shown!==0;}));
