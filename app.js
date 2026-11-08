@@ -182,7 +182,7 @@ function projects(){
   const process = head(
     'MÜHENDİSLİK YAKLAŞIMI',
     'Araştırma, uygulama, bütünleştirme.',
-    'Fikirlerin donanım ve yazılımla buluştuğu sistem geliştirme adımları.'
+    'Fikirlerin donanım ve yazılımla buluştuğu sistem geliştirme adımları. PCB tasarımı ve gömülü yazılımın uçuş elektroniğiyle kurduğu ilişki bütünleşik sistem yaklaşımının parçasıdır.'
   ) + '<div class="steps">' +
     '<div class="step"><span class="n">01</span><h3>İhtiyaç Analizi</h3><p>Görev ve sistem gereksinimlerinin belirlenmesi.</p></div>' +
     '<div class="step"><span class="n">02</span><h3>Elektronik Tasarım</h3><p>Donanım ve arayüzlerin tasarlanması.</p></div>' +
@@ -191,8 +191,7 @@ function projects(){
   return innerHero('Projeler & AR-GE','Kamuya açık teknoloji tanıtımları ve mühendislik çalışma alanları.','research-lab.svg') +
     section(published+highlights) +
     section(research,'inner-panel') +
-    section(process) +
-    section(feature('Gömülü sistemlerin içinde.','DONANIM & YAZILIM','PCB tasarımı ve gömülü yazılımın uçuş elektroniğiyle kurduğu ilişkiyi inceleyin.','platform-systems.svg',false,'gomulu-sistemler.html','Gömülü Sistemler'),'inner-panel');
+    section(process);
 }
 function news(){
   const posts = head(
@@ -209,8 +208,7 @@ function news(){
     newsCard('Yapay zekâ destekli yeni nesil uçuş kontrolcüsü','Paylaşım','platform-systems.svg','ucus-kontrol-paylasimi.html','Şirketin uçuş kontrol sistemlerine yönelik yapay zekâ ve kontrol algoritmaları odaklı teknoloji paylaşımı.')+
     '</div><p class="filter-empty editorial-note" hidden>Bu kategoride yayımlanmış bir içerik bulunmuyor.</p>';
   return innerHero('Haberler & Duyurular','İstikbal Aerospace’in kamuya açık açıklamaları ve teknoloji paylaşımları.','hero-hangar-photo.webp')+
-    section(posts+filters+cards)+
-    section(feature('Tengri AI hakkında daha fazla.','TEKNOLOJİ','Bağlantılı savunma sistemleri ve yapay zekâ vizyonunu teknoloji sayfasında inceleyin.','tengri-network.svg',false,'tengri-ai.html','Tengri AI'),'inner-panel');
+    section(posts+filters+cards);
 }
 function about(){
   const intro = head(
@@ -263,7 +261,7 @@ function detail(type){
       '<h2>Teknoloji vizyonu</h2>'+
       '<p>Sensör verilerinin bir araya getirilmesi, çoklu hedeflerin değerlendirilmesi ve bilgi paylaşımı, tanıtımda öne çıkan ana başlıklardır. Açıklanan konseptler doğrulanmış operasyonel performans bilgisi olarak sunulmamaktadır.</p>'+
       '<p><a href="'+post+'" target="_blank" rel="noopener noreferrer" class="text-link">Orijinal LinkedIn paylaşımı ↗</a></p>'+
-      btn('Tengri AI','tengri-ai.html','solid')+'　'+btn('Tüm Yayınlar','haberler.html')+'</article>';
+      '</article>';
     return innerHero('Tengri AI','Yapay zekâ destekli savunma ağı yaklaşımı üzerine şirket paylaşımı.','tengri-network.svg','HABERLER / TENGRİ AI','İSTİKBAL AEROSPACE')+section(content);
   }
   if(type==='flightControlNews'){
@@ -274,11 +272,11 @@ function detail(type){
       '<h2>Mühendislik yaklaşımı</h2>'+
       '<p>Uçuş elektroniği; gömülü işlem birimleri, sensör verileri, kontrol yazılımı ve geri bildirim mekanizmalarını bir araya getirir. Bu tanıtım, doğrulanmış test sonuçları veya sertifikasyon bilgisi içermediğinden performans değerleri yayımlanmamaktadır.</p>'+
       '<p>Şirketin kamuya açık paylaşımı LinkedIn faaliyetinde yer almakta; tam yayın tarihi ve ayrıntılı teknik dokümanları henüz doğrulanmamıştır.</p>'+
-      btn('Gömülü Uçuş Mimarileri','ucus-mimarileri.html','solid')+'　'+btn('Tüm Yayınlar','haberler.html')+'</article>';
+      '</article>';
     return innerHero('Uçuş Kontrolcüsü','Yapay zekâ ile entegre yeni nesil uçuş kontrolcüsü tanıtımı.','platform-systems.svg','HABERLER / UÇUŞ KONTROLCÜSÜ','İSTİKBAL AEROSPACE')+section(content);
   }
   const d=type==='platformDetail'?['Havacılık Sistemleri','Platform mühendisliği, uçuş elektroniği ve sistem entegrasyonu.','platform-flight.svg','iha-sistemleri.html']:['AR-GE','Elektronik tasarım ve otonom mühendislik çalışmaları.','research-lab.svg','projeler.html'];
-  return innerHero(d[0],d[1],d[2])+section(feature('Mühendislik disiplinleri.','SİSTEM ALANLARI','İstikbal Aerospace’in gömülü donanım, otonom sistemler ve mühendislik çalışmalarını daha ayrıntılı keşfedin.',d[2],false,d[3],'Devamını İncele'));
+  return innerHero(d[0],d[1],d[2])+section(feature('Mühendislik disiplinleri.','SİSTEM ALANLARI','İstikbal Aerospace’in gömülü donanım, otonom sistemler ve mühendislik çalışma alanları birlikte ele alınır.',d[2]));
 }
 const focusData={
  autonomy:{title:'Otonom Sistemler',kicker:'SİSTEM MÜHENDİSLİĞİ / 01',tagline:'Algılama, karar verme ve kontrolün buluştuğu alan.',bg:'platform-flight.svg',intro:'Otonom sistemler; çevreyi algılama, veriyi yorumlama ve belirlenen hedeflere göre hareket üretme gibi farklı mühendislik disiplinlerini bir araya getirir. Bu sayfa, konunun genel yaklaşımını tanıtır.',modules:[['01','Algılama ve veri','Sensörlerden gelen verilerin sistem tarafından yorumlanmasına yönelik mühendislik yaklaşımı.'],['02','Karar mekanizmaları','Algılanan duruma göre kuralların ve algoritmaların rolünü açıklayan genel çerçeve.'],['03','Kontrol ve geri bildirim','Ölçüm, kontrol ve geri bildirim döngülerinin sistem tasarımındaki yeri.']],related:'Gömülü Sistemler',to:'gomulu-sistemler.html'},
@@ -288,10 +286,27 @@ const focusData={
  rockets:{title:'Roket Sistemleri',kicker:'HAVACILIK & UZAY / 04',tagline:'Uçuş elektroniği, telemetri ve sistem bütünlüğü.',bg:'platform-flight.svg',intro:'Roket sistemleri, İstikbal Aerospace’in kamuya açık uzmanlık alanları listesinde geçmektedir. Bu sayfa roket projelerinde ele alınan genel mühendislik disiplinlerini tanıtır; şirkete ait belirli bir ürün, uçuş testi veya performans iddiası içermez.',modules:[['01','Uçuş elektroniği','Algılama, kontrol ve uçuş bilgisinin değerlendirilmesinde elektronik bileşenlerin genel rolü.'],['02','Telemetri ve haberleşme','Sistem verilerinin izlenmesi ve bağlantılı birimlerle bilgi alışverişi.'],['03','Entegrasyon ve doğrulama','Elektronik, yazılım ve mekanik alt sistemlerin bütün halinde ele alınması.']],related:'Gömülü Uçuş Mimarileri',to:'ucus-mimarileri.html'},
  communications:{title:'İleri Haberleşme',kicker:'VERİ BAĞLANTILARI / 05',tagline:'Bağlantılı sistemler arasında bilgi akışı ve entegrasyon.',bg:'tengri-network.svg',intro:'İstikbal Aerospace’in kamuya açık şirket özetinde haberleşme sistemleri ve şifreli taktik veri bağlantıları çalışma alanları arasında anılmaktadır. Burada haberleşme mimarilerinin genel ilkeleri yer alır; doğrulanmamış teknik uygulama, kapasite veya operasyonel ürün iddiası sunulmaz.',modules:[['01','Veri iletimi','Bağlantılı platformlar arasında durum ve ölçüm bilgilerinin aktarılmasına dair temel yaklaşım.'],['02','Güvenlik ve bütünlük','İletilen bilginin güvenliğinin ve tutarlılığının sistem tasarımında değerlendirilmesi.'],['03','Sistem entegrasyonu','Haberleşme katmanının sensörler, gömülü yazılım ve üst sistemlerle birlikte ele alınması.']],related:'Sensör Füzyonu',to:'sensor-fuzyonu.html'}
 };
-function focusPage(key){const x=focusData[key];return `${innerHero(x.title,x.tagline,x.bg,'TEKNOLOJİLER / '+x.title.toUpperCase(),x.kicker)}${section(`<div class="focus-intro"><div><span class="eyebrow">TEKNOLOJİYE YAKINDAN BAKIŞ</span><h2>Bir disiplinin farklı katmanları.</h2></div><p>${x.intro}</p></div>`)}${section(`${head('TEMEL YAKLAŞIM','Mühendislik bileşenleri.','Konuya ait kavramlar ve çalışma ilkeleri; doğrulanmış proje bilgileri ayrıca yayınlanacaktır.')}<div class="focus-modules">${x.modules.map(([num,title,copy])=>`<article class="focus-module"><span class="num">${num} / 03</span><h3>${title}</h3><p>${copy}</p></article>`).join('')}</div>`,'inner-panel')}${section(`${feature('Sistemler birlikte çalışır.','İLİŞKİLİ TEKNOLOJİLER','Teknoloji başlıkları birbirinden kopuk değildir. İlgili alanları ve şirketin diğer mühendislik disiplinlerini keşfedin.',x.bg,false,x.to,x.related)}`)}${section(`${head('DAHA FAZLASINI KEŞFET','Teknoloji haritasına dönün.','Tüm çalışma alanlarını bir arada görün ve Tengri AI ile Kabiliyetler bölümlerine ulaşın.',btn('Tüm Teknolojiler','teknolojiler.html','solid'))}`)}`}
+function focusPage(key){
+ const x=focusData[key];
+ const intro=innerHero(x.title,x.tagline,x.bg,'TEKNOLOJİLER / '+x.title.toUpperCase(),x.kicker) +
+   section('<div class="focus-intro"><div><span class="eyebrow">TEKNOLOJİYE YAKINDAN BAKIŞ</span><h2>Bir disiplinin farklı katmanları.</h2></div><p>'+x.intro+'</p></div>');
+ const modules=head('TEMEL YAKLAŞIM','Mühendislik bileşenleri.','Konuya ait kavramlar ve çalışma ilkeleri; doğrulanmış proje bilgileri ayrıca yayınlanacaktır.') +
+   '<div class="focus-modules">'+x.modules.map(([num,title,copy])=>'<article class="focus-module"><span class="num">'+num+' / 03</span><h3>'+title+'</h3><p>'+copy+'</p></article>').join('')+'</div>' +
+   '<p class="editorial-note">Sistemler birlikte çalışır: '+x.title+' ile '+x.related+' birbirini tamamlayan mühendislik alanlarıdır. Teknoloji başlıkları birbirinden bağımsız değildir.</p>';
+ return intro + section(modules,'inner-panel');
+}
 
 const platformDetails={"iha": ["İnsansız Hava Sistemleri", "Hava platformları, otonom uçuş ve sistem mühendisliği.", "hero-hangar-photo.webp", "İNSANSIZ HAVA SİSTEMLERİ", "İnsansız hava araçları; gövde, elektronik, uçuş kontrolü, haberleşme ve sensör sistemlerinin birlikte çalışmasını gerektiren bütünleşik platformlardır.", "Uçuş elektroniği", "Uçuş kontrolü ve gömülü sistemler ile platform yönetimi.", "Otonom hareket", "Sensör verileri, karar mekanizmaları ve kontrol katmanları.", "Haberleşme", "Verinin platform bileşenleri arasında ve bağlantılı sistemlerde iletilmesi."], "flightArch": ["Gömülü Uçuş Mimarileri", "Donanım ve yazılımın birlikte geliştirildiği uçuş sistemleri.", "platform-systems.svg", "GÖMÜLÜ UÇUŞ MİMARİSİ", "Uçuş sistemlerinde gömülü mimari; kart tasarımı, işlem birimi, çevre birimleri, veri arabirimleri ve kontrol yazılımının birlikte değerlendirilmesini gerektirir.", "Elektronik tasarım", "PCB ve temel elektronik bileşenlerin sistem ihtiyaçlarına göre ele alınması.", "Gömülü yazılım", "Donanım kaynakları, zamanlama ve sistem davranışı.", "Entegrasyon", "Bileşenlerin bütünleşik yapı içinde çalışmasının değerlendirilmesi."], "airDefense": ["Hava Savunma Ağları", "Algılama, bağlantı ve karar destek yaklaşımı.", "tengri-network.svg", "AĞ BAĞLANTILI SİSTEMLER", "İstikbal Aerospace’in kamuya açık açıklamalarında hava savunma ağları ve yapay zekâ destekli koordinasyon yaklaşımları çalışma alanları arasında yer alır.", "Algılama", "Farklı veri kaynaklarından durumsal bilgi elde etme yaklaşımı.", "Veri bağlantısı", "Bağlı sistemler arasında haberleşme ve bilgi akışı.", "Karar desteği", "Tengri AI başlığıyla ilişkili değerlendirme ve koordinasyon katmanları."]};
-function platformFocus(key){const d=platformDetails[key];return `${innerHero(d[0],d[1],d[2],'PLATFORMLAR / '+d[0].toUpperCase(),d[3])}${section(`<div class="focus-intro"><div><span class="eyebrow">SİSTEM ODAĞI</span><h2>Birlikte çalışan teknolojiler.</h2></div><p>${d[4]}</p></div>`)}${section(`${head('MÜHENDİSLİK KATMANLARI','Sistem bütünlüğü.','Havacılık çalışmalarında birbirini tamamlayan temel mühendislik başlıkları.')}<div class="focus-modules">${[[d[5],d[6]],[d[7],d[8]],[d[9],d[10]]].map(([t,desc],i)=>`<article class="focus-module"><span class="num">0${i+1} / 03</span><h3>${t}</h3><p>${desc}</p></article>`).join('')}</div>`,'inner-panel')}${section(`${feature('Teknolojilere daha yakından bakın.','TEKNOLOJİLER','Otonom sistemler, gömülü donanım ve sensör füzyonu üzerine mühendislik alanlarını keşfedin.',d[2],false,'teknolojiler.html','Tüm Teknolojiler')}`)}`}
+function platformFocus(key){
+ const d=platformDetails[key];
+ const moduleCards=[[d[5],d[6]],[d[7],d[8]],[d[9],d[10]]].map(([t,desc],i)=>
+   '<article class="focus-module"><span class="num">0'+(i+1)+' / 03</span><h3>'+t+'</h3><p>'+desc+'</p></article>').join('');
+ return innerHero(d[0],d[1],d[2],'PLATFORMLAR / '+d[0].toUpperCase(),d[3]) +
+   section('<div class="focus-intro"><div><span class="eyebrow">SİSTEM ODAĞI</span><h2>Birlikte çalışan teknolojiler.</h2></div><p>'+d[4]+'</p></div>') +
+   section(head('MÜHENDİSLİK KATMANLARI','Sistem bütünlüğü.','Havacılık çalışmalarında birbirini tamamlayan temel mühendislik başlıkları.') +
+     '<div class="focus-modules">'+moduleCards+'</div><p class="editorial-note">Otonom sistemler, gömülü donanım ve sensör füzyonu bu mimarilerle ilişkili mühendislik disiplinleridir.</p>','inner-panel');
+}
+
 const titles={iha:'İnsansız Hava Sistemleri',flightArch:'Gömülü Uçuş Mimarileri',airDefense:'Hava Savunma Ağları',autonomy:'Otonom Sistemler',embedded:'Gömülü Sistemler',sensors:'Sensör Füzyonu',rockets:'Roket Sistemleri',communications:'İleri Haberleşme',home:'Ana Sayfa',platforms:'Platformlar',tech:'Teknolojiler',capabilities:'Kabiliyetler',tengri:'Tengri AI',projects:'Projeler & AR-GE',news:'Haberler & Duyurular',about:'Kurumsal',contact:'İletişim',platformDetail:'Platform Detayı',projectDetail:'Proje Detayı',newsDetail:'Haber Detayı',flightControlNews:'Uçuş Kontrolcüsü'};
 const pages={iha:()=>platformFocus('iha'),flightArch:()=>platformFocus('flightArch'),airDefense:()=>platformFocus('airDefense'),autonomy:()=>focusPage('autonomy'),embedded:()=>focusPage('embedded'),sensors:()=>focusPage('sensors'),rockets:()=>focusPage('rockets'),communications:()=>focusPage('communications'),home:homepage,platforms,tech:technologies,capabilities,tengri,projects,news,about,contact,platformDetail:()=>detail('platformDetail'),projectDetail:()=>detail('projectDetail'),newsDetail:()=>detail('newsDetail'),flightControlNews:()=>detail('flightControlNews')};
 document.title=`${titles[page]||'Ana Sayfa'} | İstikbal Aerospace`;
