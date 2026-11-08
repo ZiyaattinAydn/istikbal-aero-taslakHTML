@@ -336,3 +336,31 @@ html{scroll-behavior:smooth;scroll-padding-top:84px}body{background:#071526;colo
   .chapter-nav ol { gap: 1px; }
   .chapter-nav .chapter-step { height: 26px; }
 }
+
+/* Review #3: readable functional metadata (decorative micro-labels stay optional).
+   Compact desktop header keeps its own spacing to avoid wrapping at 980–1210px. */
+.eyebrow,
+.tag,
+.field label,
+.form-note,
+.news-meta,
+.platform-card .caption,
+.footer-bottom,
+.hero-story-eyebrow,
+.footer-contact-lines > div > span {
+  font-size: 12px;
+}
+@media (min-width: 1211px) {
+  .desktop-nav .nav-link { font-size: 12px; }
+}
+@media (min-width: 961px) and (max-width: 1210px) {
+  .header-inner { padding-inline: 22px; gap: 12px; }
+  .brand { min-width: 206px; gap: 10px; }
+  .brand-text { font-size: 12px; letter-spacing: .035em; }
+  .desktop-nav { gap: clamp(7px, .78vw, 12px); }
+  .desktop-nav .nav-link { font-size: 11px; }
+}
+@media (max-width: 650px) {
+  .hero-story-eyebrow { font-size: 12px; letter-spacing: .09em; }
+  .hero-story-actions .btn { font-size: 12px; }
+}
