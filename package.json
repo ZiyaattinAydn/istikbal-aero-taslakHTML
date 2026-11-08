@@ -1,0 +1,9 @@
+{
+  "name": "istikbal-aero-static-preview",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Static source validation only; no production build or dependencies.",
+  "scripts": {
+    "test": "node --check app.js && node --check motion.js && node scripts/verify-static.mjs"
+  }
+}
