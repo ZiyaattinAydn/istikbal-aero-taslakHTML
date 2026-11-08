@@ -1202,3 +1202,15 @@ body[data-page="home"] .section-header .lead{max-width:770px}
   .tech-card,.tech-card::before,.tech-card .symbol,.tech-card h3,
   .tech-card .card-bottom span:last-child{transition:none!important;transform:none!important}
 }
+
+
+/* Cinematic entrances use the translate transition, whereas hover uses transform.
+   Preserve both for every interactive card family. */
+@media (prefers-reduced-motion:no-preference){
+  body.cinematic-ready :is(.platform-card,.tech-card,.news-card,.module,.step,.list-card,.focus-module,.feature-row).cinematic-actor[data-actor-state="in"]{
+    transition-property:opacity,translate,transform,border-color,box-shadow,background-color,filter;
+    transition-duration:770ms,960ms,560ms,440ms,580ms,540ms,500ms;
+    transition-timing-function:cubic-bezier(.19,.7,.16,1),cubic-bezier(.14,.72,.16,1),
+      cubic-bezier(.16,.75,.2,1),ease,ease,ease,ease;
+  }
+}
