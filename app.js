@@ -105,7 +105,9 @@ function footer(){
 function chapterNavigation(){
   if(page!=='home') return '';
   const chapters=['Giriş','Mühendislik','Platformlar','Teknolojiler','Tengri AI','Projeler & AR-GE','Haberler','Kurumsal'];
-  return '<nav class="chapter-nav" aria-label="Ana sayfa bölüm navigasyonu"><ol>'+
+  return '<nav class="chapter-nav" aria-label="Ana sayfa bölüm navigasyonu">' +
+    '<button type="button" class="chapter-nav-toggle" aria-expanded="false" aria-controls="chapter-nav-list">Bölümler <span aria-hidden="true">▦</span></button>' +
+    '<ol id="chapter-nav-list">'+
     chapters.map((label,index)=>'<li><button type="button" class="chapter-step'+(index===0?' is-active':'')+
       '" data-chapter-index="'+index+'" aria-label="'+label+' bölümüne git" title="'+label+'"'+
       (index===0?' aria-current="location"':'')+'><span class="chapter-label" aria-hidden="true">'+label+
