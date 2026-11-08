@@ -1,8 +1,14 @@
-İSTİKBAL AEROSPACE — SİNEMATİK KAYDIRMA PROTOTİPİ
+İSTİKBAL AEROSPACE — KURUMSAL SİTE ÖNİZLEMESİ (08.11.2026)
 
-index.html dosyasını çıkartılmış klasörden açın.
-Masaüstü fare tekerleği: Ana sayfada her adım bir bölüme yavaş ve kontrollü kayar. İlk adımda uçuş → hangar sahnesi daha uzun geçişle görünür.
-Touchpad, dokunmatik ve scrollbar doğal kaydırma yapar; iç sayfalarda yumuşak kaydırma bulunur.
-Metinler ve kartlar aşağı/yukarı yönlerinde tekrar animasyonla görünür.
+Güncel kullanım ve yayın rehberi için README.md dosyasını okuyun.
+Önizleme: https://ziyaattinaydn.github.io/istikbal-aero-taslakHTML/
 
-Görseller temsilîdir. Form örnektir, veri göndermez.
+Bu depo 21 içerik sayfası ile özel 404 ekranından oluşan statik bir prototiptir.
+Ana sayfada fareyle bölüm geçişi ve sağ tarafta bölüm navigasyonu bulunur.
+İç sayfalarda tarayıcının doğal kaydırması kullanılır.
+Metinler ve kartlar ilk gösterimden sonra yeniden gizlenmez.
+Sitedeki görseller temsilîdir; resmî şirket görselleri ve teknik iddialar ayrıca onaylanmalıdır.
+İletişim formu örnektir; mesaj göndermez.
+Önizlemede noindex,nofollow korunur.
+
+Eski sürümdeki “yukarı kaydırırken animasyon tekrar oynar” açıklaması artık geçerli değildir.
