@@ -65,23 +65,23 @@ function tengri(){
   const intro = head(
     'TENGRİ AI',
     'Birden fazla sistem. Ortak bir karar resmi.',
-    'İstikbal Aerospace’in kamuya açık Tengri AI tanıtımı, hava savunma ağları, insansız sistemler, roket teknolojileri ve haberleşme altyapıları arasında veri paylaşımı ve koordinasyon hedefleyen çok katmanlı bir yapay zekâ vizyonu ortaya koyar.'
+    'Tengri AI; hava savunma ağları, insansız sistemler, roket teknolojileri ve haberleşme altyapılarının birlikte ele alındığı çok katmanlı bir yapay zekâ ve karar destek vizyonudur.'
   );
   const introduction = '<div class="split-feature"><div class="visual" ' + cardImg('tengri-network.svg') + '></div><div class="copy">' +
     '<span class="eyebrow no-rule">AĞ MERKEZLİ YAPAY ZEKÂ</span>' +
     '<h2>Veriyi anlamlandıran, sistemleri buluşturan yaklaşım.</h2>' +
-    '<p>Tengri AI’ın tanıtımında sensör ve platform verilerinden durumsal farkındalık oluşturulması, tehditlerin değerlendirilmesi ve karar süreçlerinin desteklenmesi öne çıkıyor. Çalışmanın odağı, birbirinden ayrı sistemlerin daha bütünlüklü bir bilgi yapısında ele alınmasıdır.</p>' +
-    '<p>Bu sayfa şirketin yayımladığı proje hedeflerini ve teknoloji başlıklarını tanıtır; geliştirilme aşaması veya operasyonel doğrulama konusunda bir performans beyanı içermez.</p>' +
+    '<p>Tengri AI’ın odağında sensör ve platform verilerinden durumsal farkındalık oluşturulması, tehditlerin değerlendirilmesi ve karar süreçlerinin desteklenmesi yer alır. Amaç, birbirinden ayrı sistemleri daha bütünlüklü bir bilgi ve koordinasyon yapısı içinde değerlendirmektir.</p>' +
+    '<p>Tasarımın temelinde çoklu kaynak verisi, tahmine dayalı analiz ve bağlantılı sistem mimarileri bulunur.</p>' +
     btn('İlgili Kabiliyetler','kabiliyetler.html','outline') + '</div></div>';
   const technology = head(
     'TANITIMDAKİ TEKNOLOJİ BAŞLIKLARI',
     'Algılama. Değerlendirme. Koordinasyon.',
-    'Şirket paylaşımında ele alınan teknolojik hedefler, genel mühendislik çerçevesinde aşağıda açıklanmaktadır.'
+    'Tengri AI yaklaşımının temelini oluşturan teknoloji başlıkları.'
   ) + '<div class="cards-3">' +
     techCard('Veri & Sensör Birleşimi','01','◎','Farklı kaynaklardan elde edilen bilgilerin ortak bir durum görünümüne katkıda bulunması.','sensor-fuzyonu.html') +
     techCard('Çoklu Hedef Takibi','02','⌁','Birden fazla hava unsuruna ilişkin iz bilgilerinin birlikte değerlendirilmesi fikri.','hava-savunma-aglari.html') +
-    techCard('Tehdit Analizi','03','◇','Yapay zekâ destekli değerlendirme ve önceliklendirme süreçlerinin karar desteğindeki rolü.','tengri-ai.html') +
-    techCard('Öngörüsel Değerlendirme','04','⟡','Gelişen durumların ve olası senaryoların önceden değerlendirilmesine yönelik yaklaşım.','tengri-ai.html') +
+    techCard('Tehdit Analizi','03','◇','Yapay zekâ destekli değerlendirme ve önceliklendirme süreçlerinin karar desteğindeki rolü.','hava-savunma-aglari.html') +
+    techCard('Öngörüsel Değerlendirme','04','⟡','Gelişen durumların ve olası senaryoların önceden değerlendirilmesine yönelik yaklaşım.','otonom-sistemler.html') +
     techCard('Komuta & Kontrol','05','▦','Bağlı unsurlardan alınan bilgilerin ortak bir karar ve koordinasyon çerçevesinde incelenmesi.','hava-savunma-aglari.html') +
     techCard('Ağ Tabanlı Entegrasyon','06','↗','Farklı platform ve sistemlerin haberleşme ve veri paylaşımı yoluyla birlikte ele alınması.','ileri-haberlesme.html') +
     '</div>';
@@ -97,7 +97,7 @@ function tengri(){
   const vision = feature(
     'Kritik alanlar için durumsal farkındalık.',
     'VİZYON & KARAR DESTEK',
-    'Şirketin kamuya açık tanıtımında kritik altyapılar, stratejik bölgeler ve olası tehdit senaryoları için önceliklendirme ve öngörüye dayalı değerlendirme hedefleri yer alıyor. Bu başlıklar geliştirilmiş ve sahada doğrulanmış sistem özellikleri olarak değil, açıklanan proje vizyonu kapsamında ele alınmaktadır.',
+    'Kritik altyapılar, stratejik bölgeler ve olası tehdit senaryoları için durumsal farkındalık, önceliklendirme ve öngörüye dayalı değerlendirme bu teknoloji vizyonunun kullanım alanları arasında yer alır. Bunlar mevcut operasyonel yetenek olarak değil, hedeflenen çalışma alanları olarak ele alınmaktadır.',
     'research-lab.svg',
     false,
     'hava-savunma-aglari.html',
