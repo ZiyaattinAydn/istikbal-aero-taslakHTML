@@ -503,8 +503,56 @@ document.addEventListener('keydown', event => {
 document.addEventListener('pointerdown', event => {
   if (!siteHeader.contains(event.target)) closeMenus();
 });
-mobileLayout.addEventListener('change', closeMenus);
-window.addEventListener('pageshow', closeMenus);
+/* Auto-collapse the desktop navigation only when the actual labels no longer fit.
+   This is based on measured layout, not an arbitrary zoom or viewport breakpoint. */
+const headerInner = siteHeader.querySelector('.header-inner');
+const desktopNav = siteHeader.querySelector('.desktop-nav');
+const headerBrand = siteHeader.querySelector('.brand');
+const headerTools = siteHeader.querySelector('.header-tools');
+const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
+let navigationFitFrame = 0;
+function fitNavigationToWidth() {
+  navigationFitFrame = 0;
+  if (!headerInner || !desktopNav || !headerBrand || !headerTools) return;
+  if (mobileLayout.matches || !finePointer.matches) {
+    if (siteHeader.classList.contains('menu-compact')) {
+      closeMenus();
+      siteHeader.classList.remove('menu-compact');
+    }
+    return;
+  }
+  const items = [...desktopNav.children];
+  const navStyles = getComputedStyle(desktopNav);
+  const innerStyles = getComputedStyle(headerInner);
+  const gap = Number.parseFloat(navStyles.columnGap) || 0;
+  const navNeeded = items.reduce((width, item) => width + item.getBoundingClientRect().width, 0)
+    + Math.max(0, items.length - 1) * gap;
+  const padding = (Number.parseFloat(innerStyles.paddingLeft) || 0)
+    + (Number.parseFloat(innerStyles.paddingRight) || 0);
+  const outerGap = Number.parseFloat(innerStyles.columnGap) || 0;
+  const brandNeeded = Math.max(headerBrand.getBoundingClientRect().width, headerBrand.scrollWidth);
+  const toolsNeeded = Math.max(headerTools.getBoundingClientRect().width, headerTools.scrollWidth);
+  const navAvailable = headerInner.clientWidth - padding - brandNeeded - toolsNeeded - 2 * outerGap;
+  const wasCompact = siteHeader.classList.contains('menu-compact');
+  // Keep a little breathing room before returning from compact to desktop.
+  const shouldCompact = navNeeded > navAvailable - (wasCompact ? 16 : 6);
+  if (wasCompact !== shouldCompact) {
+    closeMenus();
+    siteHeader.classList.toggle('menu-compact', shouldCompact);
+  }
+}
+function queueNavigationFit() {
+  if (navigationFitFrame) return;
+  navigationFitFrame = requestAnimationFrame(fitNavigationToWidth);
+}
+mobileLayout.addEventListener('change', () => { closeMenus(); queueNavigationFit(); });
+finePointer.addEventListener('change', queueNavigationFit);
+window.addEventListener('resize', queueNavigationFit, {passive:true});
+window.visualViewport?.addEventListener('resize', queueNavigationFit, {passive:true});
+document.fonts?.ready.then(queueNavigationFit);
+document.fonts?.addEventListener?.('loadingdone', queueNavigationFit);
+window.addEventListener('pageshow', () => { closeMenus(); queueNavigationFit(); });
+queueNavigationFit();
 
 } // navigation controls are optional; other page behaviors still initialize.
 
