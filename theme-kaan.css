@@ -672,7 +672,7 @@ body[data-page="home"] .site-header{
   to{opacity:1;transform:translateY(0)}
 }
 /* Desktop mega panels transition rather than abruptly switching display. */
-@media(min-width:1361px){
+@media(min-width:1121px){
   .mega,
   .mega.open{
     display:block;
@@ -692,7 +692,7 @@ body[data-page="home"] .site-header{
     transition:opacity .3s ease,transform .35s cubic-bezier(.2,.7,.2,1),visibility 0s;
   }
 }
-@media(min-width:1361px) and (max-width:1480px){
+@media(min-width:1121px) and (max-width:1280px){
   .header-inner{padding-inline:clamp(17px,2vw,28px);column-gap:12px}
   .header-inner .brand-text{font-size:18px;letter-spacing:.06em}
   .header-inner .desktop-nav{gap:clamp(12px,1.05vw,16px)}
@@ -701,7 +701,7 @@ body[data-page="home"] .site-header{
   .desktop-nav .tech-current .nav-link{font-size:15px;letter-spacing:.02em}
 }
 /* Responsive changeover: don't squeeze 7 large labels into a 980px window. */
-@media(max-width:1360px){
+@media(max-width:1120px){
   .header-inner{
     display:flex;
     align-items:center;
@@ -943,7 +943,7 @@ html,body{max-width:100%;overflow-x:clip}
    RESPONSIVE HOTFIX — 09 NOV 2026
    Prevent the 3-column header from compressing the logo beneath its menu.
    ========================================== */
-@media (min-width:1361px){
+@media (min-width:1121px){
   .header-inner {
     display:grid;
     grid-template-columns:max-content minmax(0,1fr) max-content;
@@ -986,7 +986,7 @@ html,body{max-width:100%;overflow-x:clip}
   .header-inner .mobile-trigger{display:none!important}
   .mobile-nav{display:none!important}
 }
-@media (max-width:1360px){
+@media (max-width:1120px){
   .header-inner {
     display:flex;
     align-items:center;
@@ -1213,4 +1213,36 @@ body[data-page="home"] .section-header .lead{max-width:770px}
     transition-timing-function:cubic-bezier(.19,.7,.16,1),cubic-bezier(.14,.72,.16,1),
       cubic-bezier(.16,.75,.2,1),ease,ease,ease,ease;
   }
+}
+
+
+/* Normal desktop widths (including the 100% and 110% Opera screenshots):
+   reserve real measured space for logo and language; don't use symmetric
+   grid tracks, which previously pushed the navigation over the brand. */
+@media (min-width:1121px) and (max-width:1280px) {
+  .header-inner{
+    grid-template-columns:max-content minmax(0,1fr) max-content;
+    column-gap:clamp(9px,1vw,13px);
+    padding-inline:clamp(16px,1.7vw,23px);
+  }
+  .header-inner .brand{gap:9px;white-space:nowrap}
+  .header-inner .logo-mark,
+  .header-inner .logo-mark svg{width:31px;height:31px}
+  .header-inner .brand-text{
+    font-size:18px;
+    letter-spacing:.025em;
+    white-space:nowrap;
+  }
+  .header-inner .desktop-nav{
+    gap:clamp(7px,.72vw,10px);
+    min-width:0;
+    justify-self:center;
+  }
+  .desktop-nav .nav-link,
+  .desktop-nav .platform-current .nav-link,
+  .desktop-nav .tech-current .nav-link{
+    font-size:14px;
+    letter-spacing:.005em;
+  }
+  .header-inner .header-tools{min-width:48px}
 }
