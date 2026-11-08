@@ -225,25 +225,6 @@
     queueChapterState();
   }
 
-  function smoothWheel(delta) {
-    const max = document.documentElement.scrollHeight - innerHeight;
-    if (travel?.kind === 'free') {
-      travel.target = clamp(travel.target + delta*1.18, 0, max);
-      return;
-    }
-    stopMovement();
-    const s = {kind:'free', target:clamp(scrollY+delta*1.18,0,max), position:scrollY};
-    travel = s;
-    let last = performance.now();
-    function frame(now) {
-      const dt = Math.min(60,now-last); last=now;
-      s.position += (s.target - s.position)*(1-Math.exp(-dt/92));
-      scrollTo({top:s.position,behavior:'instant'});
-      if (Math.abs(s.position-s.target)>.6) raf=requestAnimationFrame(frame);
-      else {scrollTo({top:s.target,behavior:'instant'});stopMovement();}
-    }
-    raf = requestAnimationFrame(frame);
-  }
   function stepScene(dir) {
     const stops = sectionStops();
     if (!stops.length) return false;
@@ -282,7 +263,9 @@
   }
 
   function onWheel(event) {
-    if (!event.cancelable || event.defaultPrevented || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey ||
+    // On inner pages the browser owns all scrolling; only the cinematic homepage
+    // retains its deliberately stepped mouse-wheel chapter experience.
+    if (!home || !event.cancelable || event.defaultPrevented || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey ||
         Math.abs(event.deltaX) >= Math.abs(event.deltaY) ||
         event.target.closest('input, textarea, select, [contenteditable], [data-native-scroll], .mega.open, .mobile-nav.open') ||
         $('.mega.open, .mobile-nav.open')) return;
@@ -301,7 +284,7 @@
       stopMovement();
       return;
     }
-    if (travel?.kind !== 'free' && travel) {
+    if (travel) {
       event.preventDefault();
       if (travel.direction===dir) return;
       stopMovement();
@@ -309,20 +292,13 @@
     if (dir===tailDirection && now<tailUntil && gap<170) {event.preventDefault();return;}
     tailUntil=0;
     tailDirection=0;
-    if (home) {
-      if (stepScene(dir)) event.preventDefault();
-    } else {
-      const max=document.documentElement.scrollHeight-innerHeight;
-      if ((dir>0&&scrollY>=max-1) || (dir<0&&scrollY<=1)) return;
-      event.preventDefault();
-      smoothWheel(delta);
-    }
+    if (stepScene(dir)) event.preventDefault();
   }
   function setWheel() {
     removeEventListener('wheel', onWheel);
     stopByUser();
     touchpadGesture=false;
-    if (!reduced.matches && desktopMouse.matches) addEventListener('wheel',onWheel,{passive:false});
+    if (home && !reduced.matches && desktopMouse.matches) addEventListener('wheel',onWheel,{passive:false});
     geometry=null;
   }
   setWheel();
