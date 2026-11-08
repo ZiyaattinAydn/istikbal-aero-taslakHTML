@@ -97,8 +97,8 @@ function platforms(){
       techCard('Gömülü Sistemler','02','▦','Uçuş elektroniği ve sistem denetimi.','gomulu-sistemler.html')+
       techCard('Sensör Füzyonu','03','◎','Çoklu veri kaynağının birlikte değerlendirilmesi.','sensor-fuzyonu.html')+'</div>');
 }
-function technologies(){return `${innerHero('Teknolojiler','Donanım, kontrol, algılama ve yapay zekâ tabanlı sistemlerin buluştuğu mühendislik alanları.','platform-systems.svg')}${section(`${head('TEKNOLOJİ ALANLARI','Donanımdan otonomiye.','Elektronik tasarımın, yazılımın ve sistem mimarisinin birbirini tamamladığı disiplinler.')}<div class="cards-2">${techCard('Otonom Sistemler','01','⌁','Sensör verilerinin değerlendirilmesi, karar ve kontrol algoritmaları.','otonom-sistemler.html')}${techCard('Gömülü Donanım & PCB','02','▦','Elektronik kart tasarımı, işlemci tabanlı sistemler ve gömülü yazılım.','gomulu-sistemler.html')}${techCard('Sensör Füzyonu','03','◎','Birden fazla algılayıcıdan gelen bilginin birlikte işlenmesi.','sensor-fuzyonu.html')}${techCard('Yapay Zekâ / Tengri AI','04','⟡','Karar destek ve bağlantılı savunma ağlarına odaklanan teknoloji yaklaşımı.','tengri-ai.html')}${techCard('Roket Sistemleri','05','◇','Roket teknolojileriyle ilişkili uçuş elektroniği, telemetri ve sistem mühendisliğine genel bakış.','roket-sistemleri.html')}${techCard('İleri Haberleşme','06','⌁','Bağlantılı platformlarda veri iletimi, güvenli haberleşme ve sistem entegrasyonu.','ileri-haberlesme.html')}</div>`)}${section(`<div class="split-feature"><div class="visual" ${cardImg('tengri-network.svg')}></div><div class="copy"><span class="eyebrow no-rule">YAPAY ZEKÂ / TENGRİ AI</span><h2>Ağ bağlantılı karar destek.</h2><p>Tengri AI, şirketin kamuya açık tanıtımında bağlı hava ve kara sistemlerinin koordinasyonunu hedefleyen yapay zekâ yaklaşımı olarak anlatılıyor.</p>${btn('Tengri AI','tengri-ai.html','solid')}</div></div>`,'inner-panel')}${section(`${feature('Mühendislik kabiliyetleri.','SİSTEMİN ALT KATMANLARI','Gömülü yazılım, elektronik donanım, sensör füzyonu ve sistem entegrasyonunun mühendislik boyutlarını inceleyin.','research-lab.svg',true,'kabiliyetler.html','Kabiliyetler')}`)}` }
-function capabilities(){return `${innerHero('Kabiliyetler','İnsansız sistemlerden gömülü elektroniğe uzanan mühendislik çalışma alanları.','research-lab.svg','TEKNOLOJİLER / KABİLİYETLER')}${section(`${head('MÜHENDİSLİK & TEKNOLOJİ ALANLARI','Sistemlerin yapı taşları.','İstikbal Aerospace’in kamuya açık faaliyet ve uzmanlık tanıtımlarında yer alan başlıklar: insansız hava sistemleri, roket sistemleri, hava savunma ağları, haberleşme, gömülü donanım ve algılama.')}<div class="cards-3">${techCard('İnsansız Hava Araçları','01','✈','Hava platformları ve otonom uçuş mimarileri.','iha-sistemleri.html')}${techCard('Hava Savunma Ağları','02','⌁','Ağ bağlantılı hava savunma ve karar destek yaklaşımı.','hava-savunma-aglari.html')}${techCard('İleri Haberleşme','03','⌁','Bağlantılı platformlar ve taktik veri iletimi odağı.','ileri-haberlesme.html')}${techCard('Roket Sistemleri','04','◇','Roket projelerinde uçuş elektroniği ve sistem entegrasyonu hakkında genel mühendislik çerçevesi.','roket-sistemleri.html')}${techCard('Gömülü Donanım & PCB','05','▦','Elektronik kart tasarımı ve donanım-yazılım bütünlüğü.','gomulu-sistemler.html')}${techCard('Sensör Füzyonu','06','◎','Birden fazla veri kaynağının birlikte değerlendirilmesi.','sensor-fuzyonu.html')}</div>`)}${section(`${feature('Otonom Sistemler','OTONOMİ','Veri analizi, kontrol mantığı ve karar mekanizmalarının bir arada ele alındığı sistemler.','platform-flight.svg',false,'otonom-sistemler.html','Detayları İncele')}<div style="height:28px"></div>${feature('Gömülü Donanım & PCB','ELEKTRONİK','Elektronik kart tasarımı, gömülü işlemciler ve donanım-yazılım entegrasyonu.','platform-systems.svg',true,'gomulu-sistemler.html','Detayları İncele')}<div style="height:28px"></div>${feature('Sensör Füzyonu','ALGILAMA','Farklı sensör verilerinin işlenmesi ve tek bir sistem görünümüne dönüştürülmesi.','tengri-network.svg',false,'sensor-fuzyonu.html','Detayları İncele')}`)}${section(`${head('YAPAY ZEKÂ','Tengri AI.','Ağ merkezli karar desteği ve yapay zekâ sistemleri üzerine şirketin paylaştığı teknoloji yaklaşımını keşfedin.',btn('Tengri AI','tengri-ai.html','solid'))}`,'inner-panel')}` }
+function technologies(){return `${innerHero('Teknolojiler','Donanım, kontrol, algılama ve yapay zekâ tabanlı sistemlerin buluştuğu mühendislik alanları.','platform-systems.svg')}${section(`${head('TEKNOLOJİ ALANLARI','Donanımdan otonomiye.','Elektronik tasarım, gömülü yazılım, sensör füzyonu ve sistem entegrasyonu birbirini tamamlayan disiplinlerdir. Teknoloji alanları, sistemlerin alt katmanlarını birlikte ele alır.')}<div class="cards-2">${techCard('Otonom Sistemler','01','⌁','Sensör verilerinin değerlendirilmesi, karar ve kontrol algoritmaları.','otonom-sistemler.html')}${techCard('Gömülü Donanım & PCB','02','▦','Elektronik kart tasarımı, işlemci tabanlı sistemler ve gömülü yazılım.','gomulu-sistemler.html')}${techCard('Sensör Füzyonu','03','◎','Birden fazla algılayıcıdan gelen bilginin birlikte işlenmesi.','sensor-fuzyonu.html')}${techCard('Yapay Zekâ / Tengri AI','04','⟡','Karar destek ve bağlantılı savunma ağlarına odaklanan teknoloji yaklaşımı.','tengri-ai.html')}${techCard('Roket Sistemleri','05','◇','Roket teknolojileriyle ilişkili uçuş elektroniği, telemetri ve sistem mühendisliğine genel bakış.','roket-sistemleri.html')}${techCard('İleri Haberleşme','06','⌁','Bağlantılı platformlarda veri iletimi, güvenli haberleşme ve sistem entegrasyonu.','ileri-haberlesme.html')}</div>`)}${section(`<div class="split-feature"><div class="visual" ${cardImg('tengri-network.svg')}></div><div class="copy"><span class="eyebrow no-rule">YAPAY ZEKÂ / TENGRİ AI</span><h2>Ağ bağlantılı karar destek.</h2><p>Tengri AI, şirketin kamuya açık tanıtımında bağlı hava ve kara sistemlerinin koordinasyonunu hedefleyen yapay zekâ yaklaşımı olarak anlatılıyor.</p></div></div>`,'inner-panel')}` }
+function capabilities(){return `${innerHero('Kabiliyetler','İnsansız sistemlerden gömülü elektroniğe uzanan mühendislik çalışma alanları.','research-lab.svg','TEKNOLOJİLER / KABİLİYETLER')}${section(`${head('MÜHENDİSLİK & TEKNOLOJİ ALANLARI','Sistemlerin yapı taşları.','İstikbal Aerospace’in kamuya açık faaliyet ve uzmanlık tanıtımlarında yer alan başlıklar: insansız hava sistemleri, roket sistemleri, hava savunma ağları, haberleşme, gömülü donanım ve algılama.')}<div class="cards-3">${techCard('İnsansız Hava Araçları','01','✈','Hava platformları ve otonom uçuş mimarileri.','iha-sistemleri.html')}${techCard('Hava Savunma Ağları','02','⌁','Ağ bağlantılı hava savunma ve karar destek yaklaşımı.','hava-savunma-aglari.html')}${techCard('İleri Haberleşme','03','⌁','Bağlantılı platformlar ve taktik veri iletimi odağı.','ileri-haberlesme.html')}${techCard('Roket Sistemleri','04','◇','Roket projelerinde uçuş elektroniği ve sistem entegrasyonu hakkında genel mühendislik çerçevesi.','roket-sistemleri.html')}${techCard('Gömülü Donanım & PCB','05','▦','Elektronik kart tasarımı ve donanım-yazılım bütünlüğü.','gomulu-sistemler.html')}${techCard('Sensör Füzyonu','06','◎','Birden fazla veri kaynağının birlikte değerlendirilmesi.','sensor-fuzyonu.html')}</div>`)}${section(`${feature('Otonom Sistemler','OTONOMİ','Veri analizi, kontrol mantığı ve karar mekanizmalarının bir arada ele alındığı sistemler.','platform-flight.svg',false)}<div style="height:28px"></div>${feature('Gömülü Donanım & PCB','ELEKTRONİK','Elektronik kart tasarımı, gömülü işlemciler ve donanım-yazılım entegrasyonu.','platform-systems.svg',true)}<div style="height:28px"></div>${feature('Sensör Füzyonu','ALGILAMA','Farklı sensör verilerinin işlenmesi ve tek bir sistem görünümüne dönüştürülmesi.','tengri-network.svg',false)}`)}${section(`${head('YAPAY ZEKÂ','Tengri AI.','Şirketin yapay zekâ ve ağ merkezli karar desteği üzerine kamuya açık teknoloji yaklaşımı, diğer mühendislik disiplinleriyle ilişkilidir.')}`,'inner-panel')}` }
 function tengri(){
   const intro = head(
     'TENGRİ AI',
@@ -110,7 +110,7 @@ function tengri(){
     '<h2>Veriyi anlamlandıran, sistemleri buluşturan yaklaşım.</h2>' +
     '<p>Tengri AI’ın odağında sensör ve platform verilerinden durumsal farkındalık oluşturulması, tehditlerin değerlendirilmesi ve karar süreçlerinin desteklenmesi yer alır. Amaç, birbirinden ayrı sistemleri daha bütünlüklü bir bilgi ve koordinasyon yapısı içinde değerlendirmektir.</p>' +
     '<p>Tasarımın temelinde çoklu kaynak verisi, tahmine dayalı analiz ve bağlantılı sistem mimarileri bulunur.</p>' +
-    btn('İlgili Kabiliyetler','kabiliyetler.html','outline') + '</div></div>';
+    '</div></div>';
   const technology = head(
     'TANITIMDAKİ TEKNOLOJİ BAŞLIKLARI',
     'Algılama. Değerlendirme. Koordinasyon.',
@@ -138,14 +138,13 @@ function tengri(){
     'Kritik altyapılar, stratejik bölgeler ve olası tehdit senaryoları için durumsal farkındalık, önceliklendirme ve öngörüye dayalı değerlendirme bu teknoloji vizyonunun kullanım alanları arasında yer alır. Bunlar mevcut operasyonel yetenek olarak değil, hedeflenen çalışma alanları olarak ele alınmaktadır.',
     'research-lab.svg',
     false,
-    'hava-savunma-aglari.html',
-    'İlgili Teknolojiler'
+    '',
+    ''
   );
   const relation = head(
     'İLİŞKİLİ TEKNOLOJİLER',
     'Tengri AI ve sistem mühendisliği.',
-    'Gömülü yazılım, sensör füzyonu, otonomi ve haberleşme; ağ bağlantılı yapay zekâ yaklaşımlarını tamamlayan mühendislik alanlarıdır.',
-    btn('Tüm Teknolojiler','teknolojiler.html','solid')
+    'Gömülü yazılım, sensör füzyonu, otonomi ve haberleşme; ağ bağlantılı yapay zekâ yaklaşımlarını tamamlayan mühendislik alanlarıdır.'
   );
   return innerHero(
       'TENGRİ AI',
@@ -221,15 +220,15 @@ function about(){
     '<h2>Donanım, yazılım ve otonomi bir arada.</h2>' +
     '<p>Elektronik tasarım, gömülü uçuş mimarileri ve otonom algoritmalar birbirinden bağımsız parçalar değildir. İstikbal Aerospace, kamuya açık kurumsal tanıtımında bu disiplinleri birlikte ele alan, çevik ve prototip geliştirmeye odaklı bir mühendislik yaklaşımı benimsediğini ifade eder.</p>' +
     '<p>Yaklaşımın odağında, kavramsal tasarımların donanım ve yazılımla buluşturulması; alt sistemlerin birlikte çalışabilir, incelenebilir ve test edilebilir yapılar olarak değerlendirilmesi bulunur.</p>' +
-    btn('Kabiliyetleri İncele','kabiliyetler.html','outline') + '</div></div>';
+    '</div></div>';
   const workStages = head(
     'ÇALIŞMA YAKLAŞIMI',
     'Tasarım. Prototipleme. Entegrasyon.',
     'İstikbal Aerospace’in kamuya açık tanıtımında öne çıkan mühendislik süreçleri.'
-  ) + '<div class="cards-3">' +
-    techCard('Sistem Tasarımı','01','◇','Elektronik donanım, uçuş mimarileri ve yazılım bileşenlerini ortak bir sistem çerçevesinde değerlendirme.','ucus-mimarileri.html') +
-    techCard('Hızlı Prototipleme','02','⌁','Kavramsal fikirlerin elektronik tasarım, gömülü yazılım ve algoritma geliştirmeyle somutlaştırılması.','gomulu-sistemler.html') +
-    techCard('Entegrasyon','03','◎','Farklı bileşenler arasında veri akışı, kontrol ve sistem davranışının bütün olarak ele alınması.','teknolojiler.html') +
+  ) + '<div class="focus-modules">' +
+    '<article class="focus-module"><span class="num">01 / 03</span><h3>Sistem Tasarımı</h3><p>Elektronik donanım, uçuş mimarileri ve yazılım bileşenlerini ortak bir sistem çerçevesinde değerlendirme.</p></article>' +
+    '<article class="focus-module"><span class="num">02 / 03</span><h3>Hızlı Prototipleme</h3><p>Kavramsal fikirlerin elektronik tasarım, gömülü yazılım ve algoritma geliştirmeyle somutlaştırılması.</p></article>' +
+    '<article class="focus-module"><span class="num">03 / 03</span><h3>Entegrasyon</h3><p>Farklı bileşenler arasında veri akışı, kontrol ve sistem davranışının bütün olarak ele alınması.</p></article>' +
     '</div>';
   const disciplines = head(
     'FAALİYET ALANLARI',
@@ -243,7 +242,7 @@ function about(){
   const location = '<div class="corporate-identity"><div><span class="eyebrow">KONUM</span>' +
     '<h2>Kepez, Antalya.</h2></div><div>' +
     '<p>İstikbal Aerospace’in kamuya açık şirket profilinde merkez konumu Kepez / Antalya olarak belirtilmektedir. İş birliği ve iletişim talepleri için iletişim sayfamıza ulaşabilirsiniz.</p>' +
-    btn('İletişime Geç','iletisim.html','outline') + '</div></div>';
+    '</div></div>';
   return innerHero('Kurumsal','Havacılık, gömülü sistemler ve otonom yazılım odağında disiplinler arası mühendislik.','hero-hangar-photo.webp') +
     section(intro + introduction) +
     section(workStages,'inner-panel') +
