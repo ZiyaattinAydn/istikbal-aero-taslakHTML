@@ -27,3 +27,14 @@ Tarih: 8 Kasım 2026
 7. Alan adı/HTTPS, favicon, arama motoru indekslemesi, sosyal medya metadata ve gizlilik metinlerinin son kontrolü.
 
 **Karar:** Teknik prototip için kaynak düzeyi QA tamam. Resmî müşteri onayı ve gerçek cihaz testleri olmadan üretim yayını tamamlandı denmemeli.
+
+## Ek kontrol — Navigasyon ve tekrarlayan CTA temizliği (8 Kasım 2026)
+
+- 21 içerik sayfası statik kaynaklardan üretilerek ayrı ayrı kontrol edildi.
+- Hiçbir içerik sayfasında kırık yerel HTML bağlantısı bulunmadı; `h1`, `section` ve `div` yapıları sayısal olarak dengeli çıktı.
+- İletişime giden içerik butonları yalnızca ana sayfada **1** adet. Başka içerik sayfasında iletişim çağrısı yok.
+- Toplam **6 adet** `btn` sınıfı kullanan ana içerik kontrolü bulundu: ana sayfada 4, Platformlar'da 1 ve İletişim formunda 1. Kategori/haber kartları bağımsız ve anlamlı detay bağlantıları olarak korunur.
+- Tekrarlanan footer iletişim bandı ve gereksiz genel yönlendirme panelleri kaldırıldı. Footer artık kurumsal kimlik ve konum ile sınırlı.
+- `PUBLIC_WORKS` ve `PUBLIC_NEWS` listeleriyle proje tanıtımı ve haber kaydı ayrı modelde tutuluyor. Mevcut iki tanıtım korundu. Haber tarihi bilinmiyorsa `publishedAt:null` olarak bırakıldı.
+- Değişiklik öncesi 21 sayfanın metinleriyle karşılaştırmada kaldırılan uzun metinlerin çoğu tekrar eden navigasyon ve yönlendirme cümleleriydi; teknik içerik başlıkları ve proje özetleri korundu. **Birebir kelime eşitliği değil, anlam ve içerik kapsamı hedeflendi.**
+- Sonuç: Kaynak düzeyinde doğrulama başarılı. **Gerçek mobil/Safari/Chrome, görsel düzen ve animasyon testleri hâlâ yapılmadı.**
