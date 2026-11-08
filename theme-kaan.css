@@ -1483,3 +1483,107 @@ body[data-page="home"] .section-header .lead{max-width:770px}
     color: #ecf5ff;
   }
 }
+
+
+/* Header overflow mode. JS enables this ONLY when the full menu would clip.
+   Do not equate desktop browser zoom with a touch device or fixed zoom percent. */
+@media (hover:hover) and (pointer:fine) {
+  .site-header .desktop-nav > * {
+    flex-shrink: 0;
+  }
+  .site-header.menu-compact .header-inner {
+    display: flex !important;
+    grid-template-columns: none !important;
+    grid-template-rows: none !important;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: clamp(8px,1.15vw,16px);
+    width: 100%;
+    height: 82px;
+    padding-inline: clamp(12px,2vw,32px);
+  }
+  .site-header.menu-compact .header-inner .brand {
+    display: inline-flex;
+    flex: 0 1 auto;
+    align-items: center;
+    min-width: 0;
+    max-width: calc(100% - 119px);
+    margin-right: auto;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .site-header.menu-compact .header-inner .brand-text {
+    font-size: clamp(14px,1.6vw,21px);
+    white-space: nowrap;
+    letter-spacing: .03em;
+  }
+  /* Keep the full nav measurable without showing, scrolling or focusing it.
+     It is an off-flow measuring element, not a truncated visible menu. */
+  .site-header.menu-compact .header-inner .desktop-nav {
+    display: flex !important;
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    width: max-content !important;
+    max-width: none !important;
+    height: auto !important;
+    min-width: max-content !important;
+    overflow: visible !important;
+    opacity: 0;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+  .site-header.menu-compact .header-inner .header-tools {
+    display: flex !important;
+    align-self: center;
+    flex: 0 0 auto;
+    margin-left: auto;
+  }
+  .site-header.menu-compact .header-inner .mobile-trigger {
+    display: flex !important;
+    flex: 0 0 42px;
+    order: 3;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+  }
+  .site-header.menu-compact .mega,
+  .site-header.menu-compact .mega.open {
+    display: none !important;
+  }
+  .site-header.menu-compact .mobile-nav,
+  .site-header.menu-compact .mobile-nav.open {
+    display: block !important;
+    position: absolute;
+    top: calc(100% - 1px);
+    right: 0;
+    left: 0;
+    z-index: 110;
+    width: 100%;
+    max-height: 0;
+    padding: 0 clamp(18px,4vw,32px);
+    background: linear-gradient(150deg,#041428,#082646);
+    border-bottom: 1px solid rgba(73,153,230,.38);
+    box-shadow: 0 20px 40px rgba(0,8,21,.5);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-10px);
+    transition: opacity .3s ease, transform .32s ease,
+      max-height .36s ease, visibility 0s linear .36s,
+      padding .3s ease;
+  }
+  .site-header.menu-compact .mobile-nav.open {
+    max-height: calc(100dvh - 82px);
+    padding-block: 15px 26px;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+    transition: opacity .3s ease, transform .32s ease,
+      max-height .36s ease, visibility 0s, padding .3s ease;
+  }
+}
