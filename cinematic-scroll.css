@@ -95,3 +95,19 @@
   }
   main > section.section > .wrapper, main > section.tengri-band > .wrapper { width:100%; }
 }
+
+/* Mouse-wheel chapters remain viewport-height at browser zoom levels that make
+   CSS viewport widths fall below the old 961px breakpoint. Touch-only devices
+   retain natural page layout and native scrolling. */
+@media (hover: hover) and (pointer: fine) {
+  body[data-page="home"] main > section.section,
+  body[data-page="home"] main > section.tengri-band {
+    min-height: calc(100svh - var(--site-top));
+    display: flex;
+    align-items: center;
+  }
+  body[data-page="home"] main > section.section > .wrapper,
+  body[data-page="home"] main > section.tengri-band > .wrapper {
+    width: 100%;
+  }
+}
