@@ -271,3 +271,68 @@ html{scroll-behavior:smooth;scroll-padding-top:84px}body{background:#071526;colo
 @media(prefers-reduced-motion:reduce) {
   .chapter-label, .chapter-dot, .footer-contact-lines a { transition: none !important; }
 }
+
+/* Browser zoom can make a desktop pointer report a phone-sized CSS viewport.
+   Keep the unobtrusive chapter dots for mouse/trackpad computers; only
+   touch-oriented layouts use the large "Bölümler" popup. */
+@media (hover: hover) and (pointer: fine) and (max-width: 960px) {
+  .chapter-nav {
+    top: 50%;
+    bottom: auto;
+    right: clamp(8px, 1.2vw, 18px);
+    transform: translateY(-50%);
+    display: block;
+  }
+  .chapter-nav .chapter-nav-toggle { display: none; }
+  .chapter-nav ol,
+  .chapter-nav.is-open ol {
+    display: flex;
+    position: static;
+    width: auto;
+    max-height: none;
+    overflow: visible;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    padding: 0;
+    gap: 5px;
+    align-items: flex-end;
+  }
+  .chapter-nav li { width: auto; }
+  .chapter-nav .chapter-step {
+    width: 30px;
+    height: 31px;
+    padding: 0 9px 0 0;
+    display: flex;
+    justify-content: flex-end;
+    background: transparent;
+  }
+  .chapter-nav .chapter-label {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 43px;
+    width: auto;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translate(8px, -50%);
+    border: 1px solid rgba(224, 237, 247, .45);
+    padding: 10px 14px;
+    background: rgba(5, 21, 37, .96);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, .25);
+    white-space: nowrap;
+    font: 600 10px var(--mono);
+  }
+  .chapter-nav .chapter-step:hover .chapter-label,
+  .chapter-nav .chapter-step:focus-visible .chapter-label {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(0, -50%);
+  }
+  .chapter-nav .chapter-step.is-active { background: transparent; }
+}
+@media (hover: hover) and (pointer: fine) and (max-height: 470px) {
+  .chapter-nav ol { gap: 1px; }
+  .chapter-nav .chapter-step { height: 26px; }
+}
