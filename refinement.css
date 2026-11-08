@@ -69,3 +69,29 @@ html{scroll-behavior:smooth;scroll-padding-top:84px}body{background:#071526;colo
 .scene-legend{font-size:9px;gap:9px}.scene-number{margin-right:3px}.scene-rule{width:27px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}.hero-story-content>*{animation:none!important}.hero-story .hero-scene-flight{opacity:1!important}.hero-story .hero-scene-hangar{opacity:0!important}.reveal-ready{opacity:1!important;translate:none!important;transition:none!important}}
+
+/* Compact footer: contact information lives on its own page; no repeated sales CTA. */
+.footer-columns.footer-minimal {
+  grid-template-columns: minmax(0, 1.55fr) minmax(230px, .75fr);
+  gap: clamp(36px, 7vw, 100px);
+}
+.footer-minimal .footer-identity {
+  align-self: center;
+  padding-top: 8px;
+}
+.footer-minimal .footer-identity p {
+  color: var(--white);
+  font-size: 17px;
+  margin: 12px 0 20px;
+}
+.footer-minimal .footer-identity-focus {
+  color: var(--muted);
+  font: 11px var(--mono);
+  line-height: 1.9;
+  letter-spacing: .06em;
+}
+@media(max-width:650px){
+  .footer-columns.footer-minimal { grid-template-columns: 1fr; gap: 28px; }
+  .footer-minimal .footer-identity { padding-top: 0; }
+  .footer-minimal .footer-brand, .footer-minimal .footer-identity { grid-column: auto; }
+}
