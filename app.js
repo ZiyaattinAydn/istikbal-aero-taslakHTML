@@ -399,7 +399,7 @@ const mobileTech = document.getElementById('mobile-tech');
 const mobilePlatform = document.getElementById('mobile-platform');
 const mobilePlatformSub = document.getElementById('mobile-platform-sub');
 const mobileSub = document.getElementById('mobile-sub');
-const mobileLayout = matchMedia('(max-width: 1360px)');
+const mobileLayout = matchMedia('(max-width: 1120px)');
 
 // Keep optional navigation controls from breaking news filters or the contact form
 // if a template is changed or a disclosure button is missing.
