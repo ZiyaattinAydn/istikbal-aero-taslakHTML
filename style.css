@@ -164,3 +164,5 @@ html, body { overflow-x: clip; }
 /* Reverse chapter changes approach from above; forward changes rise from below. */
 .hero-cinema[data-hero-direction="up"] .hero-slide:not(.is-active) .hero-copy-beat { translate:0 -33px; }
 .hero-cinema[data-hero-direction="up"] .hero-slide.is-exiting .hero-copy-beat { translate:0 36px; }
+/* Longer technology menu: keep all 8 links reachable on shorter desktops. */
+@media (min-width:961px){.mega.open{max-height:calc(100dvh - 82px);overflow-y:auto;overscroll-behavior:contain}}
