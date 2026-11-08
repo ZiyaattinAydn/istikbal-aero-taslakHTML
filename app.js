@@ -47,11 +47,6 @@ function homepage(){return `<section class="hero hero-story" aria-label="İstikb
       <p class="hero-story-copy">Havacılık, gömülü elektronik ve otonom sistemlerin kesişiminde mühendislik.</p>
       <div class="hero-story-actions"><a class="btn solid" href="platformlar.html">Platformları Keşfet <span class="arrow" aria-hidden="true">↗</span></a><a class="btn outline" href="teknolojiler.html">Teknolojileri İncele <span class="arrow" aria-hidden="true">↗</span></a></div>
     </div>
-    <div class="hero-story-bottom">
-      
-      <span class="hero-illustrative">GÖRSELLER TEMSİLÎDİR</span>
-      <a class="story-scroll-cue" href="#homepage-intro" aria-label="Sonraki bölüme geç"><span>KEŞFET</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 8 7 8 7-8" stroke="currentColor" stroke-width="1.5"/></svg></a>
-    </div>
   </div>
   </div>
 </section>
