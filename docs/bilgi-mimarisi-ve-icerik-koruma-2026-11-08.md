@@ -83,3 +83,18 @@ Aynı çalışma farklı sayfalardan **ilişkisel bağlantılar** aracılığıy
 - [Teknik yayın kontrolü](qa-ve-yayin-kontrolu-2026-11-08.md)
 
 **Sonuç:** Bilgi mimarisi revizyonunun ilk, içerik kaybettirmeyen bölümü tamamlandı. İleride müşteri verisi ile yapılacak ürün/proje modellemesi için mevcut sayfalar güvenle korunuyor.
+
+## Güncelleme — Tekrarlayan yönlendirmeler ve içerik kaydı
+
+Önceki navigasyon aşamasında sayfa içerikleri byte düzeyinde korunmuştu. **Bu ek aşamada** kullanıcı isteğiyle tekrarlayan CTA öğeleri ve bunlara bağlı açıklamalar sadeleştirildi; dolayısıyla artık byte düzeyi birebir eşitlik iddia edilmez.
+
+- Tüm sayfalarda ortak iletişim bandı kaldırıldı; tek iletişim çağrısı ana sayfada, ayrı iletişim sayfası ana menüde kalır.
+- Footer'da tekrarlayan çözümler/keşfet/iletişim bağlantı listeleri yerine kimlik ve konum bilgisi bulunur.
+- İçerik taşıyan kategori ve haber kartları kendi anlamlı detay adreslerine bağlanmaya devam eder.
+- Genel son-bölüm yönlendirmeleri çıkarıldı; teknik ilişkiler çoğunlukla kısa paragraf içinde açıklandı.
+- Kurumsal süreç kartları, farklı sayfaları açan belirsiz bağlantılar yerine bilgilendirici statik kartlar oldu.
+- `PUBLIC_WORKS` ve `PUBLIC_NEWS` ayrı kayıt dizileri olarak düzenlendi. Bu, müşteriye açık bir CRUD paneli **değildir**.
+- İleride kurulacak içerik sistemi için giriş biçimi: [Abdullah İçerik Şablonu](abdullah-icerik-giris-sablonu.md).
+- 21 içerik sayfasının statik render kontrolü ve bağlantı testi geçti; gerçek tarayıcı görsel kontrolü açık.
+
+**İlk versiyon metinleri Git geçmişinde korunuyor.** Abdullah'ın onaylı verileri geldikçe mevcut sayfalar ve kayıtlar güncellenebilir.
