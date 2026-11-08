@@ -401,6 +401,12 @@ const mobilePlatformSub = document.getElementById('mobile-platform-sub');
 const mobileSub = document.getElementById('mobile-sub');
 const mobileLayout = matchMedia('(max-width: 960px)');
 
+// Keep optional navigation controls from breaking news filters or the contact form
+// if a template is changed or a disclosure button is missing.
+const menuControlsReady = [siteHeader,techTrigger,platformNavTrigger,platformMenu,megaMenu,
+  mobileTrigger,mobileMenu,mobileTech,mobilePlatform,mobilePlatformSub,mobileSub,
+  document.querySelector('.close-platform'),document.getElementById('close-mega')].every(Boolean);
+if (menuControlsReady) {
 function setMega(open) {
   if (open) { platformMenu.classList.remove('open'); platformNavTrigger.setAttribute('aria-expanded','false'); }
   megaMenu.classList.toggle('open', open);
@@ -498,6 +504,8 @@ document.addEventListener('pointerdown', event => {
 });
 mobileLayout.addEventListener('change', closeMenus);
 window.addEventListener('pageshow', closeMenus);
+
+} // navigation controls are optional; other page behaviors still initialize.
 
 // Lightweight working category filter on the example project/news pages.
 document.querySelectorAll('.filter').forEach(b=>b.addEventListener('click',()=>{const group=b.closest('.listing-toolbar');group.querySelectorAll('.filter').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));const key=b.dataset.filter,list=group.nextElementSibling;let shown=0;list.querySelectorAll('[data-category]').forEach(card=>{card.hidden=key!=='all'&&card.dataset.category!==key;if(!card.hidden)shown++;});const empty=list.parentElement.querySelector('.filter-empty');if(empty)empty.hidden=shown!==0;}));
