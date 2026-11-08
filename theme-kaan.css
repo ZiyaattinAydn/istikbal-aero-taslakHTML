@@ -778,3 +778,162 @@ body[data-page="home"] .site-header{
  .site-header,.mega,.mobile-nav,.mobile-nav .mobile-sub,
  .language-picker .lang svg{transition:none!important;animation:none!important}
 }
+
+
+/* ================================
+   PASS 3 — EASED HOVER, CARD SPACE & ANTALYA
+   ================================ */
+.platform-card,
+.tech-card,
+.module,
+.focus-module,
+.news-card,
+.list-card,
+.step,
+.feature-row,
+.news-feature,
+.split-feature{
+  transition:transform .48s cubic-bezier(.2,.73,.21,1),
+    border-color .42s ease,
+    box-shadow .48s ease,
+    background-color .42s ease,
+    filter .48s ease;
+  will-change:auto;
+}
+@media(hover:hover) and (pointer:fine){
+  .platform-card:hover,
+  .platform-card:focus-within,
+  .tech-card:hover,
+  .tech-card:focus-within,
+  .module:hover,
+  .module:focus-within,
+  .focus-module:hover,
+  .focus-module:focus-within,
+  .news-card:hover,
+  .news-card:focus-within,
+  .list-card:hover,
+  .list-card:focus-within,
+  .step:hover,
+  .feature-row:hover,
+  .news-feature:hover,
+  .split-feature:hover{
+    transform:translate3d(0,-5px,0);
+    border-color:rgba(65,151,229,.67);
+    box-shadow:0 18px 36px rgba(0,8,27,.24),0 0 0 1px rgba(28,128,236,.07);
+  }
+  .platform-card .card-image,
+  .news-card .news-visual,
+  .list-card .list-cover,
+  .feature-row .feature-art{
+    transition:transform .8s cubic-bezier(.2,.8,.2,1),filter .65s ease;
+  }
+  .platform-card:hover .card-image,
+  .news-card:hover .news-visual,
+  .feature-row:hover .feature-art{transform:scale(1.025)}
+}
+.platform-card:active,.tech-card:active,.news-card:active{transform:translate3d(0,-1px,0)}
+.cards-2,.cards-3,.module-grid,.focus-modules,.steps{gap:clamp(16px,1.75vw,28px)}
+/* Four abbreviated process cards felt compressed; two columns read better at 1200px. */
+.steps{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:clamp(18px,2vw,28px);
+}
+.step{
+  min-height:240px;
+  padding:clamp(23px,2.35vw,36px);
+  background:linear-gradient(135deg,#071e3b,#08203c);
+  border:1px solid rgba(72,145,218,.34);
+}
+.step .n{display:inline-block;font-size:14px}
+.step h3{margin:22px 0 13px;line-height:1.2}
+.step p{margin:0;line-height:1.72}
+.focus-modules{grid-template-columns:repeat(3,minmax(0,1fr))}
+.focus-module{min-height:250px}
+.module-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.module{min-height:250px}
+.module h3{margin-top:22px}
+.news-card{padding-bottom:clamp(22px,2.4vw,35px)}
+.news-card h3,.news-card p,.news-card a{overflow-wrap:break-word}
+.split-feature .copy,.news-feature-copy{min-width:0}
+@media(min-width:701px) and (max-width:1350px){
+  .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .focus-modules{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:700px){
+  .steps,.focus-modules,.module-grid{grid-template-columns:1fr}
+  .step,.focus-module,.module{min-height:0}
+  .step{padding:26px}
+  .focus-module{padding:27px}
+}
+/* Photo used as an atmospheric place cue, not a company facility image.
+   CC0 photo "Marina, Antalya.JPG", author Cobija, Wikimedia Commons:
+   https://commons.wikimedia.org/wiki/File:Marina,_Antalya.JPG */
+body[data-page="about"] .corporate-identity{
+  position:relative;
+  isolation:isolate;
+  min-height:clamp(330px,43vw,540px);
+  padding:clamp(36px,5vw,76px);
+  align-items:center;
+  border:1px solid rgba(91,157,226,.29);
+  overflow:hidden;
+  background:linear-gradient(115deg,#031730,#092a4a);
+}
+body[data-page="about"] .corporate-identity::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-2;
+  background-image:url("https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Marina%2C_Antalya.JPG/1280px-Marina%2C_Antalya.JPG");
+  background-position:center 51%;
+  background-repeat:no-repeat;
+  background-size:cover;
+  opacity:.22;
+  filter:saturate(.62) contrast(1.08);
+}
+body[data-page="about"] .corporate-identity::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background:linear-gradient(90deg,rgba(1,13,31,.87) 0%,rgba(1,20,44,.75) 53%,rgba(2,21,44,.52));
+  pointer-events:none;
+}
+body[data-page="about"] .corporate-identity p{
+  color:#e6effa;
+  font-size:clamp(16px,1.5vw,19px);
+  text-shadow:0 1px 12px rgba(0,0,0,.25);
+}
+body[data-page="about"] .corporate-identity h2{
+  color:#fff;
+  text-shadow:0 2px 22px rgba(0,5,22,.45);
+}
+/* At zoom and narrow desktop widths the responsive header and long strings must
+   not force a horizontal document scrollbar. */
+.wrapper,.header-inner{max-width:100%}
+html,body{max-width:100%;overflow-x:clip}
+@media(min-width:961px) and (max-width:1160px){
+  .site-header{height:82px}
+  .mobile-nav{top:81px}
+  .mobile-nav.open{max-height:calc(100dvh - 82px)}
+  body[data-page="home"] .site-header{margin-bottom:-82px}
+}
+@media(max-width:960px){
+  body[data-page="home"] .site-header{margin-bottom:-72px}
+  .corporate-identity{grid-template-columns:1fr}
+  body[data-page="about"] .corporate-identity{min-height:420px}
+}
+@media(max-width:650px){
+  .platform-grid{grid-template-columns:1fr}
+  .platform-card,.feature-platform{min-height:300px}
+  .news-feature{grid-template-columns:1fr}
+  body[data-page="about"] .corporate-identity{min-height:360px;padding:30px 24px}
+  body[data-page="about"] .corporate-identity::before{opacity:.17}
+}
+@media(prefers-reduced-motion:reduce){
+  .platform-card,.tech-card,.module,.focus-module,.news-card,.list-card,.step,
+  .feature-row,.news-feature,.split-feature,
+  .platform-card .card-image,.news-card .news-visual,.list-card .list-cover{
+    transition:none!important;transform:none!important;
+  }
+}
