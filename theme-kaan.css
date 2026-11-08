@@ -1246,3 +1246,231 @@ body[data-page="home"] .section-header .lead{max-width:770px}
   }
   .header-inner .header-tools{min-width:48px}
 }
+
+
+/* FINAL NAVIGATION MODE FIX — desktop mouse never receives a hamburger,
+   regardless of viewport CSS width or Opera/Chrome zoom. */
+@media (hover: hover) and (pointer: fine) {
+  .site-header .header-inner {
+    display: grid !important;
+    grid-template-columns: max-content minmax(0, 1fr) max-content !important;
+    grid-template-rows: 1fr !important;
+    align-items: center;
+    min-width: 0;
+    width: 100%;
+    max-width: 1600px;
+    gap: clamp(10px, 1.3vw, 22px);
+    padding-inline: clamp(15px, 2.5vw, 42px);
+  }
+  .site-header .header-inner .brand {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: start;
+    min-width: 0;
+    max-width: none;
+    margin: 0;
+    overflow: visible;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+  .site-header .header-inner .brand-text {
+    white-space: nowrap;
+    font-size: clamp(17px, 1.45vw, 21px);
+  }
+  .site-header .header-inner .desktop-nav {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex !important;
+    min-width: 0;
+    justify-self: center;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(8px, 1.3vw, 20px);
+    width: max-content;
+    max-width: 100%;
+    height: 100%;
+  }
+  .site-header .header-inner .header-tools {
+    grid-column: 3;
+    grid-row: 1;
+    display: flex !important;
+    justify-self: end;
+    align-self: center;
+    min-width: 48px;
+    margin: 0;
+  }
+  .site-header .header-inner .mobile-trigger,
+  .site-header .mobile-nav,
+  .site-header .mobile-nav.open {
+    display: none !important;
+  }
+  /* The earlier mobile breakpoint hid both megamenus. Restore the desktop
+     disclosure transition even after zoom crosses 960 / 1120 CSS pixels. */
+  .site-header .mega,
+  .site-header .mega.open {
+    display: block !important;
+    top: calc(100% - 1px);
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
+    transition: opacity .28s ease, transform .32s ease, visibility 0s linear .32s;
+  }
+  .site-header .mega.open {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+    transition: opacity .28s ease, transform .32s ease, visibility 0s;
+  }
+}
+
+/* Desktop zoom and smaller laptop screens: use a TWO-ROW desktop header rather
+   than hiding the nav or letting it collide with the company logo. */
+@media (hover: hover) and (pointer: fine) and (max-width: 1120px) {
+  .site-header {
+    height: 118px !important;
+  }
+  body[data-page="home"] .site-header {
+    margin-bottom: -118px !important;
+  }
+  .site-header .header-inner {
+    grid-template-columns: minmax(0, 1fr) max-content !important;
+    grid-template-rows: 57px 61px !important;
+    column-gap: 14px;
+    row-gap: 0;
+    padding-inline: clamp(13px, 3vw, 30px);
+  }
+  .site-header .header-inner .brand {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .site-header .header-inner .brand-text {
+    font-size: clamp(15px, 2.3vw, 19px);
+    letter-spacing: .04em;
+  }
+  .site-header .header-inner .header-tools {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .site-header .header-inner .desktop-nav {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    display: flex !important;
+    justify-self: stretch;
+    justify-content: safe center;
+    width: 100%;
+    max-width: 100%;
+    height: 61px;
+    gap: clamp(9px, 1.8vw, 19px);
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    white-space: nowrap;
+  }
+  .site-header .desktop-nav::-webkit-scrollbar { display: none; }
+  .site-header .desktop-nav .nav-link,
+  .site-header .desktop-nav .platform-current .nav-link,
+  .site-header .desktop-nav .tech-current .nav-link {
+    font-size: clamp(13px, 1.65vw, 15px);
+    letter-spacing: .02em;
+    flex-shrink: 0;
+  }
+  .site-header .mega,
+  .site-header .mega.open {
+    top: calc(100% - 1px) !important;
+    max-height: calc(100dvh - 118px);
+    overflow-y: auto;
+  }
+}
+
+/* Touch-first mobile and tablet: hamburger-only mode, independent of the
+   screen pixel count. A desktop browser zoom never enters this block. */
+@media (hover: none) and (pointer: coarse) {
+  .site-header {
+    height: 72px !important;
+  }
+  body[data-page="home"] .site-header {
+    margin-bottom: -72px !important;
+  }
+  .site-header .header-inner {
+    display: flex !important;
+    grid-template-columns: none !important;
+    grid-template-rows: none !important;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(8px, 2vw, 17px);
+    padding-inline: clamp(14px, 3vw, 28px);
+  }
+  .site-header .header-inner .brand {
+    flex: 0 1 auto;
+    margin-right: auto;
+    min-width: 0;
+    max-width: calc(100% - 110px);
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .site-header .header-inner .brand-text {
+    font-size: clamp(13px, 3.3vw, 18px);
+    white-space: nowrap;
+    letter-spacing: .035em;
+  }
+  .site-header .header-inner .desktop-nav,
+  .site-header .mega,
+  .site-header .mega.open {
+    display: none !important;
+  }
+  .site-header .header-inner .header-tools {
+    display: flex !important;
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+  .site-header .header-inner .mobile-trigger {
+    display: flex !important;
+    flex: 0 0 auto;
+  }
+  .site-header .mobile-nav {
+    display: block !important;
+    position: absolute;
+    top: calc(100% - 1px);
+    left: 0;
+    right: 0;
+    z-index: 110;
+    max-height: 0;
+    overflow-y: auto;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
+    padding: 0 clamp(18px, 4vw, 30px);
+    background: linear-gradient(150deg, #041428, #082646);
+    border-bottom: 1px solid rgba(73,153,230,.38);
+    box-shadow: 0 20px 40px rgba(0,8,21,.5);
+    transition: opacity .3s ease, transform .32s ease,
+      max-height .36s ease, visibility 0s linear .36s, padding .3s ease;
+  }
+  .site-header .mobile-nav.open {
+    display: block !important;
+    max-height: calc(100dvh - 72px);
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+    padding-block: 15px 26px;
+    transition: opacity .3s ease, transform .32s ease,
+      max-height .36s ease, visibility 0s, padding .3s ease;
+  }
+  .site-header .mobile-nav > a,
+  .site-header .mobile-nav > button,
+  .site-header .mobile-nav .mobile-platform-current > a,
+  .site-header .mobile-nav .mobile-tech-current > a {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 48px;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(81,151,213,.25);
+    color: #ecf5ff;
+  }
+}
