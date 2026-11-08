@@ -1,7 +1,6 @@
 import type {
   TechnologyCardData,
   PlatformCardData,
-  NewsCardData,
 } from "@/data/models";
 export const cards = {
   technology: [
@@ -293,28 +292,7 @@ export const cards = {
         "Bağlantılı sistemler ve karar destek teknolojileri yaklaşımı.",
     },
   ],
-  news: [
-    {
-      title: "Tengri AI — Yapay zekâ ve savunma ağı konsepti",
-      category: "Çalışma",
-      image: "tengri-network.svg",
-      href: "tengri-ai.html",
-      description:
-        "Bağlantılı hava ve kara sistemleri arasında durumsal farkındalık ve karar desteği vizyonu.",
-      linkLabel: "Çalışmayı İncele",
-    },
-    {
-      title: "Yeni nesil uçuş kontrolcüsü tanıtımı",
-      category: "Çalışma",
-      image: "platform-systems.svg",
-      href: "ucus-kontrol-paylasimi.html",
-      description:
-        "Yapay zekâ destekli kontrol algoritmalarını ve uçuş sistemlerini bir araya getirmeyi hedefleyen teknoloji paylaşımı.",
-      linkLabel: "Çalışmayı İncele",
-    },
-  ],
 } satisfies {
   technology: TechnologyCardData[];
   platform: PlatformCardData[];
-  news: NewsCardData[];
 };
