@@ -1,0 +1,5 @@
+/* A stable SSR shell replaces body[data-page]; all prototype rules stay in order. */
+.not-found-page { max-width: 660px; margin: 15svh auto; padding: 36px 24px; border-top: 2px solid #168fff; }
+.not-found-page small { color: #68bdff; letter-spacing: .18em; font-weight: 700; }
+.not-found-page h1 { font: italic 800 clamp(52px,7.5vw,90px)/1.14 'Barlow Condensed','Arial Narrow',sans-serif; letter-spacing: .005em; }
+.not-found-page p { color: #b7d2ec; font-size: 17px; line-height: 1.7; }

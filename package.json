@@ -12,7 +12,7 @@
     "start": "next start --hostname 0.0.0.0",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src tests next.config.ts",
-    "test": "tsx --test tests/*.test.ts",
+    "test": "node --import tsx --test tests/*.test.ts",
     "test:legacy": "node --check app.js && node --check motion.js && node scripts/verify-static.mjs"
   },
   "dependencies": {
