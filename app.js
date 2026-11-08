@@ -5,6 +5,40 @@ const A='assets/';
 const NAV=[['home','Ana Sayfa','index.html'],['platforms','Platformlar','platformlar.html'],['tech','Teknolojiler','teknolojiler.html'],['projects','Projeler & AR-GE','projeler.html'],['news','Haberler','haberler.html'],['about','Kurumsal','kurumsal.html'],['contact','İletişim','iletisim.html']];
 const PLATFORMS=[["Tüm Platformlar","platformlar.html","Platformlar ve sistem alanlarına genel bakış"],["İnsansız Hava Sistemleri","iha-sistemleri.html","İHA platform mimarileri"],["Gömülü Uçuş Mimarileri","ucus-mimarileri.html","Uçuş elektroniği ve gömülü sistemler"],["Hava Savunma Ağları","hava-savunma-aglari.html","Bağlantılı savunma sistemleri"]];
 const TECH=[['Tüm Teknolojiler','teknolojiler.html','Teknoloji alanlarına genel bakış'],['Tengri AI','tengri-ai.html','Özel teknoloji sayfası'],['Kabiliyetler','kabiliyetler.html','Mühendislik disiplinleri'],['Otonom Sistemler','otonom-sistemler.html','Otonomi ve sistem yaklaşımı'],['Gömülü Sistemler','gomulu-sistemler.html','Donanım ve yazılım bütünlüğü'],['Sensör Füzyonu','sensor-fuzyonu.html','Algılama ve veri entegrasyonu'],['Roket Sistemleri','roket-sistemleri.html','Kamuya açık uzmanlık alanı'],['İleri Haberleşme','ileri-haberlesme.html','Veri bağlantıları ve sistem iletişimi']];
+// Public records are distinct from engineering disciplines. Dates or product readiness
+// must not be invented: null means the company has not provided verified details.
+const PUBLIC_WORKS = [
+  {
+    id:'tengri-ai', title:'Tengri AI — Yapay zekâ ve savunma ağı konsepti',
+    summary:'Bağlantılı hava ve kara sistemleri arasında durumsal farkındalık ve karar desteği vizyonu.',
+    image:'tengri-network.svg', href:'tengri-ai.html',
+    category:'Çalışma', visibility:'public-introduction', technicalApproval:false
+  },
+  {
+    id:'flight-controller', title:'Yeni nesil uçuş kontrolcüsü tanıtımı',
+    summary:'Yapay zekâ destekli kontrol algoritmalarını ve uçuş sistemlerini bir araya getirmeyi hedefleyen teknoloji paylaşımı.',
+    image:'platform-systems.svg', href:'ucus-kontrol-paylasimi.html',
+    category:'Çalışma', visibility:'public-introduction', technicalApproval:false
+  }
+];
+const PUBLIC_NEWS = [
+  {
+    id:'tengri-ai-announcement', workId:'tengri-ai',
+    title:'Tengri AI: Yapay zekâ ve karar destek vizyonu',
+    summary:'Şirketin Tengri AI tanıtımında ağ bağlantılı savunma sistemleri ve çok katmanlı yapay zekâ vizyonu anlatılıyor.',
+    image:'tengri-network.svg', href:'haber-detay.html', category:'Paylaşım',
+    publishedAt:null,
+    sourceUrl:'https://tr.linkedin.com/posts/i%CC%87stikbal-aerospace_tengriai-defenseai-savunmasanayi-activity-7370532002627878912-WIXo'
+  },
+  {
+    id:'flight-controller-announcement', workId:'flight-controller',
+    title:'Yapay zekâ destekli yeni nesil uçuş kontrolcüsü',
+    summary:'Şirketin uçuş kontrol sistemlerine yönelik yapay zekâ ve kontrol algoritmaları odaklı teknoloji paylaşımı.',
+    image:'platform-systems.svg', href:'ucus-kontrol-paylasimi.html', category:'Paylaşım',
+    publishedAt:null, sourceUrl:null
+  }
+];
+
 const brand=`<a class="brand" href="index.html" aria-label="İstikbal Aerospace ana sayfa"><span class="logo-mark"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 1L39 20L20 39L1 20Z" stroke="#35b7e6" stroke-width="1.2" fill="none"/><path d="M20 10L23 17L30 20L23 23L20 30L17 23L10 20L17 17Z" fill="#35b7e6"/></svg></span><span class="brand-text">İSTİKBAL AEROSPACE</span></a>`;
 function platformTrigger(mobile = false) {
   const buttonId = mobile ? 'mobile-platform' : 'platform-trigger';
@@ -44,7 +78,7 @@ function section(content,cls=''){return `<section class="section ${cls}">${wrap(
 function cardImg(bg){return `style="background-image:url('${A+bg}')"`}
 function platformCard(title,seq,bg,large=false,href='iha-sistemleri.html',desc=''){return `<article class="platform-card ${large?'feature-platform':''}"><div class="card-image" ${cardImg(bg)}></div><div class="card-info"><span class="tag cool">MÜHENDİSLİK ALANI</span><span class="caption">SİSTEMLER / ${seq}</span><h3>${title}</h3>${desc?`<p class="platform-desc">${desc}</p>`:''}<a href="${href}" class="text-link">Yakından İncele <span>↗</span></a></div></article>`}
 function techCard(title,seq,ico,description,href='kabiliyetler.html'){return `<a class="tech-card" href="${href}"><span class="num">TECH / ${seq}</span><span class="symbol" aria-hidden="true">${ico}</span><h3>${title}</h3><p>${description}</p><div class="card-bottom"><span>DETAYLARI GÖR</span><span>↗</span></div></a>`}
-function newsCard(title,cat,bg,href='haber-detay.html',description='İstikbal Aerospace’in kamuya açık teknoloji paylaşımı.'){return `<article class="news-card" data-category="${cat}"><div class="news-visual" ${cardImg(bg)}></div><span class="news-meta">${cat.toUpperCase()} · İSTİKBAL AEROSPACE</span><h3>${title}</h3><p>${description}</p><a href="${href}">Paylaşımı Oku ↗</a></article>`}
+function newsCard(title,cat,bg,href='haber-detay.html',description='İstikbal Aerospace’in kamuya açık teknoloji paylaşımı.',linkLabel='Paylaşımı Oku'){return `<article class="news-card" data-category="${cat}"><div class="news-visual" ${cardImg(bg)}></div><span class="news-meta">${cat.toUpperCase()} · İSTİKBAL AEROSPACE</span><h3>${title}</h3><p>${description}</p><a href="${href}">${linkLabel} ↗</a></article>`}
 function innerHero(title,sub,bg,crumb='',kicker='İSTİKBAL AEROSPACE'){return `<section class="inner-hero"><div class="inner-bg" ${cardImg(bg)}></div><div class="wrapper"><div class="breadcrumb"><a href="index.html">ANA SAYFA</a> &nbsp; / &nbsp; <b>${crumb||title.toUpperCase()}</b></div><span class="eyebrow">${kicker}</span><h1>${title}</h1><p>${sub}</p></div></section>`}
 function feature(title,kicker,copy,bg,reverse=false,link='',label='Daha Fazla'){return `<article class="feature-row ${reverse?'flip':''}"><div class="feature-art" ${cardImg(bg)}></div><div class="feature-copy"><span class="eyebrow no-rule">${kicker}</span><h2>${title}</h2><p>${copy}</p>${link?btn(label,link,'text'):''}</div></article>`}
 function notice(){return `<div class="notice"><strong>BİLGİLENDİRME</strong> — Platform ve proje görselleri temsili çalışmalardır. Teknik özellikler ve kurumsal bilgiler resmî içerik onayından sonra güncellenecektir.</div>`}
@@ -166,8 +200,7 @@ function projects(){
     'İstikbal Aerospace’in kamuya açık tanıtımlarında yer alan çalışmalar. Geliştirme ve test aşamalarına ilişkin ayrıntılar şirket onayına bağlıdır.'
   );
   const highlights = '<div class="cards-3">' +
-    newsCard('Tengri AI — Yapay zekâ ve savunma ağı konsepti','Paylaşım','tengri-network.svg','tengri-ai.html','Bağlantılı hava ve kara sistemleri arasında durumsal farkındalık ve karar desteği vizyonu.') +
-    newsCard('Yeni nesil uçuş kontrolcüsü tanıtımı','Paylaşım','platform-systems.svg','ucus-kontrol-paylasimi.html','Yapay zekâ destekli kontrol algoritmalarını ve uçuş sistemlerini bir araya getirmeyi hedefleyen teknoloji paylaşımı.') +
+    PUBLIC_WORKS.map(work=>newsCard(work.title,work.category,work.image,work.href,work.summary,'Çalışmayı İncele')).join('') +
     '</div>';
   const research = head(
     'AR-GE DİSİPLİNLERİ',
@@ -203,8 +236,7 @@ function news(){
     '<button type="button" class="filter" data-filter="Paylaşım" aria-pressed="false">Paylaşımlar</button>'+
     '<button type="button" class="filter" data-filter="Duyuru" aria-pressed="false">Duyurular</button></div><span class="count">YAYINLAR</span></div>';
   const cards = '<div class="cards-3 filter-target">'+
-    newsCard('Tengri AI: Yapay zekâ ve karar destek vizyonu','Paylaşım','tengri-network.svg','haber-detay.html','Şirketin Tengri AI tanıtımında ağ bağlantılı savunma sistemleri ve çok katmanlı yapay zekâ vizyonu anlatılıyor.')+
-    newsCard('Yapay zekâ destekli yeni nesil uçuş kontrolcüsü','Paylaşım','platform-systems.svg','ucus-kontrol-paylasimi.html','Şirketin uçuş kontrol sistemlerine yönelik yapay zekâ ve kontrol algoritmaları odaklı teknoloji paylaşımı.')+
+    PUBLIC_NEWS.map(item=>newsCard(item.title,item.category,item.image,item.href,item.summary)).join('')+
     '</div><p class="filter-empty editorial-note" hidden>Bu kategoride yayımlanmış bir içerik bulunmuyor.</p>';
   return innerHero('Haberler & Duyurular','İstikbal Aerospace’in kamuya açık açıklamaları ve teknoloji paylaşımları.','hero-hangar-photo.webp')+
     section(posts+filters+cards);
