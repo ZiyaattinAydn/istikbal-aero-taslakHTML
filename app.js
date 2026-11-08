@@ -252,7 +252,7 @@ function projects(){
     'Teknoloji fikirlerinden paylaşılan çalışmalara.',
     'İstikbal Aerospace’in kamuya açık tanıtımlarında yer alan çalışmalar. Geliştirme ve test aşamalarına ilişkin ayrıntılar şirket onayına bağlıdır.'
   );
-  const highlights = '<div class="cards-3">' +
+  const highlights = '<div class="cards-3 editorial-grid">' +
     PUBLIC_WORKS.map(work=>newsCard(work.title,work.category,work.image,work.href,work.summary,'Çalışmayı İncele')).join('') +
     '</div>';
   const research = head(
@@ -288,7 +288,7 @@ function news(){
     '<button type="button" class="filter" data-filter="all" aria-pressed="true">Tümü</button>'+
     '<button type="button" class="filter" data-filter="Paylaşım" aria-pressed="false">Paylaşımlar</button>'+
     '<button type="button" class="filter" data-filter="Duyuru" aria-pressed="false">Duyurular</button></div><span class="count">YAYINLAR</span></div>';
-  const cards = '<div class="cards-3 filter-target">'+
+  const cards = '<div class="cards-3 filter-target editorial-grid">'+
     PUBLIC_NEWS.map(item=>newsCard(item.title,item.category,item.image,item.href||('haber-detay.html?id='+encodeURIComponent(item.id)),item.summary)).join('')+
     '</div><p class="filter-empty editorial-note" hidden>Bu kategoride yayımlanmış bir içerik bulunmuyor.</p>';
   return innerHero('Haberler & Duyurular','İstikbal Aerospace’in kamuya açık açıklamaları ve teknoloji paylaşımları.','hero-hangar-photo.webp')+
