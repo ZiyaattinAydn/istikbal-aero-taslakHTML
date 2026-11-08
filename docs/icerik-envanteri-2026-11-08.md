@@ -78,3 +78,26 @@ Bunlar kamuya açık **şirket beyanları** olarak envantere alındı; gerçekle
 **Aşama 3:** Teknolojiler ve kabiliyetleri firma onayı gerektiren iddiaları ayrıştırarak geliştirme.
 
 Kaynak: https://tr.linkedin.com/company/i%CC%87stikbal-aerospace
+
+## Aşama 3/6 — Teknolojiler ve kabiliyetler (08.11.2026)
+
+**GitHub'da yayınlanan güncelleme:**
+- Teknolojiler sayfasına "Roket Sistemleri" ve "İleri Haberleşme" başlıkları eklendi. Her ikisi için ayrı tanıtım sayfası oluşturuldu: \`roket-sistemleri.html\`, \`ileri-haberlesme.html\`.
+- Kabiliyetler sayfasında ilgili kartlar ve bağlantılar genişletildi. Gömülü Donanım & PCB ile Sensör Füzyonu kartları da sayfa girişindeki alan haritasına eklendi.
+- Teknolojiler mega menüsünde 8 ayrı bağlantı mevcut. Masaüstü ekranlarında menünün alta taşmasını önlemek için sınırlı dikey kaydırma eklendi.
+- \`app.js\` içindeki \`focusData\`, \`pages\`, \`titles\` ve teknoloji navigasyon verileri senkronize edildi.
+- Uçuş ↔ hangar vitrini, ana sayfa scroll animasyonları, kurumsal ve diğer sayfalar değiştirilmedi.
+
+**Kaynak sınırı:**
+- Roket sistemleri yalnızca şirketin LinkedIn profilinde açıkça *uzmanlık alanı* olarak geçmektedir; aktif/sertifikalı ürün veya uçuş testinin gerçekleştirildiği iddia edilmemektedir.
+- Şifreli taktik veri bağlantıları, kamuya açık Crunchbase şirket özetinde firma beyanı olarak yer alır; sayfa teknik veya operasyonel performans iddiası içermez.
+- Detay sayfalarındaki telemetri, uçuş elektroniği, veri güvenliği ve entegrasyon açıklamaları genel mühendislik prensipleridir; doğrulanmış şirket uygulaması gibi sunulmamıştır.
+- İddialı, gizli ya da doğrulanmamış teknik özellikler müşteri yazılı onayı olmadan eklenmeyecek.
+
+**Kontrol:** \`app.js\` JavaScript sözdizimi doğrulandı; iki yeni HTML dosyası ve bağlandıkları sayfa yolları kaynak düzeyinde kontrol edildi. Canlı tarayıcı/cihaz etkileşim testi ayrıca gereklidir.
+
+**Aşama 4:** Tengri AI — mevcut resmî \`tengri.html\` kaynağına erişim olmadığından yalnızca açık ve onaylanabilir içeriği genişlet; konsept/ürün ayrımını koru.
+
+Kaynaklar:
+- https://tr.linkedin.com/company/i%CC%87stikbal-aerospace
+- https://www.crunchbase.com/organization/i-stikbal-aerospace
