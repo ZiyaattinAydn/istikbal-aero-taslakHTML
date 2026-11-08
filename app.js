@@ -3,8 +3,24 @@
 const page=document.body.dataset.page||'home';
 const A='assets/';
 const NAV=[['home','Ana Sayfa','index.html'],['platforms','Platformlar','platformlar.html'],['tech','Teknolojiler','teknolojiler.html'],['projects','Projeler & AR-GE','projeler.html'],['news','Haberler','haberler.html'],['about','Kurumsal','kurumsal.html'],['contact','İletişim','iletisim.html']];
+const PLATFORMS=[["Tüm Platformlar","platformlar.html","Platformlar ve sistem alanlarına genel bakış"],["İnsansız Hava Sistemleri","iha-sistemleri.html","İHA platform mimarileri"],["Gömülü Uçuş Mimarileri","ucus-mimarileri.html","Uçuş elektroniği ve gömülü sistemler"],["Hava Savunma Ağları","hava-savunma-aglari.html","Bağlantılı savunma sistemleri"]];
 const TECH=[['Tüm Teknolojiler','teknolojiler.html','Teknoloji alanlarına genel bakış'],['Tengri AI','tengri-ai.html','Özel teknoloji sayfası'],['Kabiliyetler','kabiliyetler.html','Mühendislik disiplinleri'],['Otonom Sistemler','otonom-sistemler.html','Otonomi ve sistem yaklaşımı'],['Gömülü Sistemler','gomulu-sistemler.html','Donanım ve yazılım bütünlüğü'],['Sensör Füzyonu','sensor-fuzyonu.html','Algılama ve veri entegrasyonu'],['Roket Sistemleri','roket-sistemleri.html','Kamuya açık uzmanlık alanı'],['İleri Haberleşme','ileri-haberlesme.html','Veri bağlantıları ve sistem iletişimi']];
 const brand=`<a class="brand" href="index.html" aria-label="İstikbal Aerospace ana sayfa"><span class="logo-mark"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 1L39 20L20 39L1 20Z" stroke="#35b7e6" stroke-width="1.2" fill="none"/><path d="M20 10L23 17L30 20L23 23L20 30L17 23L10 20L17 17Z" fill="#35b7e6"/></svg></span><span class="brand-text">İSTİKBAL AEROSPACE</span></a>`;
+function platformTrigger(mobile = false) {
+  const buttonId = mobile ? 'mobile-platform' : 'platform-trigger';
+  const panelId = mobile ? 'mobile-platform-sub' : 'platform-menu';
+  const arrow = mobile ? '<span aria-hidden="true">＋</span>' :
+    '<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m4 7 6 6 6-6" stroke="currentColor" stroke-width="2"/></svg>';
+  const inPlatform = ['platforms','platformDetail','iha','flightArch','airDefense'].includes(page);
+  const className = mobile ? '' : 'nav-link' + (inPlatform ? ' active' : '');
+  const attrs = 'type="button" id="' + buttonId + '" class="' + className + '" aria-controls="' + panelId + '" aria-expanded="false"';
+  if (page === 'platforms') {
+    return '<div class="' + (mobile ? 'mobile-platform-current' : 'platform-current') +
+      '"><a class="' + (mobile ? '' : 'nav-link active') + '" href="platformlar.html">Platformlar</a><button ' +
+      attrs + ' aria-label="Platform alanları">' + arrow + '</button></div>';
+  }
+  return '<button ' + attrs + '>Platformlar ' + arrow + '</button>';
+}
 function technologyTrigger(mobile = false) {
   const buttonId = mobile ? 'mobile-tech' : 'tech-trigger';
   const panelId = mobile ? 'mobile-sub' : 'mega-menu';
@@ -19,8 +35,8 @@ function technologyTrigger(mobile = false) {
   }
   return `<button ${attrs}>Teknolojiler ${arrow}</button>`;
 }
-function header(){let nav=NAV.map(([k,l,h])=>k==='tech'?technologyTrigger():`<a class="nav-link ${page===k||(k==='platforms'&&['platformDetail','iha','flightArch','airDefense'].includes(page))||(k==='projects'&&page==='projectDetail')||(k==='news'&&['newsDetail','flightControlNews'].includes(page))?'active':''}" href="${h}">${l}</a>`).join('');
-let ml=TECH.map(([n,u,d])=>`<a class="mega-item" href="${u}"><span><strong>${n}</strong><span>${d}</span></span><span class="arrow">↗</span></a>`).join('');let mobile=NAV.map(([k,l,h])=>k==='tech'?`${technologyTrigger(true)}<div id="mobile-sub" class="mobile-sub" hidden>${TECH.map(x=>`<a href="${x[1]}">${x[0]}</a>`).join('')}</div>`:`<a href="${h}">${l}<span>↗</span></a>`).join('');return `<header class="site-header"><div class="header-inner">${brand}<nav class="desktop-nav" aria-label="Ana menü">${nav}</nav><div class="header-tools"><span class="lang" aria-label="Sayfa dili Türkçe">TR</span></div><button class="mobile-trigger" id="mobile-trigger" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="mobile-nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button></div><div id="mega-menu" class="mega" role="region" aria-label="Teknolojiler mega menü"><div class="mega-inner"><div class="mega-image"><span class="eyebrow no-rule">TEKNOLOJİLER / 01—08</span><h3>Fikirden sisteme.</h3><p>İstikbal Aerospace'in teknoloji ve mühendislik çalışma alanlarını keşfedin.</p></div><div class="mega-links"><div class="mega-links-head"><span class="eyebrow no-rule">TEKNOLOJİ ALANLARI</span><button class="close-mega" type="button" aria-label="Mega menüyü kapat" id="close-mega">×</button></div><div class="mega-list">${ml}</div></div></div></div><nav class="mobile-nav" id="mobile-nav" aria-label="Mobil menü">${mobile}</nav></header>`}
+function header(){let nav=NAV.map(([k,l,h])=>k==='platforms'?platformTrigger():k==='tech'?technologyTrigger():`<a class="nav-link ${page===k||(k==='platforms'&&['platformDetail','iha','flightArch','airDefense'].includes(page))||(k==='projects'&&page==='projectDetail')||(k==='news'&&['newsDetail','flightControlNews'].includes(page))?'active':''}" href="${h}">${l}</a>`).join('');
+let pm=PLATFORMS.map(([n,u,d])=>`<a class="mega-item" href="${u}"><span><strong>${n}</strong><span>${d}</span></span><span class="arrow" aria-hidden="true">↗</span></a>`).join('');let ml=TECH.map(([n,u,d])=>`<a class="mega-item" href="${u}"><span><strong>${n}</strong><span>${d}</span></span><span class="arrow">↗</span></a>`).join('');let mobile=NAV.map(([k,l,h])=>k==='platforms'?`${platformTrigger(true)}<div id="mobile-platform-sub" class="mobile-sub" hidden>${PLATFORMS.map(x=>`<a href="${x[1]}">${x[0]}</a>`).join('')}</div>`:k==='tech'?`${technologyTrigger(true)}<div id="mobile-sub" class="mobile-sub" hidden>${TECH.map(x=>`<a href="${x[1]}">${x[0]}</a>`).join('')}</div>`:`<a href="${h}">${l}<span>↗</span></a>`).join('');return `<header class="site-header"><div class="header-inner">${brand}<nav class="desktop-nav" aria-label="Ana menü">${nav}</nav><div class="header-tools"><span class="lang" aria-label="Sayfa dili Türkçe">TR</span></div><button class="mobile-trigger" id="mobile-trigger" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="mobile-nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button></div><div id="platform-menu" class="mega" role="region" aria-label="Platformlar alt menü"><div class="mega-inner"><div class="mega-image" style="background-image:linear-gradient(0deg,rgba(7,17,27,.97),transparent 60%),url(&quot;assets/hero-hangar-photo.webp&quot;)"><span class="eyebrow no-rule">PLATFORMLAR / 01—04</span><h3>Platformdan sisteme.</h3><p>İnsansız hava platformları, uçuş elektroniği ve bağlantılı sistemler.</p></div><div class="mega-links"><div class="mega-links-head"><span class="eyebrow no-rule">PLATFORM ALANLARI</span><button class="close-platform" type="button" aria-label="Platform menüsünü kapat">×</button></div><div class="mega-list">${pm}</div></div></div></div><div id="mega-menu" class="mega" role="region" aria-label="Teknolojiler mega menü"><div class="mega-inner"><div class="mega-image"><span class="eyebrow no-rule">TEKNOLOJİLER / 01—08</span><h3>Fikirden sisteme.</h3><p>İstikbal Aerospace'in teknoloji ve mühendislik çalışma alanlarını keşfedin.</p></div><div class="mega-links"><div class="mega-links-head"><span class="eyebrow no-rule">TEKNOLOJİ ALANLARI</span><button class="close-mega" type="button" aria-label="Mega menüyü kapat" id="close-mega">×</button></div><div class="mega-list">${ml}</div></div></div></div><nav class="mobile-nav" id="mobile-nav" aria-label="Mobil menü">${mobile}</nav></header>`}
 function btn(label,href,kind='outline'){return `<a class="btn ${kind}" href="${href}">${label}<span class="arrow" aria-hidden="true">↗</span></a>`}
 function head(kicker,title,lead='',right=''){return `<div class="section-header"><div><span class="eyebrow">${kicker}</span><h2 class="section-title">${title}</h2>${lead?`<p class="lead">${lead}</p>`:''}</div>${right}</div>`}
 function wrap(c){return `<div class="wrapper">${c}</div>`}
@@ -284,16 +300,26 @@ document.querySelector('#app').innerHTML=header()+`<main id="main" tabindex="-1"
 // The technology trigger is a disclosure. Only real links can revisit a document.
 const siteHeader = document.querySelector('.site-header');
 const techTrigger = document.getElementById('tech-trigger');
+const platformNavTrigger = document.getElementById('platform-trigger');
+const platformMenu = document.getElementById('platform-menu');
 const megaMenu = document.getElementById('mega-menu');
 const mobileTrigger = document.getElementById('mobile-trigger');
 const mobileMenu = document.getElementById('mobile-nav');
 const mobileTech = document.getElementById('mobile-tech');
+const mobilePlatform = document.getElementById('mobile-platform');
+const mobilePlatformSub = document.getElementById('mobile-platform-sub');
 const mobileSub = document.getElementById('mobile-sub');
 const mobileLayout = matchMedia('(max-width: 960px)');
 
 function setMega(open) {
+  if (open) { platformMenu.classList.remove('open'); platformNavTrigger.setAttribute('aria-expanded','false'); }
   megaMenu.classList.toggle('open', open);
   techTrigger.setAttribute('aria-expanded', String(open));
+}
+function setPlatformMega(open) {
+  if (open) { megaMenu.classList.remove('open'); techTrigger.setAttribute('aria-expanded','false'); }
+  platformMenu.classList.toggle('open', open);
+  platformNavTrigger.setAttribute('aria-expanded', String(open));
 }
 function setMobile(open) {
   mobileMenu.classList.toggle('open', open);
@@ -302,13 +328,41 @@ function setMobile(open) {
   if (!open) {
     mobileSub.hidden = true;
     mobileTech.setAttribute('aria-expanded', 'false');
+    mobilePlatformSub.hidden = true;
+    mobilePlatform.setAttribute('aria-expanded', 'false');
     mobileMenu.scrollTop = 0;
   }
 }
 function closeMenus() {
+  setPlatformMega(false);
   setMega(false);
   setMobile(false);
 }
+const platformHoverArea = platformNavTrigger.closest('.platform-current') || platformNavTrigger;
+platformHoverArea.addEventListener('pointerenter', event => {
+  if (event.pointerType === 'mouse') setPlatformMega(true);
+});
+platformNavTrigger.addEventListener('click', event => {
+  const open = event.detail > 0 || !platformMenu.classList.contains('open');
+  setPlatformMega(open);
+  if (open && event.detail === 0) platformMenu.querySelector('a')?.focus({preventScroll: true});
+});
+platformNavTrigger.addEventListener('keydown', event => {
+  if (event.key === 'ArrowDown') {
+    event.preventDefault();
+    setPlatformMega(true);
+    platformMenu.querySelector('a')?.focus({preventScroll: true});
+  }
+});
+document.querySelector('.close-platform').addEventListener('click', () => {
+  setPlatformMega(false);
+  platformNavTrigger.focus({preventScroll: true});
+});
+mobilePlatform.addEventListener('click', () => {
+  mobilePlatformSub.hidden = !mobilePlatformSub.hidden;
+  mobilePlatform.setAttribute('aria-expanded', String(!mobilePlatformSub.hidden));
+  if (!mobilePlatformSub.hidden) { mobileSub.hidden = true; mobileTech.setAttribute('aria-expanded','false'); }
+});
 const techHoverArea = techTrigger.closest('.tech-current') || techTrigger;
 techHoverArea.addEventListener('pointerenter', event => {
   if (event.pointerType === 'mouse') setMega(true);
@@ -327,7 +381,7 @@ techTrigger.addEventListener('keydown', event => {
   }
 });
 siteHeader.addEventListener('pointerleave', event => {
-  if (event.pointerType === 'mouse' && !megaMenu.contains(document.activeElement)) setMega(false);
+  if (event.pointerType === 'mouse' && !megaMenu.contains(document.activeElement) && !platformMenu.contains(document.activeElement)) { setMega(false); setPlatformMega(false); }
 });
 siteHeader.addEventListener('focusout', event => {
   if (event.relatedTarget && !siteHeader.contains(event.relatedTarget)) closeMenus();
@@ -340,11 +394,13 @@ mobileTrigger.addEventListener('click', () => setMobile(!mobileMenu.classList.co
 mobileTech.addEventListener('click', () => {
   mobileSub.hidden = !mobileSub.hidden;
   mobileTech.setAttribute('aria-expanded', String(!mobileSub.hidden));
+  if (!mobileSub.hidden) { mobilePlatformSub.hidden = true; mobilePlatform.setAttribute('aria-expanded','false'); }
 });
 document.addEventListener('keydown', event => {
   if (event.key !== 'Escape') return;
   if (mobileMenu.classList.contains('open')) mobileTrigger.focus({preventScroll: true});
   else if (megaMenu.classList.contains('open')) techTrigger.focus({preventScroll: true});
+  else if (platformMenu.classList.contains('open')) platformNavTrigger.focus({preventScroll: true});
   closeMenus();
 });
 document.addEventListener('pointerdown', event => {
