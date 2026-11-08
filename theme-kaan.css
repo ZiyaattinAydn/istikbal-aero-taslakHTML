@@ -1767,8 +1767,16 @@ body[data-page="capabilities"] .cards-3 {
 }
 
 @media(max-width:1199px){
-  /* This is earlier than the old 960px stacking breakpoint: at tablet and
-     zoomed desktop widths an image must not crowd the adjacent text. */
+  /* Technology/capabilities grids loosen before the editorial image layouts
+     stack. Keep the desktop image/text presentation at 1150–1199px. */
+  body[data-page="capabilities"] .cards-3,
+  body[data-page="platforms"] .cards-3 {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+  }
+}
+@media(max-width:980px){
+  /* Below tablet/laptop reading width the visual moves ABOVE the copy.
+     On wider desktop screens cards stay side-by-side and are clipped safely. */
   .feature-row,
   .split-feature,
   .news-feature {
@@ -1792,10 +1800,6 @@ body[data-page="capabilities"] .cards-3 {
   }
   .feature-row.flip .feature-art,
   .split-feature.reverse .visual { order: 0; }
-  body[data-page="capabilities"] .cards-3,
-  body[data-page="platforms"] .cards-3 {
-    grid-template-columns: repeat(2,minmax(0,1fr));
-  }
 }
 @media(max-width:780px){
   body[data-page="capabilities"] .cards-3,
