@@ -63,3 +63,18 @@ Bunlar kamuya açık **şirket beyanları** olarak envantere alındı; gerçekle
 - Kullanıcının önceki 01.10.2026 tarihli “İstikbal — Ön Araştırma / Dijital Deneyim Raporu” (çalışma notu; arşivdeki şirket metinlerinin tamamı değil).
 
 **Değişiklik kapsamı:** Bu adım yalnızca envanter belgelemektedir. Kamuya açık sayfaların içeriği değiştirilmemiştir.
+
+## Aşama 2/6 — Kurumsal içerik güncellemesi (08.11.2026)
+**Güncellendi:** `app.js` içerisindeki `about()` bileşeni / `kurumsal.html` sayfasının içeriği.
+
+- Hakkımızda: Şirketin LinkedIn profilindeki havacılık, uzay, savunma, alt sistemler ve otonom yazılım faaliyetleri kurumsal dille açıklandı.
+- Çalışma yaklaşımı: Donanım + yazılım + otonomi, sistem tasarımı, hızlı prototipleme ve entegrasyon başlıkları eklendi.
+- Faaliyet alanları: Gömülü uçuş sistemleri, otonom algoritmalar ve Tengri AI bağlantıları genişletildi.
+- Konum: Yalnızca kamuya açık profillerin desteklediği Kepez / Antalya bilgisi kullanıldı.
+- **Eklenmedi:** Kuruluş tarihi, çalışan sayısı, resmî misyon/vizyon metni, referanslar, ölçülebilir başarı veya teknik performans iddiaları. Bu bilgiler müşteriden yazılı olarak doğrulanmalı.
+- Koyu kurumsal tema, navigasyon, ana sayfa hero görselleri ve scroll animasyonları değiştirilmedi.
+- **Doğrulama:** GitHub dosya yapısı, sayfa bağlantısı ve mevcut bileşen sınıfları kontrol edildi. Tam tarayıcı testleri bu aşamada yapılmadı.
+
+**Aşama 3:** Teknolojiler ve kabiliyetleri firma onayı gerektiren iddiaları ayrıştırarak geliştirme.
+
+Kaynak: https://tr.linkedin.com/company/i%CC%87stikbal-aerospace
