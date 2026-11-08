@@ -151,3 +151,23 @@ Kaynaklar:
 - Şirketin faaliyet alanları özeti: https://www.crunchbase.com/organization/i-stikbal-aerospace
 
 **Kalanlar (Aşama 6):** gerçek marka/ürün görselleri, logo, son içerik karşılaştırması, kaynak onayları, form altyapısı durumunun açıklığı, responsive ve erişilebilirlik testleri, kırık bağlantılar, SEO/GitHub Pages yayın kontrolü.
+
+## Aşama 6/6 — Teknik önizleme son kontrolü (08.11.2026)
+
+**Depoda tamamlananlar:**
+- 21 içerik HTML sayfasına özgü sayfa başlığı ve meta açıklaması; JavaScript kapalıyken anlaşılır uyarı.
+- Ana sayfanın hafif WebP hero görseline ön yükleme; mevcut görsel/animasyon davranışı korunmuştur.
+- Özel 404 sayfası; README'nin güncel repo ve yayın açıklamaları; QA raporu.
+- Çalışmayan İngilizce dil seçimi görünümü kaldırıldı, haber alt sayfasının aktif navigasyon durumu iyileştirildi.
+- Değişiklikten sonra kaynak düzeyinde JS sözdizimi, yerel HTML bağlantıları, asset referansları, dosya sayısı ve `noindex` koruması tekrar kontrol edildi.
+- GitHub Pages'in etkin olduğu GitHub API ile doğrulandı; **canlı görüntünün son hâli bu ortamda açılamadı.**
+
+**Kalıcı açık işler / onay gereklilikleri:**
+- Orijinal `istikbalaerospace.com` site dosyaları, Tengri AI sayfası ve tam içerik arşivi edinilmeden **eksiksiz eski-site aktarımı garanti edilemez**.
+- Resmî logo, fotoğraflar, videolar, ürün/proje teknik durumları, paylaşım tarihleri ve kurumsal metinler müşteri onayı bekler.
+- Chromium ile yerel/sunucu tabanlı testler ortam politikasıyla engellendi. Safari/Chrome mobil/tablet/masaüstü, performans ve erişilebilirlik için gerçek tarayıcı testi gereklidir.
+- İletişim formu hâlen mesaj göndermez. Prototipin `noindex,nofollow` etiketi korunur; gerçek alan adına yayına geçişte ayrıca kararlaştırılmalıdır.
+
+**QA dokümanı:** `docs/qa-ve-yayin-kontrolu-2026-11-08.md`.
+
+**Sonuç:** Altı aşamalı *teknik prototip* çalışması bitirildi; şirket onaylı üretim yayını için yukarıdaki materyaller ve doğrulamalar açık.
