@@ -1,13 +1,17 @@
-# İstikbal Aerospace — HTML taslak
+# İstikbal Aerospace — HTML prototipi
 
-Bu depo İstikbal Aerospace'in tasarım prototipinin GitHub Pages önizlemesi için ayrılmıştır.
+Bu depo İstikbal Aerospace için hazırlanan statik web sitesi **önizlemesidir**.
 
-## Yayınlama
-Güncel `Istikbal_Aerospace_Sinematik_Scroll_V7.zip` dosyasını açıp **içindeki** `index.html`, diğer HTML dosyaları, CSS/JS dosyaları ve `assets/` klasörünü deponun köküne yükleyin. ZIP dosyasını tek başına yüklemek GitHub Pages üzerinde siteyi çalıştırmaz.
+- GitHub Pages: https://ziyaattinaydn.github.io/istikbal-aero-taslakHTML/
+- Kaynak: `main`, depo kökü.
+- Toplam 21 içerik HTML sayfası ve özel 404 sayfası.
+- İçerikler: `app.js`; animasyonlar: `motion.js`; tasarım: dört CSS dosyası; görseller: `assets/`.
+- Görseller temsili prototip varlıklarıdır, resmî şirket fotoğrafları değildir.
+- İletişim formu yalnızca yerel doğrulama yapar, mesaj göndermez.
+- Önizleme sayfaları bilerek `noindex,nofollow` işaretlidir.
 
-Ardından **Settings → Pages → Build and deployment → Deploy from a branch → main / (root) → Save**.
+## İnceleme ve müşteri onayı
+- [İçerik Envanteri](docs/icerik-envanteri-2026-11-08.md)
+- [QA ve Yayın Kontrolü](docs/qa-ve-yayin-kontrolu-2026-11-08.md)
 
-Yayın gerçekleştiğinde beklenen adres:
-`https://ziyaattinaydn.github.io/istikbal-aero-taslakHTML/`
-
-> Bu depo henüz kaynak dosyaların tamamını içermiyorsa canlı site hazır sayılmamalıdır.
+Gerçek marka görselleri, şirket onaylı ürün/proje teknik verileri, duyuru kaynakları ve eski sitenin tam arşivi gelmeden bu çalışmayı üretim sitesi olarak yayınlamayın. Canlı cihaz ve tarayıcı testleri de tamamlanmalıdır.
