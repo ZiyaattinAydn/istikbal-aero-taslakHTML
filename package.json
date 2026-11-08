@@ -1,9 +1,33 @@
 {
-  "name": "istikbal-aero-static-preview",
-  "version": "0.0.0",
+  "name": "istikbal-aerospace",
+  "version": "0.1.0",
   "private": true,
-  "description": "Static source validation only; no production build or dependencies.",
+  "description": "Next.js migration of the existing İstikbal Aerospace prototype.",
+  "engines": {
+    "node": ">=20.9.0"
+  },
   "scripts": {
-    "test": "node --check app.js && node --check motion.js && node scripts/verify-static.mjs"
+    "dev": "next dev --hostname 0.0.0.0",
+    "build": "next build",
+    "start": "next start --hostname 0.0.0.0",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src tests next.config.ts",
+    "test": "tsx --test tests/*.test.ts",
+    "test:legacy": "node --check app.js && node --check motion.js && node scripts/verify-static.mjs"
+  },
+  "dependencies": {
+    "next": "16.4.5",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "26.6.6",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "eslint": "9.39.5",
+    "eslint-config-next": "16.4.5",
+    "parse5": "8.1.1",
+    "tsx": "4.23.15",
+    "typescript": "6.0.3"
   }
 }

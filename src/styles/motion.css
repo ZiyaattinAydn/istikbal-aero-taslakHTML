@@ -1,0 +1,229 @@
+/* Layout and focus are independent of motion preference or browser support. */
+html { scroll-padding-top: 90px; }
+main:focus { outline: 0; }
+.skip-link {
+  position: fixed;
+  z-index: 110;
+  top: 8px;
+  left: 12px;
+  padding: 12px 18px;
+  background: var(--surface);
+  transform: translateY(-160%);
+}
+.skip-link:focus { transform: none; }
+.line-mask { display: block; overflow: clip; padding: .09em .12em .09em 0; margin: -.09em -.12em -.09em 0; }
+.title-line { display: block; }
+.mega, .mobile-nav { overscroll-behavior: contain; }
+.mega { max-height: calc(100dvh - 82px); overflow-y: auto; }
+.mobile-nav [aria-current="page"], .mega-item[aria-current="page"] strong { color: var(--cyan); }
+.tech-current { display: inline-flex; align-items: stretch; position: relative; height: 100%; }
+.tech-current::after { content: ''; position: absolute; inset: auto 0 0; height: 2px; background: var(--cyan); pointer-events: none; }
+.tech-current .nav-link::after { display: none; }
+.tech-current button { padding-inline: 5px; }
+.mobile-tech-current { display: flex; border-bottom: 1px solid var(--line); }
+.mobile-tech-current a, .mobile-tech-current button { display: flex; align-items: center; padding: 16px 3px; font-size: 14px; }
+.mobile-tech-current a { flex: 1; }
+.mobile-tech-current button { justify-content: flex-end; min-width: 44px; background: none; border: 0; color: var(--white); }
+.mobile-nav { max-height: calc(100dvh - 72px); }
+.mobile-nav .mobile-sub[hidden], [data-category][hidden] { display: none; }
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Each observer sets a resting pose. Only nearby units get transitions.
+     Individual translate/scale leave the original hover transforms available. */
+  [data-motion] {
+    --x-in: 0px;
+    --y-in: 21px;
+    --x-back: 0px;
+    --y-back: -12px;
+    --zoom-in: 1;
+    --zoom-back: 1;
+    --duration: 610ms;
+    --stagger: 48ms;
+    --ease: cubic-bezier(.18,.7,.2,1);
+  }
+  [data-motion] .motion-piece {
+    --x: 0px;
+    --y: 0px;
+    --zoom: 1;
+    --alpha: 1;
+    translate: var(--x) var(--y);
+    scale: var(--zoom);
+    opacity: var(--alpha);
+  }
+  [data-motion][data-near] .motion-piece {
+    transition-property: translate, scale, opacity, transform, background-color, border-color, color;
+    transition-duration: var(--duration), var(--duration), var(--duration), .25s, .2s, .2s, .2s;
+    transition-timing-function: var(--ease);
+  }
+  [data-motion][data-near][data-phase="in"] .motion-piece {
+    transition-delay: calc(var(--beat) * var(--stagger) + var(--offset, 0ms)), calc(var(--beat) * var(--stagger) + var(--offset, 0ms)), calc(var(--beat) * var(--stagger) + var(--offset, 0ms)), 0s, 0s, 0s, 0s;
+  }
+  [data-motion][data-arrival="up"] { --duration: 520ms; --stagger: 28ms; }
+  [data-phase="below"] .motion-piece {
+    --x: var(--x-in); --y: var(--y-in); --zoom: var(--zoom-in); --alpha: 0;
+  }
+  [data-phase="above"] .motion-piece {
+    --x: var(--x-back); --y: var(--y-back); --zoom: var(--zoom-back); --alpha: 0;
+  }
+  [data-motion]:not([data-phase="in"]) .motion-piece { --duration: 280ms; }
+
+  [data-motion="hero"] { --duration: 830ms; --stagger: 75ms; }
+  .title-line { --y-in: 85%; --y-back: -30%; --x-back: -8px; }
+  .hero-content .eyebrow::before,
+  [data-motion="heading"] .eyebrow::before {
+    transform-origin: left;
+    transition: transform .65s var(--ease);
+  }
+  [data-phase="below"] .eyebrow::before, [data-phase="above"] .eyebrow::before { transform: scaleX(.1); }
+
+  [data-motion="intro"] { --stagger: 105ms; }
+  .intro-copy.motion-piece { --x-in: 22px; --y-in: 0px; }
+  [data-motion="platform"] { --duration: 820ms; --stagger: 85ms; }
+  .platform-card:nth-child(2), .tech-card:nth-child(even) { --offset: 80ms; }
+  .platform-card:nth-child(3) { --offset: 140ms; }
+  .platform-card .card-image { --x-in: 3%; --zoom-in: 1.09; --y-in: 0px; --x-back: -1%; --y-back: 0px; --zoom-back: 1.04; }
+  .feature-platform .card-image { --x-in: -3%; --x-back: 1%; }
+  .platform-card .card-info { --x-in: 22px; --y-in: 10px; --x-back: -9px; }
+  .feature-platform .card-info { --x-in: -30px; }
+  [data-motion="tech"] { --y-in: 15px; --stagger: 38ms; }
+  .tech-card .symbol { --x-in: -12px; --y-in: 0px; --zoom-in: .84; --zoom-back: .94; }
+  .tech-card .card-bottom { --y-in: 0px; --x-in: -9px; }
+  [data-motion="feature"] { --y-in: 15px; --stagger: 70ms; }
+  .split-feature .visual, .news-feature-art, .feature-row .feature-art {
+    --zoom-in: .98; --y-in: 0px; --y-back: 0px; --zoom-back: .99;
+  }
+  [data-motion="quiet"] { --y-in: 12px; --y-back: -7px; --stagger: 30ms; }
+  [data-motion="signal"] { --x-in: -22px; --y-in: 0px; --stagger: 66ms; --duration: 740ms; }
+  .tengri-inner h2 { --x-in: -32px; --y-in: 9px; --x-back: 13px; }
+  .signal-ring, .signal-trace {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0;
+    color: #78d5f1;
+  }
+  .signal-ring {
+    left: 70%; top: 46%;
+    width: clamp(110px, 16vw, 235px);
+    aspect-ratio: 1;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 12px rgba(111,210,240,.035);
+  }
+  .signal-trace {
+    left: 36%; top: 46%; width: 44%; height: 1px;
+    background: linear-gradient(90deg, transparent, currentColor 75%, transparent);
+    transform-origin: right;
+  }
+  .tengri-band[data-near][data-phase="in"] .signal-ring { animation: acquire 1150ms var(--ease) both; }
+  .tengri-band[data-near][data-phase="in"] .signal-trace { animation: trace 900ms var(--ease) both; }
+  .tengri-band[data-near][data-phase="in"][data-arrival="up"] .signal-ring { animation-direction: reverse; }
+  @keyframes acquire {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(.28); }
+    28% { opacity: .72; }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(1.16); }
+  }
+  @keyframes trace {
+    0% { opacity: 0; transform: scaleX(.06); }
+    36% { opacity: .65; }
+    100% { opacity: 0; transform: scaleX(1); }
+  }
+
+  @media (min-width: 961px) and (hover: hover) and (pointer: fine) {
+    @supports (animation-timeline: view()) {
+      .hero { view-timeline-name: --hero-pass; }
+      .hero-image {
+        animation: hangar-drift 1s linear both;
+        animation-timeline: --hero-pass;
+        animation-range: exit 0% exit 100%;
+      }
+      @keyframes hangar-drift {
+        from { transform: translateY(0) scale(1.015); }
+        to { transform: translateY(16px) scale(1.055); }
+      }
+    }
+  }
+
+  /* An intentional scene departure starts while its content is still on screen. */
+  [data-leaving] [data-phase="in"] .motion-piece,
+  [data-leaving][data-phase="in"] .motion-piece {
+    --alpha: .52;
+    --y: -15px;
+    --duration: 370ms;
+    transition-delay: 0s;
+  }
+  [data-leaving="up"] [data-phase="in"] .motion-piece,
+  [data-leaving="up"][data-phase="in"] .motion-piece { --y: 10px; }
+  /* Keyboard focus must be readable even at an observer boundary. */
+  [data-motion]:focus-within .motion-piece {
+    opacity: 1; translate: none; scale: none; transition-delay: 0s; transition-duration: 0s;
+  }
+  @media (max-width: 960px), (pointer: coarse) {
+    [data-motion] { --duration: 400ms; --stagger: 25ms; }
+    [data-motion] .motion-piece {
+      --x-in: 0px; --y-in: 9px; --y-back: -6px; --x-back: 0px;
+      --zoom-in: 1; --zoom-back: 1; --offset: 0ms;
+    }
+    .hero-content .title-line { --y-in: 38%; }
+    .signal-ring, .signal-trace { display: none; }
+  }
+}
+
+@media (max-width: 960px) { html { scroll-padding-top: 80px; } }
+@media print {
+  [data-motion] .motion-piece { opacity: 1 !important; translate: none !important; scale: none !important; }
+  .signal-ring, .signal-trace { display: none; }
+}
+
+/* Home reveal orchestration: actors return to a true resting pose on both sides
+   of the viewport, then re-enter from the opposite direction when revisited. */
+@media (prefers-reduced-motion: no-preference) {
+  [data-page="home"] .stage-actor {
+    opacity: 0;
+    translate: var(--stage-x,0px) 42px;
+    transition: opacity 780ms cubic-bezier(.2,.7,.18,1), translate 910ms cubic-bezier(.13,.74,.13,1);
+    transition-delay: 0ms;
+  }
+  [data-page="home"] .stage-actor[data-stage="show"] {
+    opacity: 1;
+    translate: 0 0;
+    transition-delay:var(--stage-delay, 70ms);
+  }
+  [data-page="home"] .stage-actor[data-stage="past"] {
+    opacity: 0;
+    translate: calc(var(--stage-x,0px) * -.5) -36px;
+    transition-duration: 420ms;
+  }
+  [data-page="home"] .stage-actor[data-stage="future"] { opacity: 0; }
+  [data-page="home"] .platform-card:nth-child(odd) { --stage-x: -37px; --stage-delay: 80ms; }
+  [data-page="home"] .platform-card:nth-child(even) { --stage-x: 37px; --stage-delay: 160ms; }
+  [data-page="home"] .tech-card:nth-child(2n+1) { --stage-x: -25px; --stage-delay: 100ms; }
+  [data-page="home"] .tech-card:nth-child(2n) { --stage-x: 25px; --stage-delay: 175ms; }
+  [data-page="home"] .section-header { --stage-x: -28px; }
+  [data-page="home"] .tengri-inner { --stage-x: -42px; }
+  [data-page="home"] .news-feature { --stage-x: 27px; }
+  [data-page="home"] .split-feature { --stage-x: 34px; }
+  [data-page="home"] .intro { --stage-x: -31px; }
+  [data-page="home"] .cta-flex { --stage-x: -25px; }
+  [data-page="home"] .footer-columns > div:nth-child(2n) { --stage-x: 23px; --stage-delay: 115ms; }
+  [data-page="home"] .footer-columns > div:nth-child(2n+1) { --stage-x: -23px; --stage-delay: 75ms; }
+}
+@media(prefers-reduced-motion:reduce) {
+  [data-page="home"] .stage-actor { opacity:1!important;translate:none!important;transition:none!important; }
+}
+@media (max-width: 960px) {
+  [data-page="home"] .stage-actor { --stage-x: 0px !important; }
+  [data-page="home"] .stage-actor[data-stage="future"] { translate:0 18px; }
+  [data-page="home"] .stage-actor[data-stage="past"] { translate:0 -18px; }
+}
+
+/* Platform navigation: same reversible behavior as the existing Technologies menu. */
+.platform-current { display:inline-flex; align-items:stretch; position:relative; height:100%; }
+.platform-current::after { content:''; position:absolute; inset:auto 0 0; height:2px; background:var(--cyan); pointer-events:none; }
+.platform-current .nav-link::after { display:none; }
+.platform-current button { padding-inline:5px; }
+.close-platform { background:none; border:0; color:var(--muted); font-size:20px; line-height:1; }
+#platform-menu .mega-inner { min-height:330px; }
+.mobile-platform-current { display:flex; border-bottom:1px solid var(--line); }
+.mobile-platform-current a, .mobile-platform-current button { display:flex; align-items:center; padding:16px 3px; font-size:14px; }
+.mobile-platform-current a { flex:1; }
+.mobile-platform-current button { justify-content:flex-end; min-width:44px; background:none; border:0; color:var(--white); }
