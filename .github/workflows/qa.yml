@@ -13,23 +13,32 @@ jobs:
   checks:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
           ref: legacy/html-prototype
           path: legacy-ref
           persist-credentials: false
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
           node-version: 22
           cache: npm
       - run: npm ci
+      - name: Report dependency advisories (production and development)
+        run: |
+          npm audit --json > npm-audit-report.json || true
+          node -e 'const a=require("./npm-audit-report.json"); if(a.error) throw new Error(a.error.summary || "npm audit failed"); console.log("Vulnerability counts:", JSON.stringify(a.metadata?.vulnerabilities)); for(const [name,v] of Object.entries(a.vulnerabilities || {})) console.log([name,v.severity,v.isDirect?"direct":"transitive",JSON.stringify(v.fixAvailable)].join(" | "));'
+          rm npm-audit-report.json
+      - name: Block high/critical production dependency vulnerabilities
+        run: npm audit --omit=dev --audit-level=high
       - run: npm run typecheck
       - run: npm run lint
       - run: npm test
       - run: cd legacy-ref && node scripts/verify-static.mjs
       - run: npm run build
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         with:
           name: production-build
           path: .next
@@ -45,20 +54,22 @@ jobs:
     env:
       TEST_SERVER_MODE: ${{ matrix.mode }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
           node-version: 22
           cache: npm
       - run: npm ci
       - if: matrix.mode == 'production'
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
         with:
           name: production-build
           path: .next
       - run: npx playwright install --with-deps chromium
       - run: npm run test:browser
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         if: always()
         with:
           name: browser-${{ matrix.mode }}

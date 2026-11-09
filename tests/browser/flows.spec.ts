@@ -117,3 +117,19 @@ test("news query edge cases and 404 return link", async ({ page }) => {
   await page.locator(".not-found-page a").click();
   await expect(page.locator(".hero-story")).toBeVisible();
 });
+
+// Security headers must be present in both development and production.
+// Keep search indexing disabled until the company explicitly approves release.
+test("response security headers remain enforced across public routes", async ({ page }) => {
+  for (const route of ["/", "/haberler.html", "/iletisim"]) {
+    const response = await page.goto(route);
+    expect(response?.status()).toBe(200);
+    const headers = response!.headers();
+    expect(headers["x-content-type-options"]).toBe("nosniff");
+    expect(headers["referrer-policy"]).toBe("strict-origin-when-cross-origin");
+    expect(headers["permissions-policy"]).toContain("camera=()");
+    expect(headers["permissions-policy"]).toContain("microphone=()");
+    expect(headers["permissions-policy"]).toContain("geolocation=()");
+    expect(headers["x-robots-tag"]).toMatch(/noindex/);
+  }
+});
