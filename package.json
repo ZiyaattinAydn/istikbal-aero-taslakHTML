@@ -11,10 +11,11 @@
     "build": "next build",
     "start": "next start --hostname 0.0.0.0",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint src tests next.config.ts",
+    "lint": "eslint src tests next.config.ts playwright.config.ts",
     "test": "node --import tsx --test tests/*.test.ts",
     "test:legacy": "node --check app.js && node --check motion.js && node scripts/verify-static.mjs",
-    "preview": "node scripts/preview.mjs"
+    "preview": "node scripts/preview.mjs",
+    "test:browser": "playwright test"
   },
   "dependencies": {
     "next": "16.4.5",
@@ -22,6 +23,7 @@
     "react-dom": "19.3.1"
   },
   "devDependencies": {
+    "@playwright/test": "1.65.0",
     "@types/node": "26.6.6",
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
