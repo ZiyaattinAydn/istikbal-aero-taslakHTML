@@ -6,7 +6,7 @@ Current production design and content are unchanged. This policy records which c
 
 - **Protected main**: PR required, no deletion or force push, up-to-date mandatory checks.
 - **Mandatory `checks` job**: before dependency installation, use **Gitleaks v3.0.0** pinned to immutable action SHA with **Gitleaks core 8.30.1** fixed. First scan the PR commit range, then explicitly run a second full `--log-opts="--all"` scan covering *every reachable Git ref and historical commit*. Either failure blocks `checks`; leaked values are redacted. Only the ephemeral GitHub token is used; PR comments, summary and scan artifact upload disabled.
-- **Dependency audit**: reject high/critical across all dependencies; reject moderate-or-higher production advisories; reject increases above eight currently accepted moderate *dev-only* advisories. This is a bounded, temporary risk exception, not a declaration that these warnings are fixed.
+- **Dependency audit**: reject high/critical across all dependencies; reject moderate-or-higher production advisories; reject any newly discovered moderate advisories, following the verified November 9 baseline of **zero across development and production dependencies**. The targeted minimatch 11 override is a temporary compatibility risk that must be revisited with upstream releases.
 - **Regression**: TypeScript, ESLint, unit tests, frozen original HTML parity, Next.js build, 69 browser tests each in dev and production.
 - **CodeQL**: JavaScript/TypeScript extended analysis in a separate GitHub workflow. It has a successful baseline but is not yet a mandatory branch rule.
 - **Vercel**: production domain promotion waits for the mandatory GitHub checks. The protected `noindex` and Vercel Authentication settings stay unchanged.
