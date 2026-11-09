@@ -1,3 +1,5 @@
+> **GÜNCEL BRANCH NOTU (9 Kasım 2026):** PR #1, `587ba3a` ile `main` branch'ine merge edildi. Önceki rapor merge öncesi QA anını belgeliyor. Orijinal HTML prototipi `legacy/html-prototype` branch'inde korunuyor. Statik kaynağı main'den ayıran temizlik, GitHub Pages yayın kaynağı legacy branch'e geçirildikten sonra tamamlanmalıdır.
+
 # İstikbal Aerospace — Son QA ve stabilizasyon raporu
 
 **Tarih:** 9 Kasım 2026 (Türkiye)
