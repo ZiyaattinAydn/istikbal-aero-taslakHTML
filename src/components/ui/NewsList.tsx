@@ -9,9 +9,10 @@ const filters = [
 ] as const;
 export function NewsList() {
   const [filter, setFilter] = useState<string>("all");
-  const empty = !publicNews.some(
+  const visibleNews = publicNews.filter(
     (item) => filter === "all" || item.category === filter,
   );
+  const empty = visibleNews.length === 0;
   return (
     <>
       <div className="listing-toolbar">
@@ -32,10 +33,9 @@ export function NewsList() {
         <span className="count">YAYINLAR</span>
       </div>
       <div className="cards-3 filter-target editorial-grid">
-        {publicNews.map((item) => (
+        {visibleNews.map((item) => (
           <NewsCard
             key={item.id}
-            hidden={filter !== "all" && item.category !== filter}
             {...item}
             description={item.summary}
             href={
