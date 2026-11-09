@@ -10,7 +10,7 @@ Mevcut HTML prototipinin tasarımını ve 21 sayfalık içeriğini koruyan Next.
 
 ## Yerel çalışma
 
-Node.js 20.9 veya üstü (doğrulanan ortam: Node.js 24).
+Node.js 20.9 veya üstü (CI: Node.js 22; yönetilen yerel ortam: Node.js 24).
 
 ```sh
 npm ci
@@ -38,7 +38,19 @@ npm run test:legacy
 
 26 test; 21 sayfanın ana içerik, header/footer metinlerini eski render çıktısıyla karşılaştırır. Eski ve temiz URL eşlemeleri, haber kimlikleri, güvenli URL'ler, listener temizliği ve görsel dosyalarının değişmediği ayrıca kontrol edilir.
 
-İsteğe bağlı görsel karşılaştırma dosyalarını üretmek için `node scripts/create-browser-fixtures.mjs` çalıştırın. `/qa/index.html`, `/qa/teknolojiler.html`, `/qa/haberler.html` ve `/qa/iletisim.html` eski ve yeni sürümü altı CSS viewport genişliğinde yan yana gösterir. Bu geçici dosyalar Git'e alınmaz; yayın paketinden önce `public/qa` klasörünü kaldırın.
+Gerçek React etkileşimleri, 42 eski/temiz adres, responsive sınırlar ve sinematik scroll için 68 Chromium testi de vardır. Önce tarayıcıyı bir kez kurun:
+
+```sh
+npx playwright install chromium
+npm run build
+npm run test:browser
+# Aynı testleri development sunucusunda çalıştırmak için (POSIX shell):
+TEST_SERVER_MODE=dev npm run test:browser
+```
+
+Windows PowerShell'de development seçimi: `$env:TEST_SERVER_MODE='dev'; npm run test:browser`. Playwright gerekirse sunucuyu kendisi başlatır; varsayılan adres `http://127.0.0.1:3100`'dür. Çalışan bir sunucu için `TEST_BASE_URL` verilebilir. CSS viewport ve sentetik giriş testleri fiziksel cihaz veya gerçek tarayıcı zoom testi sayılmaz. GitHub Actions her iki sunucu modunu da doğrular.
+
+İsteğe bağlı görsel karşılaştırma dosyalarını üretmek için `node scripts/create-browser-fixtures.mjs` çalıştırın. `/qa/index.html`, `/qa/teknolojiler.html`, `/qa/haberler.html` ve `/qa/iletisim.html` eski ve yeni sürümü altı CSS viewport genişliğinde yan yana gösterir. `compare-index.html`, `compare-platformlar.html`, `compare-teknolojiler.html`, `compare-haberler.html` ve `compare-iletisim.html` dosyaları 1440 × 900 karşılaştırmalarıdır; `<sayfa>-<genişlik>-<yükseklik>.html` dosyaları 600/900 px yüksekliği ayrı ayrı açar. Production önizlemesinde dosyaları sunucu başlamadan önce üretin. Bu geçici dosyalar Git'e alınmaz; yayın paketinden önce `public/qa` klasörünü kaldırın.
 
 ## Yapı
 
