@@ -15,7 +15,25 @@ jobs:
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
+          fetch-depth: 0
           persist-credentials: false
+      - name: Scan Git history for leaked credentials
+        uses: gitleaks/gitleaks-action@e0c47f4f8be36e29cdc102c57e68cb5cbf0e8d1e # v3.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITLEAKS_ENABLE_COMMENTS: 'false'
+          GITLEAKS_ENABLE_UPLOAD_ARTIFACT: 'false'
+          GITLEAKS_ENABLE_SUMMARY: 'false'
+          GITLEAKS_VERSION: '8.30.1'
+      - name: Scan all reachable Git history (redacted output)
+        shell: bash
+        env:
+          GITLEAKS_VERSION: '8.30.1'
+        run: |
+          set -euo pipefail
+          scanner="/tmp/gitleaks-${GITLEAKS_VERSION}/gitleaks"
+          test -x "$scanner"
+          "$scanner" git --redact --no-banner --log-opts="--all"
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
           # Immutable baseline: the archived HTML release must never drift with a branch.
@@ -31,7 +49,12 @@ jobs:
         run: |
           npm audit --json > npm-audit-report.json || true
           node -e 'const a=require("./npm-audit-report.json"); if(a.error) throw new Error(a.error.summary || "npm audit failed"); console.log("Vulnerability counts:", JSON.stringify(a.metadata?.vulnerabilities)); for(const [name,v] of Object.entries(a.vulnerabilities || {})) console.log([name,v.severity,v.isDirect?"direct":"transitive",JSON.stringify(v.fixAvailable)].join(" | "));'
+          # Eight documented pre-existing moderate development-tool advisories;
+          # production audit below rejects every moderate-or-higher finding.
+          node -e 'const a=require("./npm-audit-report.json"); const n=a.metadata?.vulnerabilities?.moderate??0; if(n>8) throw new Error(`Moderate advisory count grew beyond accepted development-only baseline: ${n} > 8`);'
           rm npm-audit-report.json
+      - name: Block high/critical dependency vulnerabilities in the entire toolchain
+        run: npm audit --audit-level=high
       - name: Block moderate-or-higher production dependency vulnerabilities
         run: npm audit --omit=dev --audit-level=moderate
       - run: npm run typecheck
