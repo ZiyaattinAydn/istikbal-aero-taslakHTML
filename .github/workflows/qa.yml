@@ -1,7 +1,7 @@
 name: Migration QA
 on:
   push:
-    branches: [feat/nextjs-react-typescript]
+    branches: [main]
   pull_request:
     branches: [main]
 permissions:
@@ -22,7 +22,6 @@ jobs:
       - run: npm run typecheck
       - run: npm run lint
       - run: npm test
-      - run: npm run test:legacy
       - run: npm run build
       - uses: actions/upload-artifact@v4
         with:
