@@ -30,6 +30,6 @@
     "eslint-config-next": "16.4.5",
     "parse5": "8.1.1",
     "tsx": "4.23.15",
-    "typescript": "6.0.3"
+    "typescript": "7.0.2"
   }
 }
