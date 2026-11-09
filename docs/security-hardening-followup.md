@@ -14,12 +14,14 @@ Scope: release integrity, dependency audit, static security analysis, and browse
 3. Add `Content-Security-Policy: frame-ancestors 'none'` and `X-Frame-Options: DENY` to protect against clickjacking. No full CSP is introduced because Next.js hydration, inline styles and external font loading need a separate compatibility assessment. Verify on dev and production browser tests.
 4. Restrict routine Dependabot *version update* PRs to semver minor/patch. Dependabot **security updates remain eligible**, including major updates when needed. Review existing open major update PRs individually; this configuration does not retroactively close them.
 5. Add a public `SECURITY.md` to route reports away from public issue comments.
+6. Pin the legacy HTML parity fixture to immutable commit `dc00abb5ae2cfed316a9ad6efe64aa66f6ad16ee` instead of a mutable branch reference, preventing silent baseline changes.
 
 ## Repository settings to review manually
 On GitHub repository Settings → Advanced Security verify:
 - Dependabot alerts and Dependabot security updates are enabled.
 - Secret scanning alerts and push protection are enabled; public repository defaults are not proof of the current configuration.
 - Private vulnerability reporting is enabled if offered.
+- Protect the published `legacy/html-prototype` branch with a separate ruleset (no deletion/force-push; PR required, or disallow all updates for an immutable archive). Avoid requiring the Next.js `checks` jobs on that branch, since those jobs trigger only for main.
 - The CodeQL scanner can upload SARIF reports to the Security tab. If CodeQL reports a permission or licensing error, do not disable branch protection; resolve access separately.
 
 ## Acceptance
