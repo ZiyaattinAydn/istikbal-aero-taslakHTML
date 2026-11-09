@@ -12,9 +12,12 @@ for (const width of [390, 768, 1024, 1280, 1440, 1920]) {
         await page.evaluate(() => document.fonts.ready);
         const issues = await page.evaluate(() => {
           const issues: string[] = [];
+          const eyebrow = document.querySelector(".hero-story-eyebrow");
+          const header = document.querySelector("header");
+          if (eyebrow && header && eyebrow.getBoundingClientRect().top < header.getBoundingClientRect().bottom - 2) issues.push("hero eyebrow covered by header");
           if (document.documentElement.scrollWidth > innerWidth + 1) issues.push("document overflow");
           // Check actual text bounds against clipping ancestors, not just scrollWidth.
-          for (const element of document.querySelectorAll<HTMLElement>("main h1, main h2, main h3, main p, main a, .footer a, .footer p")) {
+          for (const element of document.querySelectorAll<HTMLElement>("main h1, main h2, main h3, main p, main a, .hero-story-eyebrow, .footer a, .footer p")) {
             if (!element.checkVisibility()) continue;
             const rect = element.getBoundingClientRect();
             let ancestor = element.parentElement;

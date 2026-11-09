@@ -7,7 +7,7 @@ async function home(page: Page) {
 async function wheel(page: Page, deltaY: number, extra = {}) {
   return page.evaluate(({ deltaY, extra }) => {
     const event = new WheelEvent("wheel", { deltaY, bubbles: true, cancelable: true, ...extra });
-    window.dispatchEvent(event);
+    document.body.dispatchEvent(event);
     return event.defaultPrevented;
   }, { deltaY, extra });
 }
@@ -15,7 +15,7 @@ async function y(page: Page) { return page.evaluate(() => scrollY); }
 
 test("simulated mouse step, repeated input, hero crossfade and reverse", async ({ page }) => {
   await home(page);
-  const target = await page.locator("#homepage-intro").evaluate(el =>
+  const target = await page.locator("main > section").nth(1).evaluate(el =>
     Math.round(el.getBoundingClientRect().top + scrollY - document.querySelector("header")!.getBoundingClientRect().height));
   await page.mouse.wheel(0, 120);
   await expect.poll(() => y(page)).toBeGreaterThan(10);
@@ -60,6 +60,7 @@ test("chapter navigation, cancellation, reveals and route cleanup", async ({ pag
   await expect(page.locator("html")).not.toHaveClass(/home-no-scrollbar/);
   await page.locator('header .brand').click();
   await expect(page.locator(".site-shell")).toHaveAttribute("data-page", "home");
+  await expect(page.locator(".site-shell")).toHaveClass(/cinematic-ready/);
   expect(await wheel(page, 24.5)).toBe(true);
 });
 
@@ -73,5 +74,5 @@ test("reduced motion reveals all content and releases wheel interception", async
   await page.emulateMedia({ reducedMotion: "no-preference" });
   await page.locator('.chapter-step[data-chapter-index="0"]').click();
   await expect.poll(() => y(page)).toBeLessThan(2);
-  expect(await wheel(page, 120)).toBe(true);
+  await expect.poll(() => wheel(page, 120)).toBe(true);
 });
