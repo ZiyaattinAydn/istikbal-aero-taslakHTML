@@ -49,9 +49,8 @@ jobs:
         run: |
           npm audit --json > npm-audit-report.json || true
           node -e 'const a=require("./npm-audit-report.json"); if(a.error) throw new Error(a.error.summary || "npm audit failed"); console.log("Vulnerability counts:", JSON.stringify(a.metadata?.vulnerabilities)); for(const [name,v] of Object.entries(a.vulnerabilities || {})) console.log([name,v.severity,v.isDirect?"direct":"transitive",JSON.stringify(v.fixAvailable)].join(" | "));'
-          # Eight documented pre-existing moderate development-tool advisories;
-          # production audit below rejects every moderate-or-higher finding.
-          node -e 'const a=require("./npm-audit-report.json"); const n=a.metadata?.vulnerabilities?.moderate??0; if(n>8) throw new Error(`Moderate advisory count grew beyond accepted development-only baseline: ${n} > 8`);'
+          # Current full dependency audit has zero moderate advisories; reject future regression.
+          node -e 'const a=require("./npm-audit-report.json"); const n=a.metadata?.vulnerabilities?.moderate??0; if(n>0) throw new Error(`New moderate advisory detected: ${n} > 0`);'
           rm npm-audit-report.json
       - name: Block high/critical dependency vulnerabilities in the entire toolchain
         run: npm audit --audit-level=high

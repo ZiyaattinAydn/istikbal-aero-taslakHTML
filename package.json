@@ -31,5 +31,10 @@
     "parse5": "8.1.1",
     "tsx": "4.23.15",
     "typescript": "6.0.3"
+  },
+  "overrides": {
+    "@typescript-eslint/typescript-estree": {
+      "minimatch": "11.0.4"
+    }
   }
 }
