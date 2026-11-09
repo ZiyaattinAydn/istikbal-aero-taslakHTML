@@ -130,6 +130,8 @@ test("response security headers remain enforced across public routes", async ({ 
     expect(headers["permissions-policy"]).toContain("camera=()");
     expect(headers["permissions-policy"]).toContain("microphone=()");
     expect(headers["permissions-policy"]).toContain("geolocation=()");
+    expect(headers["content-security-policy"]).toMatch(/frame-ancestors\s+\x27none\x27/);
+    expect(headers["x-frame-options"]).toBe("DENY");
     expect(headers["x-robots-tag"]).toMatch(/noindex/);
   }
 });

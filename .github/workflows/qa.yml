@@ -18,7 +18,8 @@ jobs:
           persist-credentials: false
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
-          ref: legacy/html-prototype
+          # Immutable baseline: the archived HTML release must never drift with a branch.
+          ref: dc00abb5ae2cfed316a9ad6efe64aa66f6ad16ee
           path: legacy-ref
           persist-credentials: false
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
@@ -31,8 +32,8 @@ jobs:
           npm audit --json > npm-audit-report.json || true
           node -e 'const a=require("./npm-audit-report.json"); if(a.error) throw new Error(a.error.summary || "npm audit failed"); console.log("Vulnerability counts:", JSON.stringify(a.metadata?.vulnerabilities)); for(const [name,v] of Object.entries(a.vulnerabilities || {})) console.log([name,v.severity,v.isDirect?"direct":"transitive",JSON.stringify(v.fixAvailable)].join(" | "));'
           rm npm-audit-report.json
-      - name: Block high/critical production dependency vulnerabilities
-        run: npm audit --omit=dev --audit-level=high
+      - name: Block moderate-or-higher production dependency vulnerabilities
+        run: npm audit --omit=dev --audit-level=moderate
       - run: npm run typecheck
       - run: npm run lint
       - run: npm test
