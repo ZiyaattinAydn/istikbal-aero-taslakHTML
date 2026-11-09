@@ -10,3 +10,6 @@ test-results/
 /public/qa/
 
 playwright-report/
+
+# CI-only comparison checkout
+legacy-ref/

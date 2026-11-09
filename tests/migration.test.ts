@@ -1,78 +1,149 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
+import { runInNewContext } from "node:vm";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
+import { parseFragment, type DefaultTreeAdapterTypes } from "parse5";
 import { PageContent } from "../src/components/pages/PageContent";
 import { Footer } from "../src/components/layout/Footer";
 import { Header } from "../src/components/layout/Header";
 import { routes, getRoute } from "../src/data/routes";
 import { findNews } from "../src/lib/news";
-import { safeExternalSource, safeLocalHref, safeMediaName } from "../src/lib/urls";
+import {
+  safeExternalSource,
+  safeLocalHref,
+  safeMediaName,
+} from "../src/lib/urls";
 import { EventScope } from "../src/lib/events";
-
-test("all 21 original .html routes and their clean aliases resolve", () => {
+type Node = DefaultTreeAdapterTypes.Node;
+function text(node: Node): string {
+  if ("nodeName" in node && node.nodeName === "#text")
+    return (node as DefaultTreeAdapterTypes.TextNode).value;
+  return "childNodes" in node ? node.childNodes.map(text).join("") : "";
+}
+const normalize = (html: string) =>
+  text(parseFragment(html)).replace(/\s+/g, " ").trim();
+const legacyRoot = "legacy-ref";
+const hasLegacy = existsSync(legacyRoot + "/app.js");
+const source = hasLegacy ? readFileSync(legacyRoot + "/app.js", "utf8").split("document.title=")[0] : "";
+function legacy(
+  page: string,
+  search = "",
+): { body: string; head: string; foot: string } {
+  assert.ok(hasLegacy, "legacy branch reference must be checked out");
+  return runInNewContext(
+    source + "\n({body:pages[page](),head:header(),foot:footer()})",
+    {
+      document: { body: { dataset: { page } } },
+      location: { search },
+      URL,
+      URLSearchParams,
+    },
+    { timeout: 2000 },
+  );
+}
+test("all 21 source documents have both extension and clean routes", () => {
+  const files = hasLegacy
+    ? readdirSync(legacyRoot).filter((name) => name.endsWith(".html") && name !== "404.html")
+    : routes.map((route) => route.file);
   assert.equal(routes.length, 21);
-  assert.equal(new Set(routes.map(route => route.file)).size, 21);
-  assert.equal(new Set(routes.map(route => route.slug)).size, 21);
+  assert.deepEqual([...routes.map((route) => route.file)].sort(), files.sort());
   for (const route of routes) {
     assert.equal(getRoute(route.file), route);
     assert.equal(getRoute(route.slug), route);
   }
-  assert.equal(getRoute("unknown.html"), undefined);
+  assert.equal(getRoute("missing.html"), undefined);
 });
-
 for (const route of routes) {
-  test(route.file + ": SSR content, headings, navigation, and footer remain valid", () => {
-    const html = renderToStaticMarkup(createElement(PageContent, { page: route.page }));
-    assert.ok(html.length > 200, route.file + ": unexpectedly short content");
-    assert.equal((html.match(/<h1\b/g) || []).length, 1, route.file + ": H1 count");
-    for (const [, href] of html.matchAll(/href="\/?([a-z0-9-]+\.html)(?:\?[^"]*)?"/g))
-      assert.ok(getRoute(href), route.file + ": unknown link " + href);
+  test(`${route.file}: all source text, main headings and linked documents survive SSR`, () => {
+    const expected = hasLegacy ? legacy(route.page) : null;
+    const actual = renderToStaticMarkup(
+      createElement(PageContent, { page: route.page }),
+    );
+    if (expected) assert.equal(normalize(actual), normalize(expected.body));
+    assert.ok(normalize(actual).length > 100);
+    assert.equal((actual.match(/<h1\b/g) || []).length, 1);
+    for (const [, href] of actual.matchAll(
+      /href="\/?([a-z0-9-]+\.html)(?:\?[^"]*)?"/g,
+    ))
+      assert.ok(getRoute(href), href);
     const header = renderToStaticMarkup(createElement(Header, { page: route.page }));
     const footer = renderToStaticMarkup(createElement(Footer));
-    assert.ok(header.includes('class="site-header"'), route.file + ": header missing");
-    assert.ok(footer.includes('class="footer"'), route.file + ": footer missing");
+    assert.ok(header.includes('class="site-header"'));
+    assert.ok(footer.includes('class="footer"'));
+    if (expected) {
+      assert.equal(normalize(header), normalize(expected.head));
+      assert.equal(normalize(footer), normalize(expected.foot));
+    }
   });
 }
-
-test("news ID validation retains legacy URL defaults and rejects hostile IDs", () => {
-  assert.equal(findNews(undefined)?.id, "tengri-ai-announcement");
-  assert.equal(findNews(undefined, true)?.id, "flight-controller-announcement");
-  assert.equal(findNews(["flight-controller-announcement", "missing"])?.id, "flight-controller-announcement");
-  for (const id of ["missing", '"><img src=x onerror=alert(1)>', "a".repeat(5000)]) {
-    assert.equal(findNews(id), undefined);
-    for (const page of ["newsDetail", "flightControlNews"] as const) {
-      const html = renderToStaticMarkup(createElement(PageContent, { page, newsId: id }));
-      assert.match(html, /İçerik bulunamadı/);
-      assert.ok(!html.includes("onerror="));
+test("news query selects records, supports both legacy defaults and rejects hostile IDs", () => {
+  for (const flight of [false, true]) {
+    const page = flight ? "flightControlNews" : "newsDetail";
+    for (const id of [
+      undefined,
+      "",
+      "flight-controller-announcement",
+      "tengri-ai-announcement",
+      "missing",
+      '\"><img src=x onerror=alert(1)>',
+      "a".repeat(5000),
+    ]) {
+      const actual = renderToStaticMarkup(
+        createElement(PageContent, { page, newsId: id }),
+      );
+      if (hasLegacy) {
+        assert.equal(
+          normalize(actual),
+          normalize(legacy(page, id === undefined ? "" : "?id=" + encodeURIComponent(id)).body),
+        );
+      }
+      assert.ok(!actual.includes("onerror="));
     }
   }
+  assert.equal(
+    findNews(["flight-controller-announcement", "missing"])?.id,
+    "flight-controller-announcement",
+  );
 });
-
-test("media and URL helpers reject unsafe destinations", () => {
+test("media, internal URLs and publication sources cannot become script destinations", () => {
   assert.equal(safeExternalSource("javascript:alert(1)"), null);
   assert.equal(safeExternalSource("http://example.com"), null);
-  assert.equal(safeExternalSource("https://example.com/post"), "https://example.com/post");
+  assert.equal(
+    safeExternalSource("https://example.com/post"),
+    "https://example.com/post",
+  );
   assert.equal(safeLocalHref("//example.com"), "#");
-  assert.equal(safeLocalHref("haber-detay.html?id=tengri-ai-announcement"), "/haber-detay.html?id=tengri-ai-announcement");
+  assert.equal(
+    safeLocalHref("haber-detay.html?id=tengri-ai-announcement"),
+    "/haber-detay.html?id=tengri-ai-announcement",
+  );
   assert.equal(safeMediaName("../evil.svg"), "research-lab.svg");
 });
-
-test("event listener registry cleans up after route disposal", () => {
+test("route effect registry removes listeners including capture flags on disposal", () => {
   const target = new EventTarget();
   const scope = new EventScope();
-  let calls = 0;
-  scope.on(target as unknown as HTMLElement, "click", () => calls++, { passive: true });
+  let count = 0;
+  scope.on(target as unknown as HTMLElement, "click", () => count++, {
+    passive: true,
+  });
   target.dispatchEvent(new Event("click"));
-  assert.equal(calls, 1);
+  assert.equal(count, 1);
   scope.dispose();
   scope.dispose();
   target.dispatchEvent(new Event("click"));
-  assert.equal(calls, 1);
+  assert.equal(count, 1);
 });
-
-test("runtime media are present without duplicated root HTML assets", () => {
-  for (const file of ["favicon.svg", "hero-flight.webp", "hero-hangar-photo.webp", "platform-flight.svg", "platform-systems.svg", "tengri-network.svg", "research-lab.svg"])
+test("all original visuals are available; CI verifies byte identity", () => {
+  const files = readdirSync(hasLegacy ? legacyRoot + "/assets" : "public/assets");
+  for (const file of files) {
     assert.ok(existsSync("public/assets/" + file), file);
+    if (hasLegacy)
+      assert.deepEqual(
+        readFileSync(legacyRoot + "/assets/" + file),
+        readFileSync("public/assets/" + file),
+        file,
+      );
+  }
 });

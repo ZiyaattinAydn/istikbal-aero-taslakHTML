@@ -41,7 +41,7 @@ Development ortamında tarayıcı QA: `TEST_SERVER_MODE=dev npm run test:browser
 - `public/assets`: uygulama görselleri
 - `tests/browser`: Playwright Chromium E2E testleri
 
-Eski HTML sürümüne özgü render karşılaştırmaları, JS kontrol scriptleri ve statik site kaynakları `legacy/html-prototype` branch'inde korunmuştur. Ana branch'in içerik bütünlüğü artık TypeScript/React SSR testleri ve Playwright E2E testleriyle doğrulanır. Kaynak sürümle yapılan önceki karşılaştırmanın çıktıları `docs/qa` içinde bulunmaktadır.
+Eski HTML sürümüne özgü render karşılaştırmaları, JS kontrol scriptleri ve statik site kaynakları `legacy/html-prototype` branch'inde korunmuştur. GitHub Actions, eski branch'i çalışma sırasında `legacy-ref/` klasörüne ayrı checkout ederek 21 sayfanın birebir SSR metin karşılaştırmasını, eski statik testleri ve görsel byte bütünlüğünü korur; main'de eski HTML dosyaları tutulmaz. Yerelde bu klasör olmadan SSR ve Playwright testleri yine çalışır. Kaynak sürümle yapılan önceki karşılaştırmanın çıktıları `docs/qa` içinde bulunmaktadır.
 
 ## Yayın ve sınırlar
 
