@@ -24,6 +24,16 @@ jobs:
           GITLEAKS_ENABLE_COMMENTS: 'false'
           GITLEAKS_ENABLE_UPLOAD_ARTIFACT: 'false'
           GITLEAKS_ENABLE_SUMMARY: 'false'
+          GITLEAKS_VERSION: '8.24.3'
+      - name: Scan all reachable Git history (redacted output)
+        shell: bash
+        env:
+          GITLEAKS_VERSION: '8.24.3'
+        run: |
+          set -euo pipefail
+          scanner="/tmp/gitleaks-${GITLEAKS_VERSION}/gitleaks"
+          test -x "$scanner"
+          "$scanner" detect --redact --no-banner --log-opts="--all"
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
           # Immutable baseline: the archived HTML release must never drift with a branch.
