@@ -31,8 +31,8 @@ jobs:
           npm audit --json > npm-audit-report.json || true
           node -e 'const a=require("./npm-audit-report.json"); if(a.error) throw new Error(a.error.summary || "npm audit failed"); console.log("Vulnerability counts:", JSON.stringify(a.metadata?.vulnerabilities)); for(const [name,v] of Object.entries(a.vulnerabilities || {})) console.log([name,v.severity,v.isDirect?"direct":"transitive",JSON.stringify(v.fixAvailable)].join(" | "));'
           rm npm-audit-report.json
-      - name: Block high/critical production dependency vulnerabilities
-        run: npm audit --omit=dev --audit-level=high
+      - name: Block moderate-or-higher production dependency vulnerabilities
+        run: npm audit --omit=dev --audit-level=moderate
       - run: npm run typecheck
       - run: npm run lint
       - run: npm test
