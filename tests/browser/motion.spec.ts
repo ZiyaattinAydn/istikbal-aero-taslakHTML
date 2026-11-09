@@ -76,3 +76,32 @@ test("reduced motion reveals all content and releases wheel interception", async
   await expect.poll(() => y(page)).toBeLessThan(2);
   await expect.poll(() => wheel(page, 120)).toBe(true);
 });
+
+test("hero starts in flight and finishes crossfade before its sticky pin ends", async ({ page }) => {
+  await home(page);
+  await expect.poll(() => page.locator(".hero-story").evaluate(el =>
+    Number((el as HTMLElement).style.getPropertyValue("--scene-progress")))).toBe(0);
+  const pinEnd = await page.locator(".hero-story").evaluate(el =>
+    (el as HTMLElement).offsetHeight - (el.querySelector(".hero-stage") as HTMLElement).offsetHeight - document.querySelector("header")!.getBoundingClientRect().height);
+  await page.evaluate(top => scrollTo({ top, behavior: "instant" }), Math.floor(pinEnd * 0.94));
+  await expect.poll(() => page.locator(".hero-story").evaluate(el =>
+    Number((el as HTMLElement).style.getPropertyValue("--scene-progress")))).toBe(1);
+  const [stage, header] = await Promise.all([
+    page.locator(".hero-stage").boundingBox(), page.locator("header").boundingBox(),
+  ]);
+  expect(Math.abs(stage!.y - header!.height)).toBeLessThan(2);
+});
+
+test("reverse during travel and same-page logo return cancel the previous animation", async ({ page }) => {
+  await home(page);
+  await page.mouse.wheel(0, 120);
+  await expect.poll(() => y(page)).toBeGreaterThan(50);
+  await page.mouse.wheel(0, -120);
+  await expect.poll(() => y(page)).toBeLessThan(2);
+  await page.locator('.chapter-step[data-chapter-index="3"]').click();
+  await expect.poll(() => y(page)).toBeGreaterThan(200);
+  await page.evaluate(() => document.documentElement.dataset.testDocument = "same");
+  await page.locator("header .brand").click();
+  await expect.poll(() => y(page)).toBeLessThan(2);
+  await expect(page.locator("html")).toHaveAttribute("data-test-document", "same");
+});

@@ -52,8 +52,13 @@ export function mountCinematic(root: HTMLElement, page: PageId): () => void {
       hero.style.setProperty("--story-copy-fade", "0");
       return;
     }
-    const top = hero.getBoundingClientRect().top + scrollY - heightOfHeader();
-    const pinDistance = Math.max(1, hero.offsetHeight - stage.offsetHeight);
+    const heroTop = hero.getBoundingClientRect().top + scrollY;
+    const bar = heightOfHeader();
+    const top = Math.max(0, heroTop - bar);
+    // The homepage header overlaps the hero at document top. Its initial
+    // sticky inset consumes part of the pin, but must not advance the blend.
+    const initialInset = Math.max(0, bar - heroTop);
+    const pinDistance = Math.max(1, hero.offsetHeight - stage.offsetHeight - initialInset);
     const travelInHero = clamp(scrollY - top, 0, pinDistance);
     // Complete the blend while the entire hero is still visibly pinned.
     const progress = easeQuint(

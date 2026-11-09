@@ -62,3 +62,43 @@ test("short desktop mega menu remains scrollable and all links reachable", async
   const rect = await last.boundingBox();
   expect(rect!.y + rect!.height).toBeLessThanOrEqual(601);
 });
+
+test("hover keeps card titles and links within their cards", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  for (const path of ["/platformlar", "/teknolojiler", "/haberler"]) {
+    await page.goto(path);
+    for (const card of await page.locator(".platform-card, .tech-card, .news-card").all()) {
+      await card.hover();
+      expect(await card.evaluate(el => {
+        const box = el.getBoundingClientRect();
+        return [...el.querySelectorAll("h3, p, a, .card-bottom")].every(child => {
+          const rect = child.getBoundingClientRect();
+          return rect.left >= box.left - 2 && rect.right <= box.right + 2 && rect.top >= box.top - 2 && rect.bottom <= box.bottom + 2;
+        });
+      })).toBe(true);
+    }
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)).toBe(true);
+  }
+});
+
+test.describe("emulated touch input", () => {
+  test.use({ hasTouch: true, isMobile: true });
+  for (const width of [390, 768]) {
+    test(`touch menu and static hero ${width}x600`, async ({ page }) => {
+      await page.setViewportSize({ width, height: 600 });
+      await page.emulateMedia({ reducedMotion: "reduce" });
+      await page.goto("/");
+      await page.locator("#mobile-trigger").click();
+      await page.locator("#mobile-tech").click();
+      await expect(page.locator("#mobile-sub")).toBeVisible();
+      await page.keyboard.press("Escape");
+      await expect(page.locator("#mobile-trigger")).toBeFocused();
+      const [header, eyebrow, lastAction] = await Promise.all([
+        page.locator("header").boundingBox(), page.locator(".hero-story-eyebrow").boundingBox(), page.locator(".hero-story-actions a").last().boundingBox(),
+      ]);
+      expect(eyebrow!.y).toBeGreaterThanOrEqual(header!.height - 2);
+      expect(lastAction!.y + lastAction!.height).toBeLessThanOrEqual(601);
+      expect(await page.evaluate(() => matchMedia("(pointer: coarse)").matches)).toBe(true);
+    });
+  }
+});

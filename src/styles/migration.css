@@ -17,3 +17,13 @@
   .hero-story-actions { gap: 8px; }
   .hero-story-actions .btn { min-height: 44px; padding: 10px 16px; }
 }
+
+/* Reduced motion removes the sticky pin, but the overlapping home header
+   still needs its own space above the static scene. */
+@media (prefers-reduced-motion: reduce) {
+  .hero.hero-story { height: 100svh; }
+  .hero-story .hero-stage {
+    top: var(--site-top);
+    height: calc(100svh - var(--site-top));
+  }
+}
