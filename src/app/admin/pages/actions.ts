@@ -57,9 +57,20 @@ export async function savePage(
       message: "Taslak kaydedildi. Önizlemeyi açabilirsiniz.",
       ok: true,
     };
-  } catch {
+  } catch (error) {
+    const known = [
+      "Sayfa bulunamadı.",
+      "Sayfa alanları geçersiz.",
+      "Sayfa alanlarını kontrol edin.",
+      "Görseli medya kütüphanesinden seçin.",
+      "Bağlantıyı kontrol edin.",
+      "Başlık ve açıklamayı kontrol edin.",
+    ];
     return {
-      message: "Alanlar kaydedilemedi. Değişiklikleriniz ekranda duruyor.",
+      message:
+        error instanceof Error && known.includes(error.message)
+          ? error.message
+          : "Alanlar kaydedilemedi. Değişiklikleriniz ekranda duruyor.",
     };
   }
 }

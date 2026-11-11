@@ -1,4 +1,5 @@
 import "server-only";
+import { cache } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { unstable_cache } from "next/cache";
 import type { PageValues } from "./page-values";
@@ -19,7 +20,7 @@ export function publicReadsEnabled() {
     !!process.env.SUPABASE_PUBLISHABLE_KEY
   );
 }
-export async function publishedPage(
+export const publishedPage = cache(async function publishedPage(
   slug: string,
 ): Promise<(ContentBody & { fields?: PageValues }) | null> {
   if (!publicReadsEnabled()) return null;
@@ -41,7 +42,7 @@ export async function publishedPage(
   } catch {
     return null;
   }
-}
+});
 export type PublishedEntry = {
   document_id: string;
   kind: string;
@@ -51,19 +52,24 @@ export type PublishedEntry = {
 };
 export async function publishedEntries(
   kind: string,
-): Promise<PublishedEntry[]> {
+): Promise<PublishedListEntry[]> {
   if (!publicReadsEnabled()) return [];
   try {
     return await unstable_cache(
       async () => {
         const { data, error } = await publicClient()
           .from("cms_published")
-          .select("document_id,kind,slug,body,revision")
+          .select(
+            "document_id,kind,slug,title:body->>title,summary:body->>summary,cover_id:body->>cover_id",
+          )
           .eq("kind", kind)
           .order("published_at", { ascending: false })
           .limit(100);
         if (error) throw error;
-        return data || [];
+        return (data || []).map(({ title, summary, cover_id, ...item }) => ({
+          ...item,
+          body: { title, summary, cover_id },
+        }));
       },
       ["cms-list", kind],
       { revalidate: 300, tags: [`cms-list-${kind}`] },
@@ -73,7 +79,7 @@ export async function publishedEntries(
   }
 }
 
-export async function publishedEntry(
+export const publishedEntry = cache(async function publishedEntry(
   kind: string,
   slug: string,
 ): Promise<PublishedEntry | null> {
@@ -96,13 +102,19 @@ export async function publishedEntry(
   } catch {
     return null;
   }
-}
+});
 
+export type PublishedListEntry = {
+  document_id: string;
+  kind: string;
+  slug: string;
+  body: Pick<ContentBody, "title" | "summary" | "cover_id">;
+};
 export type EntryLink = {
   document_id: string;
   kind: string;
   slug: string;
-  body: ContentBody;
+  body: Pick<ContentBody, "title" | "summary">;
 };
 export type CoverAsset = {
   id: string;
@@ -118,11 +130,16 @@ export async function publishedRelations(ids: string[]): Promise<EntryLink[]> {
       async () => {
         const { data, error } = await publicClient()
           .from("cms_published")
-          .select("document_id,kind,slug,body")
+          .select(
+            "document_id,kind,slug,title:body->>title,summary:body->>summary",
+          )
           .in("document_id", keys)
           .in("kind", ["project", "platform", "technology"]);
         if (error) throw error;
-        return data || [];
+        return (data || []).map(({ title, summary, ...item }) => ({
+          ...item,
+          body: { title, summary },
+        }));
       },
       ["cms-related", ...keys],
       { revalidate: 300, tags: keys.map((id) => `cms-reference-${id}`) },

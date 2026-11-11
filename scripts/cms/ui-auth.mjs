@@ -8,7 +8,8 @@ export async function runUiChecks({ status, admin, totp }) {
   const email = "cms-ui@example.com",
     url = "http://127.0.0.1:3200";
   let stage = "ui-start",
-    browser;
+    browser,
+    page;
   const timings = { save: [], navigation: [] };
   const checks = [];
   const child = spawn(
@@ -68,7 +69,7 @@ export async function runUiChecks({ status, admin, totp }) {
     const context = await browser.newContext({
       viewport: { width: 1440, height: 1000 },
     });
-    const page = await context.newPage();
+    page = await context.newPage();
     page.setDefaultTimeout(30000);
     page.setDefaultNavigationTimeout(120000);
     page.on("dialog", (dialog) => dialog.accept());
@@ -168,6 +169,15 @@ export async function runUiChecks({ status, admin, totp }) {
           const text = await form.innerText();
           if (text.includes("Taslak kaydedilemedi."))
             throw Error("page_database_rejected");
+          for (const [message, code] of [
+            ["Sayfa bulunamadı.", "page_slug"],
+            ["Sayfa alanları geçersiz.", "page_object"],
+            ["Sayfa alanlarını kontrol edin.", "page_field"],
+            ["Görseli medya kütüphanesinden seçin.", "page_image"],
+            ["Bağlantıyı kontrol edin.", "page_link"],
+            ["Başlık ve açıklamayı kontrol edin.", "page_seo"],
+          ])
+            if (text.includes(message)) throw Error(code);
           if (text.includes("Alanlar kaydedilemedi."))
             throw Error("page_validation_rejected");
           return false;
@@ -478,6 +488,26 @@ export async function runUiChecks({ status, admin, totp }) {
     );
   } catch (error) {
     console.error("Authenticated UI failure stage:", stage);
+    if (stage.startsWith("page-")) {
+      const values = JSON.parse(
+        await page.locator('input[name="fields"]').inputValue(),
+      );
+      const pageSlug = await page.locator('input[name="slug"]').inputValue();
+      const schema = JSON.parse(
+        readFileSync("src/data/cms-page-schema.json", "utf8"),
+      ).find((p) => p.slug === pageSlug);
+      console.log(
+        "Page field diagnostics (keys only):",
+        Object.entries(values)
+          .filter(
+            ([key, value]) =>
+              !schema.fields.some((f) => f.key === key) ||
+              typeof value !== "string" ||
+              /[<>\u0000]/.test(value),
+          )
+          .map(([key]) => key),
+      );
+    }
     console.error("UI failure class:", {
       name: error?.name,
       knownFailure: /^[a-z_]+$/.test(error?.message || "")
