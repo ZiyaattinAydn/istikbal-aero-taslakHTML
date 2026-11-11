@@ -16,7 +16,7 @@ Yeni hosted projede account guard, allowlist dışındaki kullanıcı kayıtlar�
 
 ## Yerel OTP
 
-Supabase CLI 3.1.0 için `supabase/config.toml` ve altı haneli `templates/otp.html` hazır. Yerel gönderici Mailpit; Resend'e veya gerçek bir e-posta kutusuna gönderim yapılmaz. Test e-postası `cms-admin@example.test`, yalnız `local-admin.sql` fixture'ıdır; hosted projeye eklenmedi.
+Supabase CLI 3.1.0 için `supabase/config.toml` ve altı haneli `templates/otp.html` hazır. Yerel gönderici Mailpit; Resend'e veya gerçek bir e-posta kutusuna gönderim yapılmaz. Test e-postası `cms-admin@example.com`, yalnız `local-admin.sql` fixture'ıdır; hosted projeye eklenmedi.
 
 Çalışma ortamında Docker yok. Native CLI başlangıcı servis arşivlerini GitHub/S3'ten indiremedi (`EAI_AGAIN`); yerelde gerçek OTP tamamlandı iddiası yok. PR CI'daki `cms-local-auth` işi Docker tabanlı izole Supabase + Mailpit çalıştırır. Test, gerçek OTP e-postası/yanlış kod/tek kullanım, kapalı signup, TOTP, AAL1 reddi, AAL2 yazma, yayın, özel/public Storage ve eski JWT ile oturum iptalini doğrular. Başlangıç çıktısı anahtar içerebileceği için tamamen atılır; status JSON yalnız private geçici çalışma ayarıdır. Artifact yalnız sansürlenmiş sonuç JSON'udur. CI sonucu STATUS.md/PR'da takip edilir.
 

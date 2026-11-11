@@ -13,7 +13,7 @@ const url = status.API_URL || status.api_url || status.apiUrl;
 const anon = status.ANON_KEY || status.PUBLISHABLE_KEY || status.anon_key;
 const secret =
   status.SERVICE_ROLE_KEY || status.SECRET_KEY || status.service_role_key;
-const email = "cms-admin@example.test";
+const email = "cms-admin@example.com";
 const client = (key) =>
   createClient(url, key, {
     auth: { persistSession: false, autoRefreshToken: false },
@@ -64,11 +64,18 @@ async function main() {
   });
   assert.ok(unknown.error || !unknown.data.user);
   checks.push("Unknown OTP cannot provision account");
+  stage = "send-otp";
   const sent = await db.auth.signInWithOtp({
     email,
     options: { shouldCreateUser: false },
   });
-  assert.equal(sent.error, null);
+  if (sent.error) {
+    console.log("OTP send failure:", {
+      status: sent.error.status,
+      code: sent.error.code,
+    });
+    throw Error("otp_send_failed");
+  }
   let message;
   for (let i = 0; i < 50; i++) {
     const list = await (
