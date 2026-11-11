@@ -1,5 +1,5 @@
 "use server";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, updateTag } from "next/cache";
 import { requireAdmin } from "@/lib/cms/server";
 import {
   kinds,
@@ -72,6 +72,12 @@ export async function changeStatus(
       throw Error("İşlem geçersiz.");
     if (["approve", "publish", "archive"].includes(operation))
       requirePublisher(role);
+    const docId = String(form.get("id"));
+    const { data: affected } = await db
+      .from("cms_documents")
+      .select("kind,slug")
+      .eq("id", docId)
+      .maybeSingle();
     const { error } = await db.rpc("cms_mutate", {
       doc: String(form.get("id")),
       expected: Number(form.get("revision")),
@@ -87,11 +93,21 @@ export async function changeStatus(
           "İşlem tamamlanamadı. Yetki, onay ve güncel sürümü kontrol edin.",
       };
     revalidatePath("/admin");
+    if (affected) {
+      revalidatePath(`/admin/pages/${affected.slug}`);
+      if (["publish", "archive"].includes(operation)) {
+        updateTag(
+          affected.kind === "page"
+            ? `cms-page-${affected.slug}`
+            : `cms-list-${affected.kind}`,
+        );
+      }
+    }
     return {
       ok: true,
       message:
         operation === "publish"
-          ? "Kayıt yayın deposuna alındı. Site bağlantısı henüz etkin değil."
+          ? "Kayıt onaylı yayın deposuna alındı. Etkin CMS önizlemesinde önbellek yenilenir."
           : "İşlem kaydedildi.",
     };
   } catch (error) {

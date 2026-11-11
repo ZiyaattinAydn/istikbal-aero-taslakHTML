@@ -4,7 +4,7 @@
     "route": "gomulu-sistemler",
     "title": "Gömülü Sistemler | İstikbal Aerospace",
     "description": "PCB tasarımı, elektronik donanım ve gömülü yazılım mühendisliği.",
-    "renderSha256": "d62605122c4505690053d6d0443b667ba73fed889083c5bb9c1dd7872d28d2c7",
+    "renderSha256": "e53e478ebd439debb1e1539f761bfb3e159fe4bfd6effa4c18088b32371252ad",
     "sections": [
       {
         "tag": "h1",
@@ -305,7 +305,7 @@
     "route": "ileri-haberlesme",
     "title": "İleri Haberleşme | İstikbal Aerospace",
     "description": "Bağlantılı platformlarda veri iletimi, haberleşme ve sistem entegrasyonu.",
-    "renderSha256": "d3e1ac71b33e0eb61d6a231d218df81ac305165529420420f68d30989b08eb91",
+    "renderSha256": "2b072d223036e36626c1bd5943733e1eb49122ed20c45f7ae9856a16a4db9e58",
     "sections": [
       {
         "tag": "h1",
@@ -812,7 +812,7 @@
     "route": "otonom-sistemler",
     "title": "Otonom Sistemler | İstikbal Aerospace",
     "description": "Algılama, karar mekanizmaları ve kontrol sistemlerine genel bakış.",
-    "renderSha256": "71152d040040d6279087c54240b112ea3dca8af41c6f3e08a93de90ff06737d8",
+    "renderSha256": "4df5ef8d80a55ae263763abde8f8e890d4ad6658329d13ce5cab51abeb4a1246",
     "sections": [
       {
         "tag": "h1",
@@ -1171,7 +1171,7 @@
     "route": "roket-sistemleri",
     "title": "Roket Sistemleri | İstikbal Aerospace",
     "description": "Roket teknolojileriyle ilişkili uçuş elektroniği, telemetri ve sistem mühendisliği.",
-    "renderSha256": "24270631f4a4a85e79a31446a978b4d12a1cf5f91cafee89b44a766476d8cbb7",
+    "renderSha256": "4bd45716a4e6f28a1adc263eb3754863b576ac16e2d6c238a25d2772c1508906",
     "sections": [
       {
         "tag": "h1",
@@ -1238,7 +1238,7 @@
     "route": "sensor-fuzyonu",
     "title": "Sensör Füzyonu | İstikbal Aerospace",
     "description": "Farklı algılayıcılardan gelen verilerin birlikte değerlendirilmesi.",
-    "renderSha256": "05aecf757d31cb95724fd61c1258f715fe71a123fa34e77463becb71d4dfe524",
+    "renderSha256": "bdc876a0920918656c6b0fc166c71143db2a329bf50b1c8de1d390f75979273c",
     "sections": [
       {
         "tag": "h1",

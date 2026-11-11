@@ -1,3 +1,4 @@
+import { pageValue, pageData, type PageValues } from "@/lib/cms/page-values";
 import { focusData, platformFocusData } from "@/data/focus";
 import {
   Section,
@@ -5,8 +6,14 @@ import {
   InnerHero,
   FocusModule,
 } from "@/components/ui/content";
-export function FocusContent({ name }: { name: keyof typeof focusData }) {
-  const x = focusData[name];
+export function FocusContent({
+  name,
+  content = {},
+}: {
+  name: keyof typeof focusData;
+  content?: PageValues;
+}) {
+  const x = pageData(focusData[name], `focus.${name}`, content);
   return (
     <>
       <InnerHero
@@ -19,17 +26,47 @@ export function FocusContent({ name }: { name: keyof typeof focusData }) {
       <Section>
         <div className="focus-intro">
           <div>
-            <span className="eyebrow">TEKNOLOJİYE YAKINDAN BAKIŞ</span>
-            <h2>Bir disiplinin farklı katmanları.</h2>
+            <span className="eyebrow">
+              {pageValue(
+                content,
+                "FocusContent.text.0",
+                "TEKNOLOJİYE YAKINDAN BAKIŞ",
+              )}
+            </span>
+            <h2>
+              {pageValue(
+                content,
+                "FocusContent.text.1",
+                "Bir disiplinin farklı katmanları.",
+              )}
+            </h2>
           </div>
           <p>{x.intro}</p>
         </div>
       </Section>
       <Section className="inner-panel">
         <SectionHeading
-          kicker="TEMEL YAKLAŞIM"
-          title="Mühendislik bileşenleri."
-          lead="Konuya ait kavramlar ve çalışma ilkeleri; doğrulanmış proje bilgileri ayrıca yayınlanacaktır."
+          kicker={pageValue(
+            content,
+            "FocusContent.kicker.2",
+            "TEMEL YAKLAŞIM",
+            "text",
+            "Bölüm etiketi",
+          )}
+          title={pageValue(
+            content,
+            "FocusContent.title.3",
+            "Mühendislik bileşenleri.",
+            "text",
+            "Başlık",
+          )}
+          lead={pageValue(
+            content,
+            "FocusContent.lead.4",
+            "Konuya ait kavramlar ve çalışma ilkeleri; doğrulanmış proje bilgileri ayrıca yayınlanacaktır.",
+            "text",
+            "Açıklama",
+          )}
         />
         <div className="focus-modules">
           {x.modules.map(([number, title, description]) => (
@@ -42,9 +79,18 @@ export function FocusContent({ name }: { name: keyof typeof focusData }) {
           ))}
         </div>
         <p className="editorial-note">
-          Sistemler birlikte çalışır: {x.title} ile {x.related} birbirini
-          tamamlayan mühendislik alanlarıdır. Teknoloji başlıkları birbirinden
-          bağımsız değildir.
+          {pageValue(
+            content,
+            "FocusContent.text.5",
+            "Sistemler birlikte çalışır: ",
+          )}
+          {x.title} {pageValue(content, "FocusContent.text.6", " ile ")}
+          {x.related}{" "}
+          {pageValue(
+            content,
+            "FocusContent.text.7",
+            " birbirini tamamlayan mühendislik alanlarıdır. Teknoloji başlıkları birbirinden bağımsız değildir.",
+          )}
         </p>
       </Section>
     </>
@@ -52,10 +98,12 @@ export function FocusContent({ name }: { name: keyof typeof focusData }) {
 }
 export function PlatformFocusContent({
   name,
+  content = {},
 }: {
+  content?: PageValues;
   name: keyof typeof platformFocusData;
 }) {
-  const x = platformFocusData[name];
+  const x = pageData(platformFocusData[name], `platformFocus.${name}`, content);
   return (
     <>
       <InnerHero
@@ -68,17 +116,43 @@ export function PlatformFocusContent({
       <Section>
         <div className="focus-intro">
           <div>
-            <span className="eyebrow">SİSTEM ODAĞI</span>
-            <h2>Birlikte çalışan teknolojiler.</h2>
+            <span className="eyebrow">
+              {pageValue(content, "FocusContent.text.8", "SİSTEM ODAĞI")}
+            </span>
+            <h2>
+              {pageValue(
+                content,
+                "FocusContent.text.9",
+                "Birlikte çalışan teknolojiler.",
+              )}
+            </h2>
           </div>
           <p>{x.intro}</p>
         </div>
       </Section>
       <Section className="inner-panel">
         <SectionHeading
-          kicker="MÜHENDİSLİK KATMANLARI"
-          title="Sistem bütünlüğü."
-          lead="Havacılık çalışmalarında birbirini tamamlayan temel mühendislik başlıkları."
+          kicker={pageValue(
+            content,
+            "FocusContent.kicker.10",
+            "MÜHENDİSLİK KATMANLARI",
+            "text",
+            "Bölüm etiketi",
+          )}
+          title={pageValue(
+            content,
+            "FocusContent.title.11",
+            "Sistem bütünlüğü.",
+            "text",
+            "Başlık",
+          )}
+          lead={pageValue(
+            content,
+            "FocusContent.lead.12",
+            "Havacılık çalışmalarında birbirini tamamlayan temel mühendislik başlıkları.",
+            "text",
+            "Açıklama",
+          )}
         />
         <div className="focus-modules">
           {x.modules.map(([title, description], index) => (
@@ -91,8 +165,11 @@ export function PlatformFocusContent({
           ))}
         </div>
         <p className="editorial-note">
-          Otonom sistemler, gömülü donanım ve sensör füzyonu bu mimarilerle
-          ilişkili mühendislik disiplinleridir.
+          {pageValue(
+            content,
+            "FocusContent.text.13",
+            "Otonom sistemler, gömülü donanım ve sensör füzyonu bu mimarilerle ilişkili mühendislik disiplinleridir.",
+          )}
         </p>
       </Section>
     </>

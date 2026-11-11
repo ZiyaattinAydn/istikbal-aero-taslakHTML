@@ -1,13 +1,15 @@
 "use client";
+import { pageData, type PageValues } from "@/lib/cms/page-values";
 import { useState } from "react";
-import { publicNews } from "@/data/publications";
+import { publicNews as basePublicNews } from "@/data/publications";
 import { NewsCard } from "@/components/cards/Cards";
 const filters = [
   ["all", "Tümü"],
   ["Paylaşım", "Paylaşımlar"],
   ["Duyuru", "Duyurular"],
 ] as const;
-export function NewsList() {
+export function NewsList({ content = {} }: { content?: PageValues }) {
+  const publicNews = pageData(basePublicNews, "newsList", content);
   const [filter, setFilter] = useState<string>("all");
   const visibleNews = publicNews.filter(
     (item) => filter === "all" || item.category === filter,

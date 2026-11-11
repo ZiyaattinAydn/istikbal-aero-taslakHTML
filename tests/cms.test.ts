@@ -34,3 +34,16 @@ test("CMS upload rejects active formats, mismatched signatures and excessive fil
   );
   validateUpload(new Uint8Array([255, 216, 255, 0]), "image/jpeg");
 });
+
+test("media decoder validates real WebP dimensions and rejects corrupt headers", async () => {
+  const { readFileSync } = await import("node:fs");
+  const { inspectMedia } = await import("../src/lib/cms/media");
+  const size = inspectMedia(
+    readFileSync("public/assets/hero-flight.webp"),
+    "image/webp",
+  );
+  assert.ok(size.width > 0 && size.height > 0);
+  assert.throws(() =>
+    inspectMedia(new TextEncoder().encode("RIFFxxxxWEBPVP8X"), "image/webp"),
+  );
+});

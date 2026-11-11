@@ -4,7 +4,7 @@ import { useActionState, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { saveContent, changeStatus } from "@/app/admin/actions";
 import type { ContentBody } from "@/lib/cms/model";
-type Document = {
+export type ContentDocument = {
   id: string;
   kind: string;
   body: ContentBody;
@@ -18,12 +18,16 @@ export function ContentEditor({
   kind,
   versions = [],
   publisher = false,
+  statusOnly = false,
+  externalDirty = false,
 }: {
-  document?: Document;
+  document?: ContentDocument;
   creationId?: string;
   kind: string;
   versions?: { revision: number; created_at: string }[];
   publisher?: boolean;
+  statusOnly?: boolean;
+  externalDirty?: boolean;
 }) {
   const router = useRouter();
   const [dirty, setDirty] = useState(false);
@@ -81,99 +85,100 @@ export function ContentEditor({
   return (
     <>
       <p>
-        Yeni kayıtlar taslak olarak saklanır. Mevcut kurumsal siteye yayın
-        bağlantısı henüz etkin değildir.
+        Kayıtlar önce taslak olarak saklanır; onay ve yayın ayrı işlemlerdir.
       </p>
-      <form action={save}>
-        <fieldset disabled={pending}>
-          <input type="hidden" name="id" value={document?.id || ""} />
-          <input type="hidden" name="creationId" value={creationId || ""} />
-          <input
-            type="hidden"
-            name="revision"
-            value={document?.revision || 0}
-          />
-          <input type="hidden" name="kind" value={kind} />
-          <label>
-            Başlık
+      {!statusOnly && (
+        <form action={save}>
+          <fieldset disabled={pending}>
+            <input type="hidden" name="id" value={document?.id || ""} />
+            <input type="hidden" name="creationId" value={creationId || ""} />
             <input
-              name="title"
-              value={body.title}
-              maxLength={160}
-              required
-              onChange={(e) => update("title", e.target.value)}
+              type="hidden"
+              name="revision"
+              value={document?.revision || 0}
             />
-          </label>
-          <label>
-            Kısa açıklama
-            <textarea
-              name="summary"
-              value={body.summary}
-              maxLength={1000}
-              onChange={(e) => update("summary", e.target.value)}
-            />
-          </label>
-          <label>
-            İçerik (paragraflar arasında boş satır bırakın)
-            <textarea
-              name="paragraphs"
-              rows={12}
-              value={body.paragraphs.join("\n\n")}
-              onChange={(e) =>
-                update("paragraphs", e.target.value.split("\n\n"))
-              }
-            />
-          </label>
-          <label>
-            Tarih (bilinmiyorsa boş bırakın)
-            <input
-              name="date"
-              type="date"
-              value={body.date || ""}
-              onChange={(e) => update("date", e.target.value || null)}
-            />
-          </label>
-          <label>
-            Kaynak bağlantısı
-            <input
-              name="source"
-              type="url"
-              value={body.source || ""}
-              onChange={(e) => update("source", e.target.value || null)}
-            />
-          </label>
-          <label>
-            Çalışmanın aşaması
-            <input
-              name="stage"
-              value={body.stage || ""}
-              maxLength={100}
-              onChange={(e) => update("stage", e.target.value || null)}
-            />
-          </label>
-          <div className="actions">
-            <button disabled={pending}>Taslak kaydet</button>
-            <button type="button" onClick={() => setPreview(!preview)}>
-              Metni önizle
-            </button>
-            <Link
-              href="/admin"
-              onClick={(e) => {
-                if (
-                  dirty &&
-                  !window.confirm(
-                    "Kaydedilmemiş değişiklikler var. Ayrılmak istiyor musunuz?",
+            <input type="hidden" name="kind" value={kind} />
+            <label>
+              Başlık
+              <input
+                name="title"
+                value={body.title}
+                maxLength={160}
+                required
+                onChange={(e) => update("title", e.target.value)}
+              />
+            </label>
+            <label>
+              Kısa açıklama
+              <textarea
+                name="summary"
+                value={body.summary}
+                maxLength={1000}
+                onChange={(e) => update("summary", e.target.value)}
+              />
+            </label>
+            <label>
+              İçerik (paragraflar arasında boş satır bırakın)
+              <textarea
+                name="paragraphs"
+                rows={12}
+                value={body.paragraphs.join("\n\n")}
+                onChange={(e) =>
+                  update("paragraphs", e.target.value.split("\n\n"))
+                }
+              />
+            </label>
+            <label>
+              Tarih (bilinmiyorsa boş bırakın)
+              <input
+                name="date"
+                type="date"
+                value={body.date || ""}
+                onChange={(e) => update("date", e.target.value || null)}
+              />
+            </label>
+            <label>
+              Kaynak bağlantısı
+              <input
+                name="source"
+                type="url"
+                value={body.source || ""}
+                onChange={(e) => update("source", e.target.value || null)}
+              />
+            </label>
+            <label>
+              Çalışmanın aşaması
+              <input
+                name="stage"
+                value={body.stage || ""}
+                maxLength={100}
+                onChange={(e) => update("stage", e.target.value || null)}
+              />
+            </label>
+            <div className="actions">
+              <button disabled={pending}>Taslak kaydet</button>
+              <button type="button" onClick={() => setPreview(!preview)}>
+                Metni önizle
+              </button>
+              <Link
+                href="/admin"
+                onClick={(e) => {
+                  if (
+                    dirty &&
+                    !window.confirm(
+                      "Kaydedilmemiş değişiklikler var. Ayrılmak istiyor musunuz?",
+                    )
                   )
-                )
-                  e.preventDefault();
-              }}
-            >
-              Listeye dön
-            </Link>
-          </div>
-          <p role="status">{state.message}</p>
-        </fieldset>
-      </form>
+                    e.preventDefault();
+                }}
+              >
+                Listeye dön
+              </Link>
+            </div>
+            <p role="status">{state.message}</p>
+          </fieldset>
+        </form>
+      )}
       {preview && (
         <article aria-label="Metin önizlemesi">
           <small>Metin önizlemesi — kurumsal sayfa şablonu değildir</small>
@@ -207,7 +212,7 @@ export function ContentEditor({
               <button
                 name="operation"
                 value="review"
-                disabled={dirty || changing}
+                disabled={dirty || externalDirty || changing}
               >
                 İncelemeye gönder
               </button>
@@ -216,7 +221,7 @@ export function ContentEditor({
                   <button
                     name="operation"
                     value="approve"
-                    disabled={dirty || changing}
+                    disabled={dirty || externalDirty || changing}
                   >
                     İçeriği onayla
                   </button>
@@ -224,7 +229,10 @@ export function ContentEditor({
                     name="operation"
                     value="publish"
                     disabled={
-                      dirty || changing || document.approval !== "approved"
+                      dirty ||
+                      externalDirty ||
+                      changing ||
+                      document.approval !== "approved"
                     }
                   >
                     Yayın deposuna al
@@ -232,7 +240,7 @@ export function ContentEditor({
                   <button
                     name="operation"
                     value="archive"
-                    disabled={dirty || changing}
+                    disabled={dirty || externalDirty || changing}
                     onClick={(e) => {
                       if (
                         !confirm(
@@ -261,7 +269,7 @@ export function ContentEditor({
             <button
               name="operation"
               value="restore"
-              disabled={dirty || changing || !versions.length}
+              disabled={dirty || externalDirty || changing || !versions.length}
             >
               Taslak olarak geri al
             </button>

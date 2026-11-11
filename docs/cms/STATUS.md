@@ -1,39 +1,37 @@
-# CMS durumu — 11 Kasım 2026
+# CMS durumu — 11 Kasım 2026 devam çalışması
 
-**Teslim: geliştirme temeli; üretime hazır CMS değil. Hosting: NO-GO.**
+**PR #13 / feat/cms-foundation. Üretim yayını yok; Cloudflare hosting kabulü hâlâ NO-GO.**
 
-Başlangıç: `41e5581`; branch: `feat/cms-foundation`. Ana plan ve Work prompt bütünüyle okundu. `main`, DNS, şirket yayını ve bağlı diğer Supabase projeleri değiştirilmedi. Yeni servis, abonelik, kart veya ücret açılmadı.
+Kullanıcı yeni bağımsız Supabase Free projesini, başlangıç yayıncı e-postasını ve DNS'siz geliştirmeyi onayladı. Seçilen organizasyon Ziyaattin.Dev; fiyat 0 USD/ay olarak doğrulandı. `istikbal-aerospace-cms` / `uftnykormtwlzolwbhfb` oluşturuldu. Mevcut müşterilerin veritabanları değiştirilmedi. DNS, MX, nameserver, ücretli servis, ödeme ve main merge yok.
 
-| Faz | Durum | Gerçek sonuç / çıkış engeli |
+| Faz | Durum | Gerçek sonuç / kalan kabul |
 |---|---|---|
-| 0 | Keşif tamamlandı; dış sahiplik teyidi bekliyor | Güncel kaynak, güvenlik/CI, içerik belgeleri ve 21 rota incelendi; ayrı branch ve geri dönüş planı hazır. Domain/Cloudflare yetkisi doğrulanmadı. |
-| 1 | Kısmi, üretim NO-GO | vinext kaynak kontrolü ve izole Cloudflare build geçti. Worker runtime önizlemesi ortam kısıtı nedeniyle açılamadı. CPU/cache/auth/upload staging ölçümü ve gerçek tarayıcı performansı yok. |
-| 2 | Kısmi | 21 rota, 28 dosya, 1.276 kaynak literal; SSR metin/medya/bağlantı snapshot'ları; sürümlü SQL, RLS, yayın snapshot ayrımı ve tekrar çalıştırılabilir 21 taslak fixture. Tam bölüm alanı → şablon eşlemesi henüz yok. |
-| 3 | Kısmi | Kapalı varsayılan `/admin`; OTP (`shouldCreateUser:false`), TOTP kurulum/doğrulama, sunucu rol kontrolü, admin-only oturum yenileme. Gerçek Auth/SMTP/MFA kabulü ve abuse testleri bekliyor. |
-| 4 | Bağlı entegrasyon bloke | Mevcut sayfa metinleri korumalı envanter ekranında okunabilir. Bölüm düzenleme, özgün şablonda taslak önizleme, public veri geçişi ve hedefli cache yenileme uygulanmadı. |
-| 5 | Kısmi | Haber/proje/platform/teknoloji/kabiliyet kaydı oluşturma, arama/sayfalama, taslak, inceleme/onay, yayın deposu, arşiv ve sürüm geri alma kodu var. Medya kütüphanesi/upload servisi, ilişki düzenleyicisi ve public liste/detay bağlantısı yok. |
-| 6 | Kısmi | Typecheck/lint/build, 29 test, RLS negatif senaryoları, seed idempotency ve HTTP kıyası geçti. Yerel Chromium engelli; uygulama kodu CI’da development ve production 71/71 tarayıcı testini geçti. Fiziksel cihaz ve Abdullah kabulü ayrıca doğrulanmalı. |
+| 0 | Tamamlandı | Önceki PR ve tree doğrulandı; mevcut branch sürdürüldü. Yeni proje ve dış erişim sınırları belirlendi. |
+| 1 | Kısmi / hosting NO-GO | Önceki vinext build geçerli. Cloudflare hesabı Work'te bağlı değil, tarayıcı oturumu yok; staging CPU/cache kanıtı bekliyor. Yerel HTTP ve CI browser kıyası hazırlanıyor. |
+| 2 | Şema ve içerik aktarımı tamamlandı | 21 sayfa / 537 kontrollü alan şeması, yeni bağımsız DB'ye migration + idempotent taslak seed uygulandı. Storage özel bucket, RLS, onay/sürüm/audit korundu. |
+| 3 | Kısmi | OTP/TOTP, kapalı local signup ve DB account guard; kullanıcı e-postası özel allowlist'te. Hosted Auth kullanıcısı/Admin API ayarları ve gerçek MFA kurulumu bekliyor. CLI/Mailpit gerçek entegrasyon testi CI'da; Resend DNS teslimi yapılmadı. |
+| 4 | Kod tamamlandı; uçtan uca kabul bekliyor | 21 sayfanın alan düzenleyicisi, dolu içerik, SEO, gerçek React şablon önizlemesi, sürüm/geri alma ve hedefli cache invalidation eklendi. Auth ve staging'de kullanıcı kabulü bekliyor. |
+| 5 | Kısmi | Kayıt CRUD + public liste/detay yolları; özel medya yükleme/seçme, istemcide WebP boyutlandırma, sunucuda imza/dimension/izin doğrulaması, yayıncı medya onayı. İlişki düzenleyicisi ve detaylarda ilişkili içerik gösterimi henüz yok. |
+| 6 | Devam ediyor | 52 yerel test, typecheck/lint/build ve audit geçti; son CI browser, local Auth/Mailpit ve performans sonuçları takip ediliyor. Fiziksel cihaz ve gerçek sağlayıcı kabulü bekliyor. |
 
-## Açık engeller ve sonraki iş sırası
+## Çalışan kod ile etkin servis ayrımı
 
-1. Mevcut domain/DNS ve Cloudflare hesabının yetkili sahibi belirlenmeli. Ücretsiz staging ortamında Worker CPU, kalıcı cache, yayın yenileme, oturum ve dosya işlemleri ölçülmeli. GO olmadan büyük public migrasyon yok.
-2. İstikbal'e ayrılmış, maliyeti doğrulanmış ücretsiz Supabase projesi belirlenmeli. Bağlı hesapta İstikbal projesi yok; başka müşterilerin projeleri kullanılmadı. Proje oluşturulmadı.
-3. Abdullah'ın yetkili e-posta adresi ve yayın rolü, ücretsiz özel SMTP hesabı ve gönderici domain onayı gerekli. Varsayılan SMTP üretim çözümü sayılmadı.
-4. SQL'i yalnızca izole staging'e uygula; gerçek Supabase RLS/Auth/session davranışı, oturum iptali ve OTP rate limit/teslim testlerini yap. Sonra 21 sayfanın kontrollü bölüm alanlarını şablonlara kademeli bağla.
-5. Özgün şablon önizleme, yayın cache yenilemesi, yeni kayıtların URL/kart bağları, özel medya ve ilişkiler; sonra gerçek önce/sonra tarayıcı performansı, responsive/animasyon, kullanıcı kabulü.
+- `CMS_ENABLED=false`, `CMS_PUBLIC_READS=false` varsayılanları korunur. Yeni kod canlı yayına açılmadı. Hosting GO olmadan public veri geçişi etkinleştirilmez.
+- Düzenleme şablonu `PageContent` ile aynıdır; raw HTML/page builder yok. 21 sayfanın mevcut metinleri/linkleri/medya referansları eski kaynakla karşılaştırılır.
+- Yayın yalnız `cms_published` snapshot'ını değiştirir; taslaklar public sorguya girmez. Public sorgular seçici, etiketli ve 300 saniye cache'lidir. Yayın/arşiv işlemi yalnız ilgili sayfa/listenin cache'ini düşürür. Workers üzerindeki gerçek cache davranışı hâlâ test gerektirir.
+- Medya private bucket'ta kalır. Public kullanım için ayrıca yayıncı onayı gerekir; onaysız medya referansı olan sayfa yayınlanamaz. Private önizleme dosyaları yalnız admin/MFA ile açılır.
+- Sayfa alan kimlikleri kod içinde sabittir; kullanıcıya UUID/slug/JSON gösterilmez. Bazı paylaşılan kartların sayfa bazında farklı metinleri vardır; tam global içerik tekilleştirmesi sonraki içerik revizyonunda değerlendirilmeli.
 
-## Kanıtlar
+## Dış bağımlılıklar
 
-- [Performans raporu](PERFORMANCE.md), [veri sözlüğü](DATA_MODEL.md), [işletim/kurulum](RUNBOOK.md).
-- `content-inventory.json`: tüm literal'leri kaynak satırı ve hash'iyle tutar. **1.276 düzenlenebilir alan iddiası değildir**; import/CSS/teknik değerler de vardır; `candidate` yalnızca ön elemedir.
-- `page-snapshots.json`: 21 sayfanın mevcut render metni, medya ve bağlantıları. Seed fixture'ları tam bölüm migrasyonu değildir.
-- Faz raporları `FAZ-00`–`FAZ-06`; test çıktıları `evidence/`.
+[SMTP_AND_ACCESS.md](SMTP_AND_ACCESS.md) gerçek erişim ve SMTP durumunun ayrıntısıdır. Kullanıcı e-postası allowlist'e eklenmiştir; **hosted giriş hesabı provision edildi veya gerçek OTP teslim edildi denmez**. Supabase Admin API/Dashboard oturumu, Cloudflare staging ve Resend entegrasyonu erişimi gereklidir. Gerçek domain gönderici doğrulaması en son aşamadadır.
 
-## Karar günlüğü
+## Kanıt ve komutlar
 
-- Bütün fazlar sırayla ele alındı; FAZ 1 çıkış kapısı geçilmediği için bağımsız yerel geliştirme sürdürüldü, canlı veri geçişi yapılmadı.
-- Public sayfa bileşenleri/verileri/asset'leri değiştirilmedi. Admin kodu rota bazında ayrıldı; proxy yalnızca `/admin/:path*` eşleşir.
-- Yayınlanmış snapshot ile çalışma taslağı farklı tabloda tutulur. Taslak kaydetme mevcut yayın snapshot'ını değiştirmez.
-- Panelde "yayın deposuna al" ifadesi özellikle kullanılır: işlem mevcut sitede görünür yayın anlamına gelmez.
+- `npm ci`, `npm run typecheck`, `npm run lint`, `npm test`, `npm run build`, `npm audit`.
+- `npm run cms:inventory:check`, `cms:snapshots:check`, `cms:seed:check`, `cms:pages:check`.
+- CI `cms-local-auth`: Supabase CLI 3.1.0 + Mailpit gerçek Auth/MFA/API/Storage; sadece sansürlenmiş sonuç artifact'ı.
+- CI `cms-performance`: aynı runner'da PR base ve yeni production build, masaüstü/mobil Chromium ölçümleri. CMS kapalı senaryodur; hosted DB/Workers/field INP ölçümü değildir.
+- Hosted DB'de anonim taslak erişimi reddi, 21 taslak/537 alan/özel bucket/allowlist ve security advisors sorguları doğrulandı. Security advisors temiz; yeni projede kullanılmamış indeks bilgileri beklenir.
 
-PR: https://github.com/ZiyaattinAydn/istikbal-aerospace-web/pull/13 (taslak). Doğrulanan uygulama commit’i: `4e61a7cfdde20e59bffb9075d169d403a2e297f2`. CI’da checks, CodeQL, development 71/71 ve production 71/71 tarayıcı testi başarılı. [CI kanıtı](https://github.com/ZiyaattinAydn/istikbal-aerospace-web/actions/runs/43017113600). Sonraki rapor güncellemesi yalnız belgelerdir. Lokal ve uzak commit kimlikleri aktarım yöntemi nedeniyle farklıdır; ilk aktarımın Git tree hash eşitliği doğrulandı.
+Önceki kabul edilmiş kod: `4e61a7c` için development ve production 71/71 tarayıcı testi, checks ve CodeQL başarılıydı. Devam çalışmasının yeni CI sonuçları PR #13'te izlenir. [PR #13](https://github.com/ZiyaattinAydn/istikbal-aerospace-web/pull/13).

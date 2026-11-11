@@ -5,15 +5,25 @@ import { PGlite } from "@electric-sql/pglite";
 test("Postgres RLS: MFA, fresh roles, session revocation, draft isolation, approval, concurrency and restore", async () => {
   const db = new PGlite();
   await db.exec(
-    `create role anon;create role authenticated;create schema auth;create table auth.users(id uuid primary key);create table auth.sessions(id uuid primary key,user_id uuid);create function auth.uid() returns uuid language sql as $$select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid$$;create function auth.jwt() returns jsonb language sql as $$select coalesce(nullif(current_setting('request.jwt.claims',true),''),'{}')::jsonb$$;grant usage on schema auth to authenticated,anon;grant execute on all functions in schema auth to authenticated,anon;`,
+    `create role anon;create role authenticated;create role service_role;create schema auth;create schema storage;create table storage.buckets(id text primary key,name text,public boolean,file_size_limit bigint,allowed_mime_types text[]);create table storage.objects(id uuid default gen_random_uuid(),bucket_id text,name text);alter table storage.objects enable row level security;grant usage on schema storage to anon,authenticated;grant select,insert on storage.objects to anon,authenticated;create table auth.users(id uuid primary key,email text,encrypted_password text,email_confirmed_at timestamptz);create table auth.sessions(id uuid primary key,user_id uuid);create function auth.uid() returns uuid language sql as $$select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid$$;create function auth.jwt() returns jsonb language sql as $$select coalesce(nullif(current_setting('request.jwt.claims',true),''),'{}')::jsonb$$;grant usage on schema auth to authenticated,anon;grant execute on all functions in schema auth to authenticated,anon;`,
   );
   const migration = readdirSync("supabase/migrations").find((f) =>
     f.endsWith("_cms_foundation.sql"),
   )!;
   await db.exec(readFileSync(`supabase/migrations/${migration}`, "utf8"));
+  for (const extra of readdirSync("supabase/migrations")
+    .filter((f) => !f.endsWith("_cms_foundation.sql"))
+    .sort())
+    await db.exec(readFileSync(`supabase/migrations/${extra}`, "utf8"));
+  await db.exec(
+    "insert into cms_private.admin_allowlist(email) values('cms-admin@example.test')",
+  );
   const uid = "00000000-0000-0000-0000-000000000001",
     sid = "00000000-0000-0000-0000-000000000002";
-  await db.query("insert into auth.users values($1)", [uid]);
+  await db.query(
+    "insert into auth.users(id,email) values($1,'cms-admin@example.test')",
+    [uid],
+  );
   await db.query("insert into auth.sessions values($1,$2)", [sid, uid]);
   await db.query("insert into public.cms_roles values($1,'editor',true)", [
     uid,
@@ -124,6 +134,30 @@ test("Postgres RLS: MFA, fresh roles, session revocation, draft isolation, appro
     await claims();
     await assert.rejects(() => mutate(id, 3, "save"), /Access denied/);
     await db.exec("reset role");
+    await assert.rejects(
+      () =>
+        db.exec(
+          "insert into auth.users(id,email) values(gen_random_uuid(),'outsider@example.test')",
+        ),
+      /Account creation is restricted/,
+    );
+    await assert.rejects(
+      () =>
+        db.exec(
+          "insert into auth.users(id,email,encrypted_password) values(gen_random_uuid(),'cms-admin@example.test','password')",
+        ),
+      /Password authentication is disabled/,
+    );
+    const pageSeed = readFileSync("supabase/page-seed.sql", "utf8");
+    await db.exec(pageSeed);
+    await db.exec(pageSeed);
+    await assert.rejects(
+      () =>
+        db.exec(
+          "update public.cms_documents set body=jsonb_set(body,'{fields}','{\"unknown\":\"text\"}') where kind='page' and slug='kurumsal'",
+        ),
+      /Invalid page field/,
+    );
     const seed = readFileSync("supabase/seed.sql", "utf8");
     await db.exec(seed);
     await db.exec(seed);

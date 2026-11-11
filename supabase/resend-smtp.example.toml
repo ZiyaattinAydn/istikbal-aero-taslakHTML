@@ -1,0 +1,11 @@
+# Reference only. NOT loaded by the local Mailpit configuration.
+# Prefer the official Resend → Supabase integration in the account dashboard.
+# Enable only after sender domain verification in the final DNS stage.
+[auth.email.smtp]
+enabled = false
+host = "smtp.resend.com"
+port = 465
+user = "resend"
+pass = "env(RESEND_SMTP_PASSWORD)"
+admin_email = "env(RESEND_FROM_EMAIL)"
+sender_name = "İstikbal Aerospace"

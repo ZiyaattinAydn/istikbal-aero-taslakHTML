@@ -16,3 +16,7 @@ legacy-ref/
 
 # Local Supabase CLI state
 supabase/.temp/
+
+# Native Supabase local stack lock/state
+supabase/supabase.lock
+performance-base/

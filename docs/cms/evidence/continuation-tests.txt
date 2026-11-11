@@ -1,0 +1,65 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> istikbal-aerospace@0.1.0 test
+> node --import tsx --test tests/*.test.ts
+
+✔ Postgres RLS: MFA, fresh roles, session revocation, draft isolation, approval, concurrency and restore (2063.507867ms)
+✔ gomulu-sistemler: controlled fields preserve default HTML and edit actual template (11.865737ms)
+✔ haber-detay: controlled fields preserve default HTML and edit actual template (3.314964ms)
+✔ haberler: controlled fields preserve default HTML and edit actual template (5.411ms)
+✔ hava-savunma-aglari: controlled fields preserve default HTML and edit actual template (3.950321ms)
+✔ iha-sistemleri: controlled fields preserve default HTML and edit actual template (6.811248ms)
+✔ ileri-haberlesme: controlled fields preserve default HTML and edit actual template (2.532066ms)
+✔ iletisim: controlled fields preserve default HTML and edit actual template (4.614853ms)
+✔ index: controlled fields preserve default HTML and edit actual template (11.209258ms)
+✔ kabiliyetler: controlled fields preserve default HTML and edit actual template (7.440948ms)
+✔ kurumsal: controlled fields preserve default HTML and edit actual template (5.207016ms)
+✔ otonom-sistemler: controlled fields preserve default HTML and edit actual template (3.47959ms)
+✔ platform-detay: controlled fields preserve default HTML and edit actual template (1.446257ms)
+✔ platformlar: controlled fields preserve default HTML and edit actual template (6.065647ms)
+✔ proje-detay: controlled fields preserve default HTML and edit actual template (1.824451ms)
+✔ projeler: controlled fields preserve default HTML and edit actual template (6.345985ms)
+✔ roket-sistemleri: controlled fields preserve default HTML and edit actual template (2.096667ms)
+✔ sensor-fuzyonu: controlled fields preserve default HTML and edit actual template (1.913834ms)
+✔ teknolojiler: controlled fields preserve default HTML and edit actual template (4.333053ms)
+✔ tengri-ai: controlled fields preserve default HTML and edit actual template (7.43557ms)
+✔ ucus-kontrol-paylasimi: controlled fields preserve default HTML and edit actual template (1.45466ms)
+✔ ucus-mimarileri: controlled fields preserve default HTML and edit actual template (2.024689ms)
+✔ page schemas reject unknown keys, markup and unsafe media/link destinations (0.39546ms)
+✔ CMS validates controlled plain text and Turkish slugs (2.020934ms)
+✔ CMS upload rejects active formats, mismatched signatures and excessive files (0.351064ms)
+✔ media decoder validates real WebP dimensions and rejects corrupt headers (29.848587ms)
+✔ all 21 source documents have both extension and clean routes (1.782999ms)
+✔ gomulu-sistemler.html: all source text, main headings and linked documents survive SSR (44.442674ms)
+✔ haber-detay.html: all source text, main headings and linked documents survive SSR (15.46159ms)
+✔ haberler.html: all source text, main headings and linked documents survive SSR (13.069212ms)
+✔ hava-savunma-aglari.html: all source text, main headings and linked documents survive SSR (11.168627ms)
+✔ iha-sistemleri.html: all source text, main headings and linked documents survive SSR (9.830772ms)
+✔ ileri-haberlesme.html: all source text, main headings and linked documents survive SSR (8.046121ms)
+✔ iletisim.html: all source text, main headings and linked documents survive SSR (10.030269ms)
+✔ index.html: all source text, main headings and linked documents survive SSR (19.010162ms)
+✔ kabiliyetler.html: all source text, main headings and linked documents survive SSR (11.471449ms)
+✔ kurumsal.html: all source text, main headings and linked documents survive SSR (10.418298ms)
+✔ otonom-sistemler.html: all source text, main headings and linked documents survive SSR (9.176376ms)
+✔ platform-detay.html: all source text, main headings and linked documents survive SSR (9.579948ms)
+✔ platformlar.html: all source text, main headings and linked documents survive SSR (9.351587ms)
+✔ proje-detay.html: all source text, main headings and linked documents survive SSR (6.735236ms)
+✔ projeler.html: all source text, main headings and linked documents survive SSR (10.219101ms)
+✔ roket-sistemleri.html: all source text, main headings and linked documents survive SSR (9.212009ms)
+✔ sensor-fuzyonu.html: all source text, main headings and linked documents survive SSR (6.715446ms)
+✔ teknolojiler.html: all source text, main headings and linked documents survive SSR (7.877589ms)
+✔ tengri-ai.html: all source text, main headings and linked documents survive SSR (9.361682ms)
+✔ ucus-kontrol-paylasimi.html: all source text, main headings and linked documents survive SSR (5.642275ms)
+✔ ucus-mimarileri.html: all source text, main headings and linked documents survive SSR (6.185315ms)
+✔ news query selects records, supports both legacy defaults and rejects hostile IDs (25.200474ms)
+✔ media, internal URLs and publication sources cannot become script destinations (0.172167ms)
+✔ route effect registry removes listeners including capture flags on disposal (0.190154ms)
+✔ all original visuals are available; CI verifies byte identity (0.561037ms)
+ℹ tests 52
+ℹ suites 0
+ℹ pass 52
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2429.867353

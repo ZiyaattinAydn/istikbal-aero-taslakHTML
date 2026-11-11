@@ -1,0 +1,3392 @@
+[
+  {
+    "page": "embedded",
+    "slug": "gomulu-sistemler",
+    "title": "Gömülü Sistemler | İstikbal Aerospace",
+    "description": "PCB tasarımı, elektronik donanım ve gömülü yazılım mühendisliği.",
+    "fields": [
+      {
+        "key": "focus.embedded.title",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Gömülü Sistemler"
+      },
+      {
+        "key": "focus.embedded.tagline",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Donanımla yazılımın birlikte düşünüldüğü sistemler."
+      },
+      {
+        "key": "focus.embedded.bg",
+        "label": "Görsel",
+        "kind": "image",
+        "value": "platform-systems.svg"
+      },
+      {
+        "key": "focus.embedded.kicker",
+        "label": "Metin",
+        "kind": "text",
+        "value": "DONANIM & YAZILIM / 02"
+      },
+      {
+        "key": "FocusContent.text.0",
+        "label": "Metin",
+        "kind": "text",
+        "value": "TEKNOLOJİYE YAKINDAN BAKIŞ"
+      },
+      {
+        "key": "FocusContent.text.1",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Bir disiplinin farklı katmanları."
+      },
+      {
+        "key": "focus.embedded.intro",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Gömülü sistem geliştirme; işlem birimi, çevre birimleri, yazılım ve haberleşme arayüzlerinin birlikte ele alınmasını gerektirir. Buradaki başlıklar teknik yaklaşımın genel bir açıklamasıdır."
+      },
+      {
+        "key": "FocusContent.kicker.2",
+        "label": "Bölüm etiketi",
+        "kind": "text",
+        "value": "TEMEL YAKLAŞIM"
+      },
+      {
+        "key": "FocusContent.title.3",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Mühendislik bileşenleri."
+      },
+      {
+        "key": "FocusContent.lead.4",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Konuya ait kavramlar ve çalışma ilkeleri; doğrulanmış proje bilgileri ayrıca yayınlanacaktır."
+      },
+      {
+        "key": "focus.embedded.modules.0.1",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Elektronik mimari"
+      },
+      {
+        "key": "focus.embedded.modules.0.2",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Elektronik bileşenlerin işlevsel bir sistem içinde düzenlenmesine dair temel yaklaşım."
+      },
+      {
+        "key": "focus.embedded.modules.1.1",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Gömülü yazılım"
+      },
+      {
+        "key": "focus.embedded.modules.1.2",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Donanım kaynaklarını yöneten ve sistem davranışını tanımlayan yazılım katmanı."
+      },
+      {
+        "key": "focus.embedded.modules.2.1",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Entegrasyon ve test"
+      },
+      {
+        "key": "focus.embedded.modules.2.2",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Donanım ve yazılımın birlikte değerlendirilmesi, arayüzlerin doğrulanması."
+      },
+      {
+        "key": "FocusContent.text.5",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Sistemler birlikte çalışır: "
+      },
+      {
+        "key": "FocusContent.text.6",
+        "label": "Metin",
+        "kind": "text",
+        "value": " ile "
+      },
+      {
+        "key": "focus.embedded.related",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Sensör Füzyonu"
+      },
+      {
+        "key": "FocusContent.text.7",
+        "label": "Metin",
+        "kind": "text",
+        "value": " birbirini tamamlayan mühendislik alanlarıdır. Teknoloji başlıkları birbirinden bağımsız değildir."
+      }
+    ]
+  },
+  {
+    "page": "newsDetail",
+    "slug": "haber-detay",
+    "title": "Tengri AI Paylaşımı | İstikbal Aerospace",
+    "description": "Tengri AI ve bağlantılı savunma ağları konusunda kamuya açık şirket tanıtımı.",
+    "fields": [
+      {
+        "key": "news.sourceUrl",
+        "label": "Metin",
+        "kind": "link",
+        "value": "https://tr.linkedin.com/posts/i%CC%87stikbal-aerospace_tengriai-defenseai-savunmasanayi-activity-7370532002627878912-WIXo"
+      },
+      {
+        "key": "news.article.heroTitle",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Tengri AI"
+      },
+      {
+        "key": "news.article.heroDescription",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Yapay zekâ destekli savunma ağı yaklaşımı üzerine şirket paylaşımı."
+      },
+      {
+        "key": "news.image",
+        "label": "Görsel",
+        "kind": "image",
+        "value": "tengri-network.svg"
+      },
+      {
+        "key": "news.article.breadcrumb",
+        "label": "Metin",
+        "kind": "text",
+        "value": "HABERLER / TENGRİ AI"
+      },
+      {
+        "key": "news.article.eyebrow",
+        "label": "Metin",
+        "kind": "text",
+        "value": "ŞİRKETİN KAMUYA AÇIK PAYLAŞIMI"
+      },
+      {
+        "key": "news.article.heading",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Tengri AI ve bağlantılı savunma sistemleri."
+      },
+      {
+        "key": "news.article.intro",
+        "label": "Metin",
+        "kind": "text",
+        "value": "İstikbal Aerospace, Tengri AI tanıtımında çok katmanlı yapay zekâ, tehdit değerlendirme, hava ve kara sistemleri arasında koordinasyon ve ağ tabanlı karar desteği hedeflerini paylaştı."
+      },
+      {
+        "key": "news.article.sectionHeading",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Teknoloji vizyonu"
+      },
+      {
+        "key": "news.article.sectionBody",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Sensör verilerinin bir araya getirilmesi, çoklu hedeflerin değerlendirilmesi ve bilgi paylaşımı, tanıtımda öne çıkan ana başlıklardır. Açıklanan konseptler doğrulanmış operasyonel performans bilgisi olarak sunulmamaktadır."
+      },
+      {
+        "key": "NewsDetailContent.text.8",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Orijinal LinkedIn paylaşımı ↗"
+      }
+    ]
+  },
+  {
+    "page": "news",
+    "slug": "haberler",
+    "title": "Haberler & Duyurular | İstikbal Aerospace",
+    "description": "İstikbal Aerospace Tengri AI ve uçuş kontrolcüsü teknoloji paylaşımları.",
+    "fields": [
+      {
+        "key": "NewsContent.title.0",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Haberler & Duyurular"
+      },
+      {
+        "key": "NewsContent.description.1",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "İstikbal Aerospace’in kamuya açık açıklamaları ve teknoloji paylaşımları."
+      },
+      {
+        "key": "NewsContent.image.2",
+        "label": "Görsel",
+        "kind": "image",
+        "value": "hero-hangar-photo.webp"
+      },
+      {
+        "key": "NewsContent.kicker.3",
+        "label": "Bölüm etiketi",
+        "kind": "text",
+        "value": "ŞİRKET PAYLAŞIMLARI"
+      },
+      {
+        "key": "NewsContent.title.4",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Teknoloji gündemi."
+      },
+      {
+        "key": "NewsContent.lead.5",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "İstikbal Aerospace’in kamuya açık teknoloji tanıtımlarından seçilen içerikler. Paylaşım ve duyurular ayrı kategorilerde izlenebilir."
+      },
+      {
+        "key": "newsList.0.title",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Tengri AI: Yapay zekâ ve karar destek vizyonu"
+      },
+      {
+        "key": "newsList.0.summary",
+        "label": "Kısa açıklama",
+        "kind": "text",
+        "value": "Şirketin Tengri AI tanıtımında ağ bağlantılı savunma sistemleri ve çok katmanlı yapay zekâ vizyonu anlatılıyor."
+      },
+      {
+        "key": "newsList.0.image",
+        "label": "Görsel",
+        "kind": "image",
+        "value": "tengri-network.svg"
+      },
+      {
+        "key": "newsList.0.href",
+        "label": "Bağlantı",
+        "kind": "link",
+        "value": "haber-detay.html"
+      },
+      {
+        "key": "newsList.0.sourceUrl",
+        "label": "Metin",
+        "kind": "link",
+        "value": "https://tr.linkedin.com/posts/i%CC%87stikbal-aerospace_tengriai-defenseai-savunmasanayi-activity-7370532002627878912-WIXo"
+      },
+      {
+        "key": "newsList.1.title",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Yapay zekâ destekli yeni nesil uçuş kontrolcüsü"
+      },
+      {
+        "key": "newsList.1.summary",
+        "label": "Kısa açıklama",
+        "kind": "text",
+        "value": "Şirketin uçuş kontrol sistemlerine yönelik yapay zekâ ve kontrol algoritmaları odaklı teknoloji paylaşımı."
+      },
+      {
+        "key": "newsList.1.image",
+        "label": "Görsel",
+        "kind": "image",
+        "value": "platform-systems.svg"
+      },
+      {
+        "key": "newsList.1.href",
+        "label": "Bağlantı",
+        "kind": "link",
+        "value": "ucus-kontrol-paylasimi.html"
+      }
+    ]
+  },
+  {
+    "page": "airDefense",
+    "slug": "hava-savunma-aglari",
+    "title": "Hava Savunma Ağları | İstikbal Aerospace",
+    "description": "Hava savunma ağları, bağlantılı sistemler ve karar destek teknolojileri.",
+    "fields": [
+      {
+        "key": "platformFocus.airDefense.title",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Hava Savunma Ağları"
+      },
+      {
+        "key": "platformFocus.airDefense.description",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Algılama, bağlantı ve karar destek yaklaşımı."
+      },
+      {
+        "key": "platformFocus.airDefense.image",
+        "label": "Görsel",
+        "kind": "image",
+        "value": "tengri-network.svg"
+      },
+      {
+        "key": "platformFocus.airDefense.kicker",
+        "label": "Metin",
+        "kind": "text",
+        "value": "AĞ BAĞLANTILI SİSTEMLER"
+      },
+      {
+        "key": "FocusContent.text.8",
+        "label": "Metin",
+        "kind": "text",
+        "value": "SİSTEM ODAĞI"
+      },
+      {
+        "key": "FocusContent.text.9",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Birlikte çalışan teknolojiler."
+      },
+      {
+        "key": "platformFocus.airDefense.intro",
+        "label": "Metin",
+        "kind": "text",
+        "value": "İstikbal Aerospace’in kamuya açık açıklamalarında hava savunma ağları ve yapay zekâ destekli koordinasyon yaklaşımları çalışma alanları arasında yer alır."
+      },
+      {
+        "key": "FocusContent.kicker.10",
+        "label": "Bölüm etiketi",
+        "kind": "text",
+        "value": "MÜHENDİSLİK KATMANLARI"
+      },
+      {
+        "key": "FocusContent.title.11",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Sistem bütünlüğü."
+      },
+      {
+        "key": "FocusContent.lead.12",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Havacılık çalışmalarında birbirini tamamlayan temel mühendislik başlıkları."
+      },
+      {
+        "key": "platformFocus.airDefense.modules.0.0",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Algılama"
+      },
+      {
+        "key": "platformFocus.airDefense.modules.0.1",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Farklı veri kaynaklarından durumsal bilgi elde etme yaklaşımı."
+      },
+      {
+        "key": "platformFocus.airDefense.modules.1.0",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Veri bağlantısı"
+      },
+      {
+        "key": "platformFocus.airDefense.modules.1.1",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Bağlı sistemler arasında haberleşme ve bilgi akışı."
+      },
+      {
+        "key": "platformFocus.airDefense.modules.2.0",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Karar desteği"
+      },
+      {
+        "key": "platformFocus.airDefense.modules.2.1",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Tengri AI başlığıyla ilişkili değerlendirme ve koordinasyon katmanları."
+      },
+      {
+        "key": "FocusContent.text.13",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Otonom sistemler, gömülü donanım ve sensör füzyonu bu mimarilerle ilişkili mühendislik disiplinleridir."
+      }
+    ]
+  },
+  {
+    "page": "iha",
+    "slug": "iha-sistemleri",
+    "title": "İnsansız Hava Sistemleri | İstikbal Aerospace",
+    "description": "İnsansız hava platformlarında kontrol, haberleşme ve algılama teknolojilerine genel bakış.",
+    "fields": [
+      {
+        "key": "platformFocus.iha.title",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "İnsansız Hava Sistemleri"
+      },
+      {
+        "key": "platformFocus.iha.description",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Hava platformları, otonom uçuş ve sistem mühendisliği."
+      },
+      {
+        "key": "platformFocus.iha.image",
+        "label": "Görsel",
+        "kind": "image",
+        "value": "hero-hangar-photo.webp"
+      },
+      {
+        "key": "platformFocus.iha.kicker",
+        "label": "Metin",
+        "kind": "text",
+        "value": "İNSANSIZ HAVA SİSTEMLERİ"
+      },
+      {
+        "key": "FocusContent.text.8",
+        "label": "Metin",
+        "kind": "text",
+        "value": "SİSTEM ODAĞI"
+      },
+      {
+        "key": "FocusContent.text.9",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Birlikte çalışan teknolojiler."
+      },
+      {
+        "key": "platformFocus.iha.intro",
+        "label": "Metin",
+        "kind": "text",
+        "value": "İnsansız hava araçları; gövde, elektronik, uçuş kontrolü, haberleşme ve sensör sistemlerinin birlikte çalışmasını gerektiren bütünleşik platformlardır."
+      },
+      {
+        "key": "FocusContent.kicker.10",
+        "label": "Bölüm etiketi",
+        "kind": "text",
+        "value": "MÜHENDİSLİK KATMANLARI"
+      },
+      {
+        "key": "FocusContent.title.11",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Sistem bütünlüğü."
+      },
+      {
+        "key": "FocusContent.lead.12",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Havacılık çalışmalarında birbirini tamamlayan temel mühendislik başlıkları."
+      },
+      {
+        "key": "platformFocus.iha.modules.0.0",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Uçuş elektroniği"
+      },
+      {
+        "key": "platformFocus.iha.modules.0.1",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Uçuş kontrolü ve gömülü sistemler ile platform yönetimi."
+      },
+      {
+        "key": "platformFocus.iha.modules.1.0",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Otonom hareket"
+      },
+      {
+        "key": "platformFocus.iha.modules.1.1",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Sensör verileri, karar mekanizmaları ve kontrol katmanları."
+      },
+      {
+        "key": "platformFocus.iha.modules.2.0",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Haberleşme"
+      },
+      {
+        "key": "platformFocus.iha.modules.2.1",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Verinin platform bileşenleri arasında ve bağlantılı sistemlerde iletilmesi."
+      },
+      {
+        "key": "FocusContent.text.13",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Otonom sistemler, gömülü donanım ve sensör füzyonu bu mimarilerle ilişkili mühendislik disiplinleridir."
+      }
+    ]
+  },
+  {
+    "page": "communications",
+    "slug": "ileri-haberlesme",
+    "title": "İleri Haberleşme | İstikbal Aerospace",
+    "description": "Bağlantılı platformlarda veri iletimi, haberleşme ve sistem entegrasyonu.",
+    "fields": [
+      {
+        "key": "focus.communications.title",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "İleri Haberleşme"
+      },
+      {
+        "key": "focus.communications.tagline",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Bağlantılı sistemler arasında bilgi akışı ve entegrasyon."
+      },
+      {
+        "key": "focus.communications.bg",
+        "label": "Görsel",
+        "kind": "image",
+        "value": "tengri-network.svg"
+      },
+      {
+        "key": "focus.communications.kicker",
+        "label": "Metin",
+        "kind": "text",
+        "value": "VERİ BAĞLANTILARI / 05"
+      },
+      {
+        "key": "FocusContent.text.0",
+        "label": "Metin",
+        "kind": "text",
+        "value": "TEKNOLOJİYE YAKINDAN BAKIŞ"
+      },
+      {
+        "key": "FocusContent.text.1",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Bir disiplinin farklı katmanları."
+      },
+      {
+        "key": "focus.communications.intro",
+        "label": "Metin",
+        "kind": "text",
+        "value": "İstikbal Aerospace’in kamuya açık şirket özetinde haberleşme sistemleri ve şifreli taktik veri bağlantıları çalışma alanları arasında anılmaktadır. Burada haberleşme mimarilerinin genel ilkeleri yer alır; doğrulanmamış teknik uygulama, kapasite veya operasyonel ürün iddiası sunulmaz."
+      },
+      {
+        "key": "FocusContent.kicker.2",
+        "label": "Bölüm etiketi",
+        "kind": "text",
+        "value": "TEMEL YAKLAŞIM"
+      },
+      {
+        "key": "FocusContent.title.3",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Mühendislik bileşenleri."
+      },
+      {
+        "key": "FocusContent.lead.4",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Konuya ait kavramlar ve çalışma ilkeleri; doğrulanmış proje bilgileri ayrıca yayınlanacaktır."
+      },
+      {
+        "key": "focus.communications.modules.0.1",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Veri iletimi"
+      },
+      {
+        "key": "focus.communications.modules.0.2",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Bağlantılı platformlar arasında durum ve ölçüm bilgilerinin aktarılmasına dair temel yaklaşım."
+      },
+      {
+        "key": "focus.communications.modules.1.1",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Güvenlik ve bütünlük"
+      },
+      {
+        "key": "focus.communications.modules.1.2",
+        "label": "Metin",
+        "kind": "text",
+        "value": "İletilen bilginin güvenliğinin ve tutarlılığının sistem tasarımında değerlendirilmesi."
+      },
+      {
+        "key": "focus.communications.modules.2.1",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Sistem entegrasyonu"
+      },
+      {
+        "key": "focus.communications.modules.2.2",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Haberleşme katmanının sensörler, gömülü yazılım ve üst sistemlerle birlikte ele alınması."
+      },
+      {
+        "key": "FocusContent.text.5",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Sistemler birlikte çalışır: "
+      },
+      {
+        "key": "FocusContent.text.6",
+        "label": "Metin",
+        "kind": "text",
+        "value": " ile "
+      },
+      {
+        "key": "focus.communications.related",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Sensör Füzyonu"
+      },
+      {
+        "key": "FocusContent.text.7",
+        "label": "Metin",
+        "kind": "text",
+        "value": " birbirini tamamlayan mühendislik alanlarıdır. Teknoloji başlıkları birbirinden bağımsız değildir."
+      }
+    ]
+  },
+  {
+    "page": "contact",
+    "slug": "iletisim",
+    "title": "İletişim | İstikbal Aerospace",
+    "description": "İstikbal Aerospace kurumsal iletişim bilgileri.",
+    "fields": [
+      {
+        "key": "ContactContent.title.0",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "İletişim"
+      },
+      {
+        "key": "ContactContent.description.1",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "İstikbal Aerospace ile iletişime geçin."
+      },
+      {
+        "key": "ContactContent.image.2",
+        "label": "Görsel",
+        "kind": "image",
+        "value": "platform-systems.svg"
+      },
+      {
+        "key": "ContactContent.breadcrumb.3",
+        "label": "Gezinme metni",
+        "kind": "text",
+        "value": "İLETIŞIM"
+      },
+      {
+        "key": "ContactContent.kicker.4",
+        "label": "Bölüm etiketi",
+        "kind": "text",
+        "value": "İSTİKBAL AEROSPACE"
+      },
+      {
+        "key": "ContactContent.kicker.5",
+        "label": "Bölüm etiketi",
+        "kind": "text",
+        "value": "İLETİŞİM"
+      },
+      {
+        "key": "ContactContent.title.6",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Birlikte iletişime geçelim."
+      },
+      {
+        "key": "ContactContent.lead.7",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Genel sorular, kurumsal iş birlikleri ve teknoloji alanları hakkında bilgi için."
+      },
+      {
+        "key": "ContactContent.text.8",
+        "label": "Metin",
+        "kind": "text",
+        "value": "ŞİRKET"
+      },
+      {
+        "key": "ContactContent.text.9",
+        "label": "Metin",
+        "kind": "text",
+        "value": "İstikbal Aerospace"
+      },
+      {
+        "key": "ContactContent.text.10",
+        "label": "Metin",
+        "kind": "text",
+        "value": "E-POSTA"
+      },
+      {
+        "key": "ContactContent.href.11",
+        "label": "Bağlantı",
+        "kind": "link",
+        "value": "mailto:abdullahdemiral@istikbalaerospace.com"
+      },
+      {
+        "key": "ContactContent.text.12",
+        "label": "Metin",
+        "kind": "text",
+        "value": "abdullahdemiral@istikbalaerospace.com"
+      },
+      {
+        "key": "ContactContent.text.13",
+        "label": "Metin",
+        "kind": "text",
+        "value": "TELEFON"
+      },
+      {
+        "key": "ContactContent.href.14",
+        "label": "Bağlantı",
+        "kind": "link",
+        "value": "tel:+905462781931"
+      },
+      {
+        "key": "ContactContent.text.15",
+        "label": "Metin",
+        "kind": "text",
+        "value": "+90 546 278 19 31"
+      },
+      {
+        "key": "ContactContent.text.16",
+        "label": "Metin",
+        "kind": "text",
+        "value": "KONUM"
+      },
+      {
+        "key": "ContactContent.text.17",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Kepez, Antalya / Türkiye"
+      },
+      {
+        "key": "ContactContent.text.18",
+        "label": "Metin",
+        "kind": "text",
+        "value": "İletişim formu henüz sunucuya bağlı değildir. Doğrudan e-posta veya telefon yoluyla ulaşabilirsiniz."
+      }
+    ]
+  },
+  {
+    "page": "home",
+    "slug": "index",
+    "title": "Ana Sayfa | İstikbal Aerospace",
+    "description": "İstikbal Aerospace havacılık, otonom sistemler, gömülü elektronik ve mühendislik alanları.",
+    "fields": [
+      {
+        "key": "HomeContent.text.0",
+        "label": "Metin",
+        "kind": "text",
+        "value": "SİSTEM MÜHENDİSLİĞİ"
+      },
+      {
+        "key": "HomeContent.text.1",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Gömülü elektronik."
+      },
+      {
+        "key": "HomeContent.text.2",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Otonom hareket."
+      },
+      {
+        "key": "HomeContent.text.3",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Entegre sistemler."
+      },
+      {
+        "key": "HomeContent.text.4",
+        "label": "Metin",
+        "kind": "text",
+        "value": "DONANIM"
+      },
+      {
+        "key": "HomeContent.text.5",
+        "label": "Metin",
+        "kind": "text",
+        "value": "YAZILIM"
+      },
+      {
+        "key": "HomeContent.text.6",
+        "label": "Metin",
+        "kind": "text",
+        "value": "SİSTEM ENTEGRASYONU"
+      },
+      {
+        "key": "HomeContent.text.7",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Birbiriyle çalışan teknolojiler."
+      },
+      {
+        "key": "HomeContent.text.8",
+        "label": "Metin",
+        "kind": "text",
+        "value": "İstikbal Aerospace; insansız hava araçları, PCB tasarımı, gömülü sistemler ve otonom algoritmalar çevresinde şekillenen mühendislik alanlarına odaklanıyor. Sensörlerden elde edilen verinin işlenmesinden sistem düzeyinde entegrasyona kadar uzanan bir teknoloji yaklaşımı."
+      },
+      {
+        "key": "HomeContent.kicker.9",
+        "label": "Bölüm etiketi",
+        "kind": "text",
+        "value": "01 / HAVA & SİSTEMLER"
+      },
+      {
+        "key": "HomeContent.title.10",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Havacılığın farklı katmanları."
+      },
+      {
+        "key": "HomeContent.lead.11",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "İnsansız hava platformlarından uçuş elektroniğine, bağlantılı sistem mimarilerinden otonom çözümlere uzanan çalışma alanları."
+      },
+      {
+        "key": "cards.platform.0.title",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "İnsansız Hava Sistemleri"
+      },
+      {
+        "key": "cards.platform.0.image",
+        "label": "Görsel",
+        "kind": "image",
+        "value": "hero-hangar-photo.webp"
+      },
+      {
+        "key": "cards.platform.0.href",
+        "label": "Bağlantı",
+        "kind": "link",
+        "value": "iha-sistemleri.html"
+      },
+      {
+        "key": "cards.platform.0.description",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "İnsansız platform mimarileri ve hava aracı sistemleri."
+      },
+      {
+        "key": "cards.platform.1.title",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Gömülü Uçuş Mimarileri"
+      },
+      {
+        "key": "cards.platform.1.image",
+        "label": "Görsel",
+        "kind": "image",
+        "value": "platform-systems.svg"
+      },
+      {
+        "key": "cards.platform.1.href",
+        "label": "Bağlantı",
+        "kind": "link",
+        "value": "ucus-mimarileri.html"
+      },
+      {
+        "key": "cards.platform.1.description",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Donanım, yazılım ve kontrol katmanları."
+      },
+      {
+        "key": "cards.platform.2.title",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Hava Savunma Ağları"
+      },
+      {
+        "key": "cards.platform.2.image",
+        "label": "Görsel",
+        "kind": "image",
+        "value": "platform-flight.svg"
+      },
+      {
+        "key": "cards.platform.2.href",
+        "label": "Bağlantı",
+        "kind": "link",
+        "value": "hava-savunma-aglari.html"
+      },
+      {
+        "key": "cards.platform.2.description",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Birbirine bağlı savunma sistemleri yaklaşımı."
+      },
+      {
+        "key": "HomeContent.kicker.12",
+        "label": "Bölüm etiketi",
+        "kind": "text",
+        "value": "02 / TEKNOLOJİLER"
+      },
+      {
+        "key": "HomeContent.title.13",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Sistemin ardındaki mühendislik."
+      },
+      {
+        "key": "HomeContent.lead.14",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Elektronik tasarımdan verinin birleştirilmesine uzanan temel çalışma alanları."
+      },
+      {
+        "key": "cards.technology.0.title",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Otonom Sistemler"
+      },
+      {
+        "key": "cards.technology.0.description",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Algılama, karar süreçleri ve kontrol algoritmaları."
+      },
+      {
+        "key": "cards.technology.0.href",
+        "label": "Bağlantı",
+        "kind": "link",
+        "value": "otonom-sistemler.html"
+      },
+      {
+        "key": "cards.technology.1.title",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Gömülü Sistemler & PCB"
+      },
+      {
+        "key": "cards.technology.1.description",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Elektronik kart tasarımı, donanım ve gömülü yazılım."
+      },
+      {
+        "key": "cards.technology.1.href",
+        "label": "Bağlantı",
+        "kind": "link",
+        "value": "gomulu-sistemler.html"
+      },
+      {
+        "key": "cards.technology.2.title",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Sensör Füzyonu"
+      },
+      {
+        "key": "cards.technology.2.description",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Farklı algılayıcılardan gelen verilerin bütünleştirilmesi."
+      },
+      {
+        "key": "cards.technology.2.href",
+        "label": "Bağlantı",
+        "kind": "link",
+        "value": "sensor-fuzyonu.html"
+      },
+      {
+        "key": "cards.technology.3.title",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Yapay Zekâ & Tengri AI"
+      },
+      {
+        "key": "cards.technology.3.description",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Ağ tabanlı karar destek ve savunma teknolojileri yaklaşımı."
+      },
+      {
+        "key": "cards.technology.3.href",
+        "label": "Bağlantı",
+        "kind": "link",
+        "value": "tengri-ai.html"
+      },
+      {
+        "key": "HomeContent.text.15",
+        "label": "Metin",
+        "kind": "text",
+        "value": "03 / YAPAY ZEKÂ VE KOMUTA KONTROL"
+      },
+      {
+        "key": "HomeContent.text.16",
+        "label": "Metin",
+        "kind": "text",
+        "value": "TENGRİ AI"
+      },
+      {
+        "key": "HomeContent.text.17",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Hava ve kara sistemlerinin koordinasyonuna yönelik yapay zekâ temelli savunma ağı yaklaşımı. Algılama, tehdit değerlendirme ve karar destek katmanları üzerine çalışmalar."
+      },
+      {
+        "key": "HomeContent.text.18",
+        "label": "Metin",
+        "kind": "text",
+        "value": "YAPAY ZEKÂ · AĞ MİMARİLERİ · KARAR DESTEK"
+      },
+      {
+        "key": "HomeContent.href.19",
+        "label": "Bağlantı",
+        "kind": "link",
+        "value": "tengri-ai.html"
+      },
+      {
+        "key": "HomeContent.text.20",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Tengri AI"
+      },
+      {
+        "key": "HomeContent.kicker.21",
+        "label": "Bölüm etiketi",
+        "kind": "text",
+        "value": "04 / PROJELER & AR-GE"
+      },
+      {
+        "key": "HomeContent.title.22",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Araştırmadan uygulamaya."
+      },
+      {
+        "key": "HomeContent.lead.23",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "PCB tasarımı, otonom hareket mühendisliği ve gömülü donanım gibi alanlarda araştırma ve geliştirme yaklaşımı."
+      },
+      {
+        "key": "HomeContent.image.24",
+        "label": "Görsel",
+        "kind": "image",
+        "value": "research-lab.svg"
+      },
+      {
+        "key": "HomeContent.text.25",
+        "label": "Metin",
+        "kind": "text",
+        "value": "AR-GE & ELEKTRONİK"
+      },
+      {
+        "key": "HomeContent.text.26",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Sistemler, detaylarda şekillenir."
+      },
+      {
+        "key": "HomeContent.text.27",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Elektronik donanım, gömülü yazılım ve otonom kontrolün birbirini tamamlayan disiplinler olarak ele alındığı mühendislik alanları."
+      },
+      {
+        "key": "HomeContent.kicker.28",
+        "label": "Bölüm etiketi",
+        "kind": "text",
+        "value": "05 / HABERLER & DUYURULAR"
+      },
+      {
+        "key": "HomeContent.title.29",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Kamuya açık gelişmeler."
+      },
+      {
+        "key": "HomeContent.lead.30",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Şirketin paylaştığı teknoloji çalışmalarına ve duyurularına göz atın."
+      },
+      {
+        "key": "HomeContent.image.31",
+        "label": "Görsel",
+        "kind": "image",
+        "value": "tengri-network.svg"
+      },
+      {
+        "key": "HomeContent.text.32",
+        "label": "Metin",
+        "kind": "text",
+        "value": "ŞİRKET PAYLAŞIMI / TENGRİ AI"
+      },
+      {
+        "key": "HomeContent.text.33",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Tengri AI: Yapay zekâ destekli savunma ağı yaklaşımı"
+      },
+      {
+        "key": "HomeContent.text.34",
+        "label": "Metin",
+        "kind": "text",
+        "value": "İstikbal Aerospace tarafından kamuya açık olarak tanıtılan Tengri AI'ın odaklandığı teknoloji alanlarını keşfedin."
+      },
+      {
+        "key": "HomeContent.href.35",
+        "label": "Bağlantı",
+        "kind": "link",
+        "value": "haber-detay.html"
+      },
+      {
+        "key": "HomeContent.text.36",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Gelişmeyi İncele"
+      },
+      {
+        "key": "HomeContent.image.37",
+        "label": "Görsel",
+        "kind": "image",
+        "value": "hero-hangar-photo.webp"
+      },
+      {
+        "key": "HomeContent.text.38",
+        "label": "Metin",
+        "kind": "text",
+        "value": "06 / İSTİKBAL AEROSPACE"
+      },
+      {
+        "key": "HomeContent.text.39",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Antalya'dan geleceğin teknolojilerine."
+      },
+      {
+        "key": "HomeContent.text.40",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Antalya merkezli İstikbal Aerospace; havacılık, gömülü elektronik, PCB tasarımı ve otonom sistem mühendisliğini bir araya getiren çalışmalar yürütür."
+      },
+      {
+        "key": "Hero.aria-label.0",
+        "label": "Erişilebilir açıklama",
+        "kind": "text",
+        "value": "İstikbal Aerospace havacılık vitrini"
+      },
+      {
+        "key": "Hero.aria-label.1",
+        "label": "Erişilebilir açıklama",
+        "kind": "text",
+        "value": "Gün doğumunda dağların üzerinde uçan markasız temsili hava aracı"
+      },
+      {
+        "key": "Hero.aria-label.2",
+        "label": "Erişilebilir açıklama",
+        "kind": "text",
+        "value": "Alacakaranlıkta havacılık hangarındaki markasız temsili hava aracı"
+      },
+      {
+        "key": "Hero.text.3",
+        "label": "Metin",
+        "kind": "text",
+        "value": " HAVACILIK "
+      },
+      {
+        "key": "Hero.text.4",
+        "label": "Metin",
+        "kind": "text",
+        "value": " OTONOM SİSTEMLER"
+      },
+      {
+        "key": "Hero.text.5",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Geleceğin"
+      },
+      {
+        "key": "Hero.text.6",
+        "label": "Metin",
+        "kind": "text",
+        "value": "sistemlerini"
+      },
+      {
+        "key": "Hero.text.7",
+        "label": "Metin",
+        "kind": "text",
+        "value": "tasarlıyoruz."
+      },
+      {
+        "key": "Hero.text.8",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Havacılık, gömülü elektronik ve otonom sistemlerin kesişiminde mühendislik."
+      },
+      {
+        "key": "Hero.href.9",
+        "label": "Bağlantı",
+        "kind": "link",
+        "value": "platformlar.html"
+      },
+      {
+        "key": "Hero.text.10",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Platformları Keşfet "
+      },
+      {
+        "key": "Hero.href.11",
+        "label": "Bağlantı",
+        "kind": "link",
+        "value": "iletisim.html"
+      },
+      {
+        "key": "Hero.text.12",
+        "label": "Metin",
+        "kind": "text",
+        "value": "İletişime Geç "
+      }
+    ]
+  },
+  {
+    "page": "capabilities",
+    "slug": "kabiliyetler",
+    "title": "Kabiliyetler | İstikbal Aerospace",
+    "description": "İstikbal Aerospace'in kamuya açık mühendislik uzmanlık ve teknoloji alanları.",
+    "fields": [
+      {
+        "key": "CapabilitiesContent.title.0",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Kabiliyetler"
+      },
+      {
+        "key": "CapabilitiesContent.description.1",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "İnsansız sistemlerden gömülü elektroniğe uzanan mühendislik çalışma alanları."
+      },
+      {
+        "key": "CapabilitiesContent.image.2",
+        "label": "Görsel",
+        "kind": "image",
+        "value": "research-lab.svg"
+      },
+      {
+        "key": "CapabilitiesContent.breadcrumb.3",
+        "label": "Gezinme metni",
+        "kind": "text",
+        "value": "TEKNOLOJİLER / KABİLİYETLER"
+      },
+      {
+        "key": "CapabilitiesContent.kicker.4",
+        "label": "Bölüm etiketi",
+        "kind": "text",
+        "value": "İSTİKBAL AEROSPACE"
+      },
+      {
+        "key": "CapabilitiesContent.kicker.5",
+        "label": "Bölüm etiketi",
+        "kind": "text",
+        "value": "MÜHENDİSLİK & TEKNOLOJİ ALANLARI"
+      },
+      {
+        "key": "CapabilitiesContent.title.6",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Sistemlerin yapı taşları."
+      },
+      {
+        "key": "CapabilitiesContent.lead.7",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "İstikbal Aerospace’in kamuya açık faaliyet ve uzmanlık tanıtımlarında yer alan başlıklar: insansız hava sistemleri, roket sistemleri, hava savunma ağları, haberleşme, gömülü donanım ve algılama."
+      },
+      {
+        "key": "cards.technology.4.title",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "İnsansız Hava Araçları"
+      },
+      {
+        "key": "cards.technology.4.description",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Hava platformları ve otonom uçuş mimarileri."
+      },
+      {
+        "key": "cards.technology.4.href",
+        "label": "Bağlantı",
+        "kind": "link",
+        "value": "iha-sistemleri.html"
+      },
+      {
+        "key": "cards.technology.5.title",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Hava Savunma Ağları"
+      },
+      {
+        "key": "cards.technology.5.description",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Ağ bağlantılı hava savunma ve karar destek yaklaşımı."
+      },
+      {
+        "key": "cards.technology.5.href",
+        "label": "Bağlantı",
+        "kind": "link",
+        "value": "hava-savunma-aglari.html"
+      },
+      {
+        "key": "cards.technology.6.title",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "İleri Haberleşme"
+      },
+      {
+        "key": "cards.technology.6.description",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Bağlantılı platformlar ve taktik veri iletimi odağı."
+      },
+      {
+        "key": "cards.technology.6.href",
+        "label": "Bağlantı",
+        "kind": "link",
+        "value": "ileri-haberlesme.html"
+      },
+      {
+        "key": "cards.technology.7.title",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Roket Sistemleri"
+      },
+      {
+        "key": "cards.technology.7.description",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Roket projelerinde uçuş elektroniği ve sistem entegrasyonu hakkında genel mühendislik çerçevesi."
+      },
+      {
+        "key": "cards.technology.7.href",
+        "label": "Bağlantı",
+        "kind": "link",
+        "value": "roket-sistemleri.html"
+      },
+      {
+        "key": "cards.technology.8.title",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Gömülü Donanım & PCB"
+      },
+      {
+        "key": "cards.technology.8.description",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Elektronik kart tasarımı ve donanım-yazılım bütünlüğü."
+      },
+      {
+        "key": "cards.technology.8.href",
+        "label": "Bağlantı",
+        "kind": "link",
+        "value": "gomulu-sistemler.html"
+      },
+      {
+        "key": "cards.technology.9.title",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Sensör Füzyonu"
+      },
+      {
+        "key": "cards.technology.9.description",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Birden fazla veri kaynağının birlikte değerlendirilmesi."
+      },
+      {
+        "key": "cards.technology.9.href",
+        "label": "Bağlantı",
+        "kind": "link",
+        "value": "sensor-fuzyonu.html"
+      },
+      {
+        "key": "CapabilitiesContent.title.8",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Otonom Sistemler"
+      },
+      {
+        "key": "CapabilitiesContent.kicker.9",
+        "label": "Bölüm etiketi",
+        "kind": "text",
+        "value": "OTONOMİ"
+      },
+      {
+        "key": "CapabilitiesContent.description.10",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Veri analizi, kontrol mantığı ve karar mekanizmalarının bir arada ele alındığı sistemler."
+      },
+      {
+        "key": "CapabilitiesContent.image.11",
+        "label": "Görsel",
+        "kind": "image",
+        "value": "platform-flight.svg"
+      },
+      {
+        "key": "CapabilitiesContent.title.12",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Gömülü Donanım & PCB"
+      },
+      {
+        "key": "CapabilitiesContent.kicker.13",
+        "label": "Bölüm etiketi",
+        "kind": "text",
+        "value": "ELEKTRONİK"
+      },
+      {
+        "key": "CapabilitiesContent.description.14",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Elektronik kart tasarımı, gömülü işlemciler ve donanım-yazılım entegrasyonu."
+      },
+      {
+        "key": "CapabilitiesContent.image.15",
+        "label": "Görsel",
+        "kind": "image",
+        "value": "platform-systems.svg"
+      },
+      {
+        "key": "CapabilitiesContent.title.16",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Sensör Füzyonu"
+      },
+      {
+        "key": "CapabilitiesContent.kicker.17",
+        "label": "Bölüm etiketi",
+        "kind": "text",
+        "value": "ALGILAMA"
+      },
+      {
+        "key": "CapabilitiesContent.description.18",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Farklı sensör verilerinin işlenmesi ve tek bir sistem görünümüne dönüştürülmesi."
+      },
+      {
+        "key": "CapabilitiesContent.image.19",
+        "label": "Görsel",
+        "kind": "image",
+        "value": "tengri-network.svg"
+      },
+      {
+        "key": "CapabilitiesContent.kicker.20",
+        "label": "Bölüm etiketi",
+        "kind": "text",
+        "value": "YAPAY ZEKÂ"
+      },
+      {
+        "key": "CapabilitiesContent.title.21",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Tengri AI."
+      },
+      {
+        "key": "CapabilitiesContent.lead.22",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Şirketin yapay zekâ ve ağ merkezli karar desteği üzerine kamuya açık teknoloji yaklaşımı, diğer mühendislik disiplinleriyle ilişkilidir."
+      }
+    ]
+  },
+  {
+    "page": "about",
+    "slug": "kurumsal",
+    "title": "Kurumsal | İstikbal Aerospace",
+    "description": "İstikbal Aerospace mühendislik yaklaşımı, prototipleme ve sistem entegrasyonu.",
+    "fields": [
+      {
+        "key": "AboutContent.title.0",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Kurumsal"
+      },
+      {
+        "key": "AboutContent.description.1",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Havacılık, gömülü sistemler ve otonom yazılım odağında disiplinler arası mühendislik."
+      },
+      {
+        "key": "AboutContent.image.2",
+        "label": "Görsel",
+        "kind": "image",
+        "value": "hero-hangar-photo.webp"
+      },
+      {
+        "key": "AboutContent.breadcrumb.3",
+        "label": "Gezinme metni",
+        "kind": "text",
+        "value": "KURUMSAL"
+      },
+      {
+        "key": "AboutContent.kicker.4",
+        "label": "Bölüm etiketi",
+        "kind": "text",
+        "value": "İSTİKBAL AEROSPACE"
+      },
+      {
+        "key": "AboutContent.kicker.5",
+        "label": "Bölüm etiketi",
+        "kind": "text",
+        "value": "HAKKIMIZDA"
+      },
+      {
+        "key": "AboutContent.title.6",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Fikirden çalışan sisteme."
+      },
+      {
+        "key": "AboutContent.lead.7",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "İstikbal Aerospace, Antalya / Kepez merkezli; havacılık, uzay ve savunma teknolojilerine yönelik alt sistemler, gömülü elektronik ve otonom yazılım çalışmalarına odaklanan bir teknoloji ve AR-GE girişimidir."
+      },
+      {
+        "key": "AboutContent.image.8",
+        "label": "Görsel",
+        "kind": "image",
+        "value": "research-lab.svg"
+      },
+      {
+        "key": "AboutContent.text.9",
+        "label": "Metin",
+        "kind": "text",
+        "value": "MÜHENDİSLİK YAKLAŞIMI"
+      },
+      {
+        "key": "AboutContent.text.10",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Donanım, yazılım ve otonomi bir arada."
+      },
+      {
+        "key": "AboutContent.text.11",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Elektronik tasarım, gömülü uçuş mimarileri ve otonom algoritmalar birbirinden bağımsız parçalar değildir. İstikbal Aerospace, kamuya açık kurumsal tanıtımında bu disiplinleri birlikte ele alan, çevik ve prototip geliştirmeye odaklı bir mühendislik yaklaşımı benimsediğini ifade eder."
+      },
+      {
+        "key": "AboutContent.text.12",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Yaklaşımın odağında, kavramsal tasarımların donanım ve yazılımla buluşturulması; alt sistemlerin birlikte çalışabilir, incelenebilir ve test edilebilir yapılar olarak değerlendirilmesi bulunur."
+      },
+      {
+        "key": "AboutContent.kicker.13",
+        "label": "Bölüm etiketi",
+        "kind": "text",
+        "value": "ÇALIŞMA YAKLAŞIMI"
+      },
+      {
+        "key": "AboutContent.title.14",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Tasarım. Prototipleme. Entegrasyon."
+      },
+      {
+        "key": "AboutContent.lead.15",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "İstikbal Aerospace’in kamuya açık tanıtımında öne çıkan mühendislik süreçleri."
+      },
+      {
+        "key": "AboutContent.title.16",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Sistem Tasarımı"
+      },
+      {
+        "key": "AboutContent.description.17",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Elektronik donanım, uçuş mimarileri ve yazılım bileşenlerini ortak bir sistem çerçevesinde değerlendirme."
+      },
+      {
+        "key": "AboutContent.title.18",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Hızlı Prototipleme"
+      },
+      {
+        "key": "AboutContent.description.19",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Kavramsal fikirlerin elektronik tasarım, gömülü yazılım ve algoritma geliştirmeyle somutlaştırılması."
+      },
+      {
+        "key": "AboutContent.title.20",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Entegrasyon"
+      },
+      {
+        "key": "AboutContent.description.21",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Farklı bileşenler arasında veri akışı, kontrol ve sistem davranışının bütün olarak ele alınması."
+      },
+      {
+        "key": "AboutContent.kicker.22",
+        "label": "Bölüm etiketi",
+        "kind": "text",
+        "value": "FAALİYET ALANLARI"
+      },
+      {
+        "key": "AboutContent.title.23",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Birbirini tamamlayan mühendislik alanları."
+      },
+      {
+        "key": "AboutContent.lead.24",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Şirketin kamuya açık tanıtımlarında yer alan çalışma başlıklarını ilgili sayfalardan inceleyebilirsiniz."
+      },
+      {
+        "key": "cards.technology.10.title",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Gömülü Uçuş Sistemleri"
+      },
+      {
+        "key": "cards.technology.10.description",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Hava araçları için donanım ve yazılım mimarilerinin tasarımı."
+      },
+      {
+        "key": "cards.technology.10.href",
+        "label": "Bağlantı",
+        "kind": "link",
+        "value": "ucus-mimarileri.html"
+      },
+      {
+        "key": "cards.technology.11.title",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Otonom Algoritmalar"
+      },
+      {
+        "key": "cards.technology.11.description",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Algılama, karar mekanizmaları ve otonom sistemlerin mühendislik temelleri."
+      },
+      {
+        "key": "cards.technology.11.href",
+        "label": "Bağlantı",
+        "kind": "link",
+        "value": "otonom-sistemler.html"
+      },
+      {
+        "key": "cards.technology.12.title",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Yapay Zekâ & Sistemler"
+      },
+      {
+        "key": "cards.technology.12.description",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Tengri AI çevresinde ele alınan yapay zekâ destekli savunma ağı konseptleri."
+      },
+      {
+        "key": "cards.technology.12.href",
+        "label": "Bağlantı",
+        "kind": "link",
+        "value": "tengri-ai.html"
+      },
+      {
+        "key": "AboutContent.text.25",
+        "label": "Metin",
+        "kind": "text",
+        "value": "KONUM"
+      },
+      {
+        "key": "AboutContent.text.26",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Kepez, Antalya."
+      },
+      {
+        "key": "AboutContent.text.27",
+        "label": "Metin",
+        "kind": "text",
+        "value": "İstikbal Aerospace’in kamuya açık şirket profilinde merkez konumu Kepez / Antalya olarak belirtilmektedir. İş birliği ve iletişim talepleri için iletişim sayfamıza ulaşabilirsiniz."
+      }
+    ]
+  },
+  {
+    "page": "autonomy",
+    "slug": "otonom-sistemler",
+    "title": "Otonom Sistemler | İstikbal Aerospace",
+    "description": "Algılama, karar mekanizmaları ve kontrol sistemlerine genel bakış.",
+    "fields": [
+      {
+        "key": "focus.autonomy.title",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Otonom Sistemler"
+      },
+      {
+        "key": "focus.autonomy.tagline",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Algılama, karar verme ve kontrolün buluştuğu alan."
+      },
+      {
+        "key": "focus.autonomy.bg",
+        "label": "Görsel",
+        "kind": "image",
+        "value": "platform-flight.svg"
+      },
+      {
+        "key": "focus.autonomy.kicker",
+        "label": "Metin",
+        "kind": "text",
+        "value": "SİSTEM MÜHENDİSLİĞİ / 01"
+      },
+      {
+        "key": "FocusContent.text.0",
+        "label": "Metin",
+        "kind": "text",
+        "value": "TEKNOLOJİYE YAKINDAN BAKIŞ"
+      },
+      {
+        "key": "FocusContent.text.1",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Bir disiplinin farklı katmanları."
+      },
+      {
+        "key": "focus.autonomy.intro",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Otonom sistemler; çevreyi algılama, veriyi yorumlama ve belirlenen hedeflere göre hareket üretme gibi farklı mühendislik disiplinlerini bir araya getirir. Bu sayfa, konunun genel yaklaşımını tanıtır."
+      },
+      {
+        "key": "FocusContent.kicker.2",
+        "label": "Bölüm etiketi",
+        "kind": "text",
+        "value": "TEMEL YAKLAŞIM"
+      },
+      {
+        "key": "FocusContent.title.3",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Mühendislik bileşenleri."
+      },
+      {
+        "key": "FocusContent.lead.4",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Konuya ait kavramlar ve çalışma ilkeleri; doğrulanmış proje bilgileri ayrıca yayınlanacaktır."
+      },
+      {
+        "key": "focus.autonomy.modules.0.1",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Algılama ve veri"
+      },
+      {
+        "key": "focus.autonomy.modules.0.2",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Sensörlerden gelen verilerin sistem tarafından yorumlanmasına yönelik mühendislik yaklaşımı."
+      },
+      {
+        "key": "focus.autonomy.modules.1.1",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Karar mekanizmaları"
+      },
+      {
+        "key": "focus.autonomy.modules.1.2",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Algılanan duruma göre kuralların ve algoritmaların rolünü açıklayan genel çerçeve."
+      },
+      {
+        "key": "focus.autonomy.modules.2.1",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Kontrol ve geri bildirim"
+      },
+      {
+        "key": "focus.autonomy.modules.2.2",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Ölçüm, kontrol ve geri bildirim döngülerinin sistem tasarımındaki yeri."
+      },
+      {
+        "key": "FocusContent.text.5",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Sistemler birlikte çalışır: "
+      },
+      {
+        "key": "FocusContent.text.6",
+        "label": "Metin",
+        "kind": "text",
+        "value": " ile "
+      },
+      {
+        "key": "focus.autonomy.related",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Gömülü Sistemler"
+      },
+      {
+        "key": "FocusContent.text.7",
+        "label": "Metin",
+        "kind": "text",
+        "value": " birbirini tamamlayan mühendislik alanlarıdır. Teknoloji başlıkları birbirinden bağımsız değildir."
+      }
+    ]
+  },
+  {
+    "page": "platformDetail",
+    "slug": "platform-detay",
+    "title": "Platform Detayı | İstikbal Aerospace",
+    "description": "Havacılık platformları, uçuş elektroniği ve sistem entegrasyonunun temelleri.",
+    "fields": [
+      {
+        "key": "PlatformDetailContent.title.0",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Havacılık Sistemleri"
+      },
+      {
+        "key": "PlatformDetailContent.description.1",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Platform mühendisliği, uçuş elektroniği ve sistem entegrasyonu."
+      },
+      {
+        "key": "PlatformDetailContent.image.2",
+        "label": "Görsel",
+        "kind": "image",
+        "value": "platform-flight.svg"
+      },
+      {
+        "key": "PlatformDetailContent.breadcrumb.3",
+        "label": "Gezinme metni",
+        "kind": "text",
+        "value": "HAVACILIK SISTEMLERI"
+      },
+      {
+        "key": "PlatformDetailContent.kicker.4",
+        "label": "Bölüm etiketi",
+        "kind": "text",
+        "value": "İSTİKBAL AEROSPACE"
+      },
+      {
+        "key": "PlatformDetailContent.title.5",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Mühendislik disiplinleri."
+      },
+      {
+        "key": "PlatformDetailContent.kicker.6",
+        "label": "Bölüm etiketi",
+        "kind": "text",
+        "value": "SİSTEM ALANLARI"
+      },
+      {
+        "key": "PlatformDetailContent.description.7",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "İstikbal Aerospace’in gömülü donanım, otonom sistemler ve mühendislik çalışma alanları birlikte ele alınır."
+      },
+      {
+        "key": "PlatformDetailContent.image.8",
+        "label": "Görsel",
+        "kind": "image",
+        "value": "platform-flight.svg"
+      }
+    ]
+  },
+  {
+    "page": "platforms",
+    "slug": "platformlar",
+    "title": "Platformlar | İstikbal Aerospace",
+    "description": "İnsansız hava sistemleri, gömülü uçuş mimarileri ve hava savunma sistemleri çalışma alanları.",
+    "fields": [
+      {
+        "key": "PlatformsContent.title.0",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Platformlar"
+      },
+      {
+        "key": "PlatformsContent.description.1",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Hava platformları, uçuş kontrolü ve sistem mühendisliği odağındaki çalışma başlıkları."
+      },
+      {
+        "key": "PlatformsContent.image.2",
+        "label": "Görsel",
+        "kind": "image",
+        "value": "hero-hangar-photo.webp"
+      },
+      {
+        "key": "PlatformsContent.breadcrumb.3",
+        "label": "Gezinme metni",
+        "kind": "text",
+        "value": "PLATFORMLAR"
+      },
+      {
+        "key": "PlatformsContent.kicker.4",
+        "label": "Bölüm etiketi",
+        "kind": "text",
+        "value": "İSTİKBAL AEROSPACE"
+      },
+      {
+        "key": "PlatformsContent.kicker.5",
+        "label": "Bölüm etiketi",
+        "kind": "text",
+        "value": "HAVACILIK & SİSTEMLER"
+      },
+      {
+        "key": "PlatformsContent.title.6",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Platformdan alt sisteme."
+      },
+      {
+        "key": "PlatformsContent.lead.7",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "İstikbal Aerospace’in kamuya açık uzmanlık alanlarından hareketle sunulan sistem aileleri. Bu başlıklar bir ürün kataloğu değil, mühendislik alanlarıdır."
+      },
+      {
+        "key": "cards.platform.3.title",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "İnsansız Hava Sistemleri"
+      },
+      {
+        "key": "cards.platform.3.image",
+        "label": "Görsel",
+        "kind": "image",
+        "value": "hero-hangar-photo.webp"
+      },
+      {
+        "key": "cards.platform.3.href",
+        "label": "Bağlantı",
+        "kind": "link",
+        "value": "iha-sistemleri.html"
+      },
+      {
+        "key": "cards.platform.3.description",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Uçuş kontrolü, algılama ve bağlantılı alt sistemlerin bütünleşik mimarisi."
+      },
+      {
+        "key": "cards.platform.4.title",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Gömülü Uçuş Mimarileri"
+      },
+      {
+        "key": "cards.platform.4.image",
+        "label": "Görsel",
+        "kind": "image",
+        "value": "platform-systems.svg"
+      },
+      {
+        "key": "cards.platform.4.href",
+        "label": "Bağlantı",
+        "kind": "link",
+        "value": "ucus-mimarileri.html"
+      },
+      {
+        "key": "cards.platform.4.description",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Uçuş elektroniği, gömülü yazılım ve platform kontrolünün bileşenleri."
+      },
+      {
+        "key": "cards.platform.5.title",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Hava Savunma Ağları"
+      },
+      {
+        "key": "cards.platform.5.image",
+        "label": "Görsel",
+        "kind": "image",
+        "value": "platform-flight.svg"
+      },
+      {
+        "key": "cards.platform.5.href",
+        "label": "Bağlantı",
+        "kind": "link",
+        "value": "hava-savunma-aglari.html"
+      },
+      {
+        "key": "cards.platform.5.description",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Bağlantılı sistemler ve karar destek teknolojileri yaklaşımı."
+      },
+      {
+        "key": "PlatformsContent.title.8",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Yapay zekâ destekli uçuş kontrolü."
+      },
+      {
+        "key": "PlatformsContent.kicker.9",
+        "label": "Bölüm etiketi",
+        "kind": "text",
+        "value": "KAMUYA AÇIK TEKNOLOJİ TANITIMI"
+      },
+      {
+        "key": "PlatformsContent.description.10",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Şirketin paylaştığı yeni nesil uçuş kontrolcüsü tanıtımında yapay zekâ ile ilişkili kontrol algoritmaları, uçuş güvenliği ve verimlilik hedefleri öne çıkıyor. Teknolojinin mühendislik temellerini inceleyin."
+      },
+      {
+        "key": "PlatformsContent.image.11",
+        "label": "Görsel",
+        "kind": "image",
+        "value": "platform-systems.svg"
+      },
+      {
+        "key": "PlatformsContent.href.12",
+        "label": "Bağlantı",
+        "kind": "link",
+        "value": "ucus-kontrol-paylasimi.html"
+      },
+      {
+        "key": "PlatformsContent.label.13",
+        "label": "Bağlantı metni",
+        "kind": "text",
+        "value": "Tanıtımı İncele"
+      },
+      {
+        "key": "PlatformsContent.kicker.14",
+        "label": "Bölüm etiketi",
+        "kind": "text",
+        "value": "İLGİLİ TEKNOLOJİLER"
+      },
+      {
+        "key": "PlatformsContent.title.15",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Bir platformun ötesindeki sistemler."
+      },
+      {
+        "key": "PlatformsContent.lead.16",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Elektronik tasarım, yazılım ve sensör verisinin birlikte değerlendirilmesi platform mühendisliğinin temelindedir."
+      },
+      {
+        "key": "cards.technology.13.title",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Otonom Sistemler"
+      },
+      {
+        "key": "cards.technology.13.description",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Algılama ve kontrolün birleştiği yazılım alanı."
+      },
+      {
+        "key": "cards.technology.13.href",
+        "label": "Bağlantı",
+        "kind": "link",
+        "value": "otonom-sistemler.html"
+      },
+      {
+        "key": "cards.technology.14.title",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Gömülü Sistemler"
+      },
+      {
+        "key": "cards.technology.14.description",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Uçuş elektroniği ve sistem denetimi."
+      },
+      {
+        "key": "cards.technology.14.href",
+        "label": "Bağlantı",
+        "kind": "link",
+        "value": "gomulu-sistemler.html"
+      },
+      {
+        "key": "cards.technology.15.title",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Sensör Füzyonu"
+      },
+      {
+        "key": "cards.technology.15.description",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Çoklu veri kaynağının birlikte değerlendirilmesi."
+      },
+      {
+        "key": "cards.technology.15.href",
+        "label": "Bağlantı",
+        "kind": "link",
+        "value": "sensor-fuzyonu.html"
+      }
+    ]
+  },
+  {
+    "page": "projectDetail",
+    "slug": "proje-detay",
+    "title": "AR-GE Detayı | İstikbal Aerospace",
+    "description": "Elektronik tasarım, gömülü sistemler ve otonom mühendislik çalışma alanları.",
+    "fields": [
+      {
+        "key": "ProjectDetailContent.title.0",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "AR-GE"
+      },
+      {
+        "key": "ProjectDetailContent.description.1",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Elektronik tasarım ve otonom mühendislik çalışmaları."
+      },
+      {
+        "key": "ProjectDetailContent.image.2",
+        "label": "Görsel",
+        "kind": "image",
+        "value": "research-lab.svg"
+      },
+      {
+        "key": "ProjectDetailContent.breadcrumb.3",
+        "label": "Gezinme metni",
+        "kind": "text",
+        "value": "AR-GE"
+      },
+      {
+        "key": "ProjectDetailContent.kicker.4",
+        "label": "Bölüm etiketi",
+        "kind": "text",
+        "value": "İSTİKBAL AEROSPACE"
+      },
+      {
+        "key": "ProjectDetailContent.title.5",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Mühendislik disiplinleri."
+      },
+      {
+        "key": "ProjectDetailContent.kicker.6",
+        "label": "Bölüm etiketi",
+        "kind": "text",
+        "value": "SİSTEM ALANLARI"
+      },
+      {
+        "key": "ProjectDetailContent.description.7",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "İstikbal Aerospace’in gömülü donanım, otonom sistemler ve mühendislik çalışma alanları birlikte ele alınır."
+      },
+      {
+        "key": "ProjectDetailContent.image.8",
+        "label": "Görsel",
+        "kind": "image",
+        "value": "research-lab.svg"
+      }
+    ]
+  },
+  {
+    "page": "projects",
+    "slug": "projeler",
+    "title": "Projeler & AR-GE | İstikbal Aerospace",
+    "description": "İstikbal Aerospace kamuya açık teknoloji paylaşımları ve AR-GE çalışma alanları.",
+    "fields": [
+      {
+        "key": "ProjectsContent.title.0",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Projeler & AR-GE"
+      },
+      {
+        "key": "ProjectsContent.description.1",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Kamuya açık teknoloji tanıtımları ve mühendislik çalışma alanları."
+      },
+      {
+        "key": "ProjectsContent.image.2",
+        "label": "Görsel",
+        "kind": "image",
+        "value": "research-lab.svg"
+      },
+      {
+        "key": "ProjectsContent.breadcrumb.3",
+        "label": "Gezinme metni",
+        "kind": "text",
+        "value": "PROJELER & AR-GE"
+      },
+      {
+        "key": "ProjectsContent.kicker.4",
+        "label": "Bölüm etiketi",
+        "kind": "text",
+        "value": "İSTİKBAL AEROSPACE"
+      },
+      {
+        "key": "ProjectsContent.kicker.5",
+        "label": "Bölüm etiketi",
+        "kind": "text",
+        "value": "KAMUYA AÇIK ÇALIŞMALAR"
+      },
+      {
+        "key": "ProjectsContent.title.6",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Teknoloji fikirlerinden paylaşılan çalışmalara."
+      },
+      {
+        "key": "ProjectsContent.lead.7",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "İstikbal Aerospace’in kamuya açık tanıtımlarında yer alan çalışmalar. Geliştirme ve test aşamalarına ilişkin ayrıntılar şirket onayına bağlıdır."
+      },
+      {
+        "key": "publicWorks.0.title",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Tengri AI — Yapay zekâ ve savunma ağı konsepti"
+      },
+      {
+        "key": "publicWorks.0.summary",
+        "label": "Kısa açıklama",
+        "kind": "text",
+        "value": "Bağlantılı hava ve kara sistemleri arasında durumsal farkındalık ve karar desteği vizyonu."
+      },
+      {
+        "key": "publicWorks.0.image",
+        "label": "Görsel",
+        "kind": "image",
+        "value": "tengri-network.svg"
+      },
+      {
+        "key": "publicWorks.0.href",
+        "label": "Bağlantı",
+        "kind": "link",
+        "value": "tengri-ai.html"
+      },
+      {
+        "key": "publicWorks.1.title",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Yeni nesil uçuş kontrolcüsü tanıtımı"
+      },
+      {
+        "key": "publicWorks.1.summary",
+        "label": "Kısa açıklama",
+        "kind": "text",
+        "value": "Yapay zekâ destekli kontrol algoritmalarını ve uçuş sistemlerini bir araya getirmeyi hedefleyen teknoloji paylaşımı."
+      },
+      {
+        "key": "publicWorks.1.image",
+        "label": "Görsel",
+        "kind": "image",
+        "value": "platform-systems.svg"
+      },
+      {
+        "key": "publicWorks.1.href",
+        "label": "Bağlantı",
+        "kind": "link",
+        "value": "ucus-kontrol-paylasimi.html"
+      },
+      {
+        "key": "ProjectsContent.kicker.8",
+        "label": "Bölüm etiketi",
+        "kind": "text",
+        "value": "AR-GE DİSİPLİNLERİ"
+      },
+      {
+        "key": "ProjectsContent.title.9",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Elektronikten sisteme."
+      },
+      {
+        "key": "ProjectsContent.lead.10",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Kurumsal faaliyet tanıtımında yer alan çalışma alanları; bunlar tek başına tamamlanmış projeler olarak listelenmemektedir."
+      },
+      {
+        "key": "cards.technology.16.title",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "PCB Tasarımı"
+      },
+      {
+        "key": "cards.technology.16.description",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Gömülü donanım için elektronik kart mimarileri."
+      },
+      {
+        "key": "cards.technology.16.href",
+        "label": "Bağlantı",
+        "kind": "link",
+        "value": "gomulu-sistemler.html"
+      },
+      {
+        "key": "cards.technology.17.title",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Otonom Hareket"
+      },
+      {
+        "key": "cards.technology.17.description",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Karar, kontrol ve geri bildirim mekanizmaları."
+      },
+      {
+        "key": "cards.technology.17.href",
+        "label": "Bağlantı",
+        "kind": "link",
+        "value": "otonom-sistemler.html"
+      },
+      {
+        "key": "cards.technology.18.title",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Algılama & Veri"
+      },
+      {
+        "key": "cards.technology.18.description",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Sensör bilgisi ve sistem entegrasyonu."
+      },
+      {
+        "key": "cards.technology.18.href",
+        "label": "Bağlantı",
+        "kind": "link",
+        "value": "sensor-fuzyonu.html"
+      },
+      {
+        "key": "ProjectsContent.kicker.11",
+        "label": "Bölüm etiketi",
+        "kind": "text",
+        "value": "MÜHENDİSLİK YAKLAŞIMI"
+      },
+      {
+        "key": "ProjectsContent.title.12",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Araştırma, uygulama, bütünleştirme."
+      },
+      {
+        "key": "ProjectsContent.lead.13",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Fikirlerin donanım ve yazılımla buluştuğu sistem geliştirme adımları. PCB tasarımı ve gömülü yazılımın uçuş elektroniğiyle kurduğu ilişki bütünleşik sistem yaklaşımının parçasıdır."
+      },
+      {
+        "key": "ProjectsContent.text.14",
+        "label": "Metin",
+        "kind": "text",
+        "value": "İhtiyaç Analizi"
+      },
+      {
+        "key": "ProjectsContent.text.15",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Görev ve sistem gereksinimlerinin belirlenmesi."
+      },
+      {
+        "key": "ProjectsContent.text.16",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Elektronik Tasarım"
+      },
+      {
+        "key": "ProjectsContent.text.17",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Donanım ve arayüzlerin tasarlanması."
+      },
+      {
+        "key": "ProjectsContent.text.18",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Yazılım & Kontrol"
+      },
+      {
+        "key": "ProjectsContent.text.19",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Gömülü yazılım ve kontrol algoritmalarının geliştirilmesi."
+      },
+      {
+        "key": "ProjectsContent.text.20",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Sistem Entegrasyonu"
+      },
+      {
+        "key": "ProjectsContent.text.21",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Alt sistemlerin birlikte değerlendirilmesi."
+      }
+    ]
+  },
+  {
+    "page": "rockets",
+    "slug": "roket-sistemleri",
+    "title": "Roket Sistemleri | İstikbal Aerospace",
+    "description": "Roket teknolojileriyle ilişkili uçuş elektroniği, telemetri ve sistem mühendisliği.",
+    "fields": [
+      {
+        "key": "focus.rockets.title",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Roket Sistemleri"
+      },
+      {
+        "key": "focus.rockets.tagline",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Uçuş elektroniği, telemetri ve sistem bütünlüğü."
+      },
+      {
+        "key": "focus.rockets.bg",
+        "label": "Görsel",
+        "kind": "image",
+        "value": "platform-flight.svg"
+      },
+      {
+        "key": "focus.rockets.kicker",
+        "label": "Metin",
+        "kind": "text",
+        "value": "HAVACILIK & UZAY / 04"
+      },
+      {
+        "key": "FocusContent.text.0",
+        "label": "Metin",
+        "kind": "text",
+        "value": "TEKNOLOJİYE YAKINDAN BAKIŞ"
+      },
+      {
+        "key": "FocusContent.text.1",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Bir disiplinin farklı katmanları."
+      },
+      {
+        "key": "focus.rockets.intro",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Roket sistemleri, İstikbal Aerospace’in kamuya açık uzmanlık alanları listesinde geçmektedir. Bu sayfa roket projelerinde ele alınan genel mühendislik disiplinlerini tanıtır; şirkete ait belirli bir ürün, uçuş testi veya performans iddiası içermez."
+      },
+      {
+        "key": "FocusContent.kicker.2",
+        "label": "Bölüm etiketi",
+        "kind": "text",
+        "value": "TEMEL YAKLAŞIM"
+      },
+      {
+        "key": "FocusContent.title.3",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Mühendislik bileşenleri."
+      },
+      {
+        "key": "FocusContent.lead.4",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Konuya ait kavramlar ve çalışma ilkeleri; doğrulanmış proje bilgileri ayrıca yayınlanacaktır."
+      },
+      {
+        "key": "focus.rockets.modules.0.1",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Uçuş elektroniği"
+      },
+      {
+        "key": "focus.rockets.modules.0.2",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Algılama, kontrol ve uçuş bilgisinin değerlendirilmesinde elektronik bileşenlerin genel rolü."
+      },
+      {
+        "key": "focus.rockets.modules.1.1",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Telemetri ve haberleşme"
+      },
+      {
+        "key": "focus.rockets.modules.1.2",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Sistem verilerinin izlenmesi ve bağlantılı birimlerle bilgi alışverişi."
+      },
+      {
+        "key": "focus.rockets.modules.2.1",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Entegrasyon ve doğrulama"
+      },
+      {
+        "key": "focus.rockets.modules.2.2",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Elektronik, yazılım ve mekanik alt sistemlerin bütün halinde ele alınması."
+      },
+      {
+        "key": "FocusContent.text.5",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Sistemler birlikte çalışır: "
+      },
+      {
+        "key": "FocusContent.text.6",
+        "label": "Metin",
+        "kind": "text",
+        "value": " ile "
+      },
+      {
+        "key": "focus.rockets.related",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Gömülü Uçuş Mimarileri"
+      },
+      {
+        "key": "FocusContent.text.7",
+        "label": "Metin",
+        "kind": "text",
+        "value": " birbirini tamamlayan mühendislik alanlarıdır. Teknoloji başlıkları birbirinden bağımsız değildir."
+      }
+    ]
+  },
+  {
+    "page": "sensors",
+    "slug": "sensor-fuzyonu",
+    "title": "Sensör Füzyonu | İstikbal Aerospace",
+    "description": "Farklı algılayıcılardan gelen verilerin birlikte değerlendirilmesi.",
+    "fields": [
+      {
+        "key": "focus.sensors.title",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Sensör Füzyonu"
+      },
+      {
+        "key": "focus.sensors.tagline",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Birden fazla veri kaynağından daha tutarlı bir tablo."
+      },
+      {
+        "key": "focus.sensors.bg",
+        "label": "Görsel",
+        "kind": "image",
+        "value": "tengri-network.svg"
+      },
+      {
+        "key": "focus.sensors.kicker",
+        "label": "Metin",
+        "kind": "text",
+        "value": "ALGILAMA & ENTEGRASYON / 03"
+      },
+      {
+        "key": "FocusContent.text.0",
+        "label": "Metin",
+        "kind": "text",
+        "value": "TEKNOLOJİYE YAKINDAN BAKIŞ"
+      },
+      {
+        "key": "FocusContent.text.1",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Bir disiplinin farklı katmanları."
+      },
+      {
+        "key": "focus.sensors.intro",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Sensör füzyonu, farklı algılayıcılardan elde edilen bilgilerin değerlendirilerek birlikte kullanılmasına yönelik mühendislik alanıdır. Açıklamalar genel teknoloji tanıtımıdır; şirkete özgü performans iddiası içermez."
+      },
+      {
+        "key": "FocusContent.kicker.2",
+        "label": "Bölüm etiketi",
+        "kind": "text",
+        "value": "TEMEL YAKLAŞIM"
+      },
+      {
+        "key": "FocusContent.title.3",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Mühendislik bileşenleri."
+      },
+      {
+        "key": "FocusContent.lead.4",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Konuya ait kavramlar ve çalışma ilkeleri; doğrulanmış proje bilgileri ayrıca yayınlanacaktır."
+      },
+      {
+        "key": "focus.sensors.modules.0.1",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Veri kaynakları"
+      },
+      {
+        "key": "focus.sensors.modules.0.2",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Farklı ölçümlerin nitelikleri, zamanlaması ve kullanılabilirliği."
+      },
+      {
+        "key": "focus.sensors.modules.1.1",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Birleştirme yaklaşımı"
+      },
+      {
+        "key": "focus.sensors.modules.1.2",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Farklı kaynaklardan gelen bilgilerin karşılaştırılması ve birlikte ele alınması."
+      },
+      {
+        "key": "focus.sensors.modules.2.1",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Sistem ilişkileri"
+      },
+      {
+        "key": "focus.sensors.modules.2.2",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Algılama katmanının otonomi ve gömülü sistemlerle bağlantısı."
+      },
+      {
+        "key": "FocusContent.text.5",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Sistemler birlikte çalışır: "
+      },
+      {
+        "key": "FocusContent.text.6",
+        "label": "Metin",
+        "kind": "text",
+        "value": " ile "
+      },
+      {
+        "key": "focus.sensors.related",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Otonom Sistemler"
+      },
+      {
+        "key": "FocusContent.text.7",
+        "label": "Metin",
+        "kind": "text",
+        "value": " birbirini tamamlayan mühendislik alanlarıdır. Teknoloji başlıkları birbirinden bağımsız değildir."
+      }
+    ]
+  },
+  {
+    "page": "tech",
+    "slug": "teknolojiler",
+    "title": "Teknolojiler | İstikbal Aerospace",
+    "description": "Gömülü sistemler, yapay zekâ, otonomi, sensör füzyonu, roket sistemleri ve haberleşme.",
+    "fields": [
+      {
+        "key": "TechContent.title.0",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Teknolojiler"
+      },
+      {
+        "key": "TechContent.description.1",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Donanım, kontrol, algılama ve yapay zekâ tabanlı sistemlerin buluştuğu mühendislik alanları."
+      },
+      {
+        "key": "TechContent.image.2",
+        "label": "Görsel",
+        "kind": "image",
+        "value": "platform-systems.svg"
+      },
+      {
+        "key": "TechContent.breadcrumb.3",
+        "label": "Gezinme metni",
+        "kind": "text",
+        "value": "TEKNOLOJILER"
+      },
+      {
+        "key": "TechContent.kicker.4",
+        "label": "Bölüm etiketi",
+        "kind": "text",
+        "value": "İSTİKBAL AEROSPACE"
+      },
+      {
+        "key": "TechContent.kicker.5",
+        "label": "Bölüm etiketi",
+        "kind": "text",
+        "value": "TEKNOLOJİ ALANLARI"
+      },
+      {
+        "key": "TechContent.title.6",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Donanımdan otonomiye."
+      },
+      {
+        "key": "TechContent.lead.7",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Elektronik tasarım, gömülü yazılım, sensör füzyonu ve sistem entegrasyonu birbirini tamamlayan disiplinlerdir. Teknoloji alanları, sistemlerin alt katmanlarını birlikte ele alır."
+      },
+      {
+        "key": "cards.technology.19.title",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Otonom Sistemler"
+      },
+      {
+        "key": "cards.technology.19.description",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Sensör verilerinin değerlendirilmesi, karar ve kontrol algoritmaları."
+      },
+      {
+        "key": "cards.technology.19.href",
+        "label": "Bağlantı",
+        "kind": "link",
+        "value": "otonom-sistemler.html"
+      },
+      {
+        "key": "cards.technology.20.title",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Gömülü Donanım & PCB"
+      },
+      {
+        "key": "cards.technology.20.description",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Elektronik kart tasarımı, işlemci tabanlı sistemler ve gömülü yazılım."
+      },
+      {
+        "key": "cards.technology.20.href",
+        "label": "Bağlantı",
+        "kind": "link",
+        "value": "gomulu-sistemler.html"
+      },
+      {
+        "key": "cards.technology.21.title",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Sensör Füzyonu"
+      },
+      {
+        "key": "cards.technology.21.description",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Birden fazla algılayıcıdan gelen bilginin birlikte işlenmesi."
+      },
+      {
+        "key": "cards.technology.21.href",
+        "label": "Bağlantı",
+        "kind": "link",
+        "value": "sensor-fuzyonu.html"
+      },
+      {
+        "key": "cards.technology.22.title",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Yapay Zekâ / Tengri AI"
+      },
+      {
+        "key": "cards.technology.22.description",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Karar destek ve bağlantılı savunma ağlarına odaklanan teknoloji yaklaşımı."
+      },
+      {
+        "key": "cards.technology.22.href",
+        "label": "Bağlantı",
+        "kind": "link",
+        "value": "tengri-ai.html"
+      },
+      {
+        "key": "cards.technology.23.title",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Roket Sistemleri"
+      },
+      {
+        "key": "cards.technology.23.description",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Roket teknolojileriyle ilişkili uçuş elektroniği, telemetri ve sistem mühendisliğine genel bakış."
+      },
+      {
+        "key": "cards.technology.23.href",
+        "label": "Bağlantı",
+        "kind": "link",
+        "value": "roket-sistemleri.html"
+      },
+      {
+        "key": "cards.technology.24.title",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "İleri Haberleşme"
+      },
+      {
+        "key": "cards.technology.24.description",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Bağlantılı platformlarda veri iletimi, güvenli haberleşme ve sistem entegrasyonu."
+      },
+      {
+        "key": "cards.technology.24.href",
+        "label": "Bağlantı",
+        "kind": "link",
+        "value": "ileri-haberlesme.html"
+      },
+      {
+        "key": "TechContent.image.8",
+        "label": "Görsel",
+        "kind": "image",
+        "value": "tengri-network.svg"
+      },
+      {
+        "key": "TechContent.text.9",
+        "label": "Metin",
+        "kind": "text",
+        "value": "YAPAY ZEKÂ / TENGRİ AI"
+      },
+      {
+        "key": "TechContent.text.10",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Ağ bağlantılı karar destek."
+      },
+      {
+        "key": "TechContent.text.11",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Tengri AI, şirketin kamuya açık tanıtımında bağlı hava ve kara sistemlerinin koordinasyonunu hedefleyen yapay zekâ yaklaşımı olarak anlatılıyor."
+      }
+    ]
+  },
+  {
+    "page": "tengri",
+    "slug": "tengri-ai",
+    "title": "Tengri AI | İstikbal Aerospace",
+    "description": "Tengri AI yapay zekâ, durumsal farkındalık ve karar destek teknoloji vizyonu.",
+    "fields": [
+      {
+        "key": "TengriContent.title.0",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "TENGRİ AI"
+      },
+      {
+        "key": "TengriContent.description.1",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Çok katmanlı yapay zekâ, durumsal farkındalık ve bağlantılı savunma sistemleri vizyonu."
+      },
+      {
+        "key": "TengriContent.image.2",
+        "label": "Görsel",
+        "kind": "image",
+        "value": "tengri-network.svg"
+      },
+      {
+        "key": "TengriContent.breadcrumb.3",
+        "label": "Gezinme metni",
+        "kind": "text",
+        "value": "TEKNOLOJİLER / TENGRİ AI"
+      },
+      {
+        "key": "TengriContent.kicker.4",
+        "label": "Bölüm etiketi",
+        "kind": "text",
+        "value": "YAPAY ZEKÂ / KARAR DESTEK"
+      },
+      {
+        "key": "TengriContent.kicker.5",
+        "label": "Bölüm etiketi",
+        "kind": "text",
+        "value": "TENGRİ AI"
+      },
+      {
+        "key": "TengriContent.title.6",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Birden fazla sistem. Ortak bir karar resmi."
+      },
+      {
+        "key": "TengriContent.lead.7",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Tengri AI; hava savunma ağları, insansız sistemler, roket teknolojileri ve haberleşme altyapılarının birlikte ele alındığı çok katmanlı bir yapay zekâ ve karar destek vizyonudur."
+      },
+      {
+        "key": "TengriContent.image.8",
+        "label": "Görsel",
+        "kind": "image",
+        "value": "tengri-network.svg"
+      },
+      {
+        "key": "TengriContent.text.9",
+        "label": "Metin",
+        "kind": "text",
+        "value": "AĞ MERKEZLİ YAPAY ZEKÂ"
+      },
+      {
+        "key": "TengriContent.text.10",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Veriyi anlamlandıran, sistemleri buluşturan yaklaşım."
+      },
+      {
+        "key": "TengriContent.text.11",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Tengri AI’ın odağında sensör ve platform verilerinden durumsal farkındalık oluşturulması, tehditlerin değerlendirilmesi ve karar süreçlerinin desteklenmesi yer alır. Amaç, birbirinden ayrı sistemleri daha bütünlüklü bir bilgi ve koordinasyon yapısı içinde değerlendirmektir."
+      },
+      {
+        "key": "TengriContent.text.12",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Tasarımın temelinde çoklu kaynak verisi, tahmine dayalı analiz ve bağlantılı sistem mimarileri bulunur."
+      },
+      {
+        "key": "TengriContent.kicker.13",
+        "label": "Bölüm etiketi",
+        "kind": "text",
+        "value": "TANITIMDAKİ TEKNOLOJİ BAŞLIKLARI"
+      },
+      {
+        "key": "TengriContent.title.14",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Algılama. Değerlendirme. Koordinasyon."
+      },
+      {
+        "key": "TengriContent.lead.15",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Tengri AI yaklaşımının temelini oluşturan teknoloji başlıkları."
+      },
+      {
+        "key": "cards.technology.25.title",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Veri & Sensör Birleşimi"
+      },
+      {
+        "key": "cards.technology.25.description",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Farklı kaynaklardan elde edilen bilgilerin ortak bir durum görünümüne katkıda bulunması."
+      },
+      {
+        "key": "cards.technology.25.href",
+        "label": "Bağlantı",
+        "kind": "link",
+        "value": "sensor-fuzyonu.html"
+      },
+      {
+        "key": "cards.technology.26.title",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Çoklu Hedef Takibi"
+      },
+      {
+        "key": "cards.technology.26.description",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Birden fazla hava unsuruna ilişkin iz bilgilerinin birlikte değerlendirilmesi fikri."
+      },
+      {
+        "key": "cards.technology.26.href",
+        "label": "Bağlantı",
+        "kind": "link",
+        "value": "hava-savunma-aglari.html"
+      },
+      {
+        "key": "cards.technology.27.title",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Tehdit Analizi"
+      },
+      {
+        "key": "cards.technology.27.description",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Yapay zekâ destekli değerlendirme ve önceliklendirme süreçlerinin karar desteğindeki rolü."
+      },
+      {
+        "key": "cards.technology.27.href",
+        "label": "Bağlantı",
+        "kind": "link",
+        "value": "hava-savunma-aglari.html"
+      },
+      {
+        "key": "cards.technology.28.title",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Öngörüsel Değerlendirme"
+      },
+      {
+        "key": "cards.technology.28.description",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Gelişen durumların ve olası senaryoların önceden değerlendirilmesine yönelik yaklaşım."
+      },
+      {
+        "key": "cards.technology.28.href",
+        "label": "Bağlantı",
+        "kind": "link",
+        "value": "otonom-sistemler.html"
+      },
+      {
+        "key": "cards.technology.29.title",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Komuta & Kontrol"
+      },
+      {
+        "key": "cards.technology.29.description",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Bağlı unsurlardan alınan bilgilerin ortak bir karar ve koordinasyon çerçevesinde incelenmesi."
+      },
+      {
+        "key": "cards.technology.29.href",
+        "label": "Bağlantı",
+        "kind": "link",
+        "value": "hava-savunma-aglari.html"
+      },
+      {
+        "key": "cards.technology.30.title",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Ağ Tabanlı Entegrasyon"
+      },
+      {
+        "key": "cards.technology.30.description",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Farklı platform ve sistemlerin haberleşme ve veri paylaşımı yoluyla birlikte ele alınması."
+      },
+      {
+        "key": "cards.technology.30.href",
+        "label": "Bağlantı",
+        "kind": "link",
+        "value": "ileri-haberlesme.html"
+      },
+      {
+        "key": "TengriContent.kicker.16",
+        "label": "Bölüm etiketi",
+        "kind": "text",
+        "value": "ENTEGRE SİSTEM YAKLAŞIMI"
+      },
+      {
+        "key": "TengriContent.title.17",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Bağlantılı bir teknoloji ekosistemi."
+      },
+      {
+        "key": "TengriContent.lead.18",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Tengri AI’ın kamuya açık vizyonunda farklı sistem ailelerinin ortak bir yapıda değerlendirilmesi hedefleniyor."
+      },
+      {
+        "key": "TengriContent.title.19",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "İnsansız Hava Platformları"
+      },
+      {
+        "key": "TengriContent.description.20",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Hava araçları ve uçuş sistemlerinin sağladığı verilerin daha geniş bir durum değerlendirmesine dahil edilmesi yaklaşımı."
+      },
+      {
+        "key": "TengriContent.title.21",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Savunma Alt Sistemleri"
+      },
+      {
+        "key": "TengriContent.description.22",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Hava savunma ve roket sistemleri gibi farklı bileşenler arasında ortak bilgi ve koordinasyon gereksinimi."
+      },
+      {
+        "key": "TengriContent.title.23",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Haberleşme Altyapısı"
+      },
+      {
+        "key": "TengriContent.description.24",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Bağlantılı birimler arasında bilgi aktarımı, veri bütünlüğü ve sistemler arası iletişim kavramları."
+      },
+      {
+        "key": "TengriContent.title.25",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Kritik alanlar için durumsal farkındalık."
+      },
+      {
+        "key": "TengriContent.kicker.26",
+        "label": "Bölüm etiketi",
+        "kind": "text",
+        "value": "VİZYON & KARAR DESTEK"
+      },
+      {
+        "key": "TengriContent.description.27",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Kritik altyapılar, stratejik bölgeler ve olası tehdit senaryoları için durumsal farkındalık, önceliklendirme ve öngörüye dayalı değerlendirme bu teknoloji vizyonunun kullanım alanları arasında yer alır. Bunlar mevcut operasyonel yetenek olarak değil, hedeflenen çalışma alanları olarak ele alınmaktadır."
+      },
+      {
+        "key": "TengriContent.image.28",
+        "label": "Görsel",
+        "kind": "image",
+        "value": "research-lab.svg"
+      },
+      {
+        "key": "TengriContent.kicker.29",
+        "label": "Bölüm etiketi",
+        "kind": "text",
+        "value": "İLİŞKİLİ TEKNOLOJİLER"
+      },
+      {
+        "key": "TengriContent.title.30",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Tengri AI ve sistem mühendisliği."
+      },
+      {
+        "key": "TengriContent.lead.31",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Gömülü yazılım, sensör füzyonu, otonomi ve haberleşme; ağ bağlantılı yapay zekâ yaklaşımlarını tamamlayan mühendislik alanlarıdır."
+      }
+    ]
+  },
+  {
+    "page": "flightControlNews",
+    "slug": "ucus-kontrol-paylasimi",
+    "title": "Uçuş Kontrolcüsü Paylaşımı | İstikbal Aerospace",
+    "description": "Yapay zekâ ile entegre uçuş kontrolcüsü hakkında kamuya açık teknoloji tanıtımı.",
+    "fields": [
+      {
+        "key": "news.article.heroTitle",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Uçuş Kontrolcüsü"
+      },
+      {
+        "key": "news.article.heroDescription",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Yapay zekâ ile entegre yeni nesil uçuş kontrolcüsü tanıtımı."
+      },
+      {
+        "key": "news.image",
+        "label": "Görsel",
+        "kind": "image",
+        "value": "platform-systems.svg"
+      },
+      {
+        "key": "news.article.breadcrumb",
+        "label": "Metin",
+        "kind": "text",
+        "value": "HABERLER / UÇUŞ KONTROLCÜSÜ"
+      },
+      {
+        "key": "news.article.eyebrow",
+        "label": "Metin",
+        "kind": "text",
+        "value": "KAMUYA AÇIK TEKNOLOJİ TANITIMI"
+      },
+      {
+        "key": "news.article.heading",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Yapay zekâ ile entegre uçuş kontrolü."
+      },
+      {
+        "key": "news.article.intro",
+        "label": "Metin",
+        "kind": "text",
+        "value": "İstikbal Aerospace’in LinkedIn üzerinden paylaşılan yeni nesil uçuş kontrolcüsü tanıtımında, yapay zekâ destekli kontrol algoritmaları ve uçuş sistemlerinde güvenlik ile verimlilik hedefleri öne çıkarılıyor."
+      },
+      {
+        "key": "news.article.sectionHeading",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Mühendislik yaklaşımı"
+      },
+      {
+        "key": "news.article.sectionBody",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Uçuş elektroniği; gömülü işlem birimleri, sensör verileri, kontrol yazılımı ve geri bildirim mekanizmalarını bir araya getirir. Bu tanıtım, doğrulanmış test sonuçları veya sertifikasyon bilgisi içermediğinden performans değerleri yayımlanmamaktadır."
+      },
+      {
+        "key": "news.article.note",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Şirketin kamuya açık paylaşımı LinkedIn faaliyetinde yer almakta; tam yayın tarihi ve ayrıntılı teknik dokümanları henüz doğrulanmamıştır."
+      }
+    ]
+  },
+  {
+    "page": "flightArch",
+    "slug": "ucus-mimarileri",
+    "title": "Gömülü Uçuş Mimarileri | İstikbal Aerospace",
+    "description": "Uçuş elektroniği, gömülü yazılım ve sistem entegrasyonunun mühendislik temelleri.",
+    "fields": [
+      {
+        "key": "platformFocus.flightArch.title",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Gömülü Uçuş Mimarileri"
+      },
+      {
+        "key": "platformFocus.flightArch.description",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Donanım ve yazılımın birlikte geliştirildiği uçuş sistemleri."
+      },
+      {
+        "key": "platformFocus.flightArch.image",
+        "label": "Görsel",
+        "kind": "image",
+        "value": "platform-systems.svg"
+      },
+      {
+        "key": "platformFocus.flightArch.kicker",
+        "label": "Metin",
+        "kind": "text",
+        "value": "GÖMÜLÜ UÇUŞ MİMARİSİ"
+      },
+      {
+        "key": "FocusContent.text.8",
+        "label": "Metin",
+        "kind": "text",
+        "value": "SİSTEM ODAĞI"
+      },
+      {
+        "key": "FocusContent.text.9",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Birlikte çalışan teknolojiler."
+      },
+      {
+        "key": "platformFocus.flightArch.intro",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Uçuş sistemlerinde gömülü mimari; kart tasarımı, işlem birimi, çevre birimleri, veri arabirimleri ve kontrol yazılımının birlikte değerlendirilmesini gerektirir."
+      },
+      {
+        "key": "FocusContent.kicker.10",
+        "label": "Bölüm etiketi",
+        "kind": "text",
+        "value": "MÜHENDİSLİK KATMANLARI"
+      },
+      {
+        "key": "FocusContent.title.11",
+        "label": "Başlık",
+        "kind": "text",
+        "value": "Sistem bütünlüğü."
+      },
+      {
+        "key": "FocusContent.lead.12",
+        "label": "Açıklama",
+        "kind": "text",
+        "value": "Havacılık çalışmalarında birbirini tamamlayan temel mühendislik başlıkları."
+      },
+      {
+        "key": "platformFocus.flightArch.modules.0.0",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Elektronik tasarım"
+      },
+      {
+        "key": "platformFocus.flightArch.modules.0.1",
+        "label": "Metin",
+        "kind": "text",
+        "value": "PCB ve temel elektronik bileşenlerin sistem ihtiyaçlarına göre ele alınması."
+      },
+      {
+        "key": "platformFocus.flightArch.modules.1.0",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Gömülü yazılım"
+      },
+      {
+        "key": "platformFocus.flightArch.modules.1.1",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Donanım kaynakları, zamanlama ve sistem davranışı."
+      },
+      {
+        "key": "platformFocus.flightArch.modules.2.0",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Entegrasyon"
+      },
+      {
+        "key": "platformFocus.flightArch.modules.2.1",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Bileşenlerin bütünleşik yapı içinde çalışmasının değerlendirilmesi."
+      },
+      {
+        "key": "FocusContent.text.13",
+        "label": "Metin",
+        "kind": "text",
+        "value": "Otonom sistemler, gömülü donanım ve sensör füzyonu bu mimarilerle ilişkili mühendislik disiplinleridir."
+      }
+    ]
+  }
+]

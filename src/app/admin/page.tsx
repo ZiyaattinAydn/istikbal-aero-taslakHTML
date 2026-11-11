@@ -31,6 +31,7 @@ export default async function Admin({
     <section>
       <h1>İçerikler</h1>
       <nav>
+        <Link href="/admin/media">Medya kütüphanesi</Link>
         <Link href="/admin/pages">Mevcut sayfalar</Link>
         {Object.entries(names).map(([kind, title]) => (
           <Link key={kind} href={`/admin/new/${kind}`}>

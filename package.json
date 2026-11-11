@@ -15,14 +15,17 @@
     "test": "node --import tsx --test tests/*.test.ts",
     "preview": "node scripts/preview.mjs",
     "test:browser": "playwright test",
-    "cms:inventory": "tsx scripts/cms/inventory.ts",
-    "cms:inventory:check": "tsx scripts/cms/inventory.ts --check",
-    "cms:snapshots:check": "tsx scripts/cms/snapshot.ts --check",
-    "cms:seed:check": "tsx scripts/cms/seed.ts --check"
+    "cms:inventory": "node --import tsx scripts/cms/inventory.ts",
+    "cms:inventory:check": "node --import tsx scripts/cms/inventory.ts --check",
+    "cms:snapshots:check": "node --import tsx scripts/cms/snapshot.ts --check",
+    "cms:seed:check": "node --import tsx scripts/cms/seed.ts --check",
+    "cms:pages:check": "node --import tsx scripts/cms/page-schema.ts --check && node --import tsx scripts/cms/page-seed.ts --check",
+    "cms:test:auth": "node scripts/cms/local-auth.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "0.12.7",
     "@supabase/supabase-js": "2.119.0",
+    "image-size": "2.1.0",
     "next": "16.4.5",
     "react": "19.3.1",
     "react-dom": "19.3.1"

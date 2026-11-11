@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { requireAdmin } from "@/lib/cms/server";
 import snapshots from "../../../../docs/cms/page-snapshots.json";
 import { routes } from "@/data/routes";
@@ -7,8 +8,8 @@ export default async function Pages() {
     <section>
       <h1>Mevcut sayfalar</h1>
       <p>
-        21 sayfanın içerik envanteri hazır. Bölüm düzenleyicisi ve veritabanı
-        aktarımı, hosting doğrulaması tamamlandığında bağlanacak.
+        Sayfayı seçip mevcut alanları düzenleyin, taslak kaydedin ve gerçek
+        şablonda önizleyin.
       </p>
       <ul>
         {routes.map((r) => (
@@ -17,6 +18,7 @@ export default async function Pages() {
               {r.title.split("|")[0]}
             </a>
             <p>{r.description}</p>
+            <Link href={`/admin/pages/${r.slug}`}>Sayfayı düzenle</Link>
             <details>
               <summary>Mevcut metinleri gör</summary>
               {snapshots

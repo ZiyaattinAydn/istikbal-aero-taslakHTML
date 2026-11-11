@@ -1,7 +1,7 @@
 import { chromium } from "@playwright/test";
 import { writeFileSync } from "node:fs";
 const browser = await chromium.launch({
-  executablePath: process.env.CHROMIUM_PATH || "/usr/bin/chromium",
+  executablePath: process.env.CHROMIUM_PATH || undefined,
   args: ["--no-sandbox"],
 });
 const rows = [];
@@ -35,9 +35,12 @@ for (const mobile of [false, true]) {
           }),
         ).observe({ type: "layout-shift", buffered: true });
       });
-      await page.goto("http://127.0.0.1:3100" + path, {
-        waitUntil: "networkidle",
-      });
+      await page.goto(
+        (process.env.MEASURE_BASE_URL || "http://127.0.0.1:3100") + path,
+        {
+          waitUntil: "networkidle",
+        },
+      );
       await page.waitForTimeout(300);
       rows.push({
         mobile,
