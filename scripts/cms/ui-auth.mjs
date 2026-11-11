@@ -314,6 +314,7 @@ export async function runUiChecks({ status, admin, totp }) {
       30000,
     );
     async function createEntry(kind, title, related = []) {
+      stage = "create-" + kind + ":fields";
       await page.goto(`${url}/admin/new/${kind}`);
       await page.getByLabel("Başlık", { exact: true }).fill(title);
       await page
@@ -323,11 +324,11 @@ export async function runUiChecks({ status, admin, totp }) {
         await page
           .getByLabel("Kapak görseli", { exact: true })
           .selectOption(media.id);
-        for (const label of related)
-          await page
-            .getByRole("checkbox", { name: label, exact: true })
-            .check();
+        stage = "create-" + kind + ":relations";
+        for (const id of related)
+          await page.locator(`input[type=checkbox][value="${id}"]`).check();
       }
+      stage = "create-" + kind + ":save";
       await page
         .getByRole("button", { name: "Taslak kaydet", exact: true })
         .click();
@@ -346,8 +347,8 @@ export async function runUiChecks({ status, admin, totp }) {
     await submitStatus("publish", tech.id, (d) => d.status === "published");
     const platform = await createEntry("platform", "QA Platform");
     const project = await createEntry("project", "QA Proje", [
-      "QA Teknoloji — Teknoloji",
-      "QA Platform — Platform",
+      tech.id,
+      platform.id,
     ]);
     await page.goto(`${url}/admin/content/${project.id}/preview`);
     assert.equal(
@@ -488,6 +489,12 @@ export async function runUiChecks({ status, admin, totp }) {
     );
   } catch (error) {
     console.error("Authenticated UI failure stage:", stage);
+    console.error(
+      "UI operation class:",
+      String(error?.message || "")
+        .split("\n")[0]
+        .match(/^[a-zA-Z.]+:/)?.[0],
+    );
     if (stage.startsWith("page-")) {
       const values = JSON.parse(
         await page.locator('input[name="fields"]').inputValue(),

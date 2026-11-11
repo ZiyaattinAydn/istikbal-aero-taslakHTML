@@ -211,6 +211,7 @@ export function ContentEditor({
                     <label key={r.id}>
                       <input
                         type="checkbox"
+                        value={r.id}
                         checked={body.related_ids?.includes(r.id) || false}
                         onChange={(e) =>
                           update(

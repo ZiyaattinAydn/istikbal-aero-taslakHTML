@@ -4,7 +4,7 @@ export async function editorOptions(db: SupabaseClient, id?: string) {
   const [relations, media] = await Promise.all([
     db
       .from("cms_documents")
-      .select("id,kind,body->>title")
+      .select("id,kind,title:body->>title")
       .in("kind", ["project", "platform", "technology"])
       .order("updated_at", { ascending: false })
       .limit(200),
