@@ -59,6 +59,9 @@ jobs:
       - run: npm run typecheck
       - run: npm run lint
       - run: npm test
+      - run: npm run cms:inventory:check
+      - run: npm run cms:snapshots:check
+      - run: npm run cms:seed:check
       - run: cd legacy-ref && node scripts/verify-static.mjs
       - run: npm run build
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6

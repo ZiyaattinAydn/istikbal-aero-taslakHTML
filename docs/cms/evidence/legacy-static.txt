@@ -1,0 +1,2 @@
+PASS: 21 page renderers, internal links, metadata, legacy news URLs, XSS query and wheel guard.
+NOTE: Visual responsive testing, actual screen readers, and browser wheel gestures require real devices.

@@ -13,3 +13,6 @@ playwright-report/
 
 # CI-only comparison checkout
 legacy-ref/
+
+# Local Supabase CLI state
+supabase/.temp/
