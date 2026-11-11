@@ -12,7 +12,7 @@ Kullanıcı yeni bağımsız Supabase Free projesini, başlangıç yayıncı e-p
 | 3 | Kısmi | OTP/TOTP, kapalı local signup ve DB account guard; kullanıcı e-postası özel allowlist'te. Hosted Auth kullanıcısı/Admin API ayarları ve gerçek MFA kurulumu bekliyor. CLI/Mailpit gerçek entegrasyon testi CI'da; Resend DNS teslimi yapılmadı. |
 | 4 | Kod tamamlandı; uçtan uca kabul bekliyor | 21 sayfanın alan düzenleyicisi, dolu içerik, SEO, gerçek React şablon önizlemesi, sürüm/geri alma ve hedefli cache invalidation eklendi. Auth ve staging'de kullanıcı kabulü bekliyor. |
 | 5 | Kısmi | Kayıt CRUD + public liste/detay yolları; özel medya yükleme/seçme, istemcide WebP boyutlandırma, sunucuda imza/dimension/izin doğrulaması, yayıncı medya onayı. İlişki düzenleyicisi ve detaylarda ilişkili içerik gösterimi henüz yok. |
-| 6 | Devam ediyor | 52 yerel test, typecheck/lint/build ve audit geçti; son CI browser, local Auth/Mailpit ve performans sonuçları takip ediliyor. Fiziksel cihaz ve gerçek sağlayıcı kabulü bekliyor. |
+| 6 | Devam ediyor | 53 yerel test, typecheck/lint/build ve audit geçti; son CI browser, local Auth/Mailpit ve performans sonuçları takip ediliyor. Fiziksel cihaz ve gerçek sağlayıcı kabulü bekliyor. |
 
 ## Çalışan kod ile etkin servis ayrımı
 
@@ -35,3 +35,7 @@ Kullanıcı yeni bağımsız Supabase Free projesini, başlangıç yayıncı e-p
 - Hosted DB'de anonim taslak erişimi reddi, 21 taslak/537 alan/özel bucket/allowlist ve security advisors sorguları doğrulandı. Security advisors temiz; yeni projede kullanılmamış indeks bilgileri beklenir.
 
 Önceki kabul edilmiş kod: `4e61a7c` için development ve production 71/71 tarayıcı testi, checks ve CodeQL başarılıydı. Devam çalışmasının yeni CI sonuçları PR #13'te izlenir. [PR #13](https://github.com/ZiyaattinAydn/istikbal-aerospace-web/pull/13).
+
+## Tarayıcı kanıtı — b38758f
+
+[CI 43063031195](https://github.com/ZiyaattinAydn/istikbal-aerospace-web/actions/runs/43063031195): checks ve production Chromium başarılı; performance işi tamamlandı. `browser-before/after/comparison.json` artifact’ları repo kanıtlarına alındı. Local Auth işi e-posta okuyucusunda başarısız oldu; kodu veya gövdeyi loglamadan test okuyucusu düzeltiliyor. Bu başarısızlık OTP teslim kabulü değildir. Sonraki değişiklik yeni kayıtlar için de aynı şablonda korumalı taslak önizleme ekler; yerelde 53 test/typecheck/lint/build geçti.

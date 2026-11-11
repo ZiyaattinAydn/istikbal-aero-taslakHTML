@@ -3361,6 +3361,102 @@
       ]
     },
     {
+      "path": "src/components/pages/EntryContent.tsx",
+      "sha256": "0ac2956c49bc53330d2498a27ef741edf550e5d973fb9630a7e15c450987a41c",
+      "fields": [
+        {
+          "key": "src/components/pages/EntryContent.tsx:26",
+          "line": 1,
+          "value": "@/components/layout/SiteShell",
+          "candidate": false
+        },
+        {
+          "key": "src/components/pages/EntryContent.tsx:94",
+          "line": 2,
+          "value": "@/components/ui/content",
+          "candidate": false
+        },
+        {
+          "key": "src/components/pages/EntryContent.tsx:154",
+          "line": 3,
+          "value": "@/lib/cms/model",
+          "candidate": false
+        },
+        {
+          "key": "src/components/pages/EntryContent.tsx:201",
+          "line": 4,
+          "value": "@/data/routes",
+          "candidate": false
+        },
+        {
+          "key": "src/components/pages/EntryContent.tsx:266",
+          "line": 6,
+          "value": "newsDetail",
+          "candidate": false
+        },
+        {
+          "key": "src/components/pages/EntryContent.tsx:291",
+          "line": 7,
+          "value": "projectDetail",
+          "candidate": false
+        },
+        {
+          "key": "src/components/pages/EntryContent.tsx:320",
+          "line": 8,
+          "value": "platformDetail",
+          "candidate": false
+        },
+        {
+          "key": "src/components/pages/EntryContent.tsx:352",
+          "line": 9,
+          "value": "tech",
+          "candidate": false
+        },
+        {
+          "key": "src/components/pages/EntryContent.tsx:374",
+          "line": 10,
+          "value": "capabilities",
+          "candidate": false
+        },
+        {
+          "key": "src/components/pages/EntryContent.tsx:534",
+          "line": 20,
+          "value": "newsDetail",
+          "candidate": false
+        },
+        {
+          "key": "src/components/pages/EntryContent.tsx:642",
+          "line": 24,
+          "value": "research-lab.svg",
+          "candidate": true
+        },
+        {
+          "key": "src/components/pages/EntryContent.tsx:713",
+          "line": 27,
+          "value": "article",
+          "candidate": false
+        },
+        {
+          "key": "src/components/pages/EntryContent.tsx:960",
+          "line": 33,
+          "value": "_blank",
+          "candidate": false
+        },
+        {
+          "key": "src/components/pages/EntryContent.tsx:973",
+          "line": 33,
+          "value": "noreferrer",
+          "candidate": false
+        },
+        {
+          "key": "src/components/pages/EntryContent.tsx:1001",
+          "line": 34,
+          "value": "Kaynak",
+          "candidate": false
+        }
+      ]
+    },
+    {
       "path": "src/components/pages/FocusContent.tsx",
       "sha256": "862f9ca8da3631fc1ee7b5ff3fbde965d33c059e71b350d08d28de802cd05961",
       "fields": [

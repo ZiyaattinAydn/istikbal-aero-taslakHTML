@@ -34,3 +34,26 @@ Baseline için temiz `41e5581` checkout'unda ayrı `npm ci` ve build gerekir; an
 ## Devam çalışmasının ölçümü
 
 21 sayfa bağları ve medya kodu sonrası aynı yerel HTTP aracında public script gzip toplamı 188.914 byte (ilk 41e5581 bazına göre +1.343 byte, yaklaşık %0,72). Bu CMS_PUBLIC_READS=false senaryosudur. Tarayıcı önce/sonra kıyası `cms-performance` CI işine eklendi; sonuçları artifact üzerinden değerlendirilmeden Web Vitals kabulü verilmez. Gerçek DB/Workers, field INP ve fiziksel cihaz ölçümleri ayrıca gerekir.
+
+## Gerçek Chromium kıyası — CI 43063031195 / b38758f
+
+Aynı runner, Node 22 production build, rota/viewport başına üç örnek. Ağ ve CPU yavaşlatması yok; mobil yalnız viewport/touch simülasyonu. CMS_PUBLIC_READS=false. Dolayısıyla bu, kod/bundle regresyon ölçümüdür; gerçek Supabase veya Workers yayın ölçümü değildir. Üç örnekle saha p95/INP sonucu çıkarılmaz.
+
+| Görünüm | Rota | Önce LCP ortanca ms | Sonra LCP ortanca ms | Sonra en yüksek CLS |
+|---|---|---:|---:|---:|
+| Masaüstü | `/` | 176 | 180 | 0.0071 |
+| Masaüstü | `/kurumsal` | 140 | 148 | 0.0192 |
+| Masaüstü | `/platformlar` | 144 | 140 | 0.0000 |
+| Masaüstü | `/teknolojiler` | 216 | 184 | 0.0192 |
+| Masaüstü | `/projeler` | 112 | 104 | 0.0336 |
+| Masaüstü | `/haberler` | 144 | 132 | 0.0192 |
+| Masaüstü | `/haber-detay` | 192 | 200 | 0.0192 |
+| Mobil | `/` | 156 | 136 | 0.0000 |
+| Mobil | `/kurumsal` | 116 | 124 | 0.0000 |
+| Mobil | `/platformlar` | 152 | 136 | 0.0000 |
+| Mobil | `/teknolojiler` | 76 | 80 | 0.0000 |
+| Mobil | `/projeler` | 116 | 108 | 0.0000 |
+| Mobil | `/haberler` | 96 | 112 | 0.0000 |
+| Mobil | `/haber-detay` | 84 | 84 | 0.0000 |
+
+Bu laboratuvar senaryosunda anlamlı LCP gerilemesi gözlenmedi; en yüksek CLS yaklaşık 0,034, mobil CLS 0. Script kaynakları için browser encodedBodySize toplamı 145.974 → 147.317 byte (+1.343 byte); bu tarayıcı metriği, yerel gzip toplamıyla aynı tanım değildir. Raw sonuçlar evidence/browser-*.json.

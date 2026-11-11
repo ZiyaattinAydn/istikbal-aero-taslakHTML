@@ -76,25 +76,40 @@ async function main() {
     });
     throw Error("otp_send_failed");
   }
+  stage = "read-mailpit";
+  const mailpit = status.MAILPIT_URL || "http://127.0.0.1:54324";
   let message;
   for (let i = 0; i < 50; i++) {
-    const list = await (
-      await fetch("http://127.0.0.1:54324/api/v1/messages")
-    ).json();
+    const list = await (await fetch(`${mailpit}/api/v1/messages`)).json();
+    if (i === 0)
+      console.log("Mailpit collection metadata:", {
+        fields: Object.keys(list),
+        count: list.messages?.length ?? -1,
+      });
     const item = list.messages?.find((m) =>
       m.To?.some((t) => t.Address === email),
     );
     if (item) {
       message = await (
-        await fetch(`http://127.0.0.1:54324/api/v1/message/${item.ID}`)
+        await fetch(`${mailpit}/api/v1/message/${item.ID}`)
       ).json();
       break;
     }
     await new Promise((r) => setTimeout(r, 200));
   }
   assert.ok(message, "Mailpit did not receive OTP");
-  const match = (message.Text || message.HTML || "").match(/\b\d{6}\b/);
+  stage = "extract-otp";
+  console.log("Mailpit message metadata:", {
+    fields: Object.keys(message),
+    textLength: message.Text?.length ?? 0,
+    htmlLength: message.HTML?.length ?? 0,
+  });
+  const match = [message.Text, message.HTML]
+    .filter(Boolean)
+    .join("\n")
+    .match(/\b\d{6}\b/);
   assert.ok(match, "Mailpit email contains no six digit OTP");
+  stage = "verify-otp";
   const wrong = await db.auth.verifyOtp({
     email,
     token: match[0] === "000000" ? "000001" : "000000",
@@ -250,7 +265,18 @@ async function main() {
     `PASS: ${checks.length} local Auth/Mailpit/MFA/API checks. No OTP, keys or tokens logged.`,
   );
 }
-main().catch(() => {
+main().catch((error) => {
+  const safeMessages = [
+    "Mailpit did not receive OTP",
+    "Mailpit email contains no six digit OTP",
+  ];
+  console.error("Local failure class:", {
+    name: error?.name,
+    code: error?.code || error?.cause?.code,
+    assertion: safeMessages.includes(error?.message)
+      ? error.message
+      : undefined,
+  });
   console.error(
     "FAIL: local Auth check stage " +
       stage +

@@ -205,6 +205,16 @@ export function ContentEditor({
               )[document.status]
             }
           </p>
+          {!statusOnly && !dirty && (
+            <p>
+              <Link
+                href={`/admin/content/${document.id}/preview`}
+                target="_blank"
+              >
+                Gerçek şablonda önizle
+              </Link>
+            </p>
+          )}
           <form action={change}>
             <input type="hidden" name="id" value={document.id} />
             <input type="hidden" name="revision" value={document.revision} />

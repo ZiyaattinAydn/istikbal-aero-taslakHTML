@@ -12,6 +12,7 @@ test("CMS remains closed without explicit configuration", async ({
     "/admin/pages/kurumsal",
     "/admin/pages/kurumsal/preview",
     "/admin/media",
+    "/admin/content/00000000-0000-0000-0000-000000000001/preview",
     "/admin/media/00000000-0000-0000-0000-000000000001/file",
     "/admin/mfa",
     "/admin/new/news",
