@@ -85,24 +85,41 @@ async function main() {
   stage = "read-mailpit";
   const mailpit = status.MAILPIT_URL || "http://127.0.0.1:54324";
   let message;
-  for (let i = 0; i < 50; i++) {
-    const list = await (await fetch(`${mailpit}/api/v1/messages`)).json();
-    if (i === 0)
-      console.log("Mailpit collection metadata:", {
-        fields: Object.keys(list),
-        count: list.messages?.length ?? -1,
-      });
-    const item = list.messages?.find((m) =>
+  const seenKinds = new Set();
+  for (let i = 0; i < 150 && !message; i++) {
+    const response = await fetch(`${mailpit}/api/v1/messages`);
+    assert.ok(response.ok, "Mailpit collection unavailable");
+    const list = await response.json();
+    for (const item of (list.messages || []).filter((m) =>
       m.To?.some((t) => t.Address === email),
-    );
-    if (item) {
-      message = await (
+    )) {
+      const subject = item.Subject || "";
+      seenKinds.add(
+        subject.includes("İstikbal")
+          ? "custom_auth"
+          : /password/i.test(subject)
+            ? "password_notice"
+            : /magic|sign.in|login/i.test(subject)
+              ? "default_login"
+              : "other",
+      );
+      if (!subject.includes("İstikbal")) continue;
+      const candidate = await (
         await fetch(`${mailpit}/api/v1/message/${item.ID}`)
       ).json();
-      break;
+      if (
+        [candidate.Text, candidate.HTML]
+          .filter(Boolean)
+          .join("\n")
+          .match(/\b\d{6}\b/)
+      ) {
+        message = candidate;
+        break;
+      }
     }
-    await new Promise((r) => setTimeout(r, 200));
+    if (!message) await new Promise((r) => setTimeout(r, 200));
   }
+  console.log("Mailpit observed message classes:", [...seenKinds]);
   assert.ok(message, "Mailpit did not receive OTP");
   stage = "extract-otp";
   console.log("Mailpit message metadata:", {
