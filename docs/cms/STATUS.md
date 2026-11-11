@@ -43,3 +43,7 @@ Kod işleri: ilişki editörü ve public ilişki kartları; yeni kayıt kapak se
 `npm ci`, `npm run typecheck`, `npm run lint`, `npm test`, `npm run build`, `npm audit`; `cms:inventory:check`, `cms:snapshots:check`, `cms:seed:check`, `cms:pages:check`. CI `cms-local-auth` izole CLI 3.1.0 + Mailpit çalıştırır; anahtar/OTP/token loglamaz. CI `cms-performance` aynı runner'da PR base ile yeni production build'i ölçer.
 
 [PR #13](https://github.com/ZiyaattinAydn/istikbal-aerospace-web/pull/13) taslaktır; main merge veya canlı yayın yapılmadı.
+
+## Tamamlama turu — 12 Kasım 2026
+
+Branch 8bcc6e7 üzerinden kurtarıldı. İlişki/kapak, public ilişkili içerik, medya metadata ve onaylı yayın geri çekme kodu eklendi. 56 yerel test/typecheck/lint/build ve şema/snapshot kontrolleri başarılı. Gerçek UI CI ilk turunda ikinci sayfada durdu; henüz tam kabul verilmedi, test sınıflaması geliştiriliyor. Yeni migration hosted projeye henüz uygulanmadı. [ACCESS_STEPS.md](ACCESS_STEPS.md) tek erişim kontrolünü ve gereken kesin servis adımlarını içerir.

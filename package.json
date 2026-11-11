@@ -20,7 +20,9 @@
     "cms:snapshots:check": "node --import tsx scripts/cms/snapshot.ts --check",
     "cms:seed:check": "node --import tsx scripts/cms/seed.ts --check",
     "cms:pages:check": "node --import tsx scripts/cms/page-schema.ts --check && node --import tsx scripts/cms/page-seed.ts --check",
-    "cms:test:auth": "node scripts/cms/local-auth.mjs"
+    "cms:test:auth": "node scripts/cms/local-auth.mjs",
+    "cms:hosting:prepare": "node scripts/cms/prepare-cloudflare.mjs",
+    "cms:admin:provision": "node scripts/cms/provision-admin.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "0.12.7",

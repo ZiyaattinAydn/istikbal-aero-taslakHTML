@@ -144,7 +144,7 @@ jobs:
         if: failure()
         shell: bash
         run: |
-          docker logs supabase_db_istikbal-aerospace-cms 2>&1 | python3 -c 'import re,sys; text=sys.stdin.read(); known=re.findall(r"Account creation is restricted|Password authentication is disabled|permission denied for [a-z_.]+|column [a-z_.]+ does not exist",text); print("Database error classes:",sorted(set(known)))'
+          docker logs supabase_db_istikbal-aerospace-cms 2>&1 | python3 -c 'import re,sys; text=sys.stdin.read(); known=re.findall(r"Account creation is restricted|Password authentication is disabled|permission denied for [a-z_.]+|column [a-z_.]+ does not exist|Invalid page field|Invalid link|Invalid image|Revision conflict|violates check constraint",text); print("Database error classes:",sorted(set(known)))'
       - name: Classify template failures without email bodies or credentials
         if: failure()
         shell: bash

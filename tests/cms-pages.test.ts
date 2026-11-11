@@ -61,3 +61,49 @@ test("new record draft and public views share the same escaped template", async 
   assert.ok(html.includes("Kontrollü paragraf"));
   assert.equal((html.match(/<h1/g) || []).length, 1);
 });
+
+test("new records render approved cover metadata and related links in public and private templates", async () => {
+  const { EntryContent } = await import("../src/components/pages/EntryContent");
+  const body = {
+    title: "Proje",
+    summary: "Özet",
+    paragraphs: ["Detay"],
+    date: null,
+    source: null,
+    stage: "Geliştirme",
+  };
+  const cover = {
+    id: "10000000-0000-0000-0000-000000000001",
+    alt: "Güvenli kapak açıklaması",
+    width: 1200,
+    height: 800,
+  };
+  const related = [
+    {
+      document_id: "20000000-0000-0000-0000-000000000001",
+      kind: "technology",
+      slug: "teknoloji",
+      body: { ...body, title: "İlişkili teknoloji" },
+    },
+  ];
+  const html = renderToStaticMarkup(
+    createElement(EntryContent, { body, kind: "project", cover, related }),
+  );
+  assert.ok(html.includes("/cms-media/" + cover.id));
+  assert.ok(html.includes('alt="Güvenli kapak açıklaması"'));
+  assert.ok(html.includes("/icerik/technology/teknoloji"));
+  const preview = renderToStaticMarkup(
+    createElement(EntryContent, {
+      body,
+      kind: "project",
+      cover,
+      related,
+      preview: true,
+    }),
+  );
+  assert.ok(preview.includes("/admin/media/" + cover.id + "/file"));
+  assert.ok(
+    preview.includes("/admin/content/" + related[0].document_id + "/preview"),
+  );
+  assert.ok(!html.includes("/admin/"));
+});

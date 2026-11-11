@@ -42,6 +42,7 @@ export function EntryContent({
               className="entry-cover"
             />
           )}
+          {body.stage && <p>Çalışmanın aşaması: {body.stage}</p>}
           {body.date && <time dateTime={body.date}>{body.date}</time>}
           {body.paragraphs.map((p, index) => (
             <p key={index}>{p}</p>

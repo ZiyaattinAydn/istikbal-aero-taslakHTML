@@ -128,6 +128,7 @@ export async function runUiChecks({ status, admin, totp }) {
       readFileSync("src/data/cms-page-schema.json", "utf8"),
     );
     async function submitStatus(operation, id, expected) {
+      stage = stage.split(":")[0] + ":" + operation;
       await page.locator(`button[name=operation][value=${operation}]`).click();
       await until(
         async () => expected(await record(id)),
@@ -154,13 +155,23 @@ export async function runUiChecks({ status, admin, totp }) {
         .eq("slug", entry.slug)
         .single();
       assert.ok(doc);
+      stage = "page-" + entry.slug + ":save";
       const saveStart = Date.now();
       await area.fill("QA sayfa " + entry.slug);
       await form
         .getByRole("button", { name: "Taslak kaydet", exact: true })
         .click();
       await until(
-        async () => (await record(doc.id)).revision === doc.revision + 1,
+        async () => {
+          const saved = await record(doc.id);
+          if (saved.revision === doc.revision + 1) return true;
+          const text = await form.innerText();
+          if (text.includes("Taslak kaydedilemedi."))
+            throw Error("page_database_rejected");
+          if (text.includes("Alanlar kaydedilemedi."))
+            throw Error("page_validation_rejected");
+          return false;
+        },
         "page_save",
         30000,
       );
@@ -168,6 +179,7 @@ export async function runUiChecks({ status, admin, totp }) {
       await page.reload();
       await area.waitFor();
       assert.equal(await area.inputValue(), "QA sayfa " + entry.slug);
+      stage = "page-" + entry.slug + ":preview";
       const preview = await context.newPage();
       await preview.goto(`${url}/admin/pages/${entry.slug}/preview`);
       assert.ok(
@@ -184,6 +196,7 @@ export async function runUiChecks({ status, admin, totp }) {
       );
       await submitStatus("publish", doc.id, (d) => d.status === "published");
       const publicPath = entry.slug === "index" ? "/" : "/" + entry.slug;
+      stage = "page-" + entry.slug + ":public";
       const publicPage = await browser.newPage();
       await publicPage.goto(url + publicPath);
       assert.ok(
@@ -211,6 +224,7 @@ export async function runUiChecks({ status, admin, totp }) {
       );
       await submitStatus("publish", doc.id, (d) => d.status === "published");
     }
+    console.log("PASS: all 21 page browser workflows.");
     checks.push(
       "All 21 seeded pages: edit/save, actual template preview, approval/publication, baseline restore and republish",
     );
@@ -245,11 +259,9 @@ export async function runUiChecks({ status, admin, totp }) {
       30000,
     );
     await page.reload();
-    const mediaArticle = page
-      .locator("article")
-      .filter({
-        has: page.getByRole("heading", { name: "QA kapak", exact: true }),
-      });
+    const mediaArticle = page.locator("article").filter({
+      has: page.getByRole("heading", { name: "QA kapak", exact: true }),
+    });
     await mediaArticle
       .getByLabel("Alternatif metin", { exact: true })
       .fill("QA kapak düzenlendi");
@@ -374,14 +386,12 @@ export async function runUiChecks({ status, admin, totp }) {
     );
     stage = "withdraw";
     await page.goto(url + "/admin/media");
-    const current = page
-      .locator("article")
-      .filter({
-        has: page.getByRole("heading", {
-          name: "QA kapak düzenlendi",
-          exact: true,
-        }),
-      });
+    const current = page.locator("article").filter({
+      has: page.getByRole("heading", {
+        name: "QA kapak düzenlendi",
+        exact: true,
+      }),
+    });
     await current
       .getByRole("checkbox", {
         name: "Görseli kullanan yayınları da taslağa almayı onaylıyorum.",
@@ -468,6 +478,12 @@ export async function runUiChecks({ status, admin, totp }) {
     );
   } catch (error) {
     console.error("Authenticated UI failure stage:", stage);
+    console.error("UI failure class:", {
+      name: error?.name,
+      knownFailure: /^[a-z_]+$/.test(error?.message || "")
+        ? error.message
+        : undefined,
+    });
     throw error;
   } finally {
     if (browser) await browser.close();

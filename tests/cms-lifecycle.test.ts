@@ -195,6 +195,37 @@ test("versioned relations, media metadata, publisher withdrawal and stale revisi
       () => db.exec("select * from public.cms_relations"),
       /permission denied/,
     );
+    await db.exec("reset role");
+    await claims();
+    const schemas = JSON.parse(
+      readFileSync("src/data/cms-page-schema.json", "utf8"),
+    );
+    for (const schema of schemas) {
+      const row = (
+        await db.query<{
+          id: string;
+          revision: number;
+          body: Record<string, unknown>;
+        }>(
+          "select id,revision,body from public.cms_documents where kind='page' and slug=$1",
+          [schema.slug],
+        )
+      ).rows[0];
+      const field = schema.fields.find(
+        (f: { kind: string }) => f.kind === "text",
+      );
+      try {
+        await mutate(row.id, row.revision, "save", {
+          ...row.body,
+          fields: {
+            ...(row.body.fields as object),
+            [field.key]: "QA alan testi",
+          },
+        });
+      } catch {
+        throw Error("Seeded page save failed: " + schema.slug);
+      }
+    }
   } finally {
     await db.close();
   }
