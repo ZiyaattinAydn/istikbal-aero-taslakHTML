@@ -322,7 +322,7 @@ export async function runUiChecks({ status, admin, totp }) {
         .fill("QA açıklama");
       if (kind === "project") {
         await page
-          .getByLabel("Kapak görseli", { exact: true })
+          .locator("select[name=cover]")
           .selectOption(media.id);
         stage = "create-" + kind + ":relations";
         for (const id of related)
