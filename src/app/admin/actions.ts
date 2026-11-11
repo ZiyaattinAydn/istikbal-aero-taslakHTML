@@ -1,5 +1,6 @@
 "use server";
-import { revalidatePath, updateTag } from "next/cache";
+import { revalidatePath } from "next/cache";
+import { invalidateDocument } from "@/lib/cms/invalidate";
 import { requireAdmin } from "@/lib/cms/server";
 import {
   kinds,
@@ -27,6 +28,8 @@ export async function saveContent(
       date: form.get("date") || null,
       source: form.get("source") || null,
       stage: form.get("stage") || null,
+      cover_id: form.get("cover") || null,
+      related_ids: JSON.parse(String(form.get("related") || "[]")),
     });
     if (id && !/^[0-9a-f-]{36}$/i.test(id)) throw Error("Kayıt bulunamadı.");
     const creationId = String(form.get("creationId") || "");
@@ -96,13 +99,7 @@ export async function changeStatus(
     if (affected) {
       revalidatePath(`/admin/pages/${affected.slug}`);
       if (["publish", "archive"].includes(operation)) {
-        updateTag(
-          affected.kind === "page"
-            ? `cms-page-${affected.slug}`
-            : `cms-list-${affected.kind}`,
-        );
-        if (affected.kind !== "page")
-          updateTag(`cms-item-${affected.kind}-${affected.slug}`);
+        invalidateDocument({ id: docId, ...affected });
       }
     }
     return {

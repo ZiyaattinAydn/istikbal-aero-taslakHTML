@@ -1,3 +1,4 @@
+import { editorOptions } from "@/lib/cms/editor-options";
 import { notFound } from "next/navigation";
 import { requireAdmin } from "@/lib/cms/server";
 import { kinds, type Kind } from "@/lib/cms/model";
@@ -7,13 +8,18 @@ export default async function New({
 }: {
   params: Promise<{ kind: string }>;
 }) {
-  await requireAdmin();
+  const { db } = await requireAdmin();
   const { kind } = await params;
   if (!kinds.includes(kind as Kind) || kind === "page") notFound();
+  const options = await editorOptions(db);
   return (
     <section>
       <h1>Yeni içerik</h1>
-      <ContentEditor kind={kind} creationId={crypto.randomUUID()} />
+      <ContentEditor
+        {...options}
+        kind={kind}
+        creationId={crypto.randomUUID()}
+      />
     </section>
   );
 }

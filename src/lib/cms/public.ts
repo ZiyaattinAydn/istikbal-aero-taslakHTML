@@ -97,3 +97,58 @@ export async function publishedEntry(
     return null;
   }
 }
+
+export type EntryLink = {
+  document_id: string;
+  kind: string;
+  slug: string;
+  body: ContentBody;
+};
+export type CoverAsset = {
+  id: string;
+  alt: string;
+  width: number;
+  height: number;
+};
+export async function publishedRelations(ids: string[]): Promise<EntryLink[]> {
+  if (!publicReadsEnabled() || !ids.length) return [];
+  const keys = [...new Set(ids)].slice(0, 12).sort();
+  try {
+    return await unstable_cache(
+      async () => {
+        const { data, error } = await publicClient()
+          .from("cms_published")
+          .select("document_id,kind,slug,body")
+          .in("document_id", keys)
+          .in("kind", ["project", "platform", "technology"]);
+        if (error) throw error;
+        return data || [];
+      },
+      ["cms-related", ...keys],
+      { revalidate: 300, tags: keys.map((id) => `cms-reference-${id}`) },
+    )();
+  } catch {
+    return [];
+  }
+}
+export async function publishedAssets(ids: string[]): Promise<CoverAsset[]> {
+  if (!publicReadsEnabled() || !ids.length) return [];
+  const keys = [...new Set(ids)].slice(0, 100).sort();
+  try {
+    return await unstable_cache(
+      async () => {
+        const { data, error } = await publicClient()
+          .from("cms_media")
+          .select("id,alt,width,height")
+          .in("id", keys)
+          .eq("visibility", "public");
+        if (error) throw error;
+        return data || [];
+      },
+      ["cms-assets", ...keys],
+      { revalidate: 300, tags: keys.map((id) => `cms-media-${id}`) },
+    )();
+  } catch {
+    return [];
+  }
+}

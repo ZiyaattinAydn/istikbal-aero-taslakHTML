@@ -18,7 +18,7 @@ export default async function Admin({
   const page = Math.max(0, Math.min(1000, Number(params.page) || 0));
   let query = db
     .from("cms_documents")
-    .select("id,kind,body,approval,status,revision,updated_at")
+    .select("id,kind,slug,body,approval,status,revision,updated_at")
     .order("updated_at", { ascending: false })
     .range(page * 20, page * 20 + 19);
   if (params.q)
@@ -40,8 +40,8 @@ export default async function Admin({
         ))}
       </nav>
       <p>
-        Bu kurulum geliştirme aşamasında. Kayıtlar mevcut siteye henüz
-        bağlanmadı.
+        Bu kurulum geliştirme aşamasında. Public içerik okuması yalnız kurulum
+        kabulünden sonra açılır.
       </p>
       <form>
         <label>
@@ -58,7 +58,15 @@ export default async function Admin({
         <ul>
           {data?.map((d) => (
             <li key={d.id}>
-              <Link href={`/admin/content/${d.id}`}>{d.body.title}</Link>
+              <Link
+                href={
+                  d.kind === "page"
+                    ? `/admin/pages/${d.slug}`
+                    : `/admin/content/${d.id}`
+                }
+              >
+                {d.body.title}
+              </Link>
               <small>{names[d.kind] || "Sayfa"}</small>
             </li>
           ))}

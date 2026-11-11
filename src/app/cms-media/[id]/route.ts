@@ -21,7 +21,7 @@ export async function GET(
   return new Response(file, {
     headers: {
       "Content-Type": "image/webp",
-      "Cache-Control": "public, max-age=3600",
+      "Cache-Control": "private, no-store, max-age=0",
       "X-Content-Type-Options": "nosniff",
       "Content-Security-Policy": "default-src 'none'; sandbox",
     },

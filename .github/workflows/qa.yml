@@ -125,13 +125,20 @@ jobs:
           npx --yes supabase@3.1.0 status -o json > /tmp/istikbal-local-status.json
       - name: Wait for CLI email templates before clearing Auth fallback cache
         run: node scripts/cms/prepare-local-auth.mjs
-      - name: Exercise real local OTP, TOTP, RLS and Storage
+      - run: npx playwright install --with-deps chromium
+      - name: Exercise real local OTP, TOTP, RLS, Storage and authenticated UI
+        env:
+          CMS_TEST_UI: "true"
         run: npm run cms:test:auth
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         if: success()
         with:
           name: cms-local-auth-sanitized
-          path: docs/cms/evidence/local-auth.json
+          path: |
+            docs/cms/evidence/local-auth.json
+            docs/cms/evidence/admin-ui.json
+            docs/cms/evidence/admin-mobile.png
+            docs/cms/evidence/admin-media.png
           retention-days: 7
       - name: Classify local database failures without secrets
         if: failure()

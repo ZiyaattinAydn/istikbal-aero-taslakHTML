@@ -1,3 +1,5 @@
+import { SiteLink } from "@/components/ui/SiteLink";
+import type { EntryLink, CoverAsset } from "@/lib/cms/public";
 import { SiteShell } from "@/components/layout/SiteShell";
 import { InnerHero, Section } from "@/components/ui/content";
 import type { ContentBody } from "@/lib/cms/model";
@@ -12,9 +14,15 @@ const pages: Record<string, PageId> = {
 export function EntryContent({
   body,
   kind,
+  cover,
+  related = [],
+  preview = false,
 }: {
   body: ContentBody;
   kind: string;
+  cover?: CoverAsset;
+  related?: EntryLink[];
+  preview?: boolean;
 }) {
   return (
     <SiteShell page={pages[kind] || "newsDetail"}>
@@ -25,6 +33,15 @@ export function EntryContent({
       />
       <Section>
         <article className="article">
+          {cover && (
+            <img
+              src={`${preview ? "/admin/media" : "/cms-media"}/${cover.id}${preview ? "/file" : ""}`}
+              alt={cover.alt}
+              width={cover.width}
+              height={cover.height}
+              className="entry-cover"
+            />
+          )}
           {body.date && <time dateTime={body.date}>{body.date}</time>}
           {body.paragraphs.map((p, index) => (
             <p key={index}>{p}</p>
@@ -36,6 +53,30 @@ export function EntryContent({
           )}
         </article>
       </Section>
+      {related.length > 0 && (
+        <Section>
+          <h2 className="section-title">İlişkili içerikler</h2>
+          <div className="cards-3">
+            {related.map((item) => (
+              <article className="news-card" key={item.document_id}>
+                <div className="news-content">
+                  <h3>{item.body.title}</h3>
+                  <p>{item.body.summary}</p>
+                  <SiteLink
+                    href={
+                      preview
+                        ? `/admin/content/${item.document_id}/preview`
+                        : `/icerik/${item.kind}/${item.slug}`
+                    }
+                  >
+                    İncele ↗
+                  </SiteLink>
+                </div>
+              </article>
+            ))}
+          </div>
+        </Section>
+      )}
     </SiteShell>
   );
 }

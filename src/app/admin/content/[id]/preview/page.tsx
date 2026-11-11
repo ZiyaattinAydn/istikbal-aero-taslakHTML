@@ -15,5 +15,29 @@ export default async function Preview({
     .eq("id", id)
     .maybeSingle();
   if (error || !data || data.kind === "page") notFound();
-  return <EntryContent body={data.body} kind={data.kind} />;
+  const [related, cover] = await Promise.all([
+    data.body.related_ids?.length
+      ? db
+          .from("cms_documents")
+          .select("id,kind,slug,body")
+          .in("id", data.body.related_ids)
+          .limit(12)
+      : Promise.resolve({ data: [] }),
+    data.body.cover_id
+      ? db
+          .from("cms_media")
+          .select("id,alt,width,height")
+          .eq("id", data.body.cover_id)
+          .maybeSingle()
+      : Promise.resolve({ data: null }),
+  ]);
+  return (
+    <EntryContent
+      preview
+      body={data.body}
+      kind={data.kind}
+      cover={cover.data || undefined}
+      related={(related.data || []).map((x) => ({ document_id: x.id, ...x }))}
+    />
+  );
 }

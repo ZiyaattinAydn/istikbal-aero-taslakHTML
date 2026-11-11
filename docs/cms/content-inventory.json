@@ -3362,97 +3362,169 @@
     },
     {
       "path": "src/components/pages/EntryContent.tsx",
-      "sha256": "0ac2956c49bc53330d2498a27ef741edf550e5d973fb9630a7e15c450987a41c",
+      "sha256": "1b96641ae3f3cda4bd8e4a04a5ad2a8e8b34cb35007d77014f95c771a56dc8af",
       "fields": [
         {
-          "key": "src/components/pages/EntryContent.tsx:26",
+          "key": "src/components/pages/EntryContent.tsx:25",
           "line": 1,
+          "value": "@/components/ui/SiteLink",
+          "candidate": false
+        },
+        {
+          "key": "src/components/pages/EntryContent.tsx:96",
+          "line": 2,
+          "value": "@/lib/cms/public",
+          "candidate": false
+        },
+        {
+          "key": "src/components/pages/EntryContent.tsx:142",
+          "line": 3,
           "value": "@/components/layout/SiteShell",
           "candidate": false
         },
         {
-          "key": "src/components/pages/EntryContent.tsx:94",
-          "line": 2,
+          "key": "src/components/pages/EntryContent.tsx:210",
+          "line": 4,
           "value": "@/components/ui/content",
           "candidate": false
         },
         {
-          "key": "src/components/pages/EntryContent.tsx:154",
-          "line": 3,
+          "key": "src/components/pages/EntryContent.tsx:270",
+          "line": 5,
           "value": "@/lib/cms/model",
           "candidate": false
         },
         {
-          "key": "src/components/pages/EntryContent.tsx:201",
-          "line": 4,
+          "key": "src/components/pages/EntryContent.tsx:317",
+          "line": 6,
           "value": "@/data/routes",
           "candidate": false
         },
         {
-          "key": "src/components/pages/EntryContent.tsx:266",
-          "line": 6,
+          "key": "src/components/pages/EntryContent.tsx:382",
+          "line": 8,
           "value": "newsDetail",
           "candidate": false
         },
         {
-          "key": "src/components/pages/EntryContent.tsx:291",
-          "line": 7,
+          "key": "src/components/pages/EntryContent.tsx:407",
+          "line": 9,
           "value": "projectDetail",
           "candidate": false
         },
         {
-          "key": "src/components/pages/EntryContent.tsx:320",
-          "line": 8,
+          "key": "src/components/pages/EntryContent.tsx:436",
+          "line": 10,
           "value": "platformDetail",
           "candidate": false
         },
         {
-          "key": "src/components/pages/EntryContent.tsx:352",
-          "line": 9,
+          "key": "src/components/pages/EntryContent.tsx:468",
+          "line": 11,
           "value": "tech",
           "candidate": false
         },
         {
-          "key": "src/components/pages/EntryContent.tsx:374",
-          "line": 10,
+          "key": "src/components/pages/EntryContent.tsx:490",
+          "line": 12,
           "value": "capabilities",
           "candidate": false
         },
         {
-          "key": "src/components/pages/EntryContent.tsx:534",
-          "line": 20,
+          "key": "src/components/pages/EntryContent.tsx:762",
+          "line": 28,
           "value": "newsDetail",
           "candidate": false
         },
         {
-          "key": "src/components/pages/EntryContent.tsx:642",
-          "line": 24,
+          "key": "src/components/pages/EntryContent.tsx:870",
+          "line": 32,
           "value": "research-lab.svg",
           "candidate": true
         },
         {
-          "key": "src/components/pages/EntryContent.tsx:713",
-          "line": 27,
+          "key": "src/components/pages/EntryContent.tsx:941",
+          "line": 35,
           "value": "article",
           "candidate": false
         },
         {
-          "key": "src/components/pages/EntryContent.tsx:960",
-          "line": 33,
+          "key": "src/components/pages/EntryContent.tsx:1023",
+          "line": 38,
+          "value": "/admin/media",
+          "candidate": false
+        },
+        {
+          "key": "src/components/pages/EntryContent.tsx:1040",
+          "line": 38,
+          "value": "/cms-media",
+          "candidate": false
+        },
+        {
+          "key": "src/components/pages/EntryContent.tsx:1077",
+          "line": 38,
+          "value": "/file",
+          "candidate": false
+        },
+        {
+          "key": "src/components/pages/EntryContent.tsx:1217",
+          "line": 42,
+          "value": "entry-cover",
+          "candidate": false
+        },
+        {
+          "key": "src/components/pages/EntryContent.tsx:1495",
+          "line": 50,
           "value": "_blank",
           "candidate": false
         },
         {
-          "key": "src/components/pages/EntryContent.tsx:973",
-          "line": 33,
+          "key": "src/components/pages/EntryContent.tsx:1508",
+          "line": 50,
           "value": "noreferrer",
           "candidate": false
         },
         {
-          "key": "src/components/pages/EntryContent.tsx:1001",
-          "line": 34,
+          "key": "src/components/pages/EntryContent.tsx:1536",
+          "line": 51,
           "value": "Kaynak",
           "candidate": false
+        },
+        {
+          "key": "src/components/pages/EntryContent.tsx:1682",
+          "line": 58,
+          "value": "section-title",
+          "candidate": false
+        },
+        {
+          "key": "src/components/pages/EntryContent.tsx:1698",
+          "line": 58,
+          "value": "İlişkili içerikler",
+          "candidate": true
+        },
+        {
+          "key": "src/components/pages/EntryContent.tsx:1747",
+          "line": 59,
+          "value": "cards-3",
+          "candidate": false
+        },
+        {
+          "key": "src/components/pages/EntryContent.tsx:1828",
+          "line": 61,
+          "value": "news-card",
+          "candidate": false
+        },
+        {
+          "key": "src/components/pages/EntryContent.tsx:1895",
+          "line": 62,
+          "value": "news-content",
+          "candidate": false
+        },
+        {
+          "key": "src/components/pages/EntryContent.tsx:2281",
+          "line": 72,
+          "value": "İncele ↗",
+          "candidate": true
         }
       ]
     },
@@ -7340,89 +7412,101 @@
     },
     {
       "path": "src/components/pages/PublishedCards.tsx",
-      "sha256": "bb286f9e8a86367ab31c3a498cd8b0ab4bacd8fa7eb70d7669c2e795173eaa0d",
+      "sha256": "b28b0d136f66f9dcab53ec44522a3a22148328dd4a6a512c528606b332bcfa20",
       "fields": [
         {
-          "key": "src/components/pages/PublishedCards.tsx:33",
+          "key": "src/components/pages/PublishedCards.tsx:50",
           "line": 1,
           "value": "@/lib/cms/public",
           "candidate": false
         },
         {
-          "key": "src/components/pages/PublishedCards.tsx:93",
+          "key": "src/components/pages/PublishedCards.tsx:110",
           "line": 2,
           "value": "@/components/ui/content",
           "candidate": false
         },
         {
-          "key": "src/components/pages/PublishedCards.tsx:145",
+          "key": "src/components/pages/PublishedCards.tsx:162",
           "line": 3,
           "value": "@/components/ui/SiteLink",
           "candidate": false
         },
         {
-          "key": "src/components/pages/PublishedCards.tsx:221",
+          "key": "src/components/pages/PublishedCards.tsx:238",
           "line": 5,
           "value": "news",
           "candidate": false
         },
         {
-          "key": "src/components/pages/PublishedCards.tsx:241",
+          "key": "src/components/pages/PublishedCards.tsx:258",
           "line": 6,
           "value": "project",
           "candidate": false
         },
         {
-          "key": "src/components/pages/PublishedCards.tsx:265",
+          "key": "src/components/pages/PublishedCards.tsx:282",
           "line": 7,
           "value": "platform",
           "candidate": false
         },
         {
-          "key": "src/components/pages/PublishedCards.tsx:285",
+          "key": "src/components/pages/PublishedCards.tsx:302",
           "line": 8,
           "value": "technology",
           "candidate": false
         },
         {
-          "key": "src/components/pages/PublishedCards.tsx:315",
+          "key": "src/components/pages/PublishedCards.tsx:332",
           "line": 9,
           "value": "capability",
           "candidate": false
         },
         {
-          "key": "src/components/pages/PublishedCards.tsx:599",
-          "line": 19,
+          "key": "src/components/pages/PublishedCards.tsx:733",
+          "line": 22,
           "value": "GÜNCEL İÇERİKLER",
           "candidate": true
         },
         {
-          "key": "src/components/pages/PublishedCards.tsx:632",
-          "line": 20,
+          "key": "src/components/pages/PublishedCards.tsx:766",
+          "line": 23,
           "value": "Şirketten güncel bilgiler.",
           "candidate": true
         },
         {
-          "key": "src/components/pages/PublishedCards.tsx:691",
-          "line": 22,
+          "key": "src/components/pages/PublishedCards.tsx:825",
+          "line": 25,
           "value": "cards-3",
           "candidate": false
         },
         {
-          "key": "src/components/pages/PublishedCards.tsx:764",
-          "line": 24,
+          "key": "src/components/pages/PublishedCards.tsx:898",
+          "line": 27,
           "value": "news-card",
           "candidate": false
         },
         {
-          "key": "src/components/pages/PublishedCards.tsx:827",
-          "line": 25,
+          "key": "src/components/pages/PublishedCards.tsx:1118",
+          "line": 33,
+          "value": "entry-cover",
+          "candidate": false
+        },
+        {
+          "key": "src/components/pages/PublishedCards.tsx:1303",
+          "line": 38,
+          "value": "lazy",
+          "candidate": false
+        },
+        {
+          "key": "src/components/pages/PublishedCards.tsx:1374",
+          "line": 41,
           "value": "news-content",
           "candidate": false
         },
         {
-          "key": "src/components/pages/PublishedCards.tsx:1004",
-          "line": 29,
+          "key": "src/components/pages/PublishedCards.tsx:1551",
+          "line": 45,
           "value": "İncele ↗",
           "candidate": true
         }

@@ -16,6 +16,8 @@ export type ContentBody = {
   date: string | null;
   source: string | null;
   stage: string | null;
+  cover_id?: string | null;
+  related_ids?: string[];
 };
 export function slugify(title: string) {
   return (
@@ -68,7 +70,26 @@ export function validateBody(value: unknown): ContentBody {
       throw Error("Kaynak HTTPS adresi olmalı.");
   }
   const stage = b.stage === null ? null : text(b.stage, 100);
-  return { title, summary, paragraphs, date, source, stage };
+  const extra: Pick<ContentBody, "cover_id" | "related_ids"> = {};
+  if (b.cover_id !== undefined) {
+    if (
+      b.cover_id !== null &&
+      (typeof b.cover_id !== "string" || !isUuid(b.cover_id))
+    )
+      throw Error("Kapak görselini kontrol edin.");
+    extra.cover_id = b.cover_id as string | null;
+  }
+  if (b.related_ids !== undefined) {
+    if (
+      !Array.isArray(b.related_ids) ||
+      b.related_ids.length > 12 ||
+      b.related_ids.some((id) => typeof id !== "string" || !isUuid(id)) ||
+      new Set(b.related_ids).size !== b.related_ids.length
+    )
+      throw Error("En fazla 12 farklı ilişkili içerik seçin.");
+    extra.related_ids = b.related_ids;
+  }
+  return { title, summary, paragraphs, date, source, stage, ...extra };
 }
 export function requirePublisher(role: Role) {
   if (role !== "publisher") throw Error("Yayın yetkisi gerekiyor.");
@@ -93,12 +114,16 @@ export function validateUpload(
   const webp =
     new TextDecoder().decode(bytes.slice(0, 4)) === "RIFF" &&
     new TextDecoder().decode(bytes.slice(8, 12)) === "WEBP";
-  if (
-    !(
-      (mime === "image/png" && png) ||
-      (mime === "image/jpeg" && jpg) ||
-      (mime === "image/webp" && webp)
-    )
-  )
+  if (!(
+    (mime === "image/png" && png) ||
+    (mime === "image/jpeg" && jpg) ||
+    (mime === "image/webp" && webp)
+  ))
     throw Error("Yalnızca doğrulanmış PNG, JPEG veya WebP yükleyin.");
+}
+
+export function isUuid(value: string) {
+  return /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/.test(
+    value,
+  );
 }

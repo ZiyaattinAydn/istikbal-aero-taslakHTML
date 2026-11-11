@@ -20,6 +20,8 @@ export function ContentEditor({
   publisher = false,
   statusOnly = false,
   externalDirty = false,
+  relations = [],
+  media = [],
 }: {
   document?: ContentDocument;
   creationId?: string;
@@ -28,6 +30,8 @@ export function ContentEditor({
   publisher?: boolean;
   statusOnly?: boolean;
   externalDirty?: boolean;
+  relations?: { id: string; title: string; kind: string }[];
+  media?: { id: string; alt: string; visibility: string }[];
 }) {
   const router = useRouter();
   const [dirty, setDirty] = useState(false);
@@ -45,6 +49,7 @@ export function ContentEditor({
   const [status, change, changing] = useActionState(changeStatus, {
     message: "",
   });
+  const [relationSearch, setRelationSearch] = useState("");
   const [preview, setPreview] = useState(false),
     [body, setBody] = useState<ContentBody>(
       document?.body || {
@@ -155,6 +160,105 @@ export function ContentEditor({
                 onChange={(e) => update("stage", e.target.value || null)}
               />
             </label>
+            <label>
+              Kapak görseli
+              <select
+                name="cover"
+                value={body.cover_id || ""}
+                onChange={(e) => update("cover_id", e.target.value || null)}
+              >
+                <option value="">Kapak kullanma</option>
+                {body.cover_id &&
+                  !media.some((m) => m.id === body.cover_id) && (
+                    <option value={body.cover_id}>
+                      Kayıtlı kapak (kütüphanede arayın)
+                    </option>
+                  )}
+                {media.map((m) => (
+                  <option key={m.id} value={m.id}>
+                    {m.alt}
+                    {m.visibility === "private"
+                      ? " (özel — yayın izni gerekli)"
+                      : ""}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <input
+              type="hidden"
+              name="related"
+              value={JSON.stringify(body.related_ids || [])}
+            />
+            {["project", "platform", "technology"].includes(kind) && (
+              <fieldset>
+                <legend>İlişkili içerikler (en fazla 12)</legend>
+                <label>
+                  İlişkili içerik ara
+                  <input
+                    value={relationSearch}
+                    onChange={(e) => setRelationSearch(e.target.value)}
+                  />
+                </label>
+                {relations
+                  .filter(
+                    (r) =>
+                      !relationSearch ||
+                      r.title
+                        .toLocaleLowerCase("tr")
+                        .includes(relationSearch.toLocaleLowerCase("tr")),
+                  )
+                  .map((r) => (
+                    <label key={r.id}>
+                      <input
+                        type="checkbox"
+                        checked={body.related_ids?.includes(r.id) || false}
+                        onChange={(e) =>
+                          update(
+                            "related_ids",
+                            e.target.checked
+                              ? [...(body.related_ids || []), r.id]
+                              : (body.related_ids || []).filter(
+                                  (id) => id !== r.id,
+                                ),
+                          )
+                        }
+                      />
+                      {r.title} —{" "}
+                      {
+                        {
+                          project: "Proje",
+                          platform: "Platform",
+                          technology: "Teknoloji",
+                        }[r.kind]
+                      }
+                    </label>
+                  ))}
+                {!relations.length && (
+                  <p>Önce bir proje, platform veya teknoloji kaydedin.</p>
+                )}
+                {(body.related_ids || [])
+                  .filter((id) => !relations.some((r) => r.id === id))
+                  .map((id, i) => (
+                    <label key={id}>
+                      <input
+                        type="checkbox"
+                        checked
+                        onChange={() =>
+                          update(
+                            "related_ids",
+                            (body.related_ids || []).filter((v) => v !== id),
+                          )
+                        }
+                      />
+                      Kayıtlı ilişki {i + 1} (seçim aralığı dışında)
+                    </label>
+                  ))}
+                <small>
+                  Yalnız yayımlanmış hedefler halka açık detayda gösterilir.
+                  Seçimler bu taslakla birlikte kaydedilir ve geri alınır.
+                </small>
+              </fieldset>
+            )}
             <div className="actions">
               <button disabled={pending}>Taslak kaydet</button>
               <button type="button" onClick={() => setPreview(!preview)}>

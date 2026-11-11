@@ -1,4 +1,4 @@
-import { publishedEntries } from "@/lib/cms/public";
+import { publishedEntries, publishedAssets } from "@/lib/cms/public";
 import { Section, SectionHeading } from "@/components/ui/content";
 import { SiteLink } from "@/components/ui/SiteLink";
 const kinds: Record<string, string> = {
@@ -13,6 +13,9 @@ export async function PublishedCards({ page }: { page: string }) {
   if (!kind) return null;
   const entries = await publishedEntries(kind);
   if (!entries.length) return null;
+  const assets = await publishedAssets(
+    entries.flatMap((e) => (e.body.cover_id ? [e.body.cover_id] : [])),
+  );
   return (
     <Section>
       <SectionHeading
@@ -22,6 +25,19 @@ export async function PublishedCards({ page }: { page: string }) {
       <div className="cards-3">
         {entries.map((item) => (
           <article className="news-card" key={item.document_id}>
+            {assets
+              .filter((a) => a.id === item.body.cover_id)
+              .map((a) => (
+                <img
+                  key={a.id}
+                  className="entry-cover"
+                  src={`/cms-media/${a.id}`}
+                  alt={a.alt}
+                  width={a.width}
+                  height={a.height}
+                  loading="lazy"
+                />
+              ))}
             <div className="news-content">
               <h3>{item.body.title}</h3>
               <p>{item.body.summary}</p>

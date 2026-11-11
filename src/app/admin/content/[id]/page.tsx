@@ -1,3 +1,4 @@
+import { editorOptions } from "@/lib/cms/editor-options";
 import { notFound } from "next/navigation";
 import { requireAdmin } from "@/lib/cms/server";
 import { ContentEditor } from "@/components/admin/ContentEditor";
@@ -21,10 +22,12 @@ export default async function Edit({
     .eq("document_id", id)
     .order("revision", { ascending: false })
     .limit(30);
+  const options = await editorOptions(db, id);
   return (
     <section>
       <h1>İçeriği düzenle</h1>
       <ContentEditor
+        {...options}
         key={`${id}:${data.revision}`}
         document={data}
         kind={data.kind}

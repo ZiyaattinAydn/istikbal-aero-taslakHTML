@@ -1,5 +1,9 @@
 import { notFound } from "next/navigation";
-import { publishedEntry } from "@/lib/cms/public";
+import {
+  publishedEntry,
+  publishedRelations,
+  publishedAssets,
+} from "@/lib/cms/public";
 import { EntryContent } from "@/components/pages/EntryContent";
 export async function generateMetadata({
   params,
@@ -34,5 +38,16 @@ export default async function Detail({
     notFound();
   const item = await publishedEntry(kind, slug);
   if (!item) notFound();
-  return <EntryContent body={item.body} kind={kind} />;
+  const [related, assets] = await Promise.all([
+    publishedRelations(item.body.related_ids || []),
+    publishedAssets(item.body.cover_id ? [item.body.cover_id] : []),
+  ]);
+  return (
+    <EntryContent
+      body={item.body}
+      kind={kind}
+      related={related}
+      cover={assets[0]}
+    />
+  );
 }

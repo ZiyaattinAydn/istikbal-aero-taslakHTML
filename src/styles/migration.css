@@ -27,3 +27,4 @@
     height: calc(100svh - var(--site-top));
   }
 }
+.entry-cover{display:block;width:100%;height:auto;max-height:620px;object-fit:cover;border-radius:4px;margin-bottom:24px}.news-card>.entry-cover{aspect-ratio:16/9;max-height:260px;margin:0}

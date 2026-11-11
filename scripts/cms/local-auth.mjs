@@ -244,10 +244,12 @@ async function main() {
   checks.push("Private uploaded object cannot be downloaded anonymously");
   assert.equal(
     (
-      await db
-        .from("cms_media")
-        .update({ visibility: "public" })
-        .eq("id", mediaId)
+      await db.rpc("cms_manage_media", {
+        media_id: mediaId,
+        expected: 1,
+        operation: "allow",
+        payload: {},
+      })
     ).error,
     null,
   );
@@ -276,6 +278,11 @@ async function main() {
     ).error,
   );
   checks.push("Revoked session cannot reuse an existing JWT for writes");
+  if (process.env.CMS_TEST_UI === "true") {
+    stage = "authenticated-browser";
+    const { runUiChecks } = await import("./ui-auth.mjs");
+    await runUiChecks({ status, admin, totp });
+  }
   const result = {
     status: "passed",
     checks,

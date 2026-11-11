@@ -1,5 +1,7 @@
 "use server";
-import { revalidatePath } from "next/cache";
+import { invalidateDocument } from "@/lib/cms/invalidate";
+import { isUuid } from "@/lib/cms/model";
+import { revalidatePath, updateTag } from "next/cache";
 import { requireAdmin } from "@/lib/cms/server";
 import { inspectMedia } from "@/lib/cms/media";
 export async function uploadMedia(
@@ -28,18 +30,16 @@ export async function uploadMedia(
       .from("cms-media")
       .upload(path, bytes, { contentType: "image/webp", upsert: false });
     if (uploadError) throw Error("Dosya yüklenemedi.");
-    const { error } = await db
-      .from("cms_media")
-      .insert({
-        id,
-        path,
-        alt,
-        rights_approved: true,
-        mime: "image/webp",
-        bytes: bytes.length,
-        ...dimensions,
-        created_by: user.id,
-      });
+    const { error } = await db.from("cms_media").insert({
+      id,
+      path,
+      alt,
+      rights_approved: true,
+      mime: "image/webp",
+      bytes: bytes.length,
+      ...dimensions,
+      created_by: user.id,
+    });
     if (error)
       throw Error(
         "Dosya yüklendi fakat kütüphane kaydı tamamlanamadı. Yönetici kontrolü gerekiyor.",
@@ -52,17 +52,42 @@ export async function uploadMedia(
     };
   }
 }
-export async function publishMedia(form: FormData) {
-  const { db, role } = await requireAdmin();
-  if (role !== "publisher") throw Error("Yayın yetkisi gerekiyor.");
-  const id = String(form.get("id"));
-  if (!/^[0-9a-f-]{36}$/i.test(id)) throw Error("Görsel bulunamadı.");
-  const { data, error } = await db
-    .from("cms_media")
-    .update({ visibility: "public" })
-    .eq("id", id)
-    .select("id")
-    .single();
-  if (error || !data) throw Error("Görsel yayın izni kaydedilemedi.");
+export async function manageMedia(
+  _state: { message: string; ok: boolean },
+  form: FormData,
+) {
+  const { db } = await requireAdmin();
+  const id = String(form.get("id") || ""),
+    operation = String(form.get("operation") || "");
+  if (!isUuid(id) || !["metadata", "allow", "revoke"].includes(operation))
+    return { message: "İşlem geçersiz.", ok: false };
+  const { data, error } = await db.rpc("cms_manage_media", {
+    media_id: id,
+    expected: Number(form.get("revision")),
+    operation,
+    payload: {
+      alt: String(form.get("alt") || "").trim(),
+      caption: String(form.get("caption") || "").trim(),
+      withdraw_publications: form.get("withdraw") === "on",
+    },
+  });
+  if (error)
+    return {
+      message:
+        error.code === "40001"
+          ? "Görsel başka bir oturumda değişti. Yeniden açın."
+          : "İşlem tamamlanamadı. İzin geri çekmek için bağlı yayınların taslağa alınmasını onaylayın; yetki ve alanları kontrol edin.",
+      ok: false,
+    };
+  updateTag(`cms-media-${id}`);
+  for (const item of data?.affected || []) invalidateDocument(item);
   revalidatePath("/admin/media");
+  revalidatePath("/admin/pages");
+  return {
+    message:
+      operation === "revoke"
+        ? `Yayın izni geri çekildi. ${data.affected.length} yayın taslağa alındı; içerik ve dosya korundu.`
+        : "Medya bilgileri ve izinleri kaydedildi.",
+    ok: true,
+  };
 }
