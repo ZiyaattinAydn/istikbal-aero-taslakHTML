@@ -123,6 +123,10 @@ jobs:
           umask 077
           npx --yes supabase@3.1.0 start --exclude realtime,imgproxy,studio,edge-runtime,logflare,vector,supavisor,postgres-meta > /dev/null 2>&1
           npx --yes supabase@3.1.0 status -o json > /tmp/istikbal-local-status.json
+      - name: Verify local email template configuration without credentials
+        shell: bash
+        run: |
+          docker inspect supabase_auth_istikbal-aerospace-cms | python3 -c 'import json,sys; env=dict(x.split("=",1) for x in json.load(sys.stdin)[0]["Config"]["Env"] if "=" in x); print(json.dumps({flow:{"template_configured":bool(env.get("GOTRUE_MAILER_TEMPLATES_"+flow)),"custom_subject":"İstikbal" in env.get("GOTRUE_MAILER_SUBJECTS_"+flow,"")} for flow in ["MAGIC_LINK","CONFIRMATION","INVITE","RECOVERY"]}))'
       - name: Exercise real local OTP, TOTP, RLS and Storage
         run: npm run cms:test:auth
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f

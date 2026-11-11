@@ -59,3 +59,12 @@ enabled = false
 enabled = false
 [edge_runtime]
 enabled = false
+[auth.email.template.confirmation]
+subject = "İstikbal Aerospace doğrulama kodunuz"
+content_path = "./supabase/templates/otp.html"
+[auth.email.template.recovery]
+subject = "İstikbal Aerospace doğrulama kodunuz"
+content_path = "./supabase/templates/otp.html"
+[auth.email.template.invite]
+subject = "İstikbal Aerospace davet kodunuz"
+content_path = "./supabase/templates/otp.html"

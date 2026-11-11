@@ -52,6 +52,9 @@ async function main() {
   }
   assert.ok(created.user);
   checks.push("Invited passwordless admin created");
+  console.log("Invited account metadata:", {
+    emailConfirmed: !!created.user.email_confirmed_at,
+  });
   const blocked = await db.auth.signUp({
     email: "outsider@example.test",
     password: "not-a-real-credential",
@@ -63,6 +66,9 @@ async function main() {
     options: { shouldCreateUser: false },
   });
   assert.ok(unknown.error || !unknown.data.user);
+  const listed = await admin.auth.admin.listUsers();
+  assert.equal(listed.error, null);
+  assert.equal(listed.data.users.length, 1);
   checks.push("Unknown OTP cannot provision account");
   stage = "send-otp";
   const sent = await db.auth.signInWithOtp({
@@ -103,6 +109,8 @@ async function main() {
     fields: Object.keys(message),
     textLength: message.Text?.length ?? 0,
     htmlLength: message.HTML?.length ?? 0,
+    customSubject: (message.Subject || "").includes("İstikbal"),
+    placeholderUnexpanded: (message.HTML || "").includes("{{ .Token }}"),
   });
   const match = [message.Text, message.HTML]
     .filter(Boolean)
