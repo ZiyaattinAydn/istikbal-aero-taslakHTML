@@ -107,6 +107,7 @@ export function PageEditor({
                 {index + 1}. {field.label}
                 {field.kind === "image" ? (
                   <select
+                    data-field={field.key}
                     value={current[field.key] ?? field.value}
                     onChange={(e) => update(field.key, e.target.value)}
                   >
@@ -122,6 +123,7 @@ export function PageEditor({
                   </select>
                 ) : (
                   <textarea
+                    data-field={field.key}
                     rows={field.value.length > 160 ? 4 : 2}
                     value={current[field.key] ?? field.value}
                     maxLength={8000}

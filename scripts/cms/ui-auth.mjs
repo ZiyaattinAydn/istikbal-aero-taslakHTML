@@ -146,7 +146,7 @@ export async function runUiChecks({ status, admin, totp }) {
         .filter({ has: page.locator("input[name=slug]") });
       const field = entry.fields.find((f) => f.kind === "text");
       assert.ok(field);
-      const area = form.locator("textarea:not([name])").first();
+      const area = form.locator(`textarea[data-field="${field.key}"]`);
       await area.waitFor();
       timings.navigation.push(Date.now() - navStart);
       const { data: doc } = await admin
@@ -193,7 +193,7 @@ export async function runUiChecks({ status, admin, totp }) {
       const preview = await context.newPage();
       await preview.goto(`${url}/admin/pages/${entry.slug}/preview`);
       assert.ok(
-        (await preview.locator("body").innerText()).includes(
+        (await preview.locator("body").textContent()).includes(
           "QA sayfa " + entry.slug,
         ),
       );
@@ -210,7 +210,7 @@ export async function runUiChecks({ status, admin, totp }) {
       const publicPage = await browser.newPage();
       await publicPage.goto(url + publicPath);
       assert.ok(
-        (await publicPage.locator("body").innerText()).includes(
+        (await publicPage.locator("body").textContent()).includes(
           "QA sayfa " + entry.slug,
         ),
       );

@@ -41,7 +41,7 @@ export default async function EditPage({
     <section>
       <h1>{schema.title.split("|")[0]}</h1>
       <PageEditor
-        key={doc.revision}
+        key={`${slug}:${doc.revision}`}
         slug={slug}
         revision={doc.revision}
         title={doc.body.title}
