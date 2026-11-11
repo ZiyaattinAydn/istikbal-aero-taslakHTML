@@ -13,7 +13,7 @@ export default async function New({
   return (
     <section>
       <h1>Yeni içerik</h1>
-      <ContentEditor kind={kind} />
+      <ContentEditor kind={kind} creationId={crypto.randomUUID()} />
     </section>
   );
 }

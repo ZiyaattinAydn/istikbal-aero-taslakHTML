@@ -14,11 +14,13 @@ type Document = {
 };
 export function ContentEditor({
   document,
+  creationId,
   kind,
   versions = [],
   publisher = false,
 }: {
   document?: Document;
+  creationId?: string;
   kind: string;
   versions?: { revision: number; created_at: string }[];
   publisher?: boolean;
@@ -85,6 +87,7 @@ export function ContentEditor({
       <form action={save}>
         <fieldset disabled={pending}>
           <input type="hidden" name="id" value={document?.id || ""} />
+          <input type="hidden" name="creationId" value={creationId || ""} />
           <input
             type="hidden"
             name="revision"

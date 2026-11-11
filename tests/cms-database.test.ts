@@ -53,6 +53,15 @@ test("Postgres RLS: MFA, fresh roles, session revocation, draft isolation, appro
       /check constraint/,
     );
     const id = (await mutate(null, 0, "create")).rows[0].cms_mutate;
+    assert.equal((await mutate(id, 0, "create")).rows[0].cms_mutate, id);
+    assert.equal(
+      (
+        await db.query<{ count: number }>(
+          "select count(*)::int as count from public.cms_documents",
+        )
+      ).rows[0].count,
+      1,
+    );
     await assert.rejects(() => mutate(id, 1, "publish"), /Publisher required/);
     await assert.rejects(
       () => db.exec("update public.cms_documents set approval='approved'"),

@@ -87,7 +87,13 @@ begin
  if operation in ('approve','publish','archive') and not cms_private.allowed(true) then raise exception 'Publisher required' using errcode='42501'; end if;
  if operation='create' then
   if content_kind='page' then raise exception 'Pages must be seeded'; end if;
-  insert into public.cms_documents(kind,slug,body) values(content_kind,content_slug,payload) returning * into current_doc;
+  doc=coalesce(doc,gen_random_uuid());
+  insert into public.cms_documents(id,kind,slug,body) values(doc,content_kind,content_slug,payload) on conflict(id) do nothing returning * into current_doc;
+  if current_doc.id is null then
+   select * into current_doc from public.cms_documents where id=doc;
+   if current_doc.kind<>content_kind or current_doc.slug<>content_slug or current_doc.body<>payload then raise exception 'Revision conflict' using errcode='40001'; end if;
+   return current_doc.id;
+  end if;
  else
   select * into current_doc from public.cms_documents where id=doc for update;
   if current_doc.id is null then raise exception 'Not found'; end if;

@@ -29,15 +29,18 @@ export async function saveContent(
       stage: form.get("stage") || null,
     });
     if (id && !/^[0-9a-f-]{36}$/i.test(id)) throw Error("Kayıt bulunamadı.");
+    const creationId = String(form.get("creationId") || "");
+    if (!id && !/^[0-9a-f-]{36}$/i.test(creationId))
+      throw Error("Yeni kayıt formunu yeniden açın.");
     const { data, error } = await db.rpc("cms_mutate", {
-      doc: id || null,
+      doc: id || creationId,
       expected: revision,
       operation: id ? "save" : "create",
       payload: body,
       content_kind: kind,
       content_slug: id
         ? null
-        : `${slugify(body.title)}-${crypto.randomUUID().slice(0, 6)}`,
+        : `${slugify(body.title)}-${creationId.slice(0, 7)}`,
     });
     if (error)
       return {

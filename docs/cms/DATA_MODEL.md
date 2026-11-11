@@ -18,3 +18,5 @@ Tüm yazmalar açık tablo grant'i yerine `cms_mutate` üzerinden kilitli transa
 Kaydetme ve geri alma revision artırır, onayı sıfırlar. Yayın onay ve yayıncı rolü ister. Aynı revision ile eski oturumdan kaydetme reddedilir. Arşiv yayın snapshot'ını kaldırır, audit/versions korunur. Sayfa oluşturma UI/RPC'den yasaktır; yalnız reviewed seed. Tabloları geniş metadata/page builder deposuna dönüştürmeyin; bölüm şemaları gerçek şablonlara eşlenmeden public okumayı açmayın.
 
 Seed tekrarında `(kind,slug)` çakışması mevcut metni değiştirmez. Test iki kez seed + düzenleme + yeniden seed sonrası 21 sayfayı ve düzenlenmiş metni doğrular. Seed'deki mevcut şirket iddiaları otomatik onaylanmaz/yayımlanmaz. `cms_versions` son 30 sürümü panelde listeler; silme/retention henüz yoktur.
+
+Yeni kayıt formu sabit bir işlem kimliği taşır. Yanıt kaybından sonra aynı create tekrarlandığında aynı kayıt döner; veri farklıysa conflict oluşur. Tekrar create ikinci kayıt veya ikinci audit üretmez; SQL testinde doğrulandı.
