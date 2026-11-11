@@ -1,13 +1,11 @@
-# FAZ 05 — Kayıt yönetimi
+# FAZ 05 — Kayıt ve medya yönetimi
 
-11 Kasım 2026.
+11 Kasım 2026. Kısmi; ilişkiler ve kullanıcı kabulü açık.
 
-Haber, proje, platform, teknoloji/kabiliyet ekleme; kontrollü metin, nullable tarih, otomatik sabit slug; arama/pagination; taslak/inceleme/onay/yayın deposu/arşiv/sürüm geri alma. Unsaved uyarısı ve pending feedback.
+Haber/proje/platform/teknoloji/kabiliyet CRUD, arama/sayfalama, nullable tarih, otomatik sabit URL, taslak/onay/yayın/arşiv/geri alma vardır. Tekrarlanan create ikinci kayıt oluşturmaz. Korumalı yeni kayıt önizlemesi ile public /icerik/[kind]/[slug] aynı EntryContent şablonudur. Public anahtar açıldığında kayıtlar ilgili listelere eklenir; haberlerde yeni kartlar mevcut filtreli listeden ayrı bir bölümdür.
 
-**Doğrulama ve çıkış durumu:** SQL approval/editor/concurrency/restore testleri geçti. Hosted E2E, medya storage/kütüphane, ilişki yazma UI, public liste/detay URL bağlantısı ve hedefli cache yenileme eksik. Upload yalnız imza/limit validator; gerçek upload özelliği değildir.
+Medya yükleme/seçme ve yayıncı public kullanım onayı vardır. Tarayıcı en fazla 2000 px WebP üretir; metadata çıkarılır. Sunucu imza, MIME, boyut/piksel alanı ve 5 MB limitini doğrular. Alt metin ve telif izni gerekir. Private bucket/RLS ve yayın sırasında özel medya reddi korunur.
 
-Güncel takip: [STATUS.md](STATUS.md). Dış işlemler, deploy veya DNS değişikliği yapılmadı.
+Yerel 53 test SQL rol/onay/concurrency/restore/retry, medya doğrulama ve ortak önizleme şablonunu kapsar. CLI 15 kontrol gerçek Auth/API/Storage akışını geçti. Typecheck/lint/build/audit başarılı.
 
-## Devam çalışması — 11 Kasım 2026
-
-Bu ilk tur raporu, devam çalışmasında [STATUS.md](STATUS.md) ve [SMTP_AND_ACCESS.md](SMTP_AND_ACCESS.md) ile güncellenmiştir. Yeni bağımsız Free projede 21 sayfa/537 kontrollü alan ve özel Storage hazır; yerel 52 test/typecheck/lint/build geçti. Gerçek Auth/Mailpit ve tarayıcı/performance CI sonuçları PR #13’te takip edilir. Hosted kullanıcı provision işlemi, Cloudflare staging ve Resend domain doğrulaması henüz tamamlanmadı.
+Eksikler: ilişki düzenleyicisi/public ilişki kartları; yeni kayıt kapak seçici; medya alt metnini sonradan düzenleme/silme/izin geri çekme; gerçek UI kabulü ve ağda save p95. Statik ilişkiler korunur. [STATUS.md](STATUS.md).

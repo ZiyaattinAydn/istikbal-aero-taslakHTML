@@ -1,13 +1,11 @@
-# FAZ 04 — Sayfa yönetimi sınırı
+# FAZ 04 — Mevcut sayfa düzenleme
 
-11 Kasım 2026.
+11 Kasım 2026. Kod hazır; gerçek kullanıcı/staging kabulü bekliyor.
 
-Korumalı mevcut sayfa envanteri dolu metinleri okutur. Source ve render fixture karşılaştırması mevcut. Public kaynaklara dokunulmadı.
+21 şablona 537 kontrollü metin, görsel ve bağlantı alanı bağlandı; yeni Free projede mevcut değerleriyle dolu seed vardır. SEO/alan arama, revision kontrollü taslak, kaydedilmemiş değişiklik uyarısı, inceleme/onay/yayın/arşiv/geri alma desteklenir. Serbest HTML/CSS yoktur.
 
-**Doğrulama ve çıkış durumu:** Hosting kapısı nedeniyle geniş veri geçişi yapılmadı. Sayfa bölüm editörü, gerçek şablon önizleme, yayın ve cache invalidation uygulanmadı. Bu faz tamamlanmış sayılmaz.
+Korumalı /admin/pages/[slug]/preview public PageContent ile aynı React şablonunu kullanır; admin kabuğu önizleme tasarımını sarmaz. Public okuma yalnız snapshot sorgular; etiketli 300 saniye cache ve hedefli invalidation vardır. Varsayılan kapalıdır; hosting GO olmadan açılmaz.
 
-Güncel takip: [STATUS.md](STATUS.md). Dış işlemler, deploy veya DNS değişikliği yapılmadı.
+21 şablon/alan/fallback, seed/snapshot ve eski metin/asset/link testleri geçti. Focus şablonlarının JSX boşluk farkı snapshot'ta güncellendi; normalize içerik korunur. Yerel 53 test/typecheck/lint/build ve CI browser turları başarılı. [PERFORMANCE.md](PERFORMANCE.md) gerçek Chromium kıyasını içerir.
 
-## Devam çalışması — 11 Kasım 2026
-
-Bu ilk tur raporu, devam çalışmasında [STATUS.md](STATUS.md) ve [SMTP_AND_ACCESS.md](SMTP_AND_ACCESS.md) ile güncellenmiştir. Yeni bağımsız Free projede 21 sayfa/537 kontrollü alan ve özel Storage hazır; yerel 52 test/typecheck/lint/build geçti. Gerçek Auth/Mailpit ve tarayıcı/performance CI sonuçları PR #13’te takip edilir. Hosted kullanıcı provision işlemi, Cloudflare staging ve Resend domain doğrulaması henüz tamamlanmadı.
+Workers yayın/cache/özel medya, gerçek MFA ile UI düzenlemesi, mobil/fiziksel cihaz kabulü ve public DB okuması açık performans ölçümü bekler. [STATUS.md](STATUS.md).

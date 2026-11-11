@@ -1,22 +1,25 @@
-# Veri modeli ve taşıma sınırı
+# Veri modeli — devam çalışması
 
-`supabase/migrations/*_cms_foundation.sql` yalnızca yerel PostgreSQL uyumlu PGlite motorunda çalıştırıldı. Hosted Supabase'e uygulanmadı. PGlite testi Auth servisinin veya PostgREST'in gerçek testi değildir; `auth.uid`, `auth.jwt`, kullanıcı ve oturum tabloları fixture'dır.
+Dört migration yalnız yeni bağımsız Supabase Free projesine uygulandı. SQL senaryoları ayrıca PGlite üzerinde çalışır; o testte Auth işlevleri fixture'dır. Gerçek Auth/PostgREST/Storage için CLI/Mailpit CI 43067794522'de 15 kontrol geçti. Hosted Auth/API kabulü bunun yerine geçmez.
 
 | Tablo | Amaç / erişim |
 |---|---|
-| cms_roles | Kullanıcı başına editör/yayıncı, anlık erişim iptali. Kullanıcı yalnız kendi rolünü okur; rol yazamaz. |
-| cms_documents | Kontrollü metin gövdesi, tür, sabit otomatik slug, çalışma durumu, ayrı onay, revision. Yalnız aktif, AAL2, geçerli oturumlu ekip okur. |
-| cms_published | Kamuya açık tek snapshot. Taslak alanlarını içermez. Public uygulamaya henüz bağlanmadı. |
-| cms_versions | Değişmeyen metin snapshot'ları; geri alma yeni ve onaysız taslak üretir. |
-| cms_audit | Kim/ne zaman/hangi işlem; istemci doğrudan değiştiremez. |
-| cms_relations | Kayıt ilişkileri için temel tablo/indeks; yazma ve UI henüz açılmadı. |
+| cms_roles | Editör/yayıncı ve anlık iptal. Kullanıcı kendi rolünü okur; rol yazamaz. |
+| cms_documents | Kontrollü gövde, tür, sabit slug, durum, ayrı onay, revision. Aktif AAL2 ekip ve geçerli oturum gerekir. |
+| cms_published | Onaylı public snapshot; taslak sorgusu kullanılmaz. Uygulama bağlantısı hazır, varsayılan kapalı. |
+| cms_versions | Değişmeyen snapshot; geri alma yeni onaysız taslak üretir. |
+| cms_audit | Aktör/zaman/işlem; istemci doğrudan değiştiremez. |
+| cms_relations | İlişki temeli/indeksi; yazma ve UI açık değil. |
+| cms_page_fields | 21 sayfa / 537 izinli metin, görsel ve link alanı; kullanıcı şema yazamaz. |
+| cms_media | Boyut, MIME, alt metin, telif izni, private/public. Oluşturan kimliği anon sorguya açık değil. |
+| cms_private.admin_allowlist | Yalnız operatörün eriştiği e-posta listesi; public API şeması değil. |
 
-`body`: başlık (160), özet (1.000), en fazla 30 düz metin paragrafı (8.000), bilinmiyorsa null tarih/kaynak/aşama. Sayfa fixture'ları tam kontrollü bölüm şeması değildir. Onay `unreviewed/in_review/approved`; çalışma durumu `draft/in_review/approved/published/archived`; ürün olgunluğu ayrı `stage` alanındadır.
+Gövde başlık (160), özet (1.000), en fazla 30 düz metin paragrafı (8.000), nullable tarih/kaynak/aşamadır. Sayfalardaki ek `fields` anahtarları kayıtlı şemaya göre doğrulanır. Serbest HTML/CSS yok. Onay `unreviewed/in_review/approved`; durum `draft/in_review/approved/published/archived`; ürün olgunluğu ayrı stage alanıdır.
 
-Tüm yazmalar açık tablo grant'i yerine `cms_mutate` üzerinden kilitli transaction'a gider. Public wrapper SECURITY INVOKER; özel şemadaki dar definer fonksiyon her çağrıda aktif rol, AAL2 ve mevcut `auth.sessions` kaydını doğrular. Varsayılan PUBLIC execute kaldırılmıştır. Public/private bütün tablolar RLS kullanır; anon yalnız yayın snapshot'ını okur. Hosted projede advisors ve API schema exposure ayrıca kontrol edilmelidir.
+İçerik yazmaları `cms_mutate` üzerinden kilitli transaction'a gider. Public wrapper SECURITY INVOKER; özel definer fonksiyon her çağrıda aktif rol, AAL2 ve mevcut auth.sessions kaydını doğrular. PUBLIC execute kaldırılmıştır. Bütün CMS tabloları RLS kullanır. Anon yalnız snapshot ve public kullanımına izin verilen medya alanlarını okur. Hosted security advisors temizdir.
 
-Kaydetme ve geri alma revision artırır, onayı sıfırlar. Yayın onay ve yayıncı rolü ister. Aynı revision ile eski oturumdan kaydetme reddedilir. Arşiv yayın snapshot'ını kaldırır, audit/versions korunur. Sayfa oluşturma UI/RPC'den yasaktır; yalnız reviewed seed. Tabloları geniş metadata/page builder deposuna dönüştürmeyin; bölüm şemaları gerçek şablonlara eşlenmeden public okumayı açmayın.
+Kaydetme/geri alma revision artırır, onayı sıfırlar. Yayın onay/yayıncı rolü ister. Eski revision reddedilir. Arşiv snapshot'ı kaldırır, audit/versions korunur. Sayfa oluşturma UI/RPC'den yasaktır; reviewed seed gerekir. Yayın trigger'ı özel/onaysız medya referansını reddeder. Private Storage okuması metadata görünürlüğüne bağlıdır.
 
-Seed tekrarında `(kind,slug)` çakışması mevcut metni değiştirmez. Test iki kez seed + düzenleme + yeniden seed sonrası 21 sayfayı ve düzenlenmiş metni doğrular. Seed'deki mevcut şirket iddiaları otomatik onaylanmaz/yayımlanmaz. `cms_versions` son 30 sürümü panelde listeler; silme/retention henüz yoktur.
+`page-seed.sql` izinli alanları günceller; revision=1 şemasız eski fixture'lara alanları ekler. Düzenlenmiş metni silmez. Tekrarlı seed, düzenleme ve tekrar seed korunumu test edilir. Şirket iddiaları otomatik yayımlanmaz. Panel son 30 sürümü listeler; retention silmesi yoktur.
 
-Yeni kayıt formu sabit bir işlem kimliği taşır. Yanıt kaybından sonra aynı create tekrarlandığında aynı kayıt döner; veri farklıysa conflict oluşur. Tekrar create ikinci kayıt veya ikinci audit üretmez; SQL testinde doğrulandı.
+Create sabit işlem kimliği taşır: aynı tekrar aynı kaydı döndürür, farklı veri conflict üretir; ikinci kayıt/audit oluşmaz. Başlık düzenlemesi URL'yi değiştirmez. İlişki UI/public kartları henüz yok; statik ilişkiler korunur.

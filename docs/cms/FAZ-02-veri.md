@@ -1,13 +1,9 @@
-# FAZ 02 — İçerik modeli
+# FAZ 02 — İçerik modeli ve aktarım
 
-11 Kasım 2026.
+11 Kasım 2026 devam çalışması. Şema ve taslak aktarımı tamamlandı; üretim veri geçişi kapalıdır.
 
-21 rota/28 kaynak/1276 literal, SSR metin/medya/link snapshot, minimal SQL ve RLS, sürüm/audit, 21 idempotent taslak fixture. Onay, yayın durumu ve ürün aşaması ayrı.
+21 rota için 537 gerçek kontrollü alan özgün React şablonlarına bağlandı. Dört migration, alan kaydı, 21 idempotent taslak ve private Storage yalnız yeni bağımsız Free projeye uygulandı. Onay/yayın durumu/ürün aşaması ayrıdır; sürüm/audit ve kilitli yazma korunur.
 
-**Doğrulama ve çıkış durumu:** Envanter/snapshot/seed check ve PGlite idempotency geçti. Bölüm → özgün şablon eşlemesi ve hosted veri aktarımı tamamlanmadı. DATA_MODEL.md.
+Envanter/snapshot/seed/page check ve PGlite güvenlik/idempotency testleri geçti. Hosted sayım 21/537; anonim taslak sorgusu reddedildi; security advisors temiz. Gerçek yerel Auth/API/Storage CI testi de geçti. [DATA_MODEL.md](DATA_MODEL.md), [STATUS.md](STATUS.md).
 
-Güncel takip: [STATUS.md](STATUS.md). Dış işlemler, deploy veya DNS değişikliği yapılmadı.
-
-## Devam çalışması — 11 Kasım 2026
-
-Bu ilk tur raporu, devam çalışmasında [STATUS.md](STATUS.md) ve [SMTP_AND_ACCESS.md](SMTP_AND_ACCESS.md) ile güncellenmiştir. Yeni bağımsız Free projede 21 sayfa/537 kontrollü alan ve özel Storage hazır; yerel 52 test/typecheck/lint/build geçti. Gerçek Auth/Mailpit ve tarayıcı/performance CI sonuçları PR #13’te takip edilir. Hosted kullanıcı provision işlemi, Cloudflare staging ve Resend domain doğrulaması henüz tamamlanmadı.
+Hosting GO olmadığı için public okuma anahtarı açılmadı; başka veritabanı ve canlı site değiştirilmedi.

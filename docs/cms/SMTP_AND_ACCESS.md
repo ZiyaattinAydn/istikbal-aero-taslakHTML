@@ -18,7 +18,7 @@ Yeni hosted projede account guard, allowlist dışındaki kullanıcı kayıtlar�
 
 Supabase CLI 3.1.0 için `supabase/config.toml` ve altı haneli `templates/otp.html` hazır. Yerel gönderici Mailpit; Resend'e veya gerçek bir e-posta kutusuna gönderim yapılmaz. Test e-postası `cms-admin@example.com`, yalnız `local-admin.sql` fixture'ıdır; hosted projeye eklenmedi.
 
-Çalışma ortamında Docker yok. Native CLI başlangıcı servis arşivlerini GitHub/S3'ten indiremedi (`EAI_AGAIN`); yerelde gerçek OTP tamamlandı iddiası yok. PR CI'daki `cms-local-auth` işi Docker tabanlı izole Supabase + Mailpit çalıştırır. Test, gerçek OTP e-postası/yanlış kod/tek kullanım, kapalı signup, TOTP, AAL1 reddi, AAL2 yazma, yayın, özel/public Storage ve eski JWT ile oturum iptalini doğrular. Başlangıç çıktısı anahtar içerebileceği için tamamen atılır; status JSON yalnız private geçici çalışma ayarıdır. Artifact yalnız sansürlenmiş sonuç JSON'udur. CI sonucu STATUS.md/PR'da takip edilir.
+Çalışma ortamında Docker yok. Native CLI başlangıcı servis arşivlerini GitHub/S3'ten indiremedi (`EAI_AGAIN`); yerelde gerçek OTP tamamlandı iddiası yok. PR CI'daki `cms-local-auth` işi Docker tabanlı izole Supabase + Mailpit çalıştırır. Test, gerçek OTP e-postası/yanlış kod/tek kullanım, kapalı signup, TOTP, AAL1 reddi, AAL2 yazma, yayın, özel/public Storage ve eski JWT ile oturum iptalini doğrular. Başlangıç çıktısı anahtar içerebileceği için tamamen atılır; status JSON yalnız private geçici çalışma ayarıdır. Artifact yalnız sansürlenmiş sonuç JSON'udur. CI 43067794522 / dfa9266 turunda 15 gerçek yerel kontrol başarılıdır; ayrıntı evidence/local-auth-ci.json içindedir. Bu Mailpit teslimidir; Resend veya gerçek posta kutusu teslimi değildir.
 
 ## Resend Free hazırlığı
 
@@ -37,4 +37,10 @@ Gönderici domain doğrulaması, SPF/DKIM/DMARC ve mevcut MX/TXT'nin korunması 
 
 ## Auth Admin uyumluluk düzeltmesi
 
-İlk gerçek CLI testi kullanıcı hazırlığında durdu. Resmî Auth kaynak kodu, parolasız `createUser` çağrısında dahi dahili rastgele parola üretildiğini gösterdi. İlk guard bu hazırlığı fazla katı engelliyordu. Ek migration, hesap oluşturulurken bu hash’i boşaltır; sonradan parola etkinleştirmeyi reddeder. OTP ve TOTP kontrolleri korunur; anonim veya parola tabanlı giriş açılmaz. Kaynak: https://github.com/supabase/auth/blob/master/internal/api/admin.go . Yeni CI sonucu ayrıca doğrulanmalıdır.
+İlk gerçek CLI testi kullanıcı hazırlığında durdu. Resmî Auth kaynak kodu, parolasız `createUser` çağrısında dahi dahili rastgele parola üretildiğini gösterdi. İlk guard bu hazırlığı fazla katı engelliyordu. Ek migration, hesap oluşturulurken bu hash’i boşaltır; sonradan parola etkinleştirmeyi reddeder. OTP ve TOTP kontrolleri korunur; anonim veya parola tabanlı giriş açılmaz. Kaynak: https://github.com/supabase/auth/blob/master/internal/api/admin.go . Son CLI CI turunda bu hazırlık ve ardından OTP/TOTP akışı başarılıdır.
+
+## Gerçek Mailpit kabulü ve CLI başlangıç düzeltmesi
+
+İlk turlarda CLI Auth, şablon sunucusu hazır olmadan varsayılan giriş bağlantısı şablonunu önbelleğe alıyordu. Mailpit'te varsayılan bağlantı gözlendi; OTP kabulü verilmedi. `prepare-local-auth.mjs` dört yerel endpoint'in kaynak OTP şablonunu eksiksiz sunduğunu doğrular; sonra yalnız izole local Auth'u yeniden başlatarak bu fallback cache'ini temizler. Hosted ayara veya güvenlik politikasına dokunmaz. Resmî kaynaklar: https://supabase.com/kb/troubleshooting/email-template-not-updating ve https://github.com/supabase/cli/blob/v3.1.0/apps/cli/src/commands/start/services/gotrue.service.ts .
+
+Son CI'da gerçek özel şablon, altı haneli kod, yanlış kod/tekrar reddi ve TOTP başarılı; AAL1 yazma reddi, AAL2 yayın, private/public Storage ve iptal edilmiş oturumun eski JWT ile yazamaması da geçti. Native çalışma ortamı engelini Docker CI ile aştık. Hosted kullanıcının MFA kurulumu ve gerçek SMTP hâlâ bekler.
