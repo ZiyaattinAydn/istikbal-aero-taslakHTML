@@ -144,7 +144,7 @@ test("Postgres RLS: MFA, fresh roles, session revocation, draft isolation, appro
     await assert.rejects(
       () =>
         db.exec(
-          "insert into auth.users(id,email,encrypted_password) values(gen_random_uuid(),'cms-admin@example.test','password')",
+          "update auth.users set encrypted_password='password' where email='cms-admin@example.test'",
         ),
       /Password authentication is disabled/,
     );

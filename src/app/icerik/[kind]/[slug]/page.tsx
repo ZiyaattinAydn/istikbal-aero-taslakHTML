@@ -1,7 +1,25 @@
 import { notFound } from "next/navigation";
-import { publishedEntries } from "@/lib/cms/public";
+import { publishedEntry } from "@/lib/cms/public";
 import { SiteShell } from "@/components/layout/SiteShell";
 import { InnerHero, Section } from "@/components/ui/content";
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ kind: string; slug: string }>;
+}) {
+  const { kind, slug } = await params;
+  if (
+    !["news", "project", "platform", "technology", "capability"].includes(
+      kind,
+    ) ||
+    !/^[a-z0-9-]{1,80}$/.test(slug)
+  )
+    return {};
+  const entry = await publishedEntry(kind, slug);
+  return entry
+    ? { title: entry.body.title, description: entry.body.summary }
+    : {};
+}
 export default async function Detail({
   params,
 }: {
@@ -15,7 +33,7 @@ export default async function Detail({
     !/^[a-z0-9-]{1,80}$/.test(slug)
   )
     notFound();
-  const item = (await publishedEntries(kind)).find((i) => i.slug === slug);
+  const item = await publishedEntry(kind, slug);
   if (!item) notFound();
   return (
     <SiteShell page="newsDetail">

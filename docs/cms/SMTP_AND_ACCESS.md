@@ -34,3 +34,7 @@ Gönderici domain doğrulaması, SPF/DKIM/DMARC ve mevcut MX/TXT'nin korunması 
 2. Cloudflare hesabı için kullanılabilir Work bağlantısı veya ortamda güvenli, dar kapsamlı yetki: ücretsiz staging CPU/cache/auth/upload testi.
 3. Resend OAuth/resmî entegrasyon bağlantısı; gerçek gönderici doğrulaması ve teslim testleri DNS aşamasında.
 4. DNS, canlı yayın ve main merge ayrı açık onay gerektirir. Bu çalışma bunları gerçekleştirmedi.
+
+## Auth Admin uyumluluk düzeltmesi
+
+İlk gerçek CLI testi kullanıcı hazırlığında durdu. Resmî Auth kaynak kodu, parolasız `createUser` çağrısında dahi dahili rastgele parola üretildiğini gösterdi. İlk guard bu hazırlığı fazla katı engelliyordu. Ek migration, hesap oluşturulurken bu hash’i boşaltır; sonradan parola etkinleştirmeyi reddeder. OTP ve TOTP kontrolleri korunur; anonim veya parola tabanlı giriş açılmaz. Kaynak: https://github.com/supabase/auth/blob/master/internal/api/admin.go . Yeni CI sonucu ayrıca doğrulanmalıdır.

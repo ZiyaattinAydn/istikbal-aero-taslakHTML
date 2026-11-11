@@ -4,20 +4,20 @@ npm warn Unknown env config "http-proxy". This will stop working in the next maj
 > next build
 
 ▲ Next.js 16.4.5 (Turbopack)
-✓ Running next.config.ts took 23ms
+✓ Running next.config.ts took 58ms
 - Experiments (use with caution):
   · serverActions
 
   Creating an optimized production build ...
-✓ Compiled successfully in 941ms
+✓ Compiled successfully in 798ms
   Running TypeScript ...
-  Finished TypeScript in 1904ms ...
+  Finished TypeScript in 1651ms ...
   Collecting page data using 8 workers ...
   Generating static pages using 8 workers (0/45) ...
   Generating static pages using 8 workers (11/45)
   Generating static pages using 8 workers (22/45)
   Generating static pages using 8 workers (33/45)
-✓ Generating static pages using 8 workers (45/45) in 369ms
+✓ Generating static pages using 8 workers (45/45) in 331ms
   Finalizing page optimization ...
 
 Route (app)

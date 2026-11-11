@@ -101,6 +101,8 @@ export async function changeStatus(
             ? `cms-page-${affected.slug}`
             : `cms-list-${affected.kind}`,
         );
+        if (affected.kind !== "page")
+          updateTag(`cms-item-${affected.kind}-${affected.slug}`);
       }
     }
     return {

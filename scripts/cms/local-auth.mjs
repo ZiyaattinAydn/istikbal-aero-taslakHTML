@@ -21,6 +21,8 @@ const client = (key) =>
 const admin = client(secret),
   db = client(anon);
 const checks = [];
+let stage = "configuration";
+console.log("Local status field names:", Object.keys(status).join(","));
 function totp(base32) {
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
   let bits = "";
@@ -38,9 +40,16 @@ function totp(base32) {
 async function main() {
   assert.ok(url && anon && secret, "Local stack credentials missing");
   assert.match(url, /^http:\/\/(127\.0\.0\.1|localhost):/);
+  stage = "create-admin";
   const { data: created, error: createError } =
     await admin.auth.admin.createUser({ email, email_confirm: true });
-  assert.equal(createError, null);
+  if (createError) {
+    console.log("Admin creation failure:", {
+      status: createError.status,
+      code: createError.code,
+    });
+    throw Error("admin_create_failed");
+  }
   assert.ok(created.user);
   checks.push("Invited passwordless admin created");
   const blocked = await db.auth.signUp({
@@ -170,19 +179,17 @@ async function main() {
     .from("cms-media")
     .upload(mediaPath, bytes, { contentType: "image/webp", upsert: false });
   assert.equal(upload.error, null);
-  const meta = await db
-    .from("cms_media")
-    .insert({
-      id: mediaId,
-      path: mediaPath,
-      mime: "image/webp",
-      bytes: bytes.length,
-      width: size.width,
-      height: size.height,
-      alt: "Local test image",
-      rights_approved: true,
-      created_by: created.user.id,
-    });
+  const meta = await db.from("cms_media").insert({
+    id: mediaId,
+    path: mediaPath,
+    mime: "image/webp",
+    bytes: bytes.length,
+    width: size.width,
+    height: size.height,
+    alt: "Local test image",
+    rights_approved: true,
+    created_by: created.user.id,
+  });
   assert.equal(meta.error, null);
   assert.ok(
     (await client(anon).storage.from("cms-media").download(mediaPath)).error,
@@ -238,7 +245,9 @@ async function main() {
 }
 main().catch(() => {
   console.error(
-    "FAIL: local Auth check after: " +
+    "FAIL: local Auth check stage " +
+      stage +
+      " after: " +
       (checks.at(-1) || "startup") +
       ". Sensitive values omitted.",
   );

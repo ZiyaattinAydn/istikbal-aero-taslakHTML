@@ -30,3 +30,7 @@ node scripts/cms/run-http.mjs "$PWD" docs/cms/evidence/after-http.json
 ```
 
 Baseline için temiz `41e5581` checkout'unda ayrı `npm ci` ve build gerekir; ana dizindeki node_modules symlink'i Turbopack root sınırına takılır. Browser altyapısı ve staging engelleri kaldırılınca ölçümler tekrarlanıp bu rapor güncellenmelidir.
+
+## Devam çalışmasının ölçümü
+
+21 sayfa bağları ve medya kodu sonrası aynı yerel HTTP aracında public script gzip toplamı 188.914 byte (ilk 41e5581 bazına göre +1.343 byte, yaklaşık %0,72). Bu CMS_PUBLIC_READS=false senaryosudur. Tarayıcı önce/sonra kıyası `cms-performance` CI işine eklendi; sonuçları artifact üzerinden değerlendirilmeden Web Vitals kabulü verilmez. Gerçek DB/Workers, field INP ve fiziksel cihaz ölçümleri ayrıca gerekir.

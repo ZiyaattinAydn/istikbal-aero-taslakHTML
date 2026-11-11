@@ -131,6 +131,11 @@ jobs:
           name: cms-local-auth-sanitized
           path: docs/cms/evidence/local-auth.json
           retention-days: 7
+      - name: Classify local database failures without secrets
+        if: failure()
+        shell: bash
+        run: |
+          docker logs supabase_db_istikbal-aerospace-cms 2>&1 | python3 -c 'import re,sys; text=sys.stdin.read(); known=re.findall(r"Account creation is restricted|Password authentication is disabled|permission denied for [a-z_.]+|column [a-z_.]+ does not exist",text); print("Database error classes:",sorted(set(known)))'
       - name: Stop disposable local services
         if: always()
         run: npx --yes supabase@3.1.0 stop > /dev/null 2>&1 || true

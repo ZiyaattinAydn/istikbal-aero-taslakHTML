@@ -72,3 +72,28 @@ export async function publishedEntries(
     return [];
   }
 }
+
+export async function publishedEntry(
+  kind: string,
+  slug: string,
+): Promise<PublishedEntry | null> {
+  if (!publicReadsEnabled()) return null;
+  try {
+    return await unstable_cache(
+      async () => {
+        const { data, error } = await publicClient()
+          .from("cms_published")
+          .select("document_id,kind,slug,body,revision")
+          .eq("kind", kind)
+          .eq("slug", slug)
+          .maybeSingle();
+        if (error) throw error;
+        return data ?? null;
+      },
+      ["cms-item", kind, slug],
+      { revalidate: 300, tags: [`cms-item-${kind}-${slug}`] },
+    )();
+  } catch {
+    return null;
+  }
+}
