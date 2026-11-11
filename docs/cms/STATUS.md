@@ -12,7 +12,7 @@ Başlangıç: `41e5581`; branch: `feat/cms-foundation`. Ana plan ve Work prompt 
 | 3 | Kısmi | Kapalı varsayılan `/admin`; OTP (`shouldCreateUser:false`), TOTP kurulum/doğrulama, sunucu rol kontrolü, admin-only oturum yenileme. Gerçek Auth/SMTP/MFA kabulü ve abuse testleri bekliyor. |
 | 4 | Bağlı entegrasyon bloke | Mevcut sayfa metinleri korumalı envanter ekranında okunabilir. Bölüm düzenleme, özgün şablonda taslak önizleme, public veri geçişi ve hedefli cache yenileme uygulanmadı. |
 | 5 | Kısmi | Haber/proje/platform/teknoloji/kabiliyet kaydı oluşturma, arama/sayfalama, taslak, inceleme/onay, yayın deposu, arşiv ve sürüm geri alma kodu var. Medya kütüphanesi/upload servisi, ilişki düzenleyicisi ve public liste/detay bağlantısı yok. |
-| 6 | Kısmi | Typecheck/lint/build, 29 test, RLS negatif senaryoları, seed idempotency ve HTTP kıyası geçti. Yerel Chromium engelli; CI son kabulü, fiziksel cihaz/animasyon ve Abdullah kabulü ayrıca doğrulanmalı. |
+| 6 | Kısmi | Typecheck/lint/build, 29 test, RLS negatif senaryoları, seed idempotency ve HTTP kıyası geçti. Yerel Chromium engelli; uygulama kodu CI’da development ve production 71/71 tarayıcı testini geçti. Fiziksel cihaz ve Abdullah kabulü ayrıca doğrulanmalı. |
 
 ## Açık engeller ve sonraki iş sırası
 
@@ -36,4 +36,4 @@ Başlangıç: `41e5581`; branch: `feat/cms-foundation`. Ana plan ve Work prompt 
 - Yayınlanmış snapshot ile çalışma taslağı farklı tabloda tutulur. Taslak kaydetme mevcut yayın snapshot'ını değiştirmez.
 - Panelde "yayın deposuna al" ifadesi özellikle kullanılır: işlem mevcut sitede görünür yayın anlamına gelmez.
 
-PR: https://github.com/ZiyaattinAydn/istikbal-aerospace-web/pull/13 (taslak). İlk CI turunda checks başarılı; browser dev/production ve CodeQL sonuçları henüz bekleniyor. Lokal ve uzak commit kimlikleri aktarım yöntemi nedeniyle farklıdır; ilk aktarımın Git tree hash eşitliği doğrulandı.
+PR: https://github.com/ZiyaattinAydn/istikbal-aerospace-web/pull/13 (taslak). Doğrulanan uygulama commit’i: `4e61a7cfdde20e59bffb9075d169d403a2e297f2`. CI’da checks, CodeQL, development 71/71 ve production 71/71 tarayıcı testi başarılı. [CI kanıtı](https://github.com/ZiyaattinAydn/istikbal-aerospace-web/actions/runs/43017113600). Sonraki rapor güncellemesi yalnız belgelerdir. Lokal ve uzak commit kimlikleri aktarım yöntemi nedeniyle farklıdır; ilk aktarımın Git tree hash eşitliği doğrulandı.

@@ -16,7 +16,7 @@ Public script toplamı +201 byte (~%0,11). Public sayfa/data/asset kaynakları d
 
 ## Tarayıcı ve Worker engelleri
 
-- Playwright Chromium açılışı `socket() failed: Operation not permitted`, `ptrace: Operation not permitted` ile durdu. Ayrı tarayıcı yüzeyi localhost'a `ERR_CONNECTION_REFUSED` verdi. LCP/INP/CLS, waterfall, mobil CPU, FPS ve fiziksel scroll için gerçek önce/sonra başarı iddiası yok.
+- Playwright Chromium açılışı `socket() failed: Operation not permitted`, `ptrace: Operation not permitted` ile durdu. Ayrı tarayıcı yüzeyi localhost'a `ERR_CONNECTION_REFUSED` verdi. LCP/INP/CLS, waterfall, mobil CPU, FPS ve fiziksel scroll için gerçek önce/sonra başarı iddiası yok. Sonrasında GitHub CI Chromium regresyonu development ve production 71/71 geçti; bu regresyon testleri Web Vitals kıyasının yerine geçmez.
 - `scripts/cms/measure.mjs` gerçek Chromium ölçüm altyapısıdır; tamamlanmış browser ölçümü değildir. Varsayılan yürütülebilir `/usr/bin/chromium`, alternatif `CHROMIUM_PATH` ile seçilir. CI ortamında Playwright browser executable yolu verilebilir. Üç tekrar/rota ve iki viewport; script field INP ölçmez.
 - vinext 1.4.5 check: kaynak uyumluluğu %100, baseline 9 desteklenen özellik. İzole güncel admin iskeleti kopyasında 11 desteklenen özellik. Build başarılı; static-assets cache, data-cache none, Images none. Next repo runtime'ı dönüştürülmedi.
 - `vite preview` Cloudflare plugin içinde `uv_interface_addresses` kısıtıyla durdu. Hosted staging, gerçek 10 ms CPU bütçesi, auth callback, kalıcı cache invalidation ve upload ölçülemedi. Free 100.000 dinamik istek/gün ve 10 ms CPU/istek sınırı resmî kaynaktan doğrulandı. Sonuç **NO-GO**.
