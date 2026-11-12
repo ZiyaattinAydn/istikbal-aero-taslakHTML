@@ -20,11 +20,19 @@ export default async function Media() {
         </div>
         <span className="cms-page-count">{siteMedia.length + (data?.length || 0)} görsel</span>
       </div>
-      <div className="cms-media-upload-panel">
-        <h2>Yeni görsel yükle</h2>
-        <p>PNG, JPEG veya WebP ekleyebilirsiniz. Kullanım izninizi onayladığınız yüklemeler önce özel saklanır. Sayfa düzenlerken de doğrudan görsel yükleyebilirsiniz.</p>
-        <MediaUpload />
-      </div>
+      <details className="cms-media-upload-panel cms-media-upload-collapsible">
+        <summary>
+          <span className="cms-media-upload-summary-text">
+            <strong>＋ Yeni görsel yükle</strong>
+            <small>Bilgisayarınızdan görsel ekleyin veya sayfa editöründen doğrudan yükleyin.</small>
+          </span>
+          <span className="cms-media-upload-expand" aria-hidden="true">⌄</span>
+        </summary>
+        <div className="cms-media-upload-body">
+          <p>PNG, JPEG veya WebP ekleyebilirsiniz. Kullanım izninizi onayladığınız yüklemeler önce özel saklanır.</p>
+          <MediaUpload />
+        </div>
+      </details>
       {error && <p role="alert">Yüklenen görseller alınamadı; mevcut site görselleri listelenmeye devam ediyor.</p>}
       <MediaLibraryGallery media={data || []} publisher={role === "publisher"} />
     </section>
