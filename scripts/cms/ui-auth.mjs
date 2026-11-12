@@ -473,7 +473,7 @@ export async function runUiChecks({ status, admin, totp }) {
     });
     await page.goto(url + "/admin");
     await page
-      .getByRole("button", { name: "Oturumu kapat", exact: true })
+      .getByRole("button", { name: /Oturumu kapat$/ })
       .click();
     await page.waitForURL("**/admin/login");
     await page.goto(url + "/admin/pages");
