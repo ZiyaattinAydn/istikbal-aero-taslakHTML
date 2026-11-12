@@ -141,6 +141,7 @@ export function PagePreviewBridge({
 
     const targets = findFieldTargets(root, fields, values);
     let lastSelected = "";
+    let lastFocusRequest = -1;
     let highlighted: HTMLElement | undefined;
 
     const pick = (key: string, scroll = true) => {
@@ -179,8 +180,10 @@ export function PagePreviewBridge({
         }
       }
       const selected = typeof message.selected === "string" ? message.selected : "";
-      if (selected && (selected !== lastSelected || !highlighted)) {
+      const focusRequest = Number.isSafeInteger(message.focusRequest) ? message.focusRequest : 0;
+      if (selected && (selected !== lastSelected || focusRequest !== lastFocusRequest || !highlighted)) {
         lastSelected = selected;
+        lastFocusRequest = focusRequest;
         pick(selected);
       }
     };
@@ -208,12 +211,12 @@ export function PagePreviewBridge({
     };
 
     window.addEventListener("message", onMessage);
-    root.addEventListener("click", onClick, true);
+    document.addEventListener("click", onClick, true);
     window.parent.postMessage({ channel: CHANNEL, kind: "ready" }, window.location.origin);
 
     return () => {
       window.removeEventListener("message", onMessage);
-      root.removeEventListener("click", onClick, true);
+      document.removeEventListener("click", onClick, true);
       if (highlighted) highlighted.classList.remove("cms-inspector-highlight");
     };
   }, [fields, values]);
