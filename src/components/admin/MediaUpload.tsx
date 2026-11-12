@@ -1,6 +1,7 @@
 "use client";
 import { useActionState, useRef, useState } from "react";
 import { uploadMedia } from "@/app/admin/media/actions";
+import { prepareWebp } from "@/lib/cms/prepare-webp";
 export function MediaUpload() {
   const [state, action, pending] = useActionState(uploadMedia, { message: "" });
   const [file, setFile] = useState<File>();
@@ -11,34 +12,7 @@ export function MediaUpload() {
     setBusy(true);
     setError("");
     try {
-      if (
-        !["image/jpeg", "image/png", "image/webp"].includes(input.type) ||
-        input.size > 15 * 1024 * 1024
-      )
-        throw Error("PNG, JPEG veya WebP seçin (en fazla 15 MB).");
-      const bitmap = await createImageBitmap(input);
-      if (bitmap.width * bitmap.height > 24_000_000) {
-        bitmap.close();
-        throw Error("Görsel en fazla 24 megapiksel olabilir.");
-      }
-      const ratio = Math.min(1, 2000 / Math.max(bitmap.width, bitmap.height));
-      const canvas = document.createElement("canvas");
-      canvas.width = Math.round(bitmap.width * ratio);
-      canvas.height = Math.round(bitmap.height * ratio);
-      canvas
-        .getContext("2d")!
-        .drawImage(bitmap, 0, 0, canvas.width, canvas.height);
-      bitmap.close();
-      const blob = await new Promise<Blob>((resolve, reject) =>
-        canvas.toBlob(
-          (b) => (b ? resolve(b) : reject(Error("Dönüştürme başarısız."))),
-          "image/webp",
-          0.82,
-        ),
-      );
-      if (blob.type !== "image/webp" || blob.size > 5 * 1024 * 1024)
-        throw Error("Görsel dönüştürülemedi veya çok büyük.");
-      setFile(new File([blob], "image.webp", { type: "image/webp" }));
+      setFile(await prepareWebp(input));
     } catch (e) {
       setFile(undefined);
       setError(e instanceof Error ? e.message : "Dönüştürülemedi.");
