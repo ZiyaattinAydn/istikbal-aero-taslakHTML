@@ -3,6 +3,9 @@ import { test } from "node:test";
 import schema from "../src/data/cms-page-schema.json";
 import { routes } from "../src/data/routes";
 import type { PageField } from "../src/lib/cms/page-values";
+import { createElement } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
+import { PageLinkField } from "../src/components/admin/PageLinkField";
 import {
   normalizePageSearch,
   pageCategories,
@@ -81,4 +84,18 @@ test("related fields appear in the same logical card", () => {
   assert.equal(
     pageContentBlocks(fieldsOf(focus.fields)).filter((block) => block.id.includes(".modules.")).length, 3,
   );
+});
+
+test("page link editor displays human-readable destinations while preserving the link", () => {
+  const local = renderToStaticMarkup(createElement(PageLinkField, {
+    id: "field", value: "platformlar.html", onChange: () => {}, onFocus: () => {},
+  }));
+  assert.ok(local.includes("Sitedeki sayfa"));
+  assert.ok(local.includes("Platformlar"));
+  assert.ok(local.includes("value=\"platformlar.html\""));
+  const external = renderToStaticMarkup(createElement(PageLinkField, {
+    id: "external", value: "https://example.com/", onChange: () => {}, onFocus: () => {},
+  }));
+  assert.ok(external.includes("https://example.com/"));
+  assert.ok(external.includes("Güvenli web adresi"));
 });
