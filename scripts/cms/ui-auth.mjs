@@ -147,7 +147,15 @@ export async function runUiChecks({ status, admin, totp }) {
       const field = entry.fields.find((f) => f.kind === "text");
       assert.ok(field);
       const area = form.locator(`textarea[data-field="${field.key}"]`);
-      await area.waitFor();
+      // Semantic field groups are collapsible; open the exact group containing
+      // the field before exercising the same real save/preview/publish checks.
+      const revealArea = async () => {
+        await area.locator("xpath=ancestor::details[1]").evaluate((section) => {
+          section.open = true;
+        });
+        await area.waitFor({ state: "visible" });
+      };
+      await revealArea();
       timings.navigation.push(Date.now() - navStart);
       const { data: doc } = await admin
         .from("cms_documents")
@@ -188,7 +196,7 @@ export async function runUiChecks({ status, admin, totp }) {
       await until(async()=>Number(await form.locator('input[name=revision]').inputValue())===doc.revision+1,'page_refresh',30000);
       timings.save.push(Date.now() - saveStart);
       await page.reload();
-      await area.waitFor();
+      await revealArea();
       assert.equal(await area.inputValue(), "QA sayfa " + entry.slug);
       stage = "page-" + entry.slug + ":preview";
       const preview = await context.newPage();
