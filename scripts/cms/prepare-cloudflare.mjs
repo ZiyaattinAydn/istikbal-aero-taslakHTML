@@ -35,7 +35,18 @@ const args = [
   "--prerender",
   "--no-install",
 ];
-const result = spawnSync("npx", args, { cwd: target, stdio: "inherit" });
+// Node on Windows cannot reliably spawn .cmd wrappers without a shell.
+// All CLI arguments are fixed in this file, never interpolated from user input.
+const windows = process.platform === "win32";
+const result = spawnSync(windows ? "npx.cmd" : "npx", args, {
+  cwd: target,
+  stdio: "inherit",
+  shell: windows,
+});
+if (result.error) {
+  console.error("Cloudflare staging preparation failed:", result.error.message);
+  process.exit(1);
+}
 if (result.status !== 0) process.exit(result.status || 1);
 const pkgPath = join(target, "package.json"),
   pkg = JSON.parse(readFileSync(pkgPath, "utf8"));
