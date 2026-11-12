@@ -165,6 +165,11 @@ export async function runUiChecks({ status, admin, totp }) {
     } catch (error) {
       const status = await visualFrame.locator(".cms-inspector-toolbar span")
         .textContent().catch(() => "");
+      const heading = await visualFrame.locator("#main h1").evaluate((node) => ({
+        visible: (node.innerText || "").slice(0, 180),
+        dom: (node.textContent || "").slice(0, 180),
+        childNodes: node.childNodes.length,
+      }));
       const marked = await visualFrame.locator(".cms-inspector-highlight").count();
       const iframeLoaded = await visualFrame.locator("#main h1").count();
       const rawValues = await page.locator('input[name="fields"]').inputValue();
@@ -178,6 +183,7 @@ export async function runUiChecks({ status, admin, totp }) {
       }));
       console.log("Live preview diagnostics (no text values):", {
         liveState,
+        heading,
         inspectorMissing: status?.includes("kesin belirlenemedi"),
         inspectorDefault: status?.includes("İçerik alanını seçmek"),
         inspectorFound: status?.includes("karşılığıdır"),
