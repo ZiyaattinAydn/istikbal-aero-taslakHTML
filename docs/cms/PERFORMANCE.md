@@ -57,3 +57,34 @@ Aynı runner, Node 22 production build, rota/viewport başına üç örnek. Ağ 
 | Mobil | `/haber-detay` | 84 | 84 | 0.0000 |
 
 Bu laboratuvar senaryosunda anlamlı LCP gerilemesi gözlenmedi; en yüksek CLS yaklaşık 0,034, mobil CLS 0. Script kaynakları için browser encodedBodySize toplamı 145.974 → 147.317 byte (+1.343 byte); bu tarayıcı metriği, yerel gzip toplamıyla aynı tanım değildir. Raw sonuçlar evidence/browser-*.json.
+
+## 12 Kasım tamamlama kıyası — 07b9dbd / CI 43110194814
+
+Aynı runner/Chromium, main baz sürümü, 7 rota × masaüstü/mobil viewport × 3 örnek. CMS_PUBLIC_READS=false; CPU/ağ throttling yok. Aşağıdaki değerler laboratuvar ölçümüdür; üç örnek saha p95 veya INP sonucu değildir.
+
+| Görünüm | Rota | Önce LCP ms | Sonra LCP ms | Sonra CLS |
+|---|---|---:|---:|---:|
+| Masaüstü | `/` | 180 | 184 | 0.0071 |
+| Masaüstü | `/kurumsal` | 144 | 152 | 0.0000 |
+| Masaüstü | `/platformlar` | 160 | 152 | 0.0000 |
+| Masaüstü | `/teknolojiler` | 248 | 252 | 0.0192 |
+| Masaüstü | `/projeler` | 108 | 112 | 0.0192 |
+| Masaüstü | `/haberler` | 132 | 144 | 0.0192 |
+| Masaüstü | `/haber-detay` | 212 | 208 | 0.0192 |
+| Mobil | `/` | 176 | 176 | 0.0000 |
+| Mobil | `/kurumsal` | 132 | 140 | 0.0000 |
+| Mobil | `/platformlar` | 140 | 152 | 0.0000 |
+| Mobil | `/teknolojiler` | 104 | 124 | 0.0000 |
+| Mobil | `/projeler` | 140 | 156 | 0.0000 |
+| Mobil | `/haberler` | 128 | 116 | 0.0000 |
+| Mobil | `/haber-detay` | 104 | 108 | 0.0000 |
+
+Browser encoded script toplamı 145.974 → 147.188 byte (+1.214 byte, yaklaşık %0,83); önceki CMS temel ölçümünden de 129 byte düşük. LCP farkları -12 ile +20 ms aralığında; bu örneklem üretim kabulü sağlamaz. Haber detay TTFB p95 (3 örneğin maksimumu) 76,5 → 95,3 ms; bu oynak seriyle saha p95 iddiası verilmez. Ham veriler completion-browser-*.json.
+
+Public liste/ilişki sorguları uzun paragraf gövdelerini çekmez. Kapak metadatası tek toplu sorgu ve etiketli cache ile alınır; kart başına sorgu yoktur. Metadata ve sayfa render'ı React.cache ile aynı request'te dedupe edilir. Medya geri çekme dosya yanıtlarında no-store gerektirir; bunun Workers CPU/egress etkisi henüz ölçülmedi.
+
+Gerçek oturumlu yerel UI save/gezinme ölçümü ayrı raporlanır; development derleme süresi barındırma performansı gibi sunulmaz. Cloudflare/Supabase hosted performans kabulü hâlâ NO-GO.
+
+## Gerçek yönetici UI ölçümü — 09073d7 / CI 43225924959
+
+CMS açık, gerçek local Supabase Auth/PostgREST ve OTP+TOTP oturumu; 21 sayfa. Kaydetme tıklamasından DB ve ekrandaki revision'ın yenilenmesine kadar: ortanca 318 ms / p95 441 ms. Sayfa geçişi hazır editöre kadar: ortanca 357 ms / p95 612 ms. Next development/yerel ağdır; ilk derleme gezinmeye dahildir. Hosted Supabase, Cloudflare veya üretim SLA sonucu değildir. Ham veri: completion-admin-ui.json.

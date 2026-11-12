@@ -25,8 +25,8 @@
 2. Düzenleyip **Taslak kaydet** seçin. Sunucu onayı gelmeden kaydedildi mesajı verilmez. Sürüm çakışmasında kaydı yeniden açıp değişiklikleri karşılaştırın.
 3. **Gerçek şablonda önizle** kayıtlı taslağı yeni sekmede açar. Kaydedilmemiş metinler önizlemeye girmez. Mevcut sayfa ve yeni kayıt önizlemesi public görünümle aynı React bileşenidir; admin/MFA korumasındadır.
 4. İncelemeye gönderin; yayıncı yalnız şirketin teyit ettiği içeriği onaylayıp yayımlar. Sürüm geçmişinden geri alma yeni taslak üretir; yayını hemen değiştirmez. Yayını kaldırmak için arşivleyin.
-5. Yeni haber/proje/platform/teknoloji/kabiliyet türünü seçin. Tarih bilinmiyorsa boş bırakın. URL otomatik oluşur; başlık değişikliği URL'yi değiştirmez. İlişki ve kapak seçici henüz yoktur.
-6. **Medya** ekranında alternatif metin ve telif/yayın izniyle görsel yükleyin. Tarayıcı boyutlandırıp WebP üretir; sunucu imza/boyut/piksel alanı ve 5 MB sınırını doğrular. Yükleme özel kalır. Public kullanım için yayıncı ayrıca izin vermelidir; özel medya referanslı sayfa yayımlanamaz.
+5. Yeni haber/proje/platform/teknoloji/kabiliyet türünü seçin. Tarih bilinmiyorsa boş bırakın. URL otomatik oluşur; başlık değişikliği URL'yi değiştirmez. Proje/platform/teknolojilerde en fazla 12 ilişkili içerik ve kütüphaneden kapak seçilebilir. Bu seçimler taslakla sürümlenir; yalnız yayımlanmış hedefler public detayda görünür.
+6. **Medya** ekranında alternatif metin ve telif/yayın izniyle görsel yükleyin. Tarayıcı boyutlandırıp WebP üretir; sunucu imza/boyut/piksel alanı ve 5 MB sınırını doğrular. Yükleme özel kalır. Alt metin ve özel kullanım notunu sonradan düzenleyebilirsiniz. Public kullanım için yayıncı ayrıca izin vermelidir; özel medya referanslı sayfa veya kayıt yayımlanamaz. İzni geri çekerken bağlı yayınları da taslağa almayı onaylayın. İşlem dosyayı veya taslağı silmez; yeniden yayın için görseli değiştirin veya tekrar izin verip içeriği onaylayın. Daha önce indirilmiş kopyalar geri çağrılamaz. Yeni indirmeler no-store ve güncel RLS ile korunur.
 
 Geliştirme sürümüdür. CMS_ENABLED ve CMS_PUBLIC_READS kapalıyken yayın işlemi mevcut canlı siteyi değiştirmez. Kabul sonrası etkinleştirildiğinde yeni kayıtlar ilgili listeye ve /icerik/... detayına yansır; yalnız ilgili cache etiketi yenilenir. Yerel 15 Auth/Mailpit kontrolü hosted kullanıcı, Resend teslimi ve Cloudflare kabulünün yerine geçmez.
 
@@ -52,3 +52,7 @@ Docker olan izole makinede CI'daki pinned Supabase CLI 3.1.0 komutlarını kulla
 - https://supabase.com/docs/guides/auth/auth-mfa/totp
 - https://resend.com/pricing
 - https://vercel.com/docs/plans/hobby (ticari şirket sitesi için Hobby seçilmedi)
+
+## Güncel kurulum kapısı
+
+Lifecycle migration hosted uygulandı ve doğrulandı. Auth/SMTP/hosting kabulünden önce admin/public anahtarlarını açmayın. [ACCESS_STEPS.md](ACCESS_STEPS.md) kesin adımlardır. SQL dosyası otomatik tekrar çalıştırılmaz; önce history/isim/içerik karşılaştırılır.

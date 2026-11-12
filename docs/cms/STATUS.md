@@ -1,49 +1,44 @@
-# CMS durumu — 11 Kasım 2026 devam çalışması
+# CMS durumu — 12 Kasım 2026
 
-**PR #13 / feat/cms-foundation. Üretim yayını yok; Cloudflare hosting kabulü NO-GO.**
+**Branch feat/cms-foundation / PR #13. Bağımsız kod, SQL ve yerel uçtan uca geliştirmeler tamamlandı. Üretim kabulü yok; hosting NO-GO.**
 
-Kullanıcı yeni bağımsız Supabase Free projesini, başlangıç yayıncı e-postasını ve DNS'siz geliştirmeyi onayladı. Ziyaattin.Dev altında aylık 0 USD fiyat doğrulanarak `istikbal-aerospace-cms` / `uftnykormtwlzolwbhfb` oluşturuldu. Başka projeye migration uygulanmadı. DNS, MX, nameserver, ücretli servis, ödeme ve main merge yok.
+Başlangıç 8bcc6e7 korundu; mevcut 21 sayfa / 537 alan, özgün tasarım ve animasyonlar korunur. Yeni proje, ücret, DNS, main merge veya canlı yayın yok. Mevcut tek hedef Supabase projesi uftnykormtwlzolwbhfb.
 
-| Faz | Durum | Gerçek sonuç / kalan kabul |
-|---|---|---|
-| 0 | Tamamlandı | Mevcut branch/PR sürdürüldü; yeni proje ve dış erişim sınırları belirlendi. |
-| 1 | Kısmi / hosting NO-GO | İzole vinext build ve gerçek Chromium önce/sonra ölçümü var. Cloudflare Work bağlantısı/oturumu yok; staging CPU/cache testi bekliyor. |
-| 2 | Şema ve aktarım tamamlandı | Dört migration; 21 sayfa / 537 kontrollü alan; idempotent taslak seed; private Storage, RLS ve advisors doğrulandı. |
-| 3 | Yerel entegrasyon geçti; hosted kısmi | Gerçek CLI + Mailpit'te 15 OTP/TOTP/Auth/API/Storage kontrolü geçti. Kullanıcı e-postası özel allowlist'te; hosted kullanıcı provision, Auth ayarları ve gerçek SMTP teslimi bekliyor. |
-| 4 | Kod hazır; kullanıcı/staging kabulü bekliyor | 21 sayfa dolu alan düzenleyicisi, SEO, gerçek şablon önizleme, sürüm/geri alma ve hedefli cache invalidation. |
-| 5 | Kısmi | Kayıt CRUD, public liste/detay, gerçek kayıt önizlemesi, özel medya yükleme/seçme/public kullanım onayı. İlişki düzenleyicisi, yeni kayıtlara kapak seçici ve medya sonradan düzenleme/izin geri çekme açık. |
-| 6 | Testler geçti; dış kabul açık | 53 test, typecheck/lint/build/audit; local Auth 15 kontrol. Son CI'da dev/prod Chromium 71/71, performans ve CodeQL başarılı. Fiziksel cihaz ve gerçek sağlayıcı/kullanıcı kabulü bekliyor. |
+| Faz | Güncel durum |
+|---|---|
+| 0 | Kurtarma ve keşif tamamlandı; önceki yerel değişiklikler recovery branch/stash ile korundu. |
+| 1 | İzole ücretsiz Cloudflare aday build'i ve Chromium kıyası başarılı; gerçek Workers CPU/cache/oturum/upload kabulü olmadığı için NO-GO. |
+| 2 | 21/537 korunur. Yeni lifecycle migration mevcut projeye uygulandı; eski dört migration tekrar edilmedi. Advisors temiz. |
+| 3 | Gerçek CLI/Mailpit OTP + TOTP, API/RLS/Storage/oturum iptali ve HttpOnly arayüz oturumu geçti. Hosted gerçek kullanıcı ve SMTP ayarları bekliyor. |
+| 4 | 21 sayfanın edit/save/gerçek template preview/onay/yayın/başlangıç sürümüne restore/yeniden yayın akışı gerçek yönetici UI'sinde geçti. |
+| 5 | İlişki/kapak, public ilişkili hedefler, medya alt metni/notu ve onaylı izin geri çekme tamamlandı; SQL ve gerçek UI testleri geçti. |
+| 6 | 56 test, typecheck/lint/build/audit, dev/prod 71/71, 15 local Auth kontrolü, birleşik yönetici UI, mobil/focus ve CodeQL başarılı. İnsan/fiziksel cihaz/hosted sağlayıcı kabulü açık. |
 
-## Doğrulanan akış
+## Test kanıtı
 
-[CI 43067794522](https://github.com/ZiyaattinAydn/istikbal-aerospace-web/actions/runs/43067794522), kod `dfa9266`: checks, `cms-local-auth`, dev/prod 71/71, performans ve CodeQL başarılı. Mailpit gerçekten özel altı haneli OTP şablonunu aldı; yanlış kod/tek kullanım, kapalı signup, TOTP ile AAL2, AAL1 yazma reddi, anonim taslak reddi, onaylı yayın, private/public Storage ve oturum iptali test edildi. [Yerel Auth kanıtı](evidence/local-auth-ci.json). Gerçek Resend/domain teslimi test edilmedi.
+Kod **09073d75c19f114e70317f53c17e99db2d829235**: [CI 43225924959](https://github.com/ZiyaattinAydn/istikbal-aerospace-web/actions/runs/43225924959), tüm işler başarılı; CodeQL da başarılıdır. Sonraki rapor commit'i kodu değiştirmez.
 
-Önceki devam CI'sında (`b3aa751`, [43065671226](https://github.com/ZiyaattinAydn/istikbal-aerospace-web/actions/runs/43065671226)) dev/prod 71/71, checks, performans ve CodeQL geçti. O turun Mailpit hatası yukarıdaki sonraki turda düzeltildi; ilk başarısızlıklar başarı olarak sayılmadı. Son kod turunun bütün işleri yukarıdaki dfa9266 sürümünde başarılıdır. Sonraki rapor commit'i yalnız belgelerdir.
+- [completion-local-auth.json](evidence/completion-local-auth.json): gerçek Supabase CLI 3.1.0 + Mailpit 15 kontrol. Gerçek Resend teslimi değildir.
+- [completion-admin-ui.json](evidence/completion-admin-ui.json): gerçek browser → Server Actions → Auth/PostgREST/Storage, 21 sayfa, ilişki/kapak, draft hedef gizliliği, archive cache invalidation, metadata/izin geri çekme, mobil taşma/focus ve logout.
+- Kaydetme 21 örnekte ortanca **318 ms**, p95 **441 ms**; gezinme ortanca **357 ms**, p95 **612 ms**. Next development + local DB; production/Workers ölçümü değildir.
+- Public Chromium ve ham kıyaslar [PERFORMANCE.md](PERFORMANCE.md). Public JS browser encoded boyutu bazdan +1.214 byte (~%0,83). CPU/ağ yavaşlatması veya field INP kabulü yok.
+- Ekran görüntüleri CI'nın cms-local-auth-sanitized artifact'ında (7 gün); auth ekranı/token/sır içermez. Mobil ve masaüstü görseller ayrıca gözle incelendi.
 
-## Kod ve etkin servis ayrımı
+İlk UI testleri yanlış alan/select seçimi ve DB onayı sonrası UI refresh'i beklememe nedeniyle durdu. Seçiciler ve revision beklemesi düzeltildi; güvenlik doğrulaması zayıflatılmadı. Son tur tamamı başarılıdır.
 
-- `CMS_ENABLED=false`, `CMS_PUBLIC_READS=false` varsayılanları korunur. Hosting GO olmadan public veri geçişi etkinleştirilmez.
-- Sayfa önizlemesi public `PageContent`, yeni kayıt önizlemesi public `EntryContent` ile aynı şablonu kullanır. Raw HTML/page builder yok.
-- Public sorgular yalnız yayın snapshot'ını okur; seçici, etiketli ve 300 saniye cache'lidir. Yayın/arşiv yalnız etkilenen sayfa/liste/item etiketini yeniler. Workers kabulü hâlâ gerekir.
-- Medya private bucket'tadır. Public kullanım için yayıncı onayı gerekir; özel medya referanslı sayfa yayınlanamaz.
-- Bazı paylaşılan kart metinleri sayfa bazında ayrı alanlardır. Tam global içerik tekilleştirmesi sonraki revizyonda değerlendirilmeli.
+## Veritabanı ve medya
 
-## Performans
+Yeni kaynak migration: supabase/migrations/20261111214959_cms_relations_media_lifecycle.sql; hosted sürüm **20261112131818**. İlk araç onayı expired oldu; tek tekrar başarıyla uygulandı. Uygulama öncesi mevcut mutate gövde hash'i kaynakla eşleştirildi. [completion-hosted.json](evidence/completion-hosted.json) doğrulama kaydıdır.
 
-Gerçek Chromium masaüstü/mobil viewport kıyası [PERFORMANCE.md](PERFORMANCE.md) ve evidence/browser-*.json içinde. Public script artışı +1.343 byte (~%0,72 yerel gzip). Bu CMS_PUBLIC_READS=false laboratuvar senaryosudur; gerçek DB/Workers, mobil CPU, field INP ve save p95 kabulü değildir.
+İlişki/kapak taslakla sürümlenir ve geri alınır. Yalnız onaylı public hedefler görünür. Medya revision ve yayıncı denetimiyle yönetilir; doğrudan visibility UPDATE kapalıdır. İzin geri çekme açık onayla bağlı yayınları tek transaction'da taslağa alır; dosya/versiyon silmez. Yeni dosya yanıtları no-store ve güncel RLS ile korunur; önceden indirilmiş kopyalar geri çağrılamaz.
 
-## Açık bağımlılıklar ve sıradaki işler
+## Kalan dış kapılar
 
-[SMTP_AND_ACCESS.md](SMTP_AND_ACCESS.md) erişim kaydıdır. Hosted giriş hesabı henüz oluşturulmadı. Supabase Auth Admin/Dashboard erişimi, Cloudflare staging yetkisi ve Resend resmî entegrasyon oturumu gerekir. Gönderici domain doğrulaması DNS aşamasına bırakıldı.
+- Hosted Auth kullanıcısı **oluşturulmadı** (0 kullanıcı). İzinli gerçek e-posta private allowlist'tedir; publisher tüm mevcut içerik/yayın/medya yetkisidir. Auth kullanıcı/rol/faktör yönetimi operatör işlemidir; uygulamada gizli Auth Admin anahtarı yoktur.
+- Cloudflare/Resend için tek sistematik kontrol yapıldı: kullanılabilir plugin/özel ortam kimliği ve tarayıcı oturumu yok. Staging veya SMTP entegrasyonu kurulmadı. [ACCESS_STEPS.md](ACCESS_STEPS.md) kesin bağlantı ve adımlardır.
+- Hosted signup/OTP/MFA config, gerçek Resend domain/teslim/spam/rate-limit; Workers CPU/cache/upload; fiziksel cihaz/scroll, insan kullanıcı kabulü ve yedek geri yükleme testi bekler.
+- CMS_ENABLED=false ve CMS_PUBLIC_READS=false korunur. GO gelmeden açmayın. DNS ve production/main merge ayrıca açık onay gerektirir.
 
-Kod işleri: ilişki editörü ve public ilişki kartları; yeni kayıt kapak seçici; medya düzenleme/izin geri çekme; MFA ile gerçek UI iş akışı ve fiziksel cihaz kabulü. Çalışma ortamı son Auth testi sonrasında kullanılamaz oldu; son kod GitHub'dadır, raporlar GitHub üzerinden güncellenmiştir. Bu işler tamamlanmış gösterilmez.
+## Bilinen ürün sınırları
 
-## Tekrarlama
-
-`npm ci`, `npm run typecheck`, `npm run lint`, `npm test`, `npm run build`, `npm audit`; `cms:inventory:check`, `cms:snapshots:check`, `cms:seed:check`, `cms:pages:check`. CI `cms-local-auth` izole CLI 3.1.0 + Mailpit çalıştırır; anahtar/OTP/token loglamaz. CI `cms-performance` aynı runner'da PR base ile yeni production build'i ölçer.
-
-[PR #13](https://github.com/ZiyaattinAydn/istikbal-aerospace-web/pull/13) taslaktır; main merge veya canlı yayın yapılmadı.
-
-## Tamamlama turu — 12 Kasım 2026
-
-Branch 8bcc6e7 üzerinden kurtarıldı. İlişki/kapak, public ilişkili içerik, medya metadata ve onaylı yayın geri çekme kodu eklendi. 56 yerel test/typecheck/lint/build ve şema/snapshot kontrolleri başarılı. Gerçek UI CI ilk turunda ikinci sayfada durdu; henüz tam kabul verilmedi, test sınıflaması geliştiriliyor. Yeni migration hosted projeye henüz uygulanmadı. [ACCESS_STEPS.md](ACCESS_STEPS.md) tek erişim kontrolünü ve gereken kesin servis adımlarını içerir.
+Kontrollü şablon kullanılır; page builder yoktur. İlişki seçimi en fazla 12, seçenekler son 200 kayıt/100 medya ile sınırlıdır; büyük kütüphane arama/sayfalaması sonraki ölçek işidir. Bazı statik ortak kartların metinleri sayfa bazında ayrı alanlardır. Medya dosyası silme yok; izin geri çekme ve taslak koruma vardır. Bunlar üretim kabulünden ayrı belgelenmiş sınırlardır.

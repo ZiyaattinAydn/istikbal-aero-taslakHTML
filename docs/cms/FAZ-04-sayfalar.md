@@ -9,3 +9,5 @@ Korumalı /admin/pages/[slug]/preview public PageContent ile aynı React şablon
 21 şablon/alan/fallback, seed/snapshot ve eski metin/asset/link testleri geçti. Focus şablonlarının JSX boşluk farkı snapshot'ta güncellendi; normalize içerik korunur. Yerel 53 test/typecheck/lint/build ve CI browser turları başarılı. [PERFORMANCE.md](PERFORMANCE.md) gerçek Chromium kıyasını içerir.
 
 Workers yayın/cache/özel medya, gerçek MFA ile UI düzenlemesi, mobil/fiziksel cihaz kabulü ve public DB okuması açık performans ölçümü bekler. [STATUS.md](STATUS.md).
+
+12 Kasım: gerçek Mailpit OTP + TOTP oturumuyla 21 sayfa edit/save/template preview/publish/restore/republish akışı CI'da geçti. Editör anahtarı slug+revision içerir. İnsan kullanıcı/fiziksel cihaz ve Workers kabulü hâlâ açık.

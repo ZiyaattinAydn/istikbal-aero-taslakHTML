@@ -8,4 +8,4 @@ Medya yükleme/seçme ve yayıncı public kullanım onayı vardır. Tarayıcı e
 
 Yerel 53 test SQL rol/onay/concurrency/restore/retry, medya doğrulama ve ortak önizleme şablonunu kapsar. CLI 15 kontrol gerçek Auth/API/Storage akışını geçti. Typecheck/lint/build/audit başarılı.
 
-Eksikler: ilişki düzenleyicisi/public ilişki kartları; yeni kayıt kapak seçici; medya alt metnini sonradan düzenleme/silme/izin geri çekme; gerçek UI kabulü ve ağda save p95. Statik ilişkiler korunur. [STATUS.md](STATUS.md).
+12 Kasım tamamlama: ilişki/kapak, public ilişkili hedefler ve medya metadata/izin geri çekme kodu eklendi. SQL negatif testleri ve version restore geçer. Yeni migration hosted uygulandı ve advisors temiz. Gerçek birleşik UI sonucu STATUS.md'dedir. Medya dosyası silme kullanıcı kapsamına alınmadı; izin geri çekme ve taslak koruma vardır. Seçiciler 200 ilişki / 100 medya ile sınırlıdır; çok büyük kütüphane araması/sayfalaması sonraki ölçek işidir.
