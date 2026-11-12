@@ -32,7 +32,7 @@ export default async function Edit({
           <h1>{data.body.title || "İçeriği düzenle"}</h1>
           <p>Revizyon {data.revision} · Önce taslağı kaydedin, ardından inceleyip yayımlayın.</p>
         </div>
-        <Link href="/admin" className="cms-editor-back">← İçeriklere dön</Link>
+        <Link href="/admin/library" className="cms-editor-back">← İçeriklere dön</Link>
       </div>
       <ContentEditor
         {...options}

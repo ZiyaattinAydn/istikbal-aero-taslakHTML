@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { requireAdmin } from "@/lib/cms/server";
 import { pageSchema } from "@/lib/cms/pages";
+import { canonicalContentForPage } from "@/lib/cms/legacy-content";
 import { PageEditor } from "@/components/admin/PageEditor";
 export default async function EditPage({
   params,
@@ -25,7 +26,8 @@ export default async function EditPage({
         <p>Sayfa şablonu hazır; veritabanı aktarımı tamamlanmalı.</p>
       </section>
     );
-  const [{ data: versions }, { data: media }] = await Promise.all([
+  const references = canonicalContentForPage(slug);
+  const [{ data: versions }, { data: media }, linked] = await Promise.all([
     db
       .from("cms_versions")
       .select("revision,created_at")
@@ -37,7 +39,26 @@ export default async function EditPage({
       .select("id,alt,visibility")
       .order("created_at", { ascending: false })
       .limit(100),
+    references.length
+      ? db.from("cms_documents")
+          .select("id,kind,slug,status,body")
+          .in("slug", references.map((item) => item.slug))
+          .in("kind", ["news", "project", "platform", "technology"])
+          .limit(50)
+      : Promise.resolve({ data: [], error: null }),
   ]);
+  if (linked.error) throw Error("Ortak içerik kayıtları yüklenemedi.");
+  const canonical = references.map((item) => {
+    const document = linked.data?.find((entry) =>
+      entry.kind === item.kind && entry.slug === item.slug,
+    );
+    return {
+      ...item,
+      title: document?.body?.title || item.title,
+      id: document?.id,
+      status: document?.status,
+    };
+  });
   return (
     <section className="cms-editor-page">
       <div className="cms-page-heading">
@@ -55,6 +76,7 @@ export default async function EditPage({
         title={doc.body.title}
         summary={doc.body.summary}
         fields={schema.fields}
+        canonical={canonical}
         values={doc.body.fields || {}}
         media={media || []}
         record={doc}

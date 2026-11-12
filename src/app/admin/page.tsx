@@ -81,6 +81,11 @@ export default async function Admin({
           <span><strong>Web sayfalarını düzenle</strong><small>Mevcut kurumsal sayfa ve metin alanları</small></span>
           <span className="cms-quick-arrow" aria-hidden="true">↗</span>
         </Link>
+        <Link href="/admin/library" className="cms-quick-card">
+          <span className="cms-quick-symbol" aria-hidden="true">▦</span>
+          <span><strong>Haberler, projeler ve teknolojiler</strong><small>Ortak içerikleri tek yerden düzenle</small></span>
+          <span className="cms-quick-arrow" aria-hidden="true">↗</span>
+        </Link>
         <Link href="/admin/media" className="cms-quick-card">
           <span className="cms-quick-symbol" aria-hidden="true">▧</span>
           <span><strong>Medya kütüphanesi</strong><small>Görselleri ve kullanım izinlerini yönet</small></span>

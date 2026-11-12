@@ -7,6 +7,7 @@ import { logout } from "@/app/admin/login/actions";
 const navigation = [
   { href: "/admin", label: "Genel bakış", symbol: "◫", exact: true },
   { href: "/admin/pages", label: "Web sayfaları", symbol: "▤" },
+  { href: "/admin/library", label: "Haberler ve içerikler", symbol: "▦" },
   { href: "/admin/media", label: "Medya kütüphanesi", symbol: "▧" },
   { href: "/admin/security", label: "Hesap güvenliği", symbol: "◈" },
 ];
