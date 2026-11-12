@@ -149,7 +149,7 @@ export function PageEditor({
             <p>Alanı seçin veya “Sayfada göster” düğmesine basın. Sağda ilgili yeri göreceksiniz. Metin değişiklikleri kaydedilmeden önizlemede görünür; herkese açık site değişmez.</p>
           </div>
           <div className="cms-editor-search">
-            <label htmlFor="cms-field-search">Sayfadaki alanlarda ara</label>
+            <label htmlFor="cms-field-search">Alan ara</label>
             <input
               id="cms-field-search"
               type="search"
