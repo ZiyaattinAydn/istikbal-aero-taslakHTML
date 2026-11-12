@@ -19,6 +19,7 @@ export function ContentEditor({
   kind,
   versions = [],
   publisher = false,
+  published = false,
   statusOnly = false,
   externalDirty = false,
   relations = [],
@@ -29,6 +30,7 @@ export function ContentEditor({
   kind: string;
   versions?: { revision: number; created_at: string }[];
   publisher?: boolean;
+  published?: boolean;
   statusOnly?: boolean;
   externalDirty?: boolean;
   relations?: { id: string; title: string; kind: string }[];
@@ -91,7 +93,7 @@ export function ContentEditor({
   return (
     <>
       <p>
-        Kayıtlar önce taslak olarak saklanır; onay ve yayın ayrı işlemlerdir.
+        Önce taslağı kaydedin. Yayın yetkisi olan yönetici, başkasından onay beklemeden doğrudan yayımlayabilir.
       </p>
       {!statusOnly && (
         <form action={save}>
@@ -291,14 +293,17 @@ export function ContentEditor({
               (
                 {
                   draft: "Taslak",
-                  in_review: "İncelemede",
-                  approved: "Onaylı",
-                  published: "Yayın deposunda",
+                  in_review: "Eski inceleme kaydı",
+                  approved: "Eski onay kaydı",
+                  published: "Yayında",
                   archived: "Arşivde",
                 } as Record<string, string>
               )[document.status]
             }
           </p>
+          {published && document.status !== "published" && (
+            <p role="status">Önceki sürüm hâlâ yayında. Kaydettiğiniz yeni taslak, Yayımla düğmesine basılana kadar ziyaretçilere gösterilmez.</p>
+          )}
           {!statusOnly && !dirty && (
             <p>
               <Link
@@ -313,45 +318,40 @@ export function ContentEditor({
             <input type="hidden" name="id" value={document.id} />
             <input type="hidden" name="revision" value={document.revision} />
             <div className="actions">
-              <button
-                name="operation"
-                value="review"
-                disabled={dirty || externalDirty || changing}
-              >
-                İncelemeye gönder
-              </button>
               {publisher && (
                 <>
                   <button
-                    name="operation"
-                    value="approve"
-                    disabled={dirty || externalDirty || changing}
-                  >
-                    İçeriği onayla
-                  </button>
-                  <button
+                    type="submit"
                     name="operation"
                     value="publish"
-                    disabled={
-                      dirty ||
-                      externalDirty ||
-                      changing ||
-                      document.approval !== "approved"
-                    }
+                    disabled={dirty || externalDirty || changing || (published && document.status === "published")}
                   >
-                    Yayın deposuna al
+                    {published ? "Yeni taslağı yayımla" : "Yayımla"}
                   </button>
+                  {published && (
+                    <button
+                      type="submit"
+                      name="operation"
+                      value="unpublish"
+                      disabled={dirty || externalDirty || changing}
+                      onClick={(event) => {
+                        if (!window.confirm("Bu içeriği herkese açık yayından kaldırmak istiyor musunuz? Taslak ve sürümler saklanacak.")) {
+                          event.preventDefault();
+                        }
+                      }}
+                    >
+                      Yayından kaldır
+                    </button>
+                  )}
                   <button
+                    type="submit"
                     name="operation"
                     value="archive"
                     disabled={dirty || externalDirty || changing}
-                    onClick={(e) => {
-                      if (
-                        !confirm(
-                          "İçeriği yayın deposundan kaldırıp arşivlemek istiyor musunuz?",
-                        )
-                      )
-                        e.preventDefault();
+                    onClick={(event) => {
+                      if (!window.confirm("İçeriği arşivlemek istiyor musunuz? Yayımlanmışsa yayından da kaldırılacak.")) {
+                        event.preventDefault();
+                      }
                     }}
                   >
                     Arşivle
