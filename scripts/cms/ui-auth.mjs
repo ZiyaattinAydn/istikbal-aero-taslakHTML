@@ -413,12 +413,16 @@ export async function runUiChecks({ status, admin, totp }) {
 
     stage = "page-inline-image-upload";
     await page.goto(url + "/admin/pages/kurumsal");
+    // Search opens relevant semantic sections through the actual editor UI,
+    // rather than forcing a details.open DOM state that React may reset.
+    await page.getByRole("searchbox", { name: "Alan ara", exact: true }).fill("Görsel");
     const imageInput = page.locator(".cms-image-picker").first();
-    await imageInput.locator("xpath=ancestor::details[1]").evaluate((section) => {
-      section.open = true;
-    });
+    stage = "page-inline-image-upload:open-picker";
+    await imageInput.getByRole("button", { name: "Görsel seç veya yükle" })
+      .waitFor({ state: "visible" });
     await imageInput.getByRole("button", { name: "Görsel seç veya yükle" }).click();
     // No visit to /admin/media, no manual pre-registration or separate form.
+    stage = "page-inline-image-upload:convert";
     await imageInput.locator('input[type="file"]').setInputFiles("public/assets/hero-flight.webp");
     await imageInput.getByLabel("Yeni görselin açıklaması").fill("QA doğrudan yükleme");
     await imageInput.getByRole("checkbox", {
@@ -427,7 +431,9 @@ export async function runUiChecks({ status, admin, totp }) {
     const sendInline = imageInput.getByRole("button", { name: "Yükle ve bu görseli seç" });
     await sendInline.waitFor({ state: "visible" });
     await until(() => sendInline.isEnabled(), "inline_conversion", 30000);
+    stage = "page-inline-image-upload:upload";
     await sendInline.click();
+    stage = "page-inline-image-upload:verify-private";
     const { data: inlineMedia, error: inlineError } = await admin
       .from("cms_media")
       .select("id,visibility")
@@ -449,6 +455,7 @@ export async function runUiChecks({ status, admin, totp }) {
       .select("id,revision").eq("kind", "page").eq("slug", "kurumsal").single();
     assert.ok(currentPage);
     const imageForm = page.locator("form").filter({ has: page.locator('input[name="slug"]') });
+    stage = "page-inline-image-upload:save-draft";
     await imageForm.getByRole("button", { name: "Taslak kaydet" }).click();
     await until(async () => {
       const { data: updated } = await admin.from("cms_documents")
