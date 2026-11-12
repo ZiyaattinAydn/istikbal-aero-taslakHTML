@@ -45,7 +45,14 @@ export async function uploadMedia(
         "Dosya yüklendi fakat kütüphane kaydı tamamlanamadı. Yönetici kontrolü gerekiyor.",
       );
     revalidatePath("/admin/media");
-    return { message: "Görsel özel medya kütüphanesine eklendi.", ok: true };
+    // Return only the new media ID to the initiating, already authenticated
+    // editor; never expose private storage paths or privileged keys.
+    return {
+      message: "Görsel özel medya kütüphanesine eklendi.",
+      ok: true,
+      id,
+      alt,
+    };
   } catch (error) {
     return {
       message: error instanceof Error ? error.message : "Görsel kaydedilemedi.",
