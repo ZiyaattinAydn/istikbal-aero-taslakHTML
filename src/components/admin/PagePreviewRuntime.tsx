@@ -42,6 +42,12 @@ export function PagePreviewRuntime({
   const [liveValues, setLiveValues] = useState<PageValues>(() => previewValues(initialValues));
   const [syncCount, setSyncCount] = useState(0);
   const allowed = useMemo(() => new Set(fields.map((field) => field.key)), [fields]);
+  // The cinematic page has imperative reveal/motion bindings. Remount the
+  // preview subtree on a content change to avoid reusing a text node React no
+  // longer owns; the inspector must bind to the same latest render.
+  const renderKey = useMemo(() => JSON.stringify(
+    fields.map((field) => liveValues[field.key] ?? field.value),
+  ), [fields, liveValues]);
 
   useEffect(() => {
     const onMessage = (event: MessageEvent) => {
@@ -77,7 +83,7 @@ export function PagePreviewRuntime({
   return (
     <>
       <SiteShell page={page}>
-        <PageContent page={page} content={liveValues} />
+        <PageContent key={renderKey} page={page} content={liveValues} />
       </SiteShell>
       {/* Diagnostics expose only counts/boolean state, never content or credentials. */}
       <span hidden data-cms-preview-runtime
@@ -89,7 +95,7 @@ export function PagePreviewRuntime({
         data-cms-preview-dirty={fields.some((field) =>
           liveValues[field.key] !== asPreviewMedia(initialValues[field.key] ?? ""),
         ) ? "true" : "false"} />
-      <PagePreviewBridge fields={fields} values={initialValues} />
+      <PagePreviewBridge key={renderKey} fields={fields} values={liveValues} />
     </>
   );
 }
