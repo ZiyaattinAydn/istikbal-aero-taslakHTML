@@ -40,6 +40,7 @@ export function PagePreviewRuntime({
   initialValues: PageValues;
 }) {
   const [liveValues, setLiveValues] = useState<PageValues>(() => previewValues(initialValues));
+  const [syncCount, setSyncCount] = useState(0);
   const allowed = useMemo(() => new Set(fields.map((field) => field.key)), [fields]);
 
   useEffect(() => {
@@ -56,6 +57,7 @@ export function PagePreviewRuntime({
         if (!allowed.has(key) || typeof raw !== "string" || raw.length > 8000) continue;
         updates[key] = asPreviewMedia(raw);
       }
+      setSyncCount((count) => count + 1);
       setLiveValues((previous) => {
         let changed = false;
         for (const [key, value] of Object.entries(updates)) {
@@ -77,6 +79,12 @@ export function PagePreviewRuntime({
       <SiteShell page={page}>
         <PageContent page={page} content={liveValues} />
       </SiteShell>
+      {/* Diagnostics expose only counts/boolean state, never content or credentials. */}
+      <span hidden data-cms-preview-runtime
+        data-cms-preview-syncs={syncCount}
+        data-cms-preview-dirty={fields.some((field) =>
+          liveValues[field.key] !== asPreviewMedia(initialValues[field.key] ?? ""),
+        ) ? "true" : "false"} />
       <PagePreviewBridge fields={fields} values={initialValues} />
     </>
   );
