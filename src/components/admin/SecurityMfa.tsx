@@ -15,14 +15,18 @@ export function SecurityMfa({ factors }: { factors: Factor[] }) {
     id?: string; secret?: string; qrCode?: string; error?: string;
   }>({});
   const [loading, setLoading] = useState(false);
-  const [verify, confirmNewFactor, verifying] = useActionState(verifyMfaReplacement, { message: "" });
+  const [verify, confirmNewFactor, verifying] = useActionState(
+    async (previous: { message: string; ok?: boolean }, form: FormData) => {
+      const result = await verifyMfaReplacement(previous, form);
+      if (result.ok) {
+        setReplacement({});
+        router.refresh();
+      }
+      return result;
+    },
+    { message: "" },
+  );
   const [removed, remove, removing] = useActionState(removeMfaFactor, { message: "" });
-  useEffect(() => {
-    if (verify.ok) {
-      setReplacement({});
-      router.refresh();
-    }
-  }, [verify.ok, router]);
   useEffect(() => {
     if (removed.ok) router.refresh();
   }, [removed.ok, router]);
