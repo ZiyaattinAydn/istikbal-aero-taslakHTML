@@ -33,6 +33,19 @@ function findFieldTargets(root: HTMLElement, fields: PageField[], values: PageVa
     const source = values[field.key] ?? field.value;
     if (!source?.trim()) continue;
     if (field.kind === "text") {
+      // Explicit markers are preferred for short, repeated inline fragments.
+      const marked = [...root.querySelectorAll<HTMLElement>("[data-cms-field]")]
+        .find((element) => element.dataset.cmsField === field.key);
+      if (marked) {
+        const node = textNodes.find((candidate) => marked.contains(candidate) && candidate.data.includes(source));
+        if (node) reservedText.add(node);
+        entries.set(field.key, {
+          field, source, element: marked,
+          textNode: node,
+          originalText: node?.data,
+        });
+        continue;
+      }
       // Prefer exact React text nodes so short fragments such as "ile"
       // do not match longer unrelated copy elsewhere on the page.
       const available = textNodes.filter((node) => !reservedText.has(node));
@@ -52,10 +65,15 @@ function findFieldTargets(root: HTMLElement, fields: PageField[], values: PageVa
 
     if (field.kind === "image") {
       const images = [...root.querySelectorAll<HTMLElement>("img,[style]")];
+      const renderedImage = mediaUrl(
+        source.startsWith("cms:") ? source.replace("cms:", "cms-preview:") : source,
+      );
       const element = images.find((candidate) => {
         if (reservedElements.has(candidate)) return false;
         return (candidate.getAttribute("src") || "").includes(source) ||
-          (candidate.getAttribute("style") || "").includes(source);
+          (candidate.getAttribute("style") || "").includes(source) ||
+          (candidate.getAttribute("src") || "").includes(renderedImage) ||
+          (candidate.getAttribute("style") || "").includes(renderedImage);
       });
       if (element) {
         reservedElements.add(element);
