@@ -123,10 +123,27 @@ function findFieldTargets(root: HTMLElement, fields: PageField[], values: PageVa
 }
 
 function applyPreview(entry: PreviewEntry, value: string) {
-  if (entry.field.kind === "text" && entry.textNode && entry.originalText !== undefined) {
-    // Modify the original *text node* only; never inject markup.
+  if (entry.field.kind === "text" && entry.originalText !== undefined) {
+    // Hydration may replace the SSR Text node while leaving its parent element
+    // intact. Refresh the node reference rather than mutating a detached node.
+    let node = entry.textNode;
+    if (!node || !entry.element.contains(node)) {
+      const walker = document.createTreeWalker(entry.element, NodeFilter.SHOW_TEXT);
+      const nodes: Text[] = [];
+      let child: Node | null;
+      while ((child = walker.nextNode())) {
+        if (child.nodeValue?.trim()) nodes.push(child as Text);
+      }
+      const live = uniqueTextCandidate(nodes, entry.source, (candidate) => candidate.data);
+      if (!live) return;
+      node = live;
+      entry.textNode = live;
+      entry.originalText = live.data;
+    }
+    // Modify only a live, owned text node; never use innerHTML/textContent to
+    // flatten nested formatting or inject untrusted markup.
     const original = entry.originalText;
-    entry.textNode.data = original.includes(entry.source)
+    node.data = original.includes(entry.source)
       ? original.replace(entry.source, value)
       : original.trim() === entry.source.trim() ? value : original;
   } else if (entry.field.kind === "image") {
