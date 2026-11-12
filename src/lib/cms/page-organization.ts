@@ -121,7 +121,7 @@ export function pageContentBlocks(fields: readonly PageField[]): PageEditBlock[]
     const moduleMatch = key.match(/^((?:focus|platformFocus)\.[^.]+\.modules\.\d+)\./);
     if (moduleMatch) {
       const heading = fields.find((candidate) => candidate.key === moduleMatch[1] + ".1")?.value ?? "";
-      append(module[1], compact(heading, "Mühendislik konusu"), "Aynı konuya ait başlık ve açıklama", field);
+      append(moduleMatch[1], compact(heading, "Mühendislik konusu"), "Aynı konuya ait başlık ve açıklama", field);
       continue;
     }
 
