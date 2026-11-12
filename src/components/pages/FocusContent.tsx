@@ -79,18 +79,22 @@ export function FocusContent({
           ))}
         </div>
         <p className="editorial-note">
-          {pageValue(
-            content,
-            "FocusContent.text.5",
-            "Sistemler birlikte çalışır: ",
-          )}
-          {x.title} {pageValue(content, "FocusContent.text.6", " ile ")}
+          <span data-cms-field="FocusContent.text.5">
+            {pageValue(
+              content,
+              "FocusContent.text.5",
+              "Sistemler birlikte çalışır: ",
+            )}
+          </span>
+          {x.title} <span data-cms-field="FocusContent.text.6">{pageValue(content, "FocusContent.text.6", " ile ")}</span>
           {x.related}{" "}
-          {pageValue(
-            content,
-            "FocusContent.text.7",
-            " birbirini tamamlayan mühendislik alanlarıdır. Teknoloji başlıkları birbirinden bağımsız değildir.",
-          )}
+          <span data-cms-field="FocusContent.text.7">
+            {pageValue(
+              content,
+              "FocusContent.text.7",
+              " birbirini tamamlayan mühendislik alanlarıdır. Teknoloji başlıkları birbirinden bağımsız değildir.",
+            )}
+          </span>
         </p>
       </Section>
     </>
