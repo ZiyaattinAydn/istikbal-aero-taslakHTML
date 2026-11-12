@@ -1454,7 +1454,7 @@
     },
     {
       "path": "src/components/pages/AboutContent.tsx",
-      "sha256": "41d8fb132c086b8a5d9dc821467d49e6ceedae169debc67ab126cecf6d78e257",
+      "sha256": "3f1b61a9d2bdaa2c18e842c42ba0f7a42ef24a255d91184363706f6aa8da029b",
       "fields": [
         {
           "key": "src/components/pages/AboutContent.tsx:78",
@@ -1691,530 +1691,536 @@
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:2349",
-          "line": 87,
+          "key": "src/components/pages/AboutContent.tsx:2267",
+          "line": 84,
           "value": "AboutContent.image.8",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:2389",
+          "key": "src/components/pages/AboutContent.tsx:2399",
           "line": 88,
+          "value": "AboutContent.image.8",
+          "candidate": false
+        },
+        {
+          "key": "src/components/pages/AboutContent.tsx:2439",
+          "line": 89,
           "value": "research-lab.svg",
           "candidate": true
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:2502",
-          "line": 92,
+          "key": "src/components/pages/AboutContent.tsx:2552",
+          "line": 93,
           "value": "copy",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:2540",
-          "line": 93,
+          "key": "src/components/pages/AboutContent.tsx:2590",
+          "line": 94,
           "value": "eyebrow no-rule",
           "candidate": true
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:2627",
-          "line": 96,
+          "key": "src/components/pages/AboutContent.tsx:2677",
+          "line": 97,
           "value": "AboutContent.text.9",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:2666",
-          "line": 97,
+          "key": "src/components/pages/AboutContent.tsx:2716",
+          "line": 98,
           "value": "MÜHENDİSLİK YAKLAŞIMI",
           "candidate": true
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:2707",
-          "line": 98,
+          "key": "src/components/pages/AboutContent.tsx:2757",
+          "line": 99,
           "value": "text",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:2731",
-          "line": 99,
+          "key": "src/components/pages/AboutContent.tsx:2781",
+          "line": 100,
           "value": "Metin",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:2861",
-          "line": 105,
+          "key": "src/components/pages/AboutContent.tsx:2911",
+          "line": 106,
           "value": "AboutContent.text.10",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:2901",
-          "line": 106,
+          "key": "src/components/pages/AboutContent.tsx:2951",
+          "line": 107,
           "value": "Donanım, yazılım ve otonomi bir arada.",
           "candidate": true
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:2959",
-          "line": 107,
+          "key": "src/components/pages/AboutContent.tsx:3009",
+          "line": 108,
           "value": "text",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:2983",
-          "line": 108,
+          "key": "src/components/pages/AboutContent.tsx:3033",
+          "line": 109,
           "value": "Metin",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:3110",
-          "line": 114,
+          "key": "src/components/pages/AboutContent.tsx:3160",
+          "line": 115,
           "value": "AboutContent.text.11",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:3150",
-          "line": 115,
+          "key": "src/components/pages/AboutContent.tsx:3200",
+          "line": 116,
           "value": "Elektronik tasarım, gömülü uçuş mimarileri ve otonom algoritmalar birbirinden bağımsız parçalar değildir. İstikbal Aerospace, kamuya açık kurumsal tanıtımında bu disiplinleri birlikte ele alan, çevik ve prototip geliştirmeye odaklı bir mühendislik yaklaşımı benimsediğini ifade eder.",
           "candidate": true
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:3453",
-          "line": 116,
+          "key": "src/components/pages/AboutContent.tsx:3503",
+          "line": 117,
           "value": "text",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:3477",
-          "line": 117,
+          "key": "src/components/pages/AboutContent.tsx:3527",
+          "line": 118,
           "value": "Metin",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:3603",
-          "line": 123,
+          "key": "src/components/pages/AboutContent.tsx:3653",
+          "line": 124,
           "value": "AboutContent.text.12",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:3643",
-          "line": 124,
+          "key": "src/components/pages/AboutContent.tsx:3693",
+          "line": 125,
           "value": "Yaklaşımın odağında, kavramsal tasarımların donanım ve yazılımla buluşturulması; alt sistemlerin birlikte çalışabilir, incelenebilir ve test edilebilir yapılar olarak değerlendirilmesi bulunur.",
           "candidate": true
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:3856",
-          "line": 125,
+          "key": "src/components/pages/AboutContent.tsx:3906",
+          "line": 126,
           "value": "text",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:3880",
-          "line": 126,
+          "key": "src/components/pages/AboutContent.tsx:3930",
+          "line": 127,
           "value": "Metin",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:3998",
-          "line": 132,
+          "key": "src/components/pages/AboutContent.tsx:4048",
+          "line": 133,
           "value": "inner-panel",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:4100",
-          "line": 136,
+          "key": "src/components/pages/AboutContent.tsx:4150",
+          "line": 137,
           "value": "AboutContent.kicker.13",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:4138",
-          "line": 137,
+          "key": "src/components/pages/AboutContent.tsx:4188",
+          "line": 138,
           "value": "ÇALIŞMA YAKLAŞIMI",
           "candidate": true
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:4171",
-          "line": 138,
+          "key": "src/components/pages/AboutContent.tsx:4221",
+          "line": 139,
           "value": "text",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:4191",
-          "line": 139,
+          "key": "src/components/pages/AboutContent.tsx:4241",
+          "line": 140,
           "value": "Bölüm etiketi",
           "candidate": true
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:4282",
-          "line": 143,
+          "key": "src/components/pages/AboutContent.tsx:4332",
+          "line": 144,
           "value": "AboutContent.title.14",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:4319",
-          "line": 144,
+          "key": "src/components/pages/AboutContent.tsx:4369",
+          "line": 145,
           "value": "Tasarım. Prototipleme. Entegrasyon.",
           "candidate": true
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:4370",
-          "line": 145,
+          "key": "src/components/pages/AboutContent.tsx:4420",
+          "line": 146,
           "value": "text",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:4390",
-          "line": 146,
+          "key": "src/components/pages/AboutContent.tsx:4440",
+          "line": 147,
           "value": "Başlık",
           "candidate": true
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:4473",
-          "line": 150,
+          "key": "src/components/pages/AboutContent.tsx:4523",
+          "line": 151,
           "value": "AboutContent.lead.15",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:4509",
-          "line": 151,
+          "key": "src/components/pages/AboutContent.tsx:4559",
+          "line": 152,
           "value": "İstikbal Aerospace’in kamuya açık tanıtımında öne çıkan mühendislik süreçleri.",
           "candidate": true
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:4603",
-          "line": 152,
+          "key": "src/components/pages/AboutContent.tsx:4653",
+          "line": 153,
           "value": "text",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:4623",
-          "line": 153,
+          "key": "src/components/pages/AboutContent.tsx:4673",
+          "line": 154,
           "value": "Açıklama",
           "candidate": true
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:4683",
-          "line": 156,
+          "key": "src/components/pages/AboutContent.tsx:4733",
+          "line": 157,
           "value": "focus-modules",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:4744",
-          "line": 158,
+          "key": "src/components/pages/AboutContent.tsx:4794",
+          "line": 159,
           "value": "01 / 03",
           "candidate": true
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:4822",
-          "line": 161,
+          "key": "src/components/pages/AboutContent.tsx:4872",
+          "line": 162,
           "value": "AboutContent.title.16",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:4861",
-          "line": 162,
+          "key": "src/components/pages/AboutContent.tsx:4911",
+          "line": 163,
           "value": "Sistem Tasarımı",
           "candidate": true
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:4894",
-          "line": 163,
+          "key": "src/components/pages/AboutContent.tsx:4944",
+          "line": 164,
           "value": "text",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:4916",
-          "line": 164,
+          "key": "src/components/pages/AboutContent.tsx:4966",
+          "line": 165,
           "value": "Başlık",
           "candidate": true
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:5014",
-          "line": 168,
+          "key": "src/components/pages/AboutContent.tsx:5064",
+          "line": 169,
           "value": "AboutContent.description.17",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:5059",
-          "line": 169,
+          "key": "src/components/pages/AboutContent.tsx:5109",
+          "line": 170,
           "value": "Elektronik donanım, uçuş mimarileri ve yazılım bileşenlerini ortak bir sistem çerçevesinde değerlendirme.",
           "candidate": true
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:5182",
-          "line": 170,
+          "key": "src/components/pages/AboutContent.tsx:5232",
+          "line": 171,
           "value": "text",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:5204",
-          "line": 171,
+          "key": "src/components/pages/AboutContent.tsx:5254",
+          "line": 172,
           "value": "Açıklama",
           "candidate": true
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:5287",
-          "line": 175,
+          "key": "src/components/pages/AboutContent.tsx:5337",
+          "line": 176,
           "value": "02 / 03",
           "candidate": true
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:5365",
-          "line": 178,
+          "key": "src/components/pages/AboutContent.tsx:5415",
+          "line": 179,
           "value": "AboutContent.title.18",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:5404",
-          "line": 179,
+          "key": "src/components/pages/AboutContent.tsx:5454",
+          "line": 180,
           "value": "Hızlı Prototipleme",
           "candidate": true
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:5440",
-          "line": 180,
+          "key": "src/components/pages/AboutContent.tsx:5490",
+          "line": 181,
           "value": "text",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:5462",
-          "line": 181,
+          "key": "src/components/pages/AboutContent.tsx:5512",
+          "line": 182,
           "value": "Başlık",
           "candidate": true
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:5560",
-          "line": 185,
+          "key": "src/components/pages/AboutContent.tsx:5610",
+          "line": 186,
           "value": "AboutContent.description.19",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:5605",
-          "line": 186,
+          "key": "src/components/pages/AboutContent.tsx:5655",
+          "line": 187,
           "value": "Kavramsal fikirlerin elektronik tasarım, gömülü yazılım ve algoritma geliştirmeyle somutlaştırılması.",
           "candidate": true
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:5724",
-          "line": 187,
+          "key": "src/components/pages/AboutContent.tsx:5774",
+          "line": 188,
           "value": "text",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:5746",
-          "line": 188,
+          "key": "src/components/pages/AboutContent.tsx:5796",
+          "line": 189,
           "value": "Açıklama",
           "candidate": true
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:5829",
-          "line": 192,
+          "key": "src/components/pages/AboutContent.tsx:5879",
+          "line": 193,
           "value": "03 / 03",
           "candidate": true
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:5907",
-          "line": 195,
+          "key": "src/components/pages/AboutContent.tsx:5957",
+          "line": 196,
           "value": "AboutContent.title.20",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:5946",
-          "line": 196,
+          "key": "src/components/pages/AboutContent.tsx:5996",
+          "line": 197,
           "value": "Entegrasyon",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:5975",
-          "line": 197,
+          "key": "src/components/pages/AboutContent.tsx:6025",
+          "line": 198,
           "value": "text",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:5997",
-          "line": 198,
+          "key": "src/components/pages/AboutContent.tsx:6047",
+          "line": 199,
           "value": "Başlık",
           "candidate": true
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:6095",
-          "line": 202,
+          "key": "src/components/pages/AboutContent.tsx:6145",
+          "line": 203,
           "value": "AboutContent.description.21",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:6140",
-          "line": 203,
+          "key": "src/components/pages/AboutContent.tsx:6190",
+          "line": 204,
           "value": "Farklı bileşenler arasında veri akışı, kontrol ve sistem davranışının bütün olarak ele alınması.",
           "candidate": true
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:6254",
-          "line": 204,
+          "key": "src/components/pages/AboutContent.tsx:6304",
+          "line": 205,
           "value": "text",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:6276",
-          "line": 205,
+          "key": "src/components/pages/AboutContent.tsx:6326",
+          "line": 206,
           "value": "Açıklama",
           "candidate": true
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:6450",
-          "line": 214,
+          "key": "src/components/pages/AboutContent.tsx:6500",
+          "line": 215,
           "value": "AboutContent.kicker.22",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:6488",
-          "line": 215,
+          "key": "src/components/pages/AboutContent.tsx:6538",
+          "line": 216,
           "value": "FAALİYET ALANLARI",
           "candidate": true
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:6521",
-          "line": 216,
+          "key": "src/components/pages/AboutContent.tsx:6571",
+          "line": 217,
           "value": "text",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:6541",
-          "line": 217,
+          "key": "src/components/pages/AboutContent.tsx:6591",
+          "line": 218,
           "value": "Bölüm etiketi",
           "candidate": true
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:6632",
-          "line": 221,
+          "key": "src/components/pages/AboutContent.tsx:6682",
+          "line": 222,
           "value": "AboutContent.title.23",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:6669",
-          "line": 222,
+          "key": "src/components/pages/AboutContent.tsx:6719",
+          "line": 223,
           "value": "Birbirini tamamlayan mühendislik alanları.",
           "candidate": true
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:6727",
-          "line": 223,
+          "key": "src/components/pages/AboutContent.tsx:6777",
+          "line": 224,
           "value": "text",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:6747",
-          "line": 224,
+          "key": "src/components/pages/AboutContent.tsx:6797",
+          "line": 225,
           "value": "Başlık",
           "candidate": true
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:6830",
-          "line": 228,
+          "key": "src/components/pages/AboutContent.tsx:6880",
+          "line": 229,
           "value": "AboutContent.lead.24",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:6866",
-          "line": 229,
+          "key": "src/components/pages/AboutContent.tsx:6916",
+          "line": 230,
           "value": "Şirketin kamuya açık tanıtımlarında yer alan çalışma başlıklarını ilgili sayfalardan inceleyebilirsiniz.",
           "candidate": true
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:6986",
-          "line": 230,
+          "key": "src/components/pages/AboutContent.tsx:7036",
+          "line": 231,
           "value": "text",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:7006",
-          "line": 231,
+          "key": "src/components/pages/AboutContent.tsx:7056",
+          "line": 232,
           "value": "Açıklama",
           "candidate": true
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:7066",
-          "line": 234,
+          "key": "src/components/pages/AboutContent.tsx:7116",
+          "line": 235,
           "value": "cards-3",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:7315",
-          "line": 241,
+          "key": "src/components/pages/AboutContent.tsx:7365",
+          "line": 242,
           "value": "corporate-identity",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:7383",
-          "line": 243,
+          "key": "src/components/pages/AboutContent.tsx:7433",
+          "line": 244,
           "value": "eyebrow",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:7462",
-          "line": 246,
+          "key": "src/components/pages/AboutContent.tsx:7512",
+          "line": 247,
           "value": "AboutContent.text.25",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:7502",
-          "line": 247,
+          "key": "src/components/pages/AboutContent.tsx:7552",
+          "line": 248,
           "value": "KONUM",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:7527",
-          "line": 248,
+          "key": "src/components/pages/AboutContent.tsx:7577",
+          "line": 249,
           "value": "text",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:7551",
-          "line": 249,
+          "key": "src/components/pages/AboutContent.tsx:7601",
+          "line": 250,
           "value": "Metin",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:7681",
-          "line": 255,
+          "key": "src/components/pages/AboutContent.tsx:7731",
+          "line": 256,
           "value": "AboutContent.text.26",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:7721",
-          "line": 256,
+          "key": "src/components/pages/AboutContent.tsx:7771",
+          "line": 257,
           "value": "Kepez, Antalya.",
           "candidate": true
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:7756",
-          "line": 257,
+          "key": "src/components/pages/AboutContent.tsx:7806",
+          "line": 258,
           "value": "text",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:7780",
-          "line": 258,
+          "key": "src/components/pages/AboutContent.tsx:7830",
+          "line": 259,
           "value": "Metin",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:7940",
-          "line": 266,
+          "key": "src/components/pages/AboutContent.tsx:7990",
+          "line": 267,
           "value": "AboutContent.text.27",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:7980",
-          "line": 267,
+          "key": "src/components/pages/AboutContent.tsx:8030",
+          "line": 268,
           "value": "İstikbal Aerospace’in kamuya açık şirket profilinde merkez konumu Kepez / Antalya olarak belirtilmektedir. İş birliği ve iletişim talepleri için iletişim sayfamıza ulaşabilirsiniz.",
           "candidate": true
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:8180",
-          "line": 268,
+          "key": "src/components/pages/AboutContent.tsx:8230",
+          "line": 269,
           "value": "text",
           "candidate": false
         },
         {
-          "key": "src/components/pages/AboutContent.tsx:8204",
-          "line": 269,
+          "key": "src/components/pages/AboutContent.tsx:8254",
+          "line": 270,
           "value": "Metin",
           "candidate": false
         }
@@ -3890,7 +3896,7 @@
     },
     {
       "path": "src/components/pages/HomeContent.tsx",
-      "sha256": "65afc4774fb78bd5136d60e636d5ff7ad42685b7bd904174d0eba25e88015878",
+      "sha256": "bacff6e311a45d9ccac6d0a586fe9d7205dd1ffe2f990d203e872d3461708291",
       "fields": [
         {
           "key": "src/components/pages/HomeContent.tsx:78",
@@ -4667,464 +4673,482 @@
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:8186",
-          "line": 270,
+          "key": "src/components/pages/HomeContent.tsx:8104",
+          "line": 267,
           "value": "HomeContent.image.24",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:8226",
+          "key": "src/components/pages/HomeContent.tsx:8236",
           "line": 271,
+          "value": "HomeContent.image.24",
+          "candidate": false
+        },
+        {
+          "key": "src/components/pages/HomeContent.tsx:8276",
+          "line": 272,
           "value": "research-lab.svg",
           "candidate": true
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:8339",
-          "line": 275,
+          "key": "src/components/pages/HomeContent.tsx:8389",
+          "line": 276,
           "value": "copy",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:8377",
-          "line": 276,
+          "key": "src/components/pages/HomeContent.tsx:8427",
+          "line": 277,
           "value": "tag cool",
           "candidate": true
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:8457",
-          "line": 279,
+          "key": "src/components/pages/HomeContent.tsx:8507",
+          "line": 280,
           "value": "HomeContent.text.25",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:8496",
-          "line": 280,
+          "key": "src/components/pages/HomeContent.tsx:8546",
+          "line": 281,
           "value": "AR-GE & ELEKTRONİK",
           "candidate": true
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:8534",
-          "line": 281,
+          "key": "src/components/pages/HomeContent.tsx:8584",
+          "line": 282,
           "value": "text",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:8558",
-          "line": 282,
+          "key": "src/components/pages/HomeContent.tsx:8608",
+          "line": 283,
           "value": "Metin",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:8688",
-          "line": 288,
+          "key": "src/components/pages/HomeContent.tsx:8738",
+          "line": 289,
           "value": "HomeContent.text.26",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:8727",
-          "line": 289,
+          "key": "src/components/pages/HomeContent.tsx:8777",
+          "line": 290,
           "value": "Sistemler, detaylarda şekillenir.",
           "candidate": true
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:8780",
-          "line": 290,
+          "key": "src/components/pages/HomeContent.tsx:8830",
+          "line": 291,
           "value": "text",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:8804",
-          "line": 291,
+          "key": "src/components/pages/HomeContent.tsx:8854",
+          "line": 292,
           "value": "Metin",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:8931",
-          "line": 297,
+          "key": "src/components/pages/HomeContent.tsx:8981",
+          "line": 298,
           "value": "HomeContent.text.27",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:8970",
-          "line": 298,
+          "key": "src/components/pages/HomeContent.tsx:9020",
+          "line": 299,
           "value": "Elektronik donanım, gömülü yazılım ve otonom kontrolün birbirini tamamlayan disiplinler olarak ele alındığı mühendislik alanları.",
           "candidate": true
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:9119",
-          "line": 299,
+          "key": "src/components/pages/HomeContent.tsx:9169",
+          "line": 300,
           "value": "text",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:9143",
-          "line": 300,
+          "key": "src/components/pages/HomeContent.tsx:9193",
+          "line": 301,
           "value": "Metin",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:9274",
-          "line": 307,
+          "key": "src/components/pages/HomeContent.tsx:9324",
+          "line": 308,
           "value": "inner-panel",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:9376",
-          "line": 311,
+          "key": "src/components/pages/HomeContent.tsx:9426",
+          "line": 312,
           "value": "HomeContent.kicker.28",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:9413",
-          "line": 312,
+          "key": "src/components/pages/HomeContent.tsx:9463",
+          "line": 313,
           "value": "05 / HABERLER & DUYURULAR",
           "candidate": true
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:9454",
-          "line": 313,
+          "key": "src/components/pages/HomeContent.tsx:9504",
+          "line": 314,
           "value": "text",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:9474",
-          "line": 314,
+          "key": "src/components/pages/HomeContent.tsx:9524",
+          "line": 315,
           "value": "Bölüm etiketi",
           "candidate": true
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:9565",
-          "line": 318,
+          "key": "src/components/pages/HomeContent.tsx:9615",
+          "line": 319,
           "value": "HomeContent.title.29",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:9601",
-          "line": 319,
+          "key": "src/components/pages/HomeContent.tsx:9651",
+          "line": 320,
           "value": "Kamuya açık gelişmeler.",
           "candidate": true
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:9640",
-          "line": 320,
+          "key": "src/components/pages/HomeContent.tsx:9690",
+          "line": 321,
           "value": "text",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:9660",
-          "line": 321,
+          "key": "src/components/pages/HomeContent.tsx:9710",
+          "line": 322,
           "value": "Başlık",
           "candidate": true
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:9743",
-          "line": 325,
+          "key": "src/components/pages/HomeContent.tsx:9793",
+          "line": 326,
           "value": "HomeContent.lead.30",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:9778",
-          "line": 326,
+          "key": "src/components/pages/HomeContent.tsx:9828",
+          "line": 327,
           "value": "Şirketin paylaştığı teknoloji çalışmalarına ve duyurularına göz atın.",
           "candidate": true
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:9863",
-          "line": 327,
+          "key": "src/components/pages/HomeContent.tsx:9913",
+          "line": 328,
           "value": "text",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:9883",
-          "line": 328,
+          "key": "src/components/pages/HomeContent.tsx:9933",
+          "line": 329,
           "value": "Açıklama",
           "candidate": true
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:9943",
-          "line": 331,
+          "key": "src/components/pages/HomeContent.tsx:9993",
+          "line": 332,
           "value": "news-feature",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:9998",
-          "line": 333,
+          "key": "src/components/pages/HomeContent.tsx:10048",
+          "line": 334,
           "value": "news-feature-art",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:10127",
-          "line": 337,
+          "key": "src/components/pages/HomeContent.tsx:10095",
+          "line": 335,
           "value": "HomeContent.image.31",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:10167",
-          "line": 338,
+          "key": "src/components/pages/HomeContent.tsx:10227",
+          "line": 339,
+          "value": "HomeContent.image.31",
+          "candidate": false
+        },
+        {
+          "key": "src/components/pages/HomeContent.tsx:10267",
+          "line": 340,
           "value": "tengri-network.svg",
           "candidate": true
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:10282",
-          "line": 342,
+          "key": "src/components/pages/HomeContent.tsx:10382",
+          "line": 344,
           "value": "news-feature-copy",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:10333",
-          "line": 343,
+          "key": "src/components/pages/HomeContent.tsx:10433",
+          "line": 345,
           "value": "eyebrow no-rule",
           "candidate": true
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:10420",
-          "line": 346,
+          "key": "src/components/pages/HomeContent.tsx:10520",
+          "line": 348,
           "value": "HomeContent.text.32",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:10459",
-          "line": 347,
+          "key": "src/components/pages/HomeContent.tsx:10559",
+          "line": 349,
           "value": "ŞİRKET PAYLAŞIMI / TENGRİ AI",
           "candidate": true
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:10507",
-          "line": 348,
+          "key": "src/components/pages/HomeContent.tsx:10607",
+          "line": 350,
           "value": "text",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:10531",
-          "line": 349,
+          "key": "src/components/pages/HomeContent.tsx:10631",
+          "line": 351,
           "value": "Metin",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:10661",
-          "line": 355,
+          "key": "src/components/pages/HomeContent.tsx:10761",
+          "line": 357,
           "value": "HomeContent.text.33",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:10700",
-          "line": 356,
+          "key": "src/components/pages/HomeContent.tsx:10800",
+          "line": 358,
           "value": "Tengri AI: Yapay zekâ destekli savunma ağı yaklaşımı",
           "candidate": true
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:10772",
-          "line": 357,
+          "key": "src/components/pages/HomeContent.tsx:10872",
+          "line": 359,
           "value": "text",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:10796",
-          "line": 358,
+          "key": "src/components/pages/HomeContent.tsx:10896",
+          "line": 360,
           "value": "Metin",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:10923",
-          "line": 364,
+          "key": "src/components/pages/HomeContent.tsx:11023",
+          "line": 366,
           "value": "HomeContent.text.34",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:10962",
-          "line": 365,
+          "key": "src/components/pages/HomeContent.tsx:11062",
+          "line": 367,
           "value": "İstikbal Aerospace tarafından kamuya açık olarak tanıtılan Tengri AI'ın odaklandığı teknoloji alanlarını keşfedin.",
           "candidate": true
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:11096",
-          "line": 366,
+          "key": "src/components/pages/HomeContent.tsx:11196",
+          "line": 368,
           "value": "text",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:11120",
-          "line": 367,
+          "key": "src/components/pages/HomeContent.tsx:11220",
+          "line": 369,
           "value": "Metin",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:11210",
-          "line": 371,
+          "key": "src/components/pages/HomeContent.tsx:11310",
+          "line": 373,
           "value": "btn text",
           "candidate": true
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:11294",
-          "line": 374,
+          "key": "src/components/pages/HomeContent.tsx:11394",
+          "line": 376,
           "value": "HomeContent.href.35",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:11333",
-          "line": 375,
+          "key": "src/components/pages/HomeContent.tsx:11433",
+          "line": 377,
           "value": "haber-detay.html",
           "candidate": true
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:11369",
-          "line": 376,
+          "key": "src/components/pages/HomeContent.tsx:11469",
+          "line": 378,
           "value": "link",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:11393",
-          "line": 377,
+          "key": "src/components/pages/HomeContent.tsx:11493",
+          "line": 379,
           "value": "Bağlantı",
           "candidate": true
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:11503",
-          "line": 382,
+          "key": "src/components/pages/HomeContent.tsx:11603",
+          "line": 384,
           "value": "HomeContent.text.36",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:11542",
-          "line": 383,
+          "key": "src/components/pages/HomeContent.tsx:11642",
+          "line": 385,
           "value": "Gelişmeyi İncele",
           "candidate": true
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:11578",
-          "line": 384,
+          "key": "src/components/pages/HomeContent.tsx:11678",
+          "line": 386,
           "value": "text",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:11602",
-          "line": 385,
+          "key": "src/components/pages/HomeContent.tsx:11702",
+          "line": 387,
           "value": "Metin",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:11659",
-          "line": 387,
+          "key": "src/components/pages/HomeContent.tsx:11759",
+          "line": 389,
           "value": "arrow",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:11681",
-          "line": 387,
+          "key": "src/components/pages/HomeContent.tsx:11781",
+          "line": 389,
           "value": "true",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:11707",
-          "line": 388,
+          "key": "src/components/pages/HomeContent.tsx:11807",
+          "line": 390,
           "value": "↗",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:11860",
-          "line": 396,
+          "key": "src/components/pages/HomeContent.tsx:11960",
+          "line": 398,
           "value": "split-feature reverse",
           "candidate": true
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:11924",
-          "line": 398,
+          "key": "src/components/pages/HomeContent.tsx:12024",
+          "line": 400,
           "value": "visual",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:12043",
-          "line": 402,
+          "key": "src/components/pages/HomeContent.tsx:12061",
+          "line": 401,
           "value": "HomeContent.image.37",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:12083",
-          "line": 403,
+          "key": "src/components/pages/HomeContent.tsx:12193",
+          "line": 405,
+          "value": "HomeContent.image.37",
+          "candidate": false
+        },
+        {
+          "key": "src/components/pages/HomeContent.tsx:12233",
+          "line": 406,
           "value": "hero-hangar-photo.webp",
           "candidate": true
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:12202",
-          "line": 407,
+          "key": "src/components/pages/HomeContent.tsx:12352",
+          "line": 410,
           "value": "copy",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:12240",
-          "line": 408,
+          "key": "src/components/pages/HomeContent.tsx:12390",
+          "line": 411,
           "value": "eyebrow no-rule",
           "candidate": true
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:12327",
-          "line": 411,
+          "key": "src/components/pages/HomeContent.tsx:12477",
+          "line": 414,
           "value": "HomeContent.text.38",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:12366",
-          "line": 412,
+          "key": "src/components/pages/HomeContent.tsx:12516",
+          "line": 415,
           "value": "06 / İSTİKBAL AEROSPACE",
           "candidate": true
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:12409",
-          "line": 413,
+          "key": "src/components/pages/HomeContent.tsx:12559",
+          "line": 416,
           "value": "text",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:12433",
-          "line": 414,
+          "key": "src/components/pages/HomeContent.tsx:12583",
+          "line": 417,
           "value": "Metin",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:12563",
-          "line": 420,
+          "key": "src/components/pages/HomeContent.tsx:12713",
+          "line": 423,
           "value": "HomeContent.text.39",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:12602",
-          "line": 421,
+          "key": "src/components/pages/HomeContent.tsx:12752",
+          "line": 424,
           "value": "Antalya'dan geleceğin teknolojilerine.",
           "candidate": true
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:12660",
-          "line": 422,
+          "key": "src/components/pages/HomeContent.tsx:12810",
+          "line": 425,
           "value": "text",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:12684",
-          "line": 423,
+          "key": "src/components/pages/HomeContent.tsx:12834",
+          "line": 426,
           "value": "Metin",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:12811",
-          "line": 429,
+          "key": "src/components/pages/HomeContent.tsx:12961",
+          "line": 432,
           "value": "HomeContent.text.40",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:12850",
-          "line": 430,
+          "key": "src/components/pages/HomeContent.tsx:13000",
+          "line": 433,
           "value": "Antalya merkezli İstikbal Aerospace; havacılık, gömülü elektronik, PCB tasarımı ve otonom sistem mühendisliğini bir araya getiren çalışmalar yürütür.",
           "candidate": true
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:13019",
-          "line": 431,
+          "key": "src/components/pages/HomeContent.tsx:13169",
+          "line": 434,
           "value": "text",
           "candidate": false
         },
         {
-          "key": "src/components/pages/HomeContent.tsx:13043",
-          "line": 432,
+          "key": "src/components/pages/HomeContent.tsx:13193",
+          "line": 435,
           "value": "Metin",
           "candidate": false
         }

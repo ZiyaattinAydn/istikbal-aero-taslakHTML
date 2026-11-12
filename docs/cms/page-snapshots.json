@@ -413,7 +413,7 @@
     "route": "index",
     "title": "Ana Sayfa | İstikbal Aerospace",
     "description": "İstikbal Aerospace havacılık, otonom sistemler, gömülü elektronik ve mühendislik alanları.",
-    "renderSha256": "99af8e4a12fce0590addcf8d96e69ea84b2942d87030c42b7f498cef86a4504e",
+    "renderSha256": "cb42b697d7aeea076c3c58ed5c82283e3c5980f606009d3f3f03ce587ba4e212",
     "sections": [
       {
         "tag": "h1",
@@ -693,7 +693,7 @@
     "route": "kurumsal",
     "title": "Kurumsal | İstikbal Aerospace",
     "description": "İstikbal Aerospace mühendislik yaklaşımı, prototipleme ve sistem entegrasyonu.",
-    "renderSha256": "6f3769eb8285f30eea76663a2270cd0f2da482e62f3510f2dc351755f2be3e97",
+    "renderSha256": "ae42f189d00f5c6a05cd82e48739fc0e4d2e1ab9d9916f6eb31d314f77a03aa7",
     "sections": [
       {
         "tag": "h1",

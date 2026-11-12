@@ -145,6 +145,53 @@ export async function runUiChecks({ status, admin, totp }) {
         30000,
       );
     }
+    stage = "live-visual-preview";
+    await page.goto(url + "/admin/pages/haberler");
+    const { data: savedBeforePreview } = await admin.from("cms_documents")
+      .select("body").eq("kind", "page").eq("slug", "haberler").single();
+    assert.ok(savedBeforePreview);
+    await page.getByRole("searchbox", { name: "Alan ara", exact: true })
+      .fill("Haberler & Duyurular");
+    const liveTitle = page.locator('textarea[data-field="NewsContent.title.0"]');
+    await liveTitle.waitFor({ state: "visible" });
+    await liveTitle.fill("QA canlı önizleme, henüz kaydedilmedi");
+    const visualFrame = page.frameLocator("iframe.cms-visual-preview-frame");
+    await page.locator('[data-cms-field-key="NewsContent.title.0"] button.cms-locate-button').click();
+    // innerText reflects CSS text-transform:uppercase and therefore may
+    // differ in letter casing even when the actual draft is correct.
+    await until(async () =>
+      (await visualFrame.locator("#main h1").textContent())
+        ?.includes("QA canlı önizleme, henüz kaydedilmedi"),
+      "unsaved_live_preview", 30000);
+    assert.ok(await page.getByText(
+      "Kaydedilmemiş değişiklikler bu önizlemede ve tam ekranda anlık görünür.",
+      { exact: false },
+    ).count());
+    await page.getByRole("button", { name: "Tam ekran", exact: true }).click();
+    await page.getByRole("dialog", { name: "Görsel sayfa önizlemesi" })
+      .waitFor({ state: "visible" });
+    assert.ok((await visualFrame.locator("#main h1").textContent())
+      ?.includes("QA canlı önizleme, henüz kaydedilmedi"));
+    await page.keyboard.press("Escape");
+    await until(async () => (await page.locator(".cms-editor-preview.is-fullscreen").count()) === 0,
+      "preview_escape", 10000);
+    const { data: savedAfterPreview } = await admin.from("cms_documents")
+      .select("body").eq("kind", "page").eq("slug", "haberler").single();
+    assert.deepEqual(savedAfterPreview?.body, savedBeforePreview.body);
+    checks.push("Live fullscreen preview shows unsaved field text and Escape exits without mutating CMS");
+
+    // The disposable browser fixture already has a single confirm handler.
+    // Do not install another handler for the same beforeunload dialog.
+    await page.goto(url + "/admin/pages/index");
+    stage = "preview-exact-image-anchor";
+    await page.getByRole("searchbox", { name: "Alan ara", exact: true }).fill("Görsel");
+    const anchor = page.locator('[data-cms-field-key="HomeContent.image.24"]');
+    await anchor.getByRole("button", { name: "Görsel alanını sayfada göster" }).click();
+    await visualFrame.locator(
+      '[data-cms-field="HomeContent.image.24"].cms-inspector-highlight',
+    ).waitFor({ state: "visible" });
+    checks.push("Explicitly marked image highlights its own target, not another identical asset");
+
     for (const entry of schema) {
       stage = "page-" + entry.slug;
       const navStart = Date.now();

@@ -1,9 +1,7 @@
 import { notFound } from "next/navigation";
 import { requireAdmin } from "@/lib/cms/server";
 import { pageSchema } from "@/lib/cms/pages";
-import { PageContent } from "@/components/pages/PageContent";
-import { PagePreviewBridge } from "@/components/admin/PagePreviewBridge";
-import { SiteShell } from "@/components/layout/SiteShell";
+import { PagePreviewRuntime } from "@/components/admin/PagePreviewRuntime";
 import { getRoute } from "@/data/routes";
 import type { PageValues } from "@/lib/cms/page-values";
 
@@ -25,20 +23,11 @@ export default async function Preview({
     .maybeSingle();
   if (!data) notFound();
   const values = (data.body.fields || {}) as PageValues;
-  const content = Object.fromEntries(
-    Object.entries(values).map(([key, value]) => [
-      key,
-      typeof value === "string" && value.startsWith("cms:")
-        ? value.replace("cms:", "cms-preview:")
-        : String(value),
-    ]),
-  );
   return (
-    <>
-      <SiteShell page={route.page}>
-        <PageContent page={route.page} content={content} />
-      </SiteShell>
-      <PagePreviewBridge fields={schema.fields} values={values} />
-    </>
+    <PagePreviewRuntime
+      page={route.page}
+      fields={schema.fields}
+      initialValues={values}
+    />
   );
 }

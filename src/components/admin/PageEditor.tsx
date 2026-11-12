@@ -47,6 +47,7 @@ export function PageEditor({
   const [selected, setSelected] = useState("");
   const [focusRequest, setFocusRequest] = useState(0);
   const [previewOpen, setPreviewOpen] = useState(true);
+  const [previewFullscreen, setPreviewFullscreen] = useState(false);
   const [match, setMatch] = useState<"ready" | "found" | "missing">("ready");
 
   const [state, action, pending] = useActionState(
@@ -72,6 +73,20 @@ export function PageEditor({
   useEffect(() => {
     if (state.ok) router.refresh();
   }, [state, router]);
+
+  useEffect(() => {
+    if (!previewFullscreen) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const escape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setPreviewFullscreen(false);
+    };
+    window.addEventListener("keydown", escape);
+    return () => {
+      window.removeEventListener("keydown", escape);
+      document.body.style.overflow = previous;
+    };
+  }, [previewFullscreen]);
 
   const sendPreview = () => {
     iframeRef.current?.contentWindow?.postMessage(
@@ -154,9 +169,12 @@ export function PageEditor({
     .map((block) => ({
       ...block,
       fields: block.fields.filter((field) => {
-        if (!query) return true;
+        if (!query || field.key === selected) return true;
         const term = query.toLocaleLowerCase("tr-TR");
-        return [block.title, pageFieldLabel(field), current[field.key] ?? field.value]
+        // Keep the focused editor mounted while its contents change.
+        // Matching the original fallback also prevents a search hit from
+        // disappearing after the user types the first character.
+        return [block.title, pageFieldLabel(field), current[field.key] ?? field.value, field.value]
           .some((value) => value.toLocaleLowerCase("tr-TR").includes(term));
       }),
     }))
@@ -300,7 +318,7 @@ export function PageEditor({
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Tam sayfa önizle ↗
+                  Kaydedilmiş taslağı yeni sekmede aç ↗
                 </Link>
                 <Link
                   href="/admin/pages"
@@ -318,20 +336,35 @@ export function PageEditor({
           </form>
         </div>
 
-        <aside className="cms-editor-preview" aria-label="Görsel sayfa önizlemesi">
+        <aside className={"cms-editor-preview" + (previewFullscreen ? " is-fullscreen" : "")}
+          aria-label="Görsel sayfa önizlemesi" role={previewFullscreen ? "dialog" : undefined}
+          aria-modal={previewFullscreen ? true : undefined}>
           <div className="cms-preview-heading">
             <div>
               <span className="cms-eyebrow">GERÇEK SAYFA TASARIMI</span>
               <strong>Görsel önizleme</strong>
             </div>
-            <button
-              type="button"
-              onClick={() => setPreviewOpen((previous) => !previous)}
-              aria-expanded={previewOpen}
-            >{previewOpen ? "Gizle" : "Göster"}</button>
+            <div className="cms-preview-controls">
+              <button type="button" onClick={() => {
+                setPreviewOpen(true);
+                setPreviewFullscreen((previous) => !previous);
+              }} aria-pressed={previewFullscreen}>
+                {previewFullscreen ? "Tam ekrandan çık" : "Tam ekran"}
+              </button>
+              {!previewFullscreen && (
+                <button
+                  type="button"
+                  onClick={() => setPreviewOpen((previous) => !previous)}
+                  aria-expanded={previewOpen}
+                >{previewOpen ? "Gizle" : "Göster"}</button>
+              )}
+            </div>
           </div>
           <p className="cms-preview-guidance">
-            Metne tıklayınca editördeki alan açılır. Buradaki değişiklikler <strong>yayınlanmaz.</strong>
+            {dirty
+              ? "Kaydedilmemiş değişiklikler bu önizlemede ve tam ekranda anlık görünür. "
+              : "Bu önizleme taslak sayfayı gösterir. "}
+            Sayfada bir alana tıklayınca editördeki karşılığı açılır. <strong>Buradaki değişiklikler yayınlanmaz.</strong>
           </p>
           {previewOpen && (
             <iframe

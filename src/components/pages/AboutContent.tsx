@@ -81,6 +81,7 @@ export function AboutContent({ content = {} }: { content?: PageValues }) {
         <div className={"split-feature"}>
           <div
             className={"visual"}
+            data-cms-field="AboutContent.image.8"
             style={{
               backgroundImage: pageImageStyle(
                 content,
