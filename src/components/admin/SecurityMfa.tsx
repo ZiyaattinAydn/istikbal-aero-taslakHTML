@@ -15,7 +15,7 @@ export function SecurityMfa({ factors }: { factors: Factor[] }) {
     id?: string; secret?: string; qrCode?: string; error?: string;
   }>({});
   const [loading, setLoading] = useState(false);
-  const [verify, confirm, verifying] = useActionState(verifyMfaReplacement, { message: "" });
+  const [verify, confirmNewFactor, verifying] = useActionState(verifyMfaReplacement, { message: "" });
   const [removed, remove, removing] = useActionState(removeMfaFactor, { message: "" });
   useEffect(() => {
     if (verify.ok) {
@@ -47,7 +47,7 @@ export function SecurityMfa({ factors }: { factors: Factor[] }) {
                   type="submit"
                   disabled={removing || factors.length < 2}
                   onClick={(event) => {
-                    if (!confirm("Bu doğrulama cihazını kaldırmak istiyor musunuz?")) event.preventDefault();
+                    if (!window.confirm("Bu doğrulama cihazını kaldırmak istiyor musunuz?")) event.preventDefault();
                   }}
                 >Kaldır</button>
               </form>
@@ -94,7 +94,7 @@ export function SecurityMfa({ factors }: { factors: Factor[] }) {
                 <code>{replacement.secret}</code>
               </details>
             )}
-            <form action={confirm} className="cms-auth-form">
+            <form action={confirmNewFactor} className="cms-auth-form">
               <input type="hidden" name="factor" value={replacement.id} />
               <label>
                 Yeni uygulamadaki 6 haneli kod
