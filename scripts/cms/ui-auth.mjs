@@ -132,6 +132,16 @@ export async function runUiChecks({ status, admin, totp }) {
       .filter((cookie) => cookie.name.includes("auth-token"));
     assert.ok(authCookies.length > 0, "Browser must receive a session cookie");
     const now = Date.now() / 1000;
+    console.log("Authenticated cookie policy (no names/values):", {
+      count: authCookies.length,
+      flags: authCookies.map((cookie) => ({
+        path: cookie.path,
+        httpOnly: cookie.httpOnly,
+        sameSite: cookie.sameSite,
+        hasExpiry: cookie.expires > 0,
+        expiryHours: cookie.expires > 0 ? Math.round((cookie.expires - now) / 3600) : null,
+      })),
+    });
     for (const cookie of authCookies) {
       assert.equal(cookie.httpOnly, true);
       assert.equal(cookie.path, "/admin");
