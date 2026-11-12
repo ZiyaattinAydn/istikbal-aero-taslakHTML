@@ -205,3 +205,67 @@ export function legacyRoutesForContent(kind: string, slug: string): string[] {
   }
   return [...new Set(pages)];
 }
+
+
+/**
+ * The editorial owner of an existing page-field slot, when that slot can be
+ * represented by one canonical structured document. Keep href, layout/SEO,
+ * navigation and unrelated page-only fields independently editable.
+ */
+export function canonicalReferenceForField(
+  pageSlug: string,
+  key: string,
+): LegacyRecord | null {
+  const source = sourceForKey(key);
+  if (source) return legacyRecord(source.kind, source.slug) ?? null;
+  if (
+    pageSlug === "index" &&
+    ["HomeContent.text.33", "HomeContent.text.34", "HomeContent.image.31"].includes(key)
+  ) return legacyRecord("news", "tengri-ai-announcement") ?? null;
+  const newsId = legacyNewsIdForPage(pageSlug);
+  if (
+    newsId &&
+    /^(?:news\.article\.(?:heroTitle|heroDescription|heading|intro|sectionBody)|news\.(?:sourceUrl|image))$/.test(key)
+  ) return legacyRecord("news", newsId) ?? null;
+  return null;
+}
+
+export type CanonicalPageReference = {
+  kind: LegacyKind;
+  slug: string;
+  title: string;
+  fieldKeys: string[];
+};
+
+export function canonicalContentForPage(pageSlug: string): CanonicalPageReference[] {
+  const references = new Map<string, CanonicalPageReference>();
+  for (const field of pageSchema(pageSlug)?.fields ?? []) {
+    const record = canonicalReferenceForField(pageSlug, field.key);
+    if (!record) continue;
+    const identity = record.kind + ":" + record.slug;
+    let reference = references.get(identity);
+    if (!reference) {
+      reference = {
+        kind: record.kind,
+        slug: record.slug,
+        title: record.body.title,
+        fieldKeys: [],
+      };
+      references.set(identity, reference);
+    }
+    reference.fieldKeys.push(field.key);
+  }
+  return [...references.values()];
+}
+
+/** Draft editor keys remain saved and versioned, even if their input is hidden. */
+export function editablePageFields<T extends { key: string }>(
+  fields: readonly T[],
+  references: readonly (CanonicalPageReference & { id?: string | null })[],
+): T[] {
+  const owned = new Set(
+    references.filter((reference) => Boolean(reference.id))
+      .flatMap((reference) => reference.fieldKeys),
+  );
+  return fields.filter((field) => !owned.has(field.key));
+}
