@@ -157,43 +157,12 @@ export async function runUiChecks({ status, admin, totp }) {
     await liveTitle.fill("QA canlı önizleme, henüz kaydedilmedi");
     const visualFrame = page.frameLocator("iframe.cms-visual-preview-frame");
     await page.locator('[data-cms-field-key="NewsContent.title.0"] button.cms-locate-button').click();
-    try {
-      await until(async () =>
-        (await visualFrame.locator("#main h1").innerText())
-          .includes("QA canlı önizleme, henüz kaydedilmedi"),
+    // innerText reflects CSS text-transform:uppercase and therefore may
+    // differ in letter casing even when the actual draft is correct.
+    await until(async () =>
+      (await visualFrame.locator("#main h1").textContent())
+        ?.includes("QA canlı önizleme, henüz kaydedilmedi"),
       "unsaved_live_preview", 30000);
-    } catch (error) {
-      const status = await visualFrame.locator(".cms-inspector-toolbar span")
-        .textContent().catch(() => "");
-      const heading = await visualFrame.locator("#main h1").evaluate((node) => ({
-        visible: (node.innerText || "").slice(0, 180),
-        dom: (node.textContent || "").slice(0, 180),
-        childNodes: node.childNodes.length,
-      }));
-      const marked = await visualFrame.locator(".cms-inspector-highlight").count();
-      const iframeLoaded = await visualFrame.locator("#main h1").count();
-      const rawValues = await page.locator('input[name="fields"]').inputValue();
-      const draftUpdated = JSON.parse(rawValues)["NewsContent.title.0"] ===
-        "QA canlı önizleme, henüz kaydedilmedi";
-      const headingHighlighted = await visualFrame.locator("#main h1.cms-inspector-highlight").count();
-      const liveState = await visualFrame.locator("[data-cms-preview-runtime]").evaluate((node) => ({
-        syncs: Number(node.getAttribute("data-cms-preview-syncs") || 0),
-        dirty: node.getAttribute("data-cms-preview-dirty") === "true",
-        titleChanged: node.getAttribute("data-cms-preview-title-changed") === "true",
-      }));
-      console.log("Live preview diagnostics (no text values):", {
-        liveState,
-        heading,
-        inspectorMissing: status?.includes("kesin belirlenemedi"),
-        inspectorDefault: status?.includes("İçerik alanını seçmek"),
-        inspectorFound: status?.includes("karşılığıdır"),
-        highlightedTargets: marked,
-        renderedHeadings: iframeLoaded,
-        headingHighlighted,
-        editorDraftUpdated: draftUpdated,
-      });
-      throw error;
-    }
     assert.ok(await page.getByText(
       "Kaydedilmemiş değişiklikler bu önizlemede ve tam ekranda anlık görünür.",
       { exact: false },
@@ -201,8 +170,8 @@ export async function runUiChecks({ status, admin, totp }) {
     await page.getByRole("button", { name: "Tam ekran", exact: true }).click();
     await page.getByRole("dialog", { name: "Görsel sayfa önizlemesi" })
       .waitFor({ state: "visible" });
-    assert.ok((await visualFrame.locator("#main h1").innerText())
-      .includes("QA canlı önizleme, henüz kaydedilmedi"));
+    assert.ok((await visualFrame.locator("#main h1").textContent())
+      ?.includes("QA canlı önizleme, henüz kaydedilmedi"));
     await page.keyboard.press("Escape");
     await until(async () => (await page.locator(".cms-editor-preview.is-fullscreen").count()) === 0,
       "preview_escape", 10000);
