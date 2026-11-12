@@ -256,6 +256,77 @@ export async function runUiChecks({ status, admin, totp }) {
     checks.push(
       "All 21 seeded pages: edit/save, actual template preview, approval/publication, baseline restore and republish",
     );
+    // Local disposable fixture: verify that an imported legacy record becomes
+    // the only editor for its shared slots. Never seed hosted databases in QA.
+    stage = "canonical-single-source";
+    const canonicalBody = {
+      title: "QA ortak haber kaydı",
+      summary: "QA tek kaynaktan yönetilen haber",
+      paragraphs: ["QA giriş metni", "QA ikinci paragraf"],
+      date: null,
+      source: null,
+      stage: null,
+    };
+    const { data: canonicalFixture, error: canonicalError } = await admin
+      .from("cms_documents")
+      .insert({
+        kind: "news",
+        slug: "tengri-ai-announcement",
+        body: canonicalBody,
+      })
+      .select("id")
+      .single();
+    assert.equal(canonicalError, null);
+    assert.ok(canonicalFixture?.id);
+    const { data: beforePage } = await admin
+      .from("cms_documents")
+      .select("body")
+      .eq("kind", "page")
+      .eq("slug", "haberler")
+      .single();
+    assert.ok(beforePage);
+
+    await page.goto(url + "/admin/library");
+    const libraryCard = page.locator(".cms-library-results article").filter({
+      has: page.getByRole("heading", { name: canonicalBody.title, exact: true }),
+    });
+    await libraryCard.waitFor();
+    assert.equal(
+      await libraryCard.locator("a.cms-canonical-action").getAttribute("href"),
+      "/admin/content/" + canonicalFixture.id,
+    );
+    assert.ok((await page.locator("body").innerText()).includes("Aktarım bekliyor"));
+
+    await page.goto(url + "/admin/pages/haberler");
+    assert.equal(
+      await page.locator('textarea[data-field="newsList.0.title"]').count(),
+      0,
+      "Canonical news title must not be independently editable in the page",
+    );
+    assert.equal(
+      await page.locator('textarea[data-field="newsList.1.title"]').count(),
+      1,
+      "Unseeded legacy news must keep its existing editor",
+    );
+    const linked = page.locator(".cms-canonical-panel").getByRole("link", {
+      name: /İçeriği düzenle/,
+    });
+    assert.equal(await linked.getAttribute("href"), "/admin/content/" + canonicalFixture.id);
+    await linked.click();
+    await page.waitForURL("**/admin/content/" + canonicalFixture.id);
+    assert.ok(
+      (await page.getByRole("heading", { name: canonicalBody.title, exact: true }).count()) > 0,
+    );
+    const { data: afterPage } = await admin
+      .from("cms_documents")
+      .select("body")
+      .eq("kind", "page")
+      .eq("slug", "haberler")
+      .single();
+    assert.deepEqual(afterPage?.body, beforePage.body);
+    checks.push(
+      "Imported canonical news links once from shared page/editor library; unseeded fields and draft history remain untouched",
+    );
     stage = "media-upload";
     await page.goto(url + "/admin/media");
     await page
