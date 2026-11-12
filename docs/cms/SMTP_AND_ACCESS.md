@@ -48,3 +48,7 @@ Son CI'da gerçek özel şablon, altı haneli kod, yanlış kod/tekrar reddi ve 
 ## 12 Kasım erişim kontrolü
 
 Mevcut proje ACTIVE_HEALTHY, Auth kullanıcı sayısı 0. MCP'de Auth Admin/config aracı ve ortamda güvenli anahtar yok. Cloudflare/Resend plugin araması boş, servis tarayıcıları login ekranında. Aynı bağlantılar tekrar denenmedi. cms:admin:provision güvenli operatör script'i eklendi; eksik kimlikte hiçbir işlem yapmadan durduğu doğrulandı. Gerçek kullanıcı oluşturulmadı. [ACCESS_STEPS.md](ACCESS_STEPS.md) bağlantılar/adımlar ve DNS yapmama sınırıdır. İlk SQL araç onayı expired oldu; tek tekrar başarılıdır. Yeni migration uygulandı, eski dördü tekrar edilmedi.
+
+## Son entegrasyon doğrulaması — 12 Kasım
+
+Resmî https://supabase.com/partners/catalog/resend sayfası yeniden doğrulandı: entegrasyon proje için özel anahtar oluşturup Supabase SMTP ayarlarını doldurabiliyor. Ancak bu Work oturumunda Resend ve Supabase dashboard giriş ekranında; SMTP/Admin/config yetkisi yok. Entegrasyon kurulmadı, e-posta gönderilmedi ve hosted kullanıcı oluşturulmadı. Yerel Mailpit kabulü gerçek teslim kabulünden ayrı kalır. Mevcut kapalı SMTP referansı ve Token şablonu korundu; uygulamaya SDK veya gizli anahtar eklenmedi. Domain doğrulaması/otomatik Cloudflare DNS adımı çalıştırılmadı. Kesin erişim adımları ACCESS_STEPS.md, teslim kapıları FINAL_INTEGRATION_REPORT.md içindedir.

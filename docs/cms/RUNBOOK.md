@@ -6,13 +6,13 @@
 
 ## Staging ön koşulları
 
-- Cloudflare ücretsiz hesap, domain sahipliği ve staging runtime doğrulaması. Ücretli Workers, KV/Images eklentisi veya overage açmayın. İzole vinext PoC static-assets cache, data-cache none, image optimization none ile derlendi; bu model **dinamik yayın cache çözümü olarak onaylanmadı**.
-- Şirkete ait ücretsiz Supabase projesi ve ücretsiz özel SMTP; mevcut başka müşteri projelerini kullanmayın. Resmî kota: Free DB 500 MB, Storage 1 GB, egress 5 GB, düşük kullanımda bir hafta sonra pause; hesap başına aktif ücretsiz proje limiti de kontrol edilmeli.
+- Cloudflare ücretsiz hesap ve yalnız workers.dev staging runtime doğrulaması. Ücretli Workers, KV/Images eklentisi veya overage açmayın. İzole vinext PoC static-assets cache, data-cache none, image optimization none ile derlendi; bu model **dinamik yayın cache çözümü olarak onaylanmadı**.
+- Mevcut şirkete ait ücretsiz Supabase projesi uftnykormtwlzolwbhfb ve ücretsiz özel SMTP; yeni proje açmayın, başka projeleri kullanmayın. Resmî kota: Free DB 500 MB, Storage 1 GB, egress 5 GB, düşük kullanımda bir hafta sonra pause; hesap başına aktif ücretsiz proje limiti de kontrol edilmeli.
 - Resend aday Free 3.000/ay, 100/gün. Domain gönderici doğrulaması, MX/TXT kayıtlarının korunması, OTP teslim/spam/süre aşımı ve rate limit testi şart. Kart/ücretli aşım yok. DNS için açık onay alınmalı.
 
 ## Staging kurulumu ve kalan kabul
 
-1. Yeni bağımsız Free projede dört migration, 21 sayfa/537 alan ve private Storage uygulandı; security advisors temiz. Hosted Auth/API ve staging kabulünü tamamlayın. Başka projeyi kullanmayın.
+1. Mevcut bağımsız Free projede beş migration, 21 sayfa/537 alan ve private Storage doğrulandı; security advisors temiz. Hosted Auth/API ve staging kabulünü tamamlayın. Başka projeyi kullanmayın.
 2. Auth'ta public signup ve anonymous signup kapalı; davetli hesap oluşturun. Özel allowlist'teki doğrulanmış hesaba trigger publisher rolü verir; user_metadata rol kaynağı değildir. Hosted kullanıcı henüz provision edilmedi.
 3. OTP e-posta şablonu altı haneli `{{ .Token }}` kod; özel SMTP; OTP expiry (örn. 300 sn), yeniden gönderim en az 60 sn, Supabase rate limits ve CAPTCHA/abuse korumasını staging'de doğrulayın. Kodda yerel sayaç global rate limiter olarak sunulmaz. Form yanıtı hesap varlığı hakkında aynı mesajı verir; ağ zamanlaması sabit süre garantisi vermez.
 4. `SUPABASE_URL`, publishable key, server-side `CMS_ALLOWED_EMAILS` ayarlanır. Service-role anahtarı kullanılmaz. CMS yalnız kabul sonrası etkinleştirilir; staging'de HTTPS cookie zorunluluğuna uygun çalışın.
@@ -56,3 +56,7 @@ Docker olan izole makinede CI'daki pinned Supabase CLI 3.1.0 komutlarını kulla
 ## Güncel kurulum kapısı
 
 Lifecycle migration hosted uygulandı ve doğrulandı. Auth/SMTP/hosting kabulünden önce admin/public anahtarlarını açmayın. [ACCESS_STEPS.md](ACCESS_STEPS.md) kesin adımlardır. SQL dosyası otomatik tekrar çalıştırılmaz; önce history/isim/içerik karşılaştırılır.
+
+## Yedek kabul ayrımı
+
+[BACKUP_AND_RESTORE.md](BACKUP_AND_RESTORE.md) operatör prosedürüdür. İzole PGlite fixture restore ve RLS tekrar testi geçti. Gerçek yerel Storage arşiv/restore kontrolü CLI Auth CI işindedir. Hosted tam DB export + Auth/Storage uyumlu izole restore yapılmadı; üretim engeli olarak kalır. Yedek dosyaları ve sırlar GitHub'a/CI artifact'ına konmaz.

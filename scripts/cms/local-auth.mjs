@@ -1,4 +1,6 @@
-import { readFileSync, writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdtempSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { imageSize } from "image-size";
 import { createClient } from "@supabase/supabase-js";
 import assert from "node:assert/strict";
@@ -242,6 +244,31 @@ async function main() {
     (await client(anon).storage.from("cms-media").download(mediaPath)).error,
   );
   checks.push("Private uploaded object cannot be downloaded anonymously");
+  stage = "private-media-backup-restore";
+  const { backupMedia, verifyMedia, digest } = await import("./media-backup.mjs");
+  const backupRoot = mkdtempSync(join(tmpdir(), "istikbal-media-drill-"));
+  const restorePath = `${created.user.id}/${crypto.randomUUID()}.webp`;
+  try {
+    const archive = join(backupRoot, "archive");
+    await backupMedia(admin, archive, "disposable-local-fixture");
+    const manifest = await verifyMedia(archive);
+    assert.equal(manifest.files.length, 1);
+    assert.equal(manifest.metadata.length, 1);
+    const restored = readFileSync(join(archive, mediaPath));
+    assert.equal(digest(restored), digest(bytes));
+    assert.equal((await admin.storage.from("cms-media").upload(restorePath, restored, {
+      contentType: "image/webp", upsert: false,
+    })).error, null);
+    const download = await admin.storage.from("cms-media").download(restorePath);
+    assert.equal(download.error, null);
+    assert.equal(digest(Buffer.from(await download.data.arrayBuffer())), digest(bytes));
+    assert.ok((await client(anon).storage.from("cms-media").download(restorePath)).error);
+    checks.push("Private media archive restores identical bytes without anonymous exposure");
+  } finally {
+    const removed = await admin.storage.from("cms-media").remove([restorePath]);
+    assert.equal(removed.error, null);
+    rmSync(backupRoot, { recursive: true, force: true });
+  }
   assert.equal(
     (
       await db.rpc("cms_manage_media", {

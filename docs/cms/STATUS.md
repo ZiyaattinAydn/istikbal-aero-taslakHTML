@@ -12,11 +12,11 @@ Başlangıç 8bcc6e7 korundu; mevcut 21 sayfa / 537 alan, özgün tasarım ve an
 | 3 | Gerçek CLI/Mailpit OTP + TOTP, API/RLS/Storage/oturum iptali ve HttpOnly arayüz oturumu geçti. Hosted gerçek kullanıcı ve SMTP ayarları bekliyor. |
 | 4 | 21 sayfanın edit/save/gerçek template preview/onay/yayın/başlangıç sürümüne restore/yeniden yayın akışı gerçek yönetici UI'sinde geçti. |
 | 5 | İlişki/kapak, public ilişkili hedefler, medya alt metni/notu ve onaylı izin geri çekme tamamlandı; SQL ve gerçek UI testleri geçti. |
-| 6 | 56 test, typecheck/lint/build/audit, dev/prod 71/71, 15 local Auth kontrolü, birleşik yönetici UI, mobil/focus ve CodeQL başarılı. İnsan/fiziksel cihaz/hosted sağlayıcı kabulü açık. |
+| 6 | 58 test, typecheck/lint/build/audit, dev/prod 71/71, 15 local Auth kontrolü, birleşik yönetici UI, mobil/focus ve CodeQL başarılı. İnsan/fiziksel cihaz/hosted sağlayıcı kabulü açık. |
 
 ## Test kanıtı
 
-Kod **09073d75c19f114e70317f53c17e99db2d829235**: [CI 43225924959](https://github.com/ZiyaattinAydn/istikbal-aerospace-web/actions/runs/43225924959), tüm işler başarılı; CodeQL da başarılıdır. Sonraki rapor commit'i kodu değiştirmez.
+Kod **09073d75c19f114e70317f53c17e99db2d829235**: [CI 43225924959](https://github.com/ZiyaattinAydn/istikbal-aerospace-web/actions/runs/43225924959), tüm işler başarılı; CodeQL da başarılıdır. Son rapor commit'i **f8066a6** ayrıca doğrulandı: [Migration QA 43226877965](https://github.com/ZiyaattinAydn/istikbal-aerospace-web/actions/runs/43226877965) ve [CodeQL 43226878100](https://github.com/ZiyaattinAydn/istikbal-aerospace-web/actions/runs/43226878100) başarılı. Yeni entegrasyon turunda uygulama kodu/migration değiştirilmedi; operatör medya yedeği ve iki geri yükleme/bütünlük testi eklendi. Yerel toplam 58/58; genişletilmiş gerçek Storage geri yükleme testi mevcut CI Auth işine bağlandı, yeni CI sonucu aşağıdaki teslim raporunda takip edilir.
 
 - [completion-local-auth.json](evidence/completion-local-auth.json): gerçek Supabase CLI 3.1.0 + Mailpit 15 kontrol. Gerçek Resend teslimi değildir.
 - [completion-admin-ui.json](evidence/completion-admin-ui.json): gerçek browser → Server Actions → Auth/PostgREST/Storage, 21 sayfa, ilişki/kapak, draft hedef gizliliği, archive cache invalidation, metadata/izin geri çekme, mobil taşma/focus ve logout.
@@ -36,9 +36,13 @@ Yeni kaynak migration: supabase/migrations/20261111214959_cms_relations_media_li
 
 - Hosted Auth kullanıcısı **oluşturulmadı** (0 kullanıcı). İzinli gerçek e-posta private allowlist'tedir; publisher tüm mevcut içerik/yayın/medya yetkisidir. Auth kullanıcı/rol/faktör yönetimi operatör işlemidir; uygulamada gizli Auth Admin anahtarı yoktur.
 - Cloudflare/Resend için tek sistematik kontrol yapıldı: kullanılabilir plugin/özel ortam kimliği ve tarayıcı oturumu yok. Staging veya SMTP entegrasyonu kurulmadı. [ACCESS_STEPS.md](ACCESS_STEPS.md) kesin bağlantı ve adımlardır.
-- Hosted signup/OTP/MFA config, gerçek Resend domain/teslim/spam/rate-limit; Workers CPU/cache/upload; fiziksel cihaz/scroll, insan kullanıcı kabulü ve yedek geri yükleme testi bekler.
+- Hosted signup/OTP/MFA config, gerçek Resend domain/teslim/spam/rate-limit; Workers CPU/cache/upload; fiziksel cihaz/scroll, insan kullanıcı kabulü ve **hosted tam yedeğin** izole geri yükleme kabulü bekler. Sentetik PostgreSQL veri dizini geri yükleme ve RLS/rol/sürüm tekrar testi geçti; hosted pg_dump/Auth kurtarması yerine sayılmaz.
 - CMS_ENABLED=false ve CMS_PUBLIC_READS=false korunur. GO gelmeden açmayın. DNS ve production/main merge ayrıca açık onay gerektirir.
 
 ## Bilinen ürün sınırları
 
 Kontrollü şablon kullanılır; page builder yoktur. İlişki seçimi en fazla 12, seçenekler son 200 kayıt/100 medya ile sınırlıdır; büyük kütüphane arama/sayfalaması sonraki ölçek işidir. Bazı statik ortak kartların metinleri sayfa bazında ayrı alanlardır. Medya dosyası silme yok; izin geri çekme ve taslak koruma vardır. Bunlar üretim kabulünden ayrı belgelenmiş sınırlardır.
+
+## Son entegrasyon ve teslim kapısı
+
+[FINAL_INTEGRATION_REPORT.md](FINAL_INTEGRATION_REPORT.md) ayrıntılı teslim raporudur; [BACKUP_AND_RESTORE.md](BACKUP_AND_RESTORE.md) ücretsiz DB/özel medya prosedürünü ve prova sınırlarını açıklar. [integration-readiness.json](evidence/integration-readiness.json) bu turun salt okunur hosted/erişim doğrulamasıdır. Yeni proje/migration uygulaması/Auth SQL insert/ücret/DNS/deploy yapılmadı. Cloudflare ve Resend erişimi tekrar döngüsüne girilmedi.

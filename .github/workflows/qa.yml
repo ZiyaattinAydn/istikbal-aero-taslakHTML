@@ -58,6 +58,8 @@ jobs:
         run: npm audit --omit=dev --audit-level=moderate
       - run: npm run typecheck
       - run: npm run lint
+      - name: Validate operator backup script syntax
+        run: node --check scripts/cms/media-backup.mjs
       - run: npm test
       - run: npm run cms:inventory:check
       - run: npm run cms:snapshots:check

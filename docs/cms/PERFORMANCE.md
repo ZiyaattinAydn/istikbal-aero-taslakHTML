@@ -88,3 +88,9 @@ Gerçek oturumlu yerel UI save/gezinme ölçümü ayrı raporlanır; development
 ## Gerçek yönetici UI ölçümü — 09073d7 / CI 43225924959
 
 CMS açık, gerçek local Supabase Auth/PostgREST ve OTP+TOTP oturumu; 21 sayfa. Kaydetme tıklamasından DB ve ekrandaki revision'ın yenilenmesine kadar: ortanca 318 ms / p95 441 ms. Sayfa geçişi hazır editöre kadar: ortanca 357 ms / p95 612 ms. Next development/yerel ağdır; ilk derleme gezinmeye dahildir. Hosted Supabase, Cloudflare veya üretim SLA sonucu değildir. Ham veri: completion-admin-ui.json.
+
+## Son entegrasyon: hosted sorgu kontrolü ve açık kapılar
+
+12 Kasım, mevcut hosted projede **read-only transaction + anon role** ile tek `cms_published(kind='page',slug='kurumsal')` sorgusu EXPLAIN ANALYZE edildi. `cms_published_kind_slug_key` index scan; planlama 4,404 ms, DB execution 0,730 ms, 2 shared hit block, 0 sonuç. Tablo boş olduğundan bu yalnız indeks/anon erişim planı kontrolüdür; dolu veri, PostgREST/ağ gecikmesi, Worker CPU veya yük testi değildir. Kanıt: integration-readiness.json.
+
+Bu tur uygulama/bağımlılık/public bundle değişmedi. Önceki 318 ms save / 357 ms gezinme ve Chromium kıyasları referans olarak korunur. Yeni CI otomatik kıyası ayrıca çalışır; sonuç gelmeden hosted kabulü verilmez. Cloudflare staging adresi yok; gerçek LCP/CLS/INP, CPU, cache-hit/miss/tag invalidation, eşzamanlı oturum/upload ölçümleri **bloke**. Free planın 10 ms CPU ve 100.000/gün sınırları gerçek hesapta doğrulanıp rota bazında ölçülmeden hosting GO olmaz.
