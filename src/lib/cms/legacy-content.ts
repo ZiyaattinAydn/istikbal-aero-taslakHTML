@@ -2,7 +2,7 @@ import { cards } from "@/data/cards";
 import { publicNews, publicWorks } from "@/data/publications";
 import type { ContentBody } from "./model";
 import type { PageValues } from "./page-values";
-import { pageSchema } from "./pages";
+import { pageSchema, pageSchemas } from "./pages";
 
 /**
  * Stable identity map for cards already present on the 21 public pages.
@@ -187,4 +187,21 @@ export function overlayExistingPublished(
     patch("news.image", fromCover(body));
   }
   return next;
+}
+
+/** Public routes which display this canonical content in an existing slot. */
+export function legacyRoutesForContent(kind: string, slug: string): string[] {
+  if (!isExistingContent(kind, slug)) return [];
+  const pages = pageSchemas
+    .filter((page) => page.fields.some((field) => {
+      const source = sourceForKey(field.key);
+      return source?.kind === kind && source.slug === slug;
+    }))
+    .map((page) => page.slug);
+  if (kind === "news") {
+    // A legacy news detail URL can select either existing article by ?id=.
+    pages.push("haber-detay", "ucus-kontrol-paylasimi");
+    if (slug === "tengri-ai-announcement") pages.push("index");
+  }
+  return [...new Set(pages)];
 }
