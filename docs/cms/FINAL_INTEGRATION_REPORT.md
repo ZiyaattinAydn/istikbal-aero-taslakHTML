@@ -30,26 +30,26 @@ Başka Supabase projesi kullanılmadı. Hosted Auth'a SQL kullanıcı eklenmedi.
 | Yerel unit/SQL/SSR/snapshot/güvenlik | **58/58**, typecheck, lint, production build, dört CMS içerik doğrulaması başarılı |
 | Bağımlılık denetimi | npm audit: **0 açık**; root package/lock değişmedi |
 | Başlangıç commit CI | checks, local Auth/UI, dev/prod Chromium ve performans başarılı; CodeQL başarılı |
-| Gerçek yerel yönetici UI | Önceki completion-admin-ui.json: OTP/MFA, 21 sayfa edit/save/preview/publish/restore/republish, haber/proje, görsel/ilişki/izin geri çekme, mobil/focus/logout geçti |
+| Gerçek yerel yönetici UI | **Yeniden başarılı**: integration-admin-ui.json; OTP/MFA, 21 sayfa edit/save/preview/publish/restore/republish, haber/proje, görsel/ilişki/izin geri çekme, mobil/focus/logout |
 | Yeni restore/bütünlük testleri | İzole fixture DB restore + medya arşiv izin/hash/eksik dosya/yol/limit testleri geçti |
-| Genişletilmiş gerçek yerel Storage testi | PR CI `cms-local-auth` işinde doğrulanacak; sonucu son CI kaydı belirler |
+| Genişletilmiş gerçek yerel Auth/Storage testi | **Başarılı**: 16 API/Auth/Storage kontrolü; özel medya arşivi farklı yola aynı hash ile restore, anon indirme reddi. CI 43234722434 |
 | Gerçek hosted yönetici ve mobil cihaz | **Bloke / yapılmadı**. Yerel sentetik hesap gerçek ilk yönetici değildir |
 | Cloudflare/Resend uçtan uca | **Bloke / yapılmadı** |
 
-Bu ortamda Docker ve çalışır Chromium bulunmadığı için gerçek servis tarayıcı testlerini yerelmiş gibi raporlamadık; mevcut GitHub CI bu işleri izole runner'da gerçekleştirir. Yeni commit'in CI sonucu PR kontrollerinde takip edilir. Uygulama tasarımı/animasyon/public runtime bu tur değiştirilmedi; fiziksel cihaz ve insan kabulü hâlâ açık.
+Bu ortamda Docker ve çalışır Chromium bulunmadığı için gerçek servis tarayıcı testlerini yerelmiş gibi raporlamadık; mevcut GitHub CI bu işleri izole runner'da gerçekleştirir. Kod commit'i **74357ff2c26c699cc2e61943e9a4fcfbe8f300d5** için [CI 43234722434](https://github.com/ZiyaattinAydn/istikbal-aerospace-web/actions/runs/43234722434) **bütün işler başarılı**: checks, 16 Auth/API kontrolü + 21 sayfa UI, dev 71/71, production 71/71, performans. [CodeQL 43234722768](https://github.com/ZiyaattinAydn/istikbal-aerospace-web/actions/runs/43234722768) başarılı. Sonuç dosyaları integration-*.json olarak saklandı. Sonraki teslim belgesi commit'i yalnız rapor/kanıt değiştirir. Uygulama tasarımı/animasyon/public runtime bu tur değiştirilmedi; fiziksel cihaz ve insan kabulü hâlâ açık.
 
 ## Performans
 
 | Ölçüm | Referans / güncel kabul |
 |---|---|
-| Kaydetme ortanca / p95 | **318 / 441 ms**, 21 örnek, önceki gerçek Next development + local Supabase UI |
-| Gezinme ortanca / p95 | **357 / 612 ms**, aynı yerel koşullar |
+| Kaydetme ortanca / p95 | Önceki **318 / 441 ms** → bu tur **307 / 336 ms**, 21 örnek, gerçek Next development + local Supabase UI |
+| Gezinme ortanca / p95 | Önceki **357 / 612 ms** → bu tur **333 / 563 ms**, aynı yerel koşullar |
 | Public bundle | Önceki browser encoded 145.974 → 147.188 byte; **+1.214 byte (~%0,83)**. Bu tur public kaynak/bağımlılık değişmedi |
-| LCP / CLS | Önceki main kıyasında LCP farkı -12…+20 ms, masaüstü CLS en çok ~0,0192 / mobil 0; 7 rota × 2 viewport × 3 örnek, throttling yok, CMS_PUBLIC_READS=false |
+| LCP / CLS | Bu tur main kıyasında LCP farkı -48…+28 ms, masaüstü CLS en çok ~0,0336 / mobil 0; 7 rota × 2 viewport × 3 örnek, throttling yok, CMS_PUBLIC_READS=false |
 | Hosted DB tek sorgu | Anon read-only published-page sorgusu index scan, planning 4,404 ms / execution 0,730 ms; **0 satır**, ağ/PostgREST/Worker zamanı değil |
 | Staging LCP/CLS/INP, CPU, cache, save/publish | **Ölçülmedi**. Gerçek Workers/Supabase yük kabulü yok; saha INP yok |
 
-Bu sayılar production SLA değildir. Next etiketli cache/React request dedupe ve toplu kart metadata sorguları korunur. Gerçek Free Worker sınırları altında dinamik cache ve izin geri çekme davranışı doğrulanmadan hosting GO verilmez. Ayrıntı ve ham kanıtlar: [PERFORMANCE.md](PERFORMANCE.md).
+Bu sayılar production SLA değildir. Tekrarlı küçük yerel örneklemlerdeki düşüş istatistiksel hızlanma iddiası değildir; uygulama bu tur değişmedi. Next etiketli cache/React request dedupe ve toplu kart metadata sorguları korunur. Gerçek Free Worker sınırları altında dinamik cache ve izin geri çekme davranışı doğrulanmadan hosting GO verilmez. Ayrıntı ve ham kanıtlar: [PERFORMANCE.md](PERFORMANCE.md).
 
 ## Güvenlik, yedek ve geri dönüş
 

@@ -12,7 +12,7 @@ Başlangıç 8bcc6e7 korundu; mevcut 21 sayfa / 537 alan, özgün tasarım ve an
 | 3 | Gerçek CLI/Mailpit OTP + TOTP, API/RLS/Storage/oturum iptali ve HttpOnly arayüz oturumu geçti. Hosted gerçek kullanıcı ve SMTP ayarları bekliyor. |
 | 4 | 21 sayfanın edit/save/gerçek template preview/onay/yayın/başlangıç sürümüne restore/yeniden yayın akışı gerçek yönetici UI'sinde geçti. |
 | 5 | İlişki/kapak, public ilişkili hedefler, medya alt metni/notu ve onaylı izin geri çekme tamamlandı; SQL ve gerçek UI testleri geçti. |
-| 6 | 58 test, typecheck/lint/build/audit, dev/prod 71/71, 15 local Auth kontrolü, birleşik yönetici UI, mobil/focus ve CodeQL başarılı. İnsan/fiziksel cihaz/hosted sağlayıcı kabulü açık. |
+| 6 | 58 test, typecheck/lint/build/audit, dev/prod 71/71, 16 local Auth kontrolü, birleşik yönetici UI, mobil/focus ve CodeQL başarılı. İnsan/fiziksel cihaz/hosted sağlayıcı kabulü açık. |
 
 ## Test kanıtı
 
@@ -46,3 +46,9 @@ Kontrollü şablon kullanılır; page builder yoktur. İlişki seçimi en fazla 
 ## Son entegrasyon ve teslim kapısı
 
 [FINAL_INTEGRATION_REPORT.md](FINAL_INTEGRATION_REPORT.md) ayrıntılı teslim raporudur; [BACKUP_AND_RESTORE.md](BACKUP_AND_RESTORE.md) ücretsiz DB/özel medya prosedürünü ve prova sınırlarını açıklar. [integration-readiness.json](evidence/integration-readiness.json) bu turun salt okunur hosted/erişim doğrulamasıdır. Yeni proje/migration uygulaması/Auth SQL insert/ücret/DNS/deploy yapılmadı. Cloudflare ve Resend erişimi tekrar döngüsüne girilmedi.
+
+### Son kod commit'inin kabul kanıtı
+
+**74357ff2c26c699cc2e61943e9a4fcfbe8f300d5**, [CI 43234722434](https://github.com/ZiyaattinAydn/istikbal-aerospace-web/actions/runs/43234722434): checks (58 test dahil), genişletilmiş gerçek local Auth/Storage ve 21 sayfa UI başarılı. 16 Auth/API kontrolünün yeni maddesi private medya arşivinin gerçek yerel Storage'a aynı byte/hash ile restore edilmesi ve anonim erişimin engellenmesidir. [integration-local-auth.json](evidence/integration-local-auth.json) ve [integration-admin-ui.json](evidence/integration-admin-ui.json) CI'dan alınan sansürlenmiş kanıtlardır. Yeni local development save 307/336 ms, gezinme 333/563 ms (ortanca/p95, 21 örnek); hosted performans değildir. CodeQL 43234722768 başarılı.
+
+Son kod CI **tamamı başarılı**: dev Chromium **71/71**, production **71/71**, performans kıyası ve CodeQL dahil. Yeni public ölçümde bundle farkı aynı +1.214 byte; LCP farkı -48…+28 ms, masaüstü CLS en çok 0,0336 / mobil 0. Ham integration-browser-*.json ve PERFORMANCE.md güncellendi. Hosted/Workers/gerçek SMTP kabulü değişmedi: **NO-GO**. Bu sonucu ekleyen sonraki commit yalnız belgeler ve sansürlenmiş kanıtlardır.

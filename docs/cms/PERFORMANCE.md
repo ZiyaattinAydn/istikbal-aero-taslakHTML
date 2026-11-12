@@ -94,3 +94,30 @@ CMS açık, gerçek local Supabase Auth/PostgREST ve OTP+TOTP oturumu; 21 sayfa.
 12 Kasım, mevcut hosted projede **read-only transaction + anon role** ile tek `cms_published(kind='page',slug='kurumsal')` sorgusu EXPLAIN ANALYZE edildi. `cms_published_kind_slug_key` index scan; planlama 4,404 ms, DB execution 0,730 ms, 2 shared hit block, 0 sonuç. Tablo boş olduğundan bu yalnız indeks/anon erişim planı kontrolüdür; dolu veri, PostgREST/ağ gecikmesi, Worker CPU veya yük testi değildir. Kanıt: integration-readiness.json.
 
 Bu tur uygulama/bağımlılık/public bundle değişmedi. Önceki 318 ms save / 357 ms gezinme ve Chromium kıyasları referans olarak korunur. Yeni CI otomatik kıyası ayrıca çalışır; sonuç gelmeden hosted kabulü verilmez. Cloudflare staging adresi yok; gerçek LCP/CLS/INP, CPU, cache-hit/miss/tag invalidation, eşzamanlı oturum/upload ölçümleri **bloke**. Free planın 10 ms CPU ve 100.000/gün sınırları gerçek hesapta doğrulanıp rota bazında ölçülmeden hosting GO olmaz.
+
+## Son yerel kabul tekrarı — 74357ff / CI 43234722434
+
+Gerçek CLI/Mailpit/Storage ve 21 sayfa oturumlu UI yeniden geçti. Aynı development testinde save ortanca **307 ms**, p95 **336 ms**; gezinme **333 / 563 ms**, her birinde 21 örnek. Önceki referans save 318/441, gezinme 357/612 ms idi. Public/app kaynakları değişmedi; bu örneklem farkı istatistiksel hızlanma veya hosted SLA sayılmaz. Ham veri: integration-admin-ui.json. Genişletilmiş 16 Auth/API kontrolü içinde özel medya yedekleme ve gerçek yerel Storage restore/hash/anon reddi de başarılıdır.
+
+## Son public Chromium kıyası — 74357ff / CI 43234722434
+
+Aynı runner'da main ve bu branch production build'leri, 7 rota × 2 viewport × 3 yükleme; throttling yok, CMS_PUBLIC_READS=false. Bu tur uygulama/public kaynak değişmedi.
+
+| Görünüm | Rota | Önce LCP ortanca ms | Sonra LCP ortanca ms | Sonra maksimum CLS |
+|---|---|---:|---:|---:|
+| Masaüstü | `/` | 184 | 212 | 0.0071 |
+| Masaüstü | `/kurumsal` | 192 | 156 | 0.0192 |
+| Masaüstü | `/platformlar` | 192 | 180 | 0.0192 |
+| Masaüstü | `/teknolojiler` | 296 | 256 | 0.0192 |
+| Masaüstü | `/projeler` | 120 | 108 | 0.0336 |
+| Masaüstü | `/haberler` | 156 | 144 | 0.0192 |
+| Masaüstü | `/haber-detay` | 224 | 232 | 0.0192 |
+| Mobil | `/` | 208 | 216 | 0.0000 |
+| Mobil | `/kurumsal` | 132 | 128 | 0.0000 |
+| Mobil | `/platformlar` | 168 | 164 | 0.0000 |
+| Mobil | `/teknolojiler` | 148 | 100 | 0.0000 |
+| Mobil | `/projeler` | 132 | 144 | 0.0000 |
+| Mobil | `/haberler` | 128 | 136 | 0.0000 |
+| Mobil | `/haber-detay` | 100 | 100 | 0.0000 |
+
+LCP farkı -48…+28 ms; masaüstü CLS maksimum 0,0336, mobil 0. Public browser encoded JS 145.974 → 147.188 byte (+1.214, ~%0,83), önceki tamamlanmış CMS bundle ölçümüyle aynı. Haber detay TTFB üç örnekte maksimum 73,3 → 95,6 ms; saha p95 veya süre garantisi değildir. Bu koşullarda anlamlı kalıcı regresyon kanıtı yok; gerçek staging/field INP/Worker CPU kabulü açık. Ham veriler: integration-browser-before.json, integration-browser-after.json, integration-browser-comparison.json.

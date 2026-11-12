@@ -20,6 +20,7 @@ Free planda otomatik günlük yedek garanti değildir. DB yedeği Storage dosyal
 3. CLI'ı yalnız mevcut projeye linkleyin. Aşağıdaki komutlarda çıktı dizini repo dışında, sahibi dışında erişime kapalı ve önceden boş olmalıdır. CLI bağlantı/status çıktısını açık loga basmayın. Hata olursa eksik paketi başarılı saymayın.
 
 ```sh
+set -euo pipefail
 umask 077
 npx --yes supabase@3.1.0 link --project-ref uftnykormtwlzolwbhfb
 # Linklenen checkout içinde kalın; hedefi özel, repo dışındaki mevcut dizin yapın.

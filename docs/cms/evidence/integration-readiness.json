@@ -46,5 +46,19 @@
   "release": "NO-GO",
   "staging_url": null,
   "hosted_smtp_tested": false,
-  "hosted_backup_restored": false
+  "hosted_backup_restored": false,
+  "validated_code_commit": "74357ff2c26c699cc2e61943e9a4fcfbe8f300d5",
+  "integration_ci": {
+    "run": 43234722434,
+    "conclusion": "success",
+    "unit_sql_tests": 58,
+    "local_auth_api_checks": 16,
+    "admin_ui_pages": 21,
+    "chromium_dev": 71,
+    "chromium_production": 71,
+    "performance": "success",
+    "codeql_run": 43234722768,
+    "codeql": "success",
+    "hosted_acceptance": false
+  }
 }
