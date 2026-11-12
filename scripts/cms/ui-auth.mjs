@@ -330,8 +330,13 @@ export async function runUiChecks({ status, admin, totp }) {
     checks.push(
       "Imported canonical news links once from shared page/editor library; unseeded fields and draft history remain untouched",
     );
-    stage = "media-upload";
+    stage = "site-assets-in-library";
     await page.goto(url + "/admin/media");
+    assert.equal(await page.locator("article.cms-media-static").count(), 9);
+    assert.ok(await page.getByRole("heading", { name: "Hangar fotoğrafı" }).count());
+    assert.ok(await page.locator('a[href="/assets/hero-flight.webp"]').count());
+    checks.push("All nine existing public assets visible in media library without Storage copies");
+    stage = "media-upload";
     await page
       .locator("input[type=file]")
       .setInputFiles("public/assets/hero-flight.webp");
@@ -405,6 +410,61 @@ export async function runUiChecks({ status, admin, totp }) {
       "media_allow",
       30000,
     );
+
+    stage = "page-inline-image-upload";
+    await page.goto(url + "/admin/pages/kurumsal");
+    const imageInput = page.locator(".cms-image-picker").first();
+    await imageInput.locator("xpath=ancestor::details[1]").evaluate((section) => {
+      section.open = true;
+    });
+    await imageInput.getByRole("button", { name: "Görsel seç veya yükle" }).click();
+    // No visit to /admin/media, no manual pre-registration or separate form.
+    await imageInput.locator('input[type="file"]').setInputFiles("public/assets/hero-flight.webp");
+    await imageInput.getByLabel("Yeni görselin açıklaması").fill("QA doğrudan yükleme");
+    await imageInput.getByRole("checkbox", {
+      name: "Bu görseli kullanma ve yayımlama iznim var.",
+    }).check();
+    const sendInline = imageInput.getByRole("button", { name: "Yükle ve bu görseli seç" });
+    await sendInline.waitFor({ state: "visible" });
+    await until(() => sendInline.isEnabled(), "inline_conversion", 30000);
+    await sendInline.click();
+    const { data: inlineMedia, error: inlineError } = await admin
+      .from("cms_media")
+      .select("id,visibility")
+      .eq("alt", "QA doğrudan yükleme")
+      .single();
+    assert.equal(inlineError, null);
+    assert.equal(inlineMedia?.visibility, "private");
+    const selectedField = await imageInput.getAttribute("data-image-picker");
+    const imageKey = selectedField.slice("cms-content-field-".length);
+    // Reconstruct the real field from schema rather than inferring its key.
+    const imageSchema = schema.find((entry) => entry.slug === "kurumsal");
+    const realField = imageSchema.fields.find((field) =>
+      field.key.replace(/[^a-z0-9-]/gi, "-") === imageKey,
+    );
+    assert.ok(realField);
+    await until(async () => (await imageInput.innerText()).includes("QA doğrudan yükleme"),
+      "inline_select", 30000);
+    const { data: currentPage } = await admin.from("cms_documents")
+      .select("id,revision").eq("kind", "page").eq("slug", "kurumsal").single();
+    assert.ok(currentPage);
+    const imageForm = page.locator("form").filter({ has: page.locator('input[name="slug"]') });
+    await imageForm.getByRole("button", { name: "Taslak kaydet" }).click();
+    await until(async () => {
+      const { data: updated } = await admin.from("cms_documents")
+        .select("revision,body").eq("id", currentPage.id).single();
+      return updated?.revision === currentPage.revision + 1 &&
+        updated.body.fields[realField.key] === "cms:" + inlineMedia.id;
+    }, "inline_page_save", 30000);
+    const anonymousInline = await browser.newContext();
+    const anonymousInlinePage = await anonymousInline.newPage();
+    assert.equal(
+      (await anonymousInlinePage.request.get(url + "/cms-media/" + inlineMedia.id)).status(),
+      404,
+    );
+    await anonymousInline.close();
+    checks.push("Direct page-editor upload selects private WebP; draft saves; anonymous cannot fetch it");
+
     async function createEntry(kind, title, related = []) {
       stage = "create-" + kind + ":fields";
       await page.goto(`${url}/admin/new/${kind}`);
@@ -413,9 +473,14 @@ export async function runUiChecks({ status, admin, totp }) {
         .getByLabel("Kısa açıklama", { exact: true })
         .fill("QA açıklama");
       if (kind === "project") {
-        await page
-          .locator("select[name=cover]")
-          .selectOption(media.id);
+        await page.getByRole("button", { name: "Görsel seç veya yükle" }).click();
+        await page.getByRole("button", {
+          name: "QA kapak düzenlendi görselini seç",
+        }).click();
+        assert.equal(
+          await page.locator("input[name=cover]").inputValue(),
+          media.id,
+        );
         stage = "create-" + kind + ":relations";
         for (const id of related)
           await page.locator(`input[type=checkbox][value="${id}"]`).check();
