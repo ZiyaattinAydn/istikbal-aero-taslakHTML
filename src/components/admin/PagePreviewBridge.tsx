@@ -122,51 +122,6 @@ function findFieldTargets(root: HTMLElement, fields: PageField[], values: PageVa
   return entries;
 }
 
-function applyPreview(entry: PreviewEntry, value: string) {
-  if (entry.field.kind === "text" && entry.originalText !== undefined) {
-    // Hydration may replace the SSR Text node while leaving its parent element
-    // intact. Refresh the node reference rather than mutating a detached node.
-    let node = entry.textNode;
-    if (!node || !entry.element.contains(node)) {
-      const walker = document.createTreeWalker(entry.element, NodeFilter.SHOW_TEXT);
-      const nodes: Text[] = [];
-      let child: Node | null;
-      while ((child = walker.nextNode())) {
-        if (child.nodeValue?.trim()) nodes.push(child as Text);
-      }
-      const live = uniqueTextCandidate(nodes, entry.source, (candidate) => candidate.data);
-      if (!live) return;
-      node = live;
-      entry.textNode = live;
-      entry.originalText = live.data;
-    }
-    // Modify only a live, owned text node; never use innerHTML/textContent to
-    // flatten nested formatting or inject untrusted markup.
-    const original = entry.originalText;
-    node.data = original.includes(entry.source)
-      ? original.replace(entry.source, value)
-      : original.trim() === entry.source.trim() ? value : original;
-  } else if (entry.field.kind === "image") {
-    const safe = /^(?:[a-z0-9-]+\.(?:webp|svg)|cms:[0-9a-f-]{36})$/.test(value)
-      ? value.startsWith("cms:") ? value.replace("cms:", "cms-preview:") : value
-      : entry.source;
-    const url = mediaUrl(safe);
-    if (entry.element.tagName === "IMG") {
-      entry.element.setAttribute("src", url);
-    } else if (
-      entry.originalStyle &&
-      styleHasMediaUrl(entry.originalStyle, mediaUrl(
-        entry.source.startsWith("cms:")
-          ? entry.source.replace("cms:", "cms-preview:")
-          : entry.source,
-      ))
-    ) {
-      entry.element.style.backgroundImage = 'url("' + url + '")';
-    }
-  }
-  // Links remain at their saved destinations until the form validates them.
-}
-
 export function PagePreviewBridge({
   fields,
   values,
@@ -224,13 +179,8 @@ export function PagePreviewBridge({
       if (event.origin !== window.location.origin || event.source !== window.parent) return;
       const message = event.data;
       if (!message || message.channel !== CHANNEL || message.kind !== "sync") return;
-      const incoming: unknown = message.values;
-      if (incoming && typeof incoming === "object" && !Array.isArray(incoming)) {
-        for (const [key, entry] of targets) {
-          const value = (incoming as Record<string, unknown>)[key];
-          if (typeof value === "string" && value.length <= 8000) applyPreview(entry, value);
-        }
-      }
+      // PagePreviewRuntime owns the reactive content. This bridge only
+      // highlights authenticated, unambiguously mapped page elements.
       const selected = typeof message.selected === "string" ? message.selected : "";
       const focusRequest = Number.isSafeInteger(message.focusRequest) ? message.focusRequest : 0;
       if (selected && (selected !== lastSelected || focusRequest !== lastFocusRequest || !highlighted)) {
