@@ -177,7 +177,7 @@ export function ImageFieldPicker({
 
           <div className="cms-image-upload">
             <strong>Bilgisayarımdan yeni görsel yükle</strong>
-            <p>Kütüphaneye önceden eklemeniz gerekmez. JPEG, PNG veya WebP dosyası güvenli şekilde WebP'ye dönüştürülür.</p>
+            <p>Kütüphaneye önceden eklemeniz gerekmez. JPEG, PNG veya WebP dosyası güvenli şekilde WebP biçimine dönüştürülür.</p>
             <label>
               Görsel dosyası
               <input type="file" accept="image/png,image/jpeg,image/webp"
