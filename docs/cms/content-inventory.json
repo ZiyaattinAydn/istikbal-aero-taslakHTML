@@ -7436,7 +7436,7 @@
     },
     {
       "path": "src/components/pages/PublishedCards.tsx",
-      "sha256": "b28b0d136f66f9dcab53ec44522a3a22148328dd4a6a512c528606b332bcfa20",
+      "sha256": "ef1f5dbe812e39771b02e09efd05f86d3913bcb9b6ff6c62e02e317f721d81f8",
       "fields": [
         {
           "key": "src/components/pages/PublishedCards.tsx:50",
@@ -7445,92 +7445,98 @@
           "candidate": false
         },
         {
-          "key": "src/components/pages/PublishedCards.tsx:110",
+          "key": "src/components/pages/PublishedCards.tsx:104",
           "line": 2,
+          "value": "@/lib/cms/legacy-content",
+          "candidate": false
+        },
+        {
+          "key": "src/components/pages/PublishedCards.tsx:172",
+          "line": 3,
           "value": "@/components/ui/content",
           "candidate": false
         },
         {
-          "key": "src/components/pages/PublishedCards.tsx:162",
-          "line": 3,
+          "key": "src/components/pages/PublishedCards.tsx:224",
+          "line": 4,
           "value": "@/components/ui/SiteLink",
           "candidate": false
         },
         {
-          "key": "src/components/pages/PublishedCards.tsx:238",
-          "line": 5,
+          "key": "src/components/pages/PublishedCards.tsx:300",
+          "line": 6,
           "value": "news",
           "candidate": false
         },
         {
-          "key": "src/components/pages/PublishedCards.tsx:258",
-          "line": 6,
+          "key": "src/components/pages/PublishedCards.tsx:320",
+          "line": 7,
           "value": "project",
           "candidate": false
         },
         {
-          "key": "src/components/pages/PublishedCards.tsx:282",
-          "line": 7,
+          "key": "src/components/pages/PublishedCards.tsx:344",
+          "line": 8,
           "value": "platform",
           "candidate": false
         },
         {
-          "key": "src/components/pages/PublishedCards.tsx:302",
-          "line": 8,
+          "key": "src/components/pages/PublishedCards.tsx:364",
+          "line": 9,
           "value": "technology",
           "candidate": false
         },
         {
-          "key": "src/components/pages/PublishedCards.tsx:332",
-          "line": 9,
+          "key": "src/components/pages/PublishedCards.tsx:394",
+          "line": 10,
           "value": "capability",
           "candidate": false
         },
         {
-          "key": "src/components/pages/PublishedCards.tsx:733",
-          "line": 22,
+          "key": "src/components/pages/PublishedCards.tsx:868",
+          "line": 25,
           "value": "GÜNCEL İÇERİKLER",
           "candidate": true
         },
         {
-          "key": "src/components/pages/PublishedCards.tsx:766",
-          "line": 23,
+          "key": "src/components/pages/PublishedCards.tsx:901",
+          "line": 26,
           "value": "Şirketten güncel bilgiler.",
           "candidate": true
         },
         {
-          "key": "src/components/pages/PublishedCards.tsx:825",
-          "line": 25,
+          "key": "src/components/pages/PublishedCards.tsx:960",
+          "line": 28,
           "value": "cards-3",
           "candidate": false
         },
         {
-          "key": "src/components/pages/PublishedCards.tsx:898",
-          "line": 27,
+          "key": "src/components/pages/PublishedCards.tsx:1033",
+          "line": 30,
           "value": "news-card",
           "candidate": false
         },
         {
-          "key": "src/components/pages/PublishedCards.tsx:1118",
-          "line": 33,
+          "key": "src/components/pages/PublishedCards.tsx:1253",
+          "line": 36,
           "value": "entry-cover",
           "candidate": false
         },
         {
-          "key": "src/components/pages/PublishedCards.tsx:1303",
-          "line": 38,
+          "key": "src/components/pages/PublishedCards.tsx:1438",
+          "line": 41,
           "value": "lazy",
           "candidate": false
         },
         {
-          "key": "src/components/pages/PublishedCards.tsx:1374",
-          "line": 41,
+          "key": "src/components/pages/PublishedCards.tsx:1509",
+          "line": 44,
           "value": "news-content",
           "candidate": false
         },
         {
-          "key": "src/components/pages/PublishedCards.tsx:1551",
-          "line": 45,
+          "key": "src/components/pages/PublishedCards.tsx:1686",
+          "line": 48,
           "value": "İncele ↗",
           "candidate": true
         }
