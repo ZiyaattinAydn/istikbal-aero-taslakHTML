@@ -174,6 +174,7 @@ export async function runUiChecks({ status, admin, totp }) {
       const liveState = await visualFrame.locator("[data-cms-preview-runtime]").evaluate((node) => ({
         syncs: Number(node.getAttribute("data-cms-preview-syncs") || 0),
         dirty: node.getAttribute("data-cms-preview-dirty") === "true",
+        titleChanged: node.getAttribute("data-cms-preview-title-changed") === "true",
       }));
       console.log("Live preview diagnostics (no text values):", {
         liveState,
