@@ -152,9 +152,14 @@ export async function runUiChecks({ status, admin, totp }) {
       const form = page
         .locator("form")
         .filter({ has: page.locator("input[name=slug]") });
-      const field = entry.fields.find((f) => f.kind === "text");
-      assert.ok(field);
-      const area = form.locator(`textarea[data-field="${field.key}"]`);
+      // Existing shared content may now be owned by a canonical document.
+      // Exercise the first still-editable page field, never a delegated slot.
+      const area = form.locator("textarea[data-field]").first();
+      const fieldKey = await area.getAttribute("data-field");
+      assert.ok(
+        fieldKey && entry.fields.some((field) => field.key === fieldKey),
+        entry.slug + " must retain at least one editable page text field",
+      );
       // Semantic field groups are collapsible; open the exact group containing
       // the field before exercising the same real save/preview/publish checks.
       const revealArea = async () => {
