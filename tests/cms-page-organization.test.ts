@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import schema from "../src/data/cms-page-schema.json";
 import { routes } from "../src/data/routes";
+import type { PageField } from "../src/lib/cms/page-values";
 import {
   normalizePageSearch,
   pageCategories,
@@ -11,9 +12,12 @@ import {
   pageMenu,
 } from "../src/lib/cms/page-organization";
 
+const fieldsOf = (values: { key: string; label: string; kind: string; value: string }[]): PageField[] =>
+  values.map((item) => ({ ...item, kind: item.kind as PageField["kind"] }));
+
 test("21 public pages are categorized once using the existing navigation", () => {
   assert.equal(routes.length, 21);
-  const categoryIds = new Set(pageCategories.map((item) => item.id));
+  const categoryIds: Set<string> = new Set(pageCategories.map((item) => item.id));
   assert.equal(categoryIds.size, pageCategories.length);
   for (const route of routes) {
     const category = pageCategory(route.slug);
@@ -39,7 +43,7 @@ test("537 controlled fields retain their exact key, type, fallback, and membersh
   assert.equal(schema.length, 21);
   let count = 0;
   for (const page of schema) {
-    const fields = page.fields;
+    const fields = fieldsOf(page.fields);
     const before = fields.map(({ key, kind, value }) => ({ key, kind, value }));
     const blocks = pageContentBlocks(fields);
     const after = blocks.flatMap((block) => block.fields)
@@ -66,7 +70,7 @@ test("537 controlled fields retain their exact key, type, fallback, and membersh
 
 test("related fields appear in the same logical card", () => {
   const home = schema.find((page) => page.slug === "index")!;
-  const blocks = pageContentBlocks(home.fields);
+  const blocks = pageContentBlocks(fieldsOf(home.fields));
   const platform = blocks.find((block) => block.id === "cards.platform.0")!;
   assert.equal(platform.fields.length, 4);
   assert.equal(platform.title, "İnsansız Hava Sistemleri");
@@ -75,6 +79,6 @@ test("related fields appear in the same logical card", () => {
   assert.equal(hero.fields.length, 13);
   const focus = schema.find((page) => page.slug === "gomulu-sistemler")!;
   assert.equal(
-    pageContentBlocks(focus.fields).filter((block) => block.id.includes(".modules.")).length, 3,
+    pageContentBlocks(fieldsOf(focus.fields)).filter((block) => block.id.includes(".modules.")).length, 3,
   );
 });
