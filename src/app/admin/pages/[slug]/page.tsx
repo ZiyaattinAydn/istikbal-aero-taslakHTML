@@ -27,7 +27,7 @@ export default async function EditPage({
       </section>
     );
   const references = canonicalContentForPage(slug);
-  const [{ data: versions }, { data: media }, linked] = await Promise.all([
+  const [{ data: versions }, { data: media }, linked, publication] = await Promise.all([
     db
       .from("cms_versions")
       .select("revision,created_at")
@@ -46,7 +46,9 @@ export default async function EditPage({
           .in("kind", ["news", "project", "platform", "technology"])
           .limit(50)
       : Promise.resolve({ data: [], error: null }),
+    db.from("cms_published").select("document_id").eq("document_id", doc.id).maybeSingle(),
   ]);
+  if (publication.error) throw Error("Yayın durumu yüklenemedi.");
   if (linked.error) throw Error("Ortak içerik kayıtları yüklenemedi.");
   const canonical = references.map((item) => {
     const document = linked.data?.find((entry) =>
@@ -82,6 +84,7 @@ export default async function EditPage({
         record={doc}
         versions={versions || []}
         publisher={role === "publisher"}
+        published={Boolean(publication.data)}
       />
     </section>
   );
