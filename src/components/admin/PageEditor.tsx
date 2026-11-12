@@ -5,9 +5,11 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ContentEditor, type ContentDocument } from "./ContentEditor";
 import { PageLinkField } from "./PageLinkField";
+import { CanonicalContentPanel, type CanonicalPageItem } from "./CanonicalContentPanel";
 import { savePage } from "@/app/admin/pages/actions";
 import type { PageField, PageValues } from "@/lib/cms/page-values";
 import { pageContentBlocks, pageFieldLabel } from "@/lib/cms/page-organization";
+import { editablePageFields } from "@/lib/cms/legacy-content";
 
 const CHANNEL = "istikbal:visual-editor:v1";
 
@@ -19,6 +21,7 @@ export function PageEditor({
   fields,
   values,
   media = [],
+  canonical = [],
   record,
   versions = [],
   publisher = false,
@@ -33,6 +36,7 @@ export function PageEditor({
   versions?: { revision: number; created_at: string }[];
   publisher?: boolean;
   media?: { id: string; alt: string; visibility: string }[];
+  canonical?: CanonicalPageItem[];
 }) {
   const router = useRouter();
   const iframeRef = useRef<HTMLIFrameElement>(null);
@@ -96,6 +100,13 @@ export function PageEditor({
       if (message.kind === "edit") {
         const key = String(message.key || "");
         if (!fields.some((field) => field.key === key)) return;
+        const owner = canonical.find((item) => item.id && item.fieldKeys.includes(key));
+        if (owner) {
+          document.getElementById(
+            "cms-canonical-" + owner.kind + "-" + owner.slug,
+          )?.scrollIntoView({ behavior: "smooth", block: "center" });
+          return;
+        }
         setSelected(key);
         setMatch("ready");
         const element = [...document.querySelectorAll<HTMLElement>("[data-cms-field-key]")]
@@ -113,7 +124,7 @@ export function PageEditor({
     return () => window.removeEventListener("message", onMessage);
     // sendPreview captures the current text values for the initial iframe ready event.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [current, selected, fields]);
+  }, [current, selected, fields, canonical]);
 
   const update = (key: string, value: string) => {
     setCurrent((previous) => ({ ...previous, [key]: value }));
@@ -127,7 +138,17 @@ export function PageEditor({
     setMatch("ready");
   };
 
-  const blocks = useMemo(() => pageContentBlocks(fields), [fields]);
+  // Keep all stored draft values and version history. Only the controls
+  // for fields owned by an existing canonical record are hidden.
+  const editableFields = useMemo(
+    () => editablePageFields(fields, canonical),
+    [fields, canonical],
+  );
+  const delegatedCount = fields.length - editableFields.length;
+  const blocks = useMemo(
+    () => pageContentBlocks(editableFields),
+    [editableFields],
+  );
   const visibleBlocks = blocks
     .map((block) => ({
       ...block,
@@ -145,6 +166,7 @@ export function PageEditor({
     <>
       <div className="cms-visual-editor">
         <div className="cms-editor-fields">
+          <CanonicalContentPanel items={canonical} />
           <div className="cms-editor-help">
             <strong>Görsel içerik düzenleme</strong>
             <p>Alanı seçin veya “Sayfada göster” düğmesine basın. Sağda ilgili yeri göreceksiniz. Metin değişiklikleri kaydedilmeden önizlemede görünür; herkese açık site değişmez.</p>
@@ -189,8 +211,14 @@ export function PageEditor({
               </div>
 
               <div className="cms-editor-subtitle">
-                Sayfa içeriği <span>{visibleCount} / {fields.length} alan</span>
+                Sayfa içeriği <span>{visibleCount} / {editableFields.length} alan</span>
               </div>
+              {delegatedCount > 0 && (
+                <p className="cms-canonical-managed-note">
+                  {delegatedCount} ortak içerik alanı kendi tekil kaydından yönetiliyor.
+                  Bu alanların kaydedilmiş değerleri ve sürüm geçmişi korunur.
+                </p>
+              )}
               <div className="cms-fields-list">
                 {visibleBlocks.map((block, blockIndex) => (
                   <details key={block.id} className="cms-content-block"
