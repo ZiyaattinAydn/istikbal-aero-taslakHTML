@@ -1,4 +1,5 @@
 import { publishedPage } from "@/lib/cms/public";
+import { legacyPublicPageContent } from "@/lib/cms/legacy-public";
 import { PublishedCards } from "@/components/pages/PublishedCards";
 import { notFound } from "next/navigation";
 import { getRoute, routes } from "@/data/routes";
@@ -38,6 +39,7 @@ export default async function ContentPage({ params, searchParams }: Props) {
     route.page === "newsDetail" || route.page === "flightControlNews"
       ? (await searchParams).id
       : undefined;
+  const fields = await legacyPublicPageContent(route.slug, content?.fields, newsId);
   return (
     <SiteShell
       key={slug + ":" + (Array.isArray(newsId) ? newsId[0] : newsId || "")}
@@ -54,7 +56,7 @@ export default async function ContentPage({ params, searchParams }: Props) {
       <PageContent
         page={route.page}
         newsId={newsId}
-        content={content?.fields}
+        content={fields}
       />
       <PublishedCards page={route.page} />
     </SiteShell>
