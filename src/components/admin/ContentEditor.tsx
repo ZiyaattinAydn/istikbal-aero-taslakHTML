@@ -4,6 +4,7 @@ import { useActionState, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { saveContent, changeStatus } from "@/app/admin/actions";
 import type { ContentBody } from "@/lib/cms/model";
+import { ImageFieldPicker } from "./ImageFieldPicker";
 export type ContentDocument = {
   id: string;
   kind: string;
@@ -160,30 +161,18 @@ export function ContentEditor({
                 onChange={(e) => update("stage", e.target.value || null)}
               />
             </label>
-            <label>
-              Kapak görseli
-              <select
-                name="cover"
-                value={body.cover_id || ""}
-                onChange={(e) => update("cover_id", e.target.value || null)}
-              >
-                <option value="">Kapak kullanma</option>
-                {body.cover_id &&
-                  !media.some((m) => m.id === body.cover_id) && (
-                    <option value={body.cover_id}>
-                      Kayıtlı kapak (kütüphanede arayın)
-                    </option>
-                  )}
-                {media.map((m) => (
-                  <option key={m.id} value={m.id}>
-                    {m.alt}
-                    {m.visibility === "private"
-                      ? " (özel — yayın izni gerekli)"
-                      : ""}
-                  </option>
-                ))}
-              </select>
-            </label>
+            <div className="cms-cover-field">
+              <strong>Kapak görseli</strong>
+              <input type="hidden" name="cover" value={body.cover_id || ""} />
+              <ImageFieldPicker
+                id="cms-cover-selector"
+                value={body.cover_id ? "cms:" + body.cover_id : ""}
+                media={media}
+                includeSite={false}
+                allowEmpty
+                onChange={(next) => update("cover_id", next.startsWith("cms:") ? next.slice(4) : null)}
+              />
+            </div>
             <input
               type="hidden"
               name="related"
