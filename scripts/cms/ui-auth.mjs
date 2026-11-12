@@ -269,15 +269,13 @@ export async function runUiChecks({ status, admin, totp }) {
     };
     const { data: canonicalFixture, error: canonicalError } = await admin
       .from("cms_documents")
-      .insert({
-        kind: "news",
-        slug: "tengri-ai-announcement",
-        body: canonicalBody,
-      })
-      .select("id")
+      .select("id,body")
+      .eq("kind", "news")
+      .eq("slug", "tengri-ai-announcement")
       .single();
     assert.equal(canonicalError, null);
     assert.ok(canonicalFixture?.id);
+    assert.deepEqual(canonicalFixture?.body, canonicalBody);
     const { data: beforePage } = await admin
       .from("cms_documents")
       .select("body")
