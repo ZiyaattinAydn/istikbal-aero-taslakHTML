@@ -4,6 +4,7 @@ import { useActionState, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ContentEditor, type ContentDocument } from "./ContentEditor";
+import { PageLinkField } from "./PageLinkField";
 import { savePage } from "@/app/admin/pages/actions";
 import type { PageField, PageValues } from "@/lib/cms/page-values";
 import { pageContentBlocks, pageFieldLabel } from "@/lib/cms/page-organization";
@@ -237,10 +238,9 @@ export function PageEditor({
                                 ))}
                               </select>
                             ) : field.kind === "link" ? (
-                              <input id={id} data-field={field.key} type="text" inputMode="url"
-                                value={current[field.key] ?? field.value} maxLength={8000}
+                              <PageLinkField id={id} value={current[field.key] ?? field.value}
                                 onFocus={() => showField(field.key)}
-                                onChange={(event) => update(field.key, event.target.value)} />
+                                onChange={(next) => update(field.key, next)} />
                             ) : (
                               <textarea id={id} data-field={field.key}
                                 rows={field.value.length > 160 ? 4 : 2}
