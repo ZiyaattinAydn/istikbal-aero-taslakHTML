@@ -1,4 +1,5 @@
 import { publishedPage } from "@/lib/cms/public";
+import { legacyPublicPageContent } from "@/lib/cms/legacy-public";
 import { getRoute } from "@/data/routes";
 import { SiteShell } from "@/components/layout/SiteShell";
 import { PageContent } from "@/components/pages/PageContent";
@@ -20,6 +21,7 @@ export async function generateMetadata() {
 }
 export default async function Home() {
   const content = await publishedPage("index");
+  const fields = await legacyPublicPageContent("index", content?.fields);
   return (
     <SiteShell page="home">
       <link
@@ -28,7 +30,7 @@ export default async function Home() {
         href="/assets/hero-flight.webp"
         fetchPriority="high"
       />
-      <PageContent page="home" content={content?.fields} />
+      <PageContent page="home" content={fields} />
     </SiteShell>
   );
 }
