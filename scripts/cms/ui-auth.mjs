@@ -341,10 +341,26 @@ export async function runUiChecks({ status, admin, totp }) {
     await liveTitle.waitFor({ state: "visible" });
     await liveTitle.fill("QA canlı önizleme, henüz kaydedilmedi");
     const visualFrame = page.frameLocator("iframe.cms-visual-preview-frame");
-    await until(async () =>
-      (await visualFrame.locator("#main h1").innerText())
-        .includes("QA canlı önizleme, henüz kaydedilmedi"),
-    "unsaved_live_preview", 30000);
+    await page.locator('[data-cms-field-key="NewsContent.title.0"] button.cms-locate-button').click();
+    try {
+      await until(async () =>
+        (await visualFrame.locator("#main h1").innerText())
+          .includes("QA canlı önizleme, henüz kaydedilmedi"),
+      "unsaved_live_preview", 30000);
+    } catch (error) {
+      const status = await visualFrame.locator(".cms-inspector-toolbar span")
+        .textContent().catch(() => "");
+      const marked = await visualFrame.locator(".cms-inspector-highlight").count();
+      const iframeLoaded = await visualFrame.locator("#main h1").count();
+      console.log("Live preview diagnostics (no text values):", {
+        inspectorMissing: status?.includes("kesin belirlenemedi"),
+        inspectorDefault: status?.includes("İçerik alanını seçmek"),
+        inspectorFound: status?.includes("karşılığıdır"),
+        highlightedTargets: marked,
+        renderedHeadings: iframeLoaded,
+      });
+      throw error;
+    }
     assert.ok(await page.getByText(
       "Kaydedilmemiş değişiklikler bu önizlemede ve tam ekranda anlık görünür.",
       { exact: false },
