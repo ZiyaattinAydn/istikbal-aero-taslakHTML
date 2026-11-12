@@ -1,6 +1,7 @@
 import { requireAdmin } from "@/lib/cms/server";
+import { siteMedia } from "@/lib/cms/site-media";
 import { MediaUpload } from "@/components/admin/MediaUpload";
-import { MediaEditor } from "@/components/admin/MediaEditor";
+import { MediaLibraryGallery } from "@/components/admin/MediaLibraryGallery";
 
 export default async function Media() {
   const { db, role } = await requireAdmin();
@@ -15,36 +16,17 @@ export default async function Media() {
         <div>
           <div className="cms-eyebrow">DİJİTAL VARLIKLAR / KÜTÜPHANE</div>
           <h1>Medya kütüphanesi</h1>
-          <p>Görselleri güvenli şekilde yükleyin, alternatif metinlerini düzenleyin ve yayın izinlerini yönetin.</p>
+          <p>Mevcut site görsellerini ve yeni yüklemelerinizi tek yerden görüntüleyin, arayın ve yönetin.</p>
         </div>
-        <span className="cms-page-count">{data?.length ?? 0} görsel</span>
+        <span className="cms-page-count">{siteMedia.length + (data?.length || 0)} görsel</span>
       </div>
       <div className="cms-media-upload-panel">
-        <h2>Görsel yükle</h2>
-        <p>Yalnızca kullanma hakkınız olan görselleri yükleyin. Yükleme sonrasında dosyalar önce özel kalır.</p>
+        <h2>Yeni görsel yükle</h2>
+        <p>PNG, JPEG veya WebP ekleyebilirsiniz. Kullanım izninizi onayladığınız yüklemeler önce özel saklanır. Sayfa düzenlerken de doğrudan görsel yükleyebilirsiniz.</p>
         <MediaUpload />
       </div>
-      {error && <p role="alert">Kütüphane yüklenemedi.</p>}
-      {!error && !data?.length && (
-        <div className="cms-empty-state"><h3>Henüz görsel yok.</h3><p>İlk görselinizi yukarıdan yükleyebilirsiniz.</p></div>
-      )}
-      <div className="cms-media-grid">
-        {data?.map((item) => (
-          <article className="cms-media-card" key={item.id}>
-            <div className="cms-media-card-top">
-              <h2>{item.alt}</h2>
-              <span className={"cms-status-badge cms-status-" + (item.visibility === "public" ? "published" : "draft")}>
-                {item.visibility === "public" ? "Yayın izni açık" : "Özel"}
-              </span>
-            </div>
-            <a className="cms-media-view" href={"/admin/media/" + item.id + "/file"} target="_blank" rel="noreferrer">
-              Görseli görüntüle ↗
-            </a>
-            <p className="cms-media-meta">{item.width} × {item.height} piksel · {Math.ceil(item.bytes / 1024)} KB</p>
-            <MediaEditor key={item.revision} media={item} publisher={role === "publisher"} />
-          </article>
-        ))}
-      </div>
+      {error && <p role="alert">Yüklenen görseller alınamadı; mevcut site görselleri listelenmeye devam ediyor.</p>}
+      <MediaLibraryGallery media={data || []} publisher={role === "publisher"} />
     </section>
   );
 }
