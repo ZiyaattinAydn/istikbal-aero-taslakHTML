@@ -169,9 +169,12 @@ export function PageEditor({
     .map((block) => ({
       ...block,
       fields: block.fields.filter((field) => {
-        if (!query) return true;
+        if (!query || field.key === selected) return true;
         const term = query.toLocaleLowerCase("tr-TR");
-        return [block.title, pageFieldLabel(field), current[field.key] ?? field.value]
+        // Keep the focused editor mounted while its contents change.
+        // Matching the original fallback also prevents a search hit from
+        // disappearing after the user types the first character.
+        return [block.title, pageFieldLabel(field), current[field.key] ?? field.value, field.value]
           .some((value) => value.toLocaleLowerCase("tr-TR").includes(term));
       }),
     }))
