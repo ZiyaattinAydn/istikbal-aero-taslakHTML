@@ -536,6 +536,14 @@ export async function runUiChecks({ status, admin, totp }) {
       path: "docs/cms/evidence/admin-mobile.png",
       fullPage: false,
     });
+    await page.goto(url + "/admin/library");
+    assert.ok(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth + 1,
+      ),
+      "Shared content library must fit mobile width",
+    );
+    checks.push("Unified content library fits the mobile viewport");
     await page.setViewportSize({ width: 1440, height: 1000 });
     await page.goto(url + "/admin/media");
     await page.screenshot({
