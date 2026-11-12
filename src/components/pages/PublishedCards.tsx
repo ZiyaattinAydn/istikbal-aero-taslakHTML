@@ -1,4 +1,5 @@
 import { publishedEntries, publishedAssets } from "@/lib/cms/public";
+import { isExistingContent } from "@/lib/cms/legacy-content";
 import { Section, SectionHeading } from "@/components/ui/content";
 import { SiteLink } from "@/components/ui/SiteLink";
 const kinds: Record<string, string> = {
@@ -11,7 +12,9 @@ const kinds: Record<string, string> = {
 export async function PublishedCards({ page }: { page: string }) {
   const kind = kinds[page];
   if (!kind) return null;
-  const entries = await publishedEntries(kind);
+  const entries = (await publishedEntries(kind)).filter(
+    (entry) => !isExistingContent(entry.kind, entry.slug),
+  );
   if (!entries.length) return null;
   const assets = await publishedAssets(
     entries.flatMap((e) => (e.body.cover_id ? [e.body.cover_id] : [])),
