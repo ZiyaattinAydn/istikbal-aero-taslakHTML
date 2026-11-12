@@ -495,3 +495,67 @@
   .cms-preview .cms-inspector-toolbar { padding: 8px 10px !important; top: 7px !important; }
   .cms-inspector-toolbar small { display: none; }
 }
+
+
+/* Semantic web page browser — same navigation hierarchy as the public site. */
+.cms-page-discovery { margin: 0 0 24px; display: grid; gap: 12px; }
+.cms-page-filter-nav, .cms-page-subnav { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.cms-page-filter-nav { padding: 13px; border-radius: 13px; border: 1px solid var(--cms-border); background: #0c2031; }
+.cms .cms-page-filter-nav button, .cms .cms-page-subnav button {
+  border: 1px solid rgba(93, 158, 196, .25);
+  border-radius: 8px;
+  padding: 9px 13px;
+  min-height: 38px;
+  color: #bad4e4;
+  background: rgba(23, 62, 91, .36);
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.cms .cms-page-filter-nav button span { margin-left: 8px; opacity: .66; font-size: 10px; }
+.cms .cms-page-filter-nav button:hover, .cms .cms-page-subnav button:hover { background: #17425e; }
+.cms .cms-page-filter-nav button.is-active, .cms .cms-page-subnav button.is-active {
+  color: #ffffff;
+  background: #155782;
+  border-color: rgba(111, 207, 249, .64);
+}
+.cms-page-subnav { padding: 4px 1px; }
+.cms .cms-page-subnav button { min-height: 32px; padding: 6px 11px; background: transparent; }
+.cms .cms-page-subnav button.is-active { background: #155782; }
+.cms-page-discovery-search { max-width: 520px; display: grid; gap: 6px; color: #a9cee0; font-size: 11px; font-weight: 800; }
+.cms .cms-page-discovery-search input { margin: 0; }
+.cms-page-result-count { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin: 0 !important; color: #91aec1; font-size: 11px; }
+.cms .cms-page-result-count button { padding: 2px 0 !important; border: 0 !important; color: #8ed3f4 !important; font-size: 11px !important; min-height: 25px !important; background: transparent !important; text-decoration: underline; }
+
+/* Group existing field keys into human-readable, collapsible editing blocks. */
+.cms .cms-content-block {
+  min-width: 0;
+  border: 1px solid var(--cms-border);
+  border-radius: 13px;
+  background: #102639;
+  overflow: hidden;
+}
+.cms .cms-content-block[open] { border-color: rgba(93, 171, 217, .4); }
+.cms .cms-content-block-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 13px;
+  padding: 16px;
+  color: #e6f6ff;
+  cursor: pointer;
+}
+.cms .cms-content-block-heading strong { overflow-wrap: anywhere; font-size: 12px; }
+.cms .cms-content-block-heading span { flex-shrink: 0; color: #7daecb; font-size: 10px; }
+.cms .cms-content-block-description { margin: 0 16px 14px !important; color: #8dafc5; font-size: 11px; }
+.cms-content-block-fields { padding: 0 13px 14px; display: grid; gap: 10px; }
+.cms .cms-content-block .cms-edit-field { padding: 13px; background: #0b1d2c; }
+.cms .cms-edit-field input[data-field] { margin-top: 0 !important; }
+.cms .cms-empty-field-result { padding: 15px; color: #b5d0e0; }
+@media (max-width: 560px) {
+  .cms-page-filter-nav { padding: 9px; }
+  .cms .cms-page-filter-nav button { min-height: 34px; }
+  .cms .cms-content-block-heading { padding: 12px; align-items: flex-start; }
+  .cms .cms-content-block-heading span { white-space: nowrap; }
+  .cms-content-block-fields { padding: 0 9px 10px; }
+}
