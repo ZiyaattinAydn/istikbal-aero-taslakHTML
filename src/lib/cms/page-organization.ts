@@ -168,7 +168,9 @@ export function pageContentBlocks(fields: readonly PageField[]): PageEditBlock[]
       const index = (state?.index ?? -1) + 1;
       const title = isKicker || isNumberedSection
         ? compact(field.value, "İçerik bölümü")
-        : index === 0 ? "Sayfa kapağı ve giriş" : "İçerik bölümü";
+        : index === 0
+          ? prefix === "HomeContent" ? compact(field.value, "Sayfa girişi") : "Sayfa kapağı ve giriş"
+          : "İçerik bölümü";
       const id = prefix + "-" + index;
       const block = append(id, title, "Bu bölümde birlikte görünen içerikler", field);
       state = { index, current: block };
@@ -181,5 +183,8 @@ export function pageContentBlocks(fields: readonly PageField[]): PageEditBlock[]
       }
     }
   }
-  return blocks;
+  // The home hero is rendered before the page body, even though its
+  // collectors are appended after HomeContent in the schema inventory.
+  const homeHero = known.get("home-hero");
+  return homeHero ? [homeHero, ...blocks.filter((block) => block !== homeHero)] : blocks;
 }
