@@ -66,6 +66,7 @@ jobs:
       - run: npm run cms:snapshots:check
       - run: npm run cms:seed:check
       - run: npm run cms:pages:check
+      - run: node --import tsx scripts/cms/existing-content-seed.ts
       - run: cd legacy-ref && node scripts/verify-static.mjs
       - run: npm run build
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
