@@ -352,12 +352,18 @@ export async function runUiChecks({ status, admin, totp }) {
         .textContent().catch(() => "");
       const marked = await visualFrame.locator(".cms-inspector-highlight").count();
       const iframeLoaded = await visualFrame.locator("#main h1").count();
+      const rawValues = await page.locator('input[name="fields"]').inputValue();
+      const draftUpdated = JSON.parse(rawValues)["NewsContent.title.0"] ===
+        "QA canlı önizleme, henüz kaydedilmedi";
+      const headingHighlighted = await visualFrame.locator("#main h1.cms-inspector-highlight").count();
       console.log("Live preview diagnostics (no text values):", {
         inspectorMissing: status?.includes("kesin belirlenemedi"),
         inspectorDefault: status?.includes("İçerik alanını seçmek"),
         inspectorFound: status?.includes("karşılığıdır"),
         highlightedTargets: marked,
         renderedHeadings: iframeLoaded,
+        headingHighlighted,
+        editorDraftUpdated: draftUpdated,
       });
       throw error;
     }
