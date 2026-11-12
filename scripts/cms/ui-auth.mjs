@@ -171,7 +171,12 @@ export async function runUiChecks({ status, admin, totp }) {
       const draftUpdated = JSON.parse(rawValues)["NewsContent.title.0"] ===
         "QA canlı önizleme, henüz kaydedilmedi";
       const headingHighlighted = await visualFrame.locator("#main h1.cms-inspector-highlight").count();
+      const liveState = await visualFrame.locator("[data-cms-preview-runtime]").evaluate((node) => ({
+        syncs: Number(node.getAttribute("data-cms-preview-syncs") || 0),
+        dirty: node.getAttribute("data-cms-preview-dirty") === "true",
+      }));
       console.log("Live preview diagnostics (no text values):", {
+        liveState,
         inspectorMissing: status?.includes("kesin belirlenemedi"),
         inspectorDefault: status?.includes("İçerik alanını seçmek"),
         inspectorFound: status?.includes("karşılığıdır"),
