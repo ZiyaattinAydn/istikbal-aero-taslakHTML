@@ -3,6 +3,9 @@
 import { useEffect, useState } from "react";
 import { mediaUrl, safeLocalHref } from "@/lib/urls";
 import type { PageField, PageValues } from "@/lib/cms/page-values";
+import {
+  samePreviewUrl, styleHasMediaUrl, uniqueTextCandidate,
+} from "@/lib/cms/preview-matching";
 
 const CHANNEL = "istikbal:visual-editor:v1";
 type PreviewEntry = {
@@ -13,89 +16,106 @@ type PreviewEntry = {
   originalText?: string;
   originalStyle?: string | null;
   originalSrc?: string | null;
-  originalHref?: string | null;
 };
 
 function findFieldTargets(root: HTMLElement, fields: PageField[], values: PageValues) {
   const entries = new Map<string, PreviewEntry>();
+  const markedElements = [...root.querySelectorAll<HTMLElement>("[data-cms-field]")];
   const reservedText = new Set<Text>();
   const reservedElements = new Set<HTMLElement>();
+
+  // Duplicate sources are ambiguous without an explicit data-cms-field marker.
+  // In particular, the same headline/image often appears on several cards.
+  const sourceCounts = new Map<string, number>();
+  for (const field of fields) {
+    const source = values[field.key] ?? field.value;
+    const identity = field.kind + "\0" + source;
+    sourceCounts.set(identity, (sourceCounts.get(identity) ?? 0) + 1);
+  }
+
   const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
   const textNodes: Text[] = [];
   let current: Node | null;
   while ((current = walker.nextNode())) {
-    if (current.parentElement && current.nodeValue?.trim()) {
+    const parent = current.parentElement;
+    if (parent && current.nodeValue?.trim() && !parent.closest("script,style,noscript")) {
       textNodes.push(current as Text);
     }
   }
+  const imageElements = [...root.querySelectorAll<HTMLElement>("img,[style]")];
+  const linkElements = [...root.querySelectorAll<HTMLAnchorElement>("a[href]")];
 
   for (const field of fields) {
     const source = values[field.key] ?? field.value;
     if (!source?.trim()) continue;
+    const explicit = markedElements.filter((element) => element.dataset.cmsField === field.key);
+    // A marker is authoritative only if that key occurs once in the page.
+    if (explicit.length > 1) continue;
+    const marker = explicit[0];
+    const duplicated = (sourceCounts.get(field.kind + "\0" + source) ?? 0) > 1;
+
     if (field.kind === "text") {
-      // Explicit markers are preferred for short, repeated inline fragments.
-      const marked = [...root.querySelectorAll<HTMLElement>("[data-cms-field]")]
-        .find((element) => element.dataset.cmsField === field.key);
-      if (marked) {
-        const node = textNodes.find((candidate) => marked.contains(candidate) && candidate.data.includes(source));
+      if (marker) {
+        const contained = textNodes.filter((node) =>
+          marker.contains(node) && !reservedText.has(node));
+        const node = uniqueTextCandidate(contained, source, (candidate) => candidate.data)
+          ?? (contained.length === 1 && contained[0].data.includes(source)
+            ? contained[0] : null);
         if (node) reservedText.add(node);
         entries.set(field.key, {
-          field, source, element: marked,
-          textNode: node,
-          originalText: node?.data,
+          field, source, element: marker,
+          textNode: node ?? undefined, originalText: node?.data,
         });
         continue;
       }
-      // Prefer exact React text nodes so short fragments such as "ile"
-      // do not match longer unrelated copy elsewhere on the page.
-      const available = textNodes.filter((node) => !reservedText.has(node));
-      const match =
-        available.find((node) => node.data === source) ??
-        available.find((node) => node.data.trim() === source.trim()) ??
-        available.find((node) => node.data.includes(source));
-      const element = match?.parentElement;
-      if (match && element) {
+      if (duplicated) continue;
+      // Never use substring matching for unmarked text: "ile" must never
+      // attach to another paragraph containing that word.
+      const available = textNodes.filter((node) =>
+        !reservedText.has(node) &&
+        !node.parentElement?.closest("[data-cms-field]"));
+      const match = uniqueTextCandidate(available, source, (node) => node.data);
+      if (match?.parentElement) {
         reservedText.add(match);
         entries.set(field.key, {
-          field, source, element, textNode: match, originalText: match.data,
+          field, source, element: match.parentElement,
+          textNode: match, originalText: match.data,
         });
       }
       continue;
     }
 
     if (field.kind === "image") {
-      const images = [...root.querySelectorAll<HTMLElement>("img,[style]")];
-      const renderedImage = mediaUrl(
+      const rendered = mediaUrl(
         source.startsWith("cms:") ? source.replace("cms:", "cms-preview:") : source,
       );
-      const element = images.find((candidate) => {
-        if (reservedElements.has(candidate)) return false;
-        return (candidate.getAttribute("src") || "").includes(source) ||
-          (candidate.getAttribute("style") || "").includes(source) ||
-          (candidate.getAttribute("src") || "").includes(renderedImage) ||
-          (candidate.getAttribute("style") || "").includes(renderedImage);
+      const matches = marker ? [marker] : duplicated ? [] : imageElements.filter((element) => {
+        if (reservedElements.has(element) || element.closest("[data-cms-field]")) return false;
+        return samePreviewUrl(element.getAttribute("src"), rendered) ||
+          styleHasMediaUrl(element.getAttribute("style"), rendered);
       });
-      if (element) {
+      if (matches.length === 1) {
+        const element = matches[0];
         reservedElements.add(element);
         entries.set(field.key, {
           field, source, element,
-          originalStyle: element.getAttribute("style"),
           originalSrc: element.getAttribute("src"),
+          originalStyle: element.getAttribute("style"),
         });
       }
       continue;
     }
 
     if (field.kind === "link") {
-      const links = [...root.querySelectorAll<HTMLAnchorElement>("a[href]")];
-      const element = links.find((candidate) => {
-        if (reservedElements.has(candidate)) return false;
-        const href = candidate.getAttribute("href") || "";
-        return href === source || href === safeLocalHref(source) || href.endsWith("/" + source);
-      });
-      if (element) {
+      const targetUrl = /^https:\/\//.test(source) ? source : safeLocalHref(source);
+      const matches = marker ? [marker] : duplicated ? [] : linkElements.filter((element) =>
+        !reservedElements.has(element) &&
+        !element.closest("[data-cms-field]") &&
+        samePreviewUrl(element.getAttribute("href"), targetUrl));
+      if (matches.length === 1) {
+        const element = matches[0];
         reservedElements.add(element);
-        entries.set(field.key, { field, source, element, originalHref: element.getAttribute("href") });
+        entries.set(field.key, { field, source, element });
       }
     }
   }
@@ -104,7 +124,7 @@ function findFieldTargets(root: HTMLElement, fields: PageField[], values: PageVa
 
 function applyPreview(entry: PreviewEntry, value: string) {
   if (entry.field.kind === "text" && entry.textNode && entry.originalText !== undefined) {
-    // Modify only the matching text fragment; never write HTML into the preview.
+    // Modify the original *text node* only; never inject markup.
     const original = entry.originalText;
     entry.textNode.data = original.includes(entry.source)
       ? original.replace(entry.source, value)
@@ -116,13 +136,18 @@ function applyPreview(entry: PreviewEntry, value: string) {
     const url = mediaUrl(safe);
     if (entry.element.tagName === "IMG") {
       entry.element.setAttribute("src", url);
-    } else if (entry.originalStyle?.includes("background-image") || entry.originalStyle?.includes("backgroundImage")) {
+    } else if (
+      entry.originalStyle &&
+      styleHasMediaUrl(entry.originalStyle, mediaUrl(
+        entry.source.startsWith("cms:")
+          ? entry.source.replace("cms:", "cms-preview:")
+          : entry.source,
+      ))
+    ) {
       entry.element.style.backgroundImage = 'url("' + url + '")';
     }
-  } else if (entry.field.kind === "link" && entry.element instanceof HTMLAnchorElement) {
-    // A link is only shown as a visual target, never navigated in inspection mode.
-    // Keep the actual href stable until the user saves and validates the draft.
   }
+  // Links remain at their saved destinations until the form validates them.
 }
 
 export function PagePreviewBridge({
@@ -133,7 +158,9 @@ export function PagePreviewBridge({
   values: PageValues;
 }) {
   const [activeLabel, setActiveLabel] = useState("");
-  const [status, setStatus] = useState("İçerik alanını seçmek için editördeki 'Sayfada göster' düğmesini kullanın.");
+  const [status, setStatus] = useState(
+    "İçerik alanını seçmek için editördeki 'Sayfada göster' düğmesini kullanın.",
+  );
 
   useEffect(() => {
     const root = document.getElementById("main");
@@ -144,20 +171,28 @@ export function PagePreviewBridge({
     let lastFocusRequest = -1;
     let highlighted: HTMLElement | undefined;
 
+    const post = (message: Record<string, unknown>) => {
+      window.parent.postMessage({ channel: CHANNEL, ...message }, window.location.origin);
+    };
+
     const pick = (key: string, scroll = true) => {
       if (highlighted) highlighted.classList.remove("cms-inspector-highlight");
       highlighted = undefined;
       const entry = targets.get(key);
       if (!entry) {
         setActiveLabel("");
-        setStatus("Bu alan için sayfada otomatik bir konum bulunamadı. Diğer alanları kontrol edebilirsiniz.");
-        window.parent.postMessage({ channel: CHANNEL, kind: "match", key, found: false }, window.location.origin);
+        setStatus(
+          "Bu alanın sayfadaki konumu kesin belirlenemedi. Yanlış bölümü işaretlemek yerine alanı editörden düzenleyebilirsiniz.",
+        );
+        post({ kind: "match", key, found: false });
         return;
       }
       highlighted = entry.element;
       highlighted.classList.add("cms-inspector-highlight");
       setActiveLabel(entry.field.label);
-      setStatus("İşaretli alan, editörde seçtiğiniz alanın sayfadaki karşılığıdır.");
+      setStatus(entry.field.kind === "text" && !entry.textNode
+        ? "Alan işaretlendi. Birden fazla metin düğümüne bölündüğü için canlı metin değişikliği gösterilemeyebilir."
+        : "İşaretli alan editörde seçtiğiniz alanın sayfadaki karşılığıdır.");
       if (scroll) {
         const rect = highlighted.getBoundingClientRect();
         window.scrollTo({
@@ -165,7 +200,7 @@ export function PagePreviewBridge({
           behavior: "smooth",
         });
       }
-      window.parent.postMessage({ channel: CHANNEL, kind: "match", key, found: true }, window.location.origin);
+      post({ kind: "match", key, found: true });
     };
 
     const onMessage = (event: MessageEvent) => {
@@ -191,28 +226,25 @@ export function PagePreviewBridge({
     const onClick = (event: MouseEvent) => {
       const target = event.target;
       if (!(target instanceof Element)) return;
-      // Prevent accidental navigation away from the protected preview.
       if (target.closest("a[href]")) event.preventDefault();
-      let best: { key: string; element: HTMLElement } | undefined;
-      for (const [key, entry] of targets) {
-        if (!entry.element.contains(target)) continue;
-        if (!best || best.element.contains(entry.element)) {
-          best = { key, element: entry.element };
-        }
-      }
-      if (best) {
-        event.preventDefault();
-        lastSelected = best.key;
-        pick(best.key, false);
-        window.parent.postMessage({
-          channel: CHANNEL, kind: "edit", key: best.key,
-        }, window.location.origin);
-      }
+
+      // Pick the nearest known element, and refuse equally close ambiguous
+      // targets. Nested cards can contain different editable descendants.
+      const matches = [...targets].filter(([, entry]) => entry.element.contains(target));
+      matches.sort((a, b) =>
+        a[1].element.contains(b[1].element) ? 1 :
+        b[1].element.contains(a[1].element) ? -1 : 0);
+      const first = matches[0];
+      if (!first || (matches[1] && matches[1][1].element === first[1].element)) return;
+      event.preventDefault();
+      lastSelected = first[0];
+      pick(first[0], false);
+      post({ kind: "edit", key: first[0] });
     };
 
     window.addEventListener("message", onMessage);
     document.addEventListener("click", onClick, true);
-    window.parent.postMessage({ channel: CHANNEL, kind: "ready" }, window.location.origin);
+    post({ kind: "ready", matched: targets.size, total: fields.length });
 
     return () => {
       window.removeEventListener("message", onMessage);
