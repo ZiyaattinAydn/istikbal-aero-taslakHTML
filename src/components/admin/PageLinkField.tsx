@@ -2,6 +2,8 @@
 
 import { routes } from "@/data/routes";
 
+const homepageFile = routes.find((route) => route.slug === "index")!.file;
+
 export function PageLinkField({
   id,
   value,
@@ -17,7 +19,7 @@ export function PageLinkField({
   const type = page ? "page" : value.startsWith("mailto:") ? "email" :
     value.startsWith("tel:") ? "phone" : "external";
   const setType = (next: string) => {
-    if (next === "page") onChange(routes[0].file);
+    if (next === "page") onChange(homepageFile);
     if (next === "external") onChange("https://");
     if (next === "email") onChange("mailto:");
     if (next === "phone") onChange("tel:");
