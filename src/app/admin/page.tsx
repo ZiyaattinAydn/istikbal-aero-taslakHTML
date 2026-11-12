@@ -36,19 +36,23 @@ export default async function Admin({
     query = query.ilike("body->>title", "%" + search.replace(/[%_]/g, "") + "%");
   }
 
-  const [listing, total, drafts, published, reviewing] = await Promise.all([
+  const [listing, total, drafts, published, archived] = await Promise.all([
     query,
     db.from("cms_documents").select("id", { count: "exact", head: true }),
     db.from("cms_documents").select("id", { count: "exact", head: true }).eq("status", "draft"),
-    db.from("cms_documents").select("id", { count: "exact", head: true }).eq("status", "published"),
-    db.from("cms_documents").select("id", { count: "exact", head: true }).eq("approval", "in_review"),
+    db.from("cms_published").select("document_id", { count: "exact", head: true }),
+    db.from("cms_documents").select("id", { count: "exact", head: true }).eq("status", "archived"),
   ]);
   const { data, error } = listing;
+  const { data: publishedRows, error: publishedError } = data?.length
+    ? await db.from("cms_published").select("document_id").in("document_id", data.map((doc) => doc.id))
+    : { data: [], error: null };
+  const publishedIds = new Set((publishedRows || []).map((row) => row.document_id));
   const cards = [
     { label: "Toplam içerik", count: total.count, description: "Sistemdeki tüm kayıtlar", marker: "▦" },
     { label: "Taslaklar", count: drafts.count, description: "Düzenlemeye açık", marker: "✎" },
-    { label: "İncelemede", count: reviewing.count, description: "Değerlendirme bekleyen", marker: "◷" },
-    { label: "Yayımlanan", count: published.count, description: "Onaylanmış kayıtlar", marker: "✓" },
+    { label: "Yayında", count: published.count, description: "Herkese açık yayın kayıtları", marker: "✓" },
+    { label: "Arşiv", count: archived.count, description: "Yayından kaldırılmış arşiv kayıtları", marker: "▣" },
   ];
 
   return (
@@ -112,7 +116,7 @@ export default async function Admin({
         <p className="cms-inline-notice">
           Test ortamı: yayınlanan içerikler, genel siteye yalnızca son kabul testlerinden sonra aktarılır.
         </p>
-        {error ? (
+        {error || publishedError ? (
           <p role="alert" className="cms-form-error">İçerikler yüklenemedi. Bağlantı veya yetkileri kontrol edin.</p>
         ) : !data?.length ? (
           <div className="cms-empty-state">
@@ -143,7 +147,13 @@ export default async function Admin({
                         <small>{doc.slug}</small>
                       </td>
                       <td>{names[doc.kind] || doc.kind}</td>
-                      <td><span className={"cms-status-badge cms-status-" + doc.status}>{stateNames[doc.status] || doc.status}</span></td>
+                      <td>
+                        <span className={"cms-status-badge cms-status-" + (publishedIds.has(doc.id) ? "published" : doc.status)}>
+                          {publishedIds.has(doc.id)
+                            ? doc.status === "published" ? "Yayında" : "Yayında · Yeni taslak var"
+                            : stateNames[doc.status] || doc.status}
+                        </span>
+                      </td>
                       <td><time dateTime={doc.updated_at}>{new Date(doc.updated_at).toLocaleDateString("tr-TR")}</time></td>
                       <td><Link href={url} className="cms-row-action">Düzenle ↗</Link></td>
                     </tr>
