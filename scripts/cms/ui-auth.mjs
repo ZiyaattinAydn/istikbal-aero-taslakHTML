@@ -180,12 +180,9 @@ export async function runUiChecks({ status, admin, totp }) {
     assert.deepEqual(savedAfterPreview?.body, savedBeforePreview.body);
     checks.push("Live fullscreen preview shows unsaved field text and Escape exits without mutating CMS");
 
-    // Do not dismiss the user's unsaved warning in product code. Only the
-    // disposable test acknowledges it before moving to the next QA page.
-    const acknowledge = async (dialog) => { await dialog.accept(); };
-    page.on("dialog", acknowledge);
-    try { await page.goto(url + "/admin/pages/index"); }
-    finally { page.off("dialog", acknowledge); }
+    // The disposable browser fixture already has a single confirm handler.
+    // Do not install another handler for the same beforeunload dialog.
+    await page.goto(url + "/admin/pages/index");
     stage = "preview-exact-image-anchor";
     await page.getByRole("searchbox", { name: "Alan ara", exact: true }).fill("Görsel");
     const anchor = page.locator('[data-cms-field-key="HomeContent.image.24"]');
