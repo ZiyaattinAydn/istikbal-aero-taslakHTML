@@ -18,7 +18,7 @@ type PreviewEntry = {
   originalSrc?: string | null;
 };
 
-function findFieldTargets(root: HTMLElement, fields: PageField[], values: PageValues) {
+export function findFieldTargets(root: HTMLElement, fields: PageField[], values: PageValues) {
   const entries = new Map<string, PreviewEntry>();
   const markedElements = [...root.querySelectorAll<HTMLElement>("[data-cms-field]")];
   const reservedText = new Set<Text>();
