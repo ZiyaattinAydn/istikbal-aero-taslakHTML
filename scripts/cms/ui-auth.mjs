@@ -450,10 +450,10 @@ export async function runUiChecks({ status, admin, totp }) {
         () => document.documentElement.scrollWidth <= innerWidth + 1,
       ),
     );
-    await page.getByRole("textbox", { name: "Alan ara", exact: true }).focus();
+    await page.getByRole("searchbox", { name: "Alan ara", exact: true }).focus();
     assert.equal(
       await page
-        .getByRole("textbox", { name: "Alan ara", exact: true })
+        .getByRole("searchbox", { name: "Alan ara", exact: true })
         .evaluate((el) => el === document.activeElement),
       true,
     );
