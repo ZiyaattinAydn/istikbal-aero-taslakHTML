@@ -9,6 +9,7 @@ test("CMS remains closed without explicit configuration", async ({
   expect(html).not.toContain("Taslak kaydet");
   for (const path of [
     "/admin/pages",
+    "/admin/library",
     "/admin/pages/kurumsal",
     "/admin/pages/kurumsal/preview",
     "/admin/media",
