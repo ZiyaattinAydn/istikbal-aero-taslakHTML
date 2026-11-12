@@ -267,10 +267,10 @@ export async function runUiChecks({ status, admin, totp }) {
         ),
       );
       await preview.close();
-      await submitStatus("approve", doc.id, (d) => d.approval === "approved");
+      assert.equal(await page.locator('button[value="review"],button[value="approve"]').count(), 0);
       await until(
         () => page.locator("button[value=publish]").isEnabled(),
-        "approve_render",
+        "direct_publish_ready",
         30000,
       );
       await submitStatus("publish", doc.id, (d) => d.status === "published");
@@ -296,17 +296,16 @@ export async function runUiChecks({ status, admin, totp }) {
       await until(async()=>Number(await form.locator('input[name=revision]').inputValue())===doc.revision+2,'restore_refresh',30000);
       await page.reload();
       assert.notEqual(await area.inputValue(), "QA sayfa " + entry.slug);
-      await submitStatus("approve", doc.id, (d) => d.approval === "approved");
       await until(
         () => page.locator("button[value=publish]").isEnabled(),
-        "restore_approval",
+        "restored_draft_direct_publish_ready",
         30000,
       );
       await submitStatus("publish", doc.id, (d) => d.status === "published");
     }
     console.log("PASS: all 21 page browser workflows.");
     checks.push(
-      "All 21 seeded pages: edit/save, actual template preview, approval/publication, baseline restore and republish",
+      "All 21 seeded pages: edit/save, actual template preview, direct publishing without approval, restore and republish",
     );
     // Local disposable fixture: verify that an imported legacy record becomes
     // the only editor for its shared slots. Never seed hosted databases in QA.
@@ -567,12 +566,7 @@ export async function runUiChecks({ status, admin, totp }) {
     }
     stage = "relations";
     const tech = await createEntry("technology", "QA Teknoloji");
-    await submitStatus("approve", tech.id, (d) => d.approval === "approved");
-    await until(
-      () => page.locator("button[value=publish]").isEnabled(),
-      "entry_approve",
-      30000,
-    );
+    await until(() => page.locator("button[value=publish]").isEnabled(), "tech_direct_publish_ready", 30000);
     await submitStatus("publish", tech.id, (d) => d.status === "published");
     const platform = await createEntry("platform", "QA Platform");
     const project = await createEntry("project", "QA Proje", [
@@ -588,12 +582,7 @@ export async function runUiChecks({ status, admin, totp }) {
       (await page.locator("body").innerText()).includes(platform.body.title),
     );
     await page.goto(`${url}/admin/content/${project.id}`);
-    await submitStatus("approve", project.id, (d) => d.approval === "approved");
-    await until(
-      () => page.locator("button[value=publish]").isEnabled(),
-      "project_approve",
-      30000,
-    );
+    await until(() => page.locator("button[value=publish]").isEnabled(), "project_direct_publish_ready", 30000);
     await submitStatus("publish", project.id, (d) => d.status === "published");
     const anonymous = await browser.newContext();
     const visitor = await anonymous.newPage();
@@ -614,7 +603,19 @@ export async function runUiChecks({ status, admin, totp }) {
     const file = await visitor.request.get(`${url}/cms-media/${media.id}`);
     assert.equal(file.status(), 200);
     assert.ok(file.headers()["cache-control"].includes("no-store"));
-    // Archiving a target must invalidate incoming relation caches without leaking its draft.
+    // Withdrawal is distinct from archival: preserve the draft while removing
+    // only its published snapshot, then prove that republishing works.
+    await page.goto(`${url}/admin/content/${tech.id}`);
+    await submitStatus("unpublish", tech.id, (d) => d.status === "draft");
+    assert.equal((await admin.from("cms_published").select("document_id")
+      .eq("document_id", tech.id)).data?.length, 0);
+    await visitor.reload();
+    assert.ok(!(await visitor.locator("body").innerText()).includes(tech.body.title));
+    await until(() => page.locator("button[value=publish]").isEnabled(), "tech_republish_ready", 30000);
+    await submitStatus("publish", tech.id, (d) => d.status === "published");
+    await visitor.reload();
+    assert.ok((await visitor.locator("body").innerText()).includes(tech.body.title));
+    // Archiving a target must also invalidate incoming relation caches.
     await page.goto(`${url}/admin/content/${tech.id}`);
     await submitStatus("archive", tech.id, (d) => d.status === "archived");
     await visitor.reload();
@@ -622,7 +623,7 @@ export async function runUiChecks({ status, admin, totp }) {
       !(await visitor.locator("body").innerText()).includes(tech.body.title),
     );
     checks.push(
-      "Real UI CRUD: versioned relations, draft-target isolation, archive invalidation, cover and media metadata",
+      "Real UI CRUD: direct publication, unpublish without deletion, republish, archive invalidation, relations and media metadata",
     );
     stage = "withdraw";
     await page.goto(url + "/admin/media");
