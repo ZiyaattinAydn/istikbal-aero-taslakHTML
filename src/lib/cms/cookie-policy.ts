@@ -26,7 +26,8 @@ export function boundedCmsCookieOptions<T extends { maxAge?: number; expires?: D
   const expired =
     options.maxAge === 0 ||
     (options.expires instanceof Date && options.expires.getTime() <= Date.now());
-  const { expires: _upstreamExpiry, ...rest } = options;
+  const rest = { ...options };
+  delete rest.expires;
   const maxAge = expired
     ? 0
     : Math.min(
