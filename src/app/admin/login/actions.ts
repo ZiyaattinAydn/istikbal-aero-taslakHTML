@@ -41,7 +41,7 @@ export async function verifyCode(
 }
 export async function logout() {
   const db = await cmsClient();
-  await db.auth.signOut();
+  await db.auth.signOut({ scope: "local" });
   redirect("/admin/login");
 }
 export async function enrollFactor() {
@@ -58,7 +58,7 @@ export async function enrollFactor() {
     friendlyName: "İstikbal CMS",
   });
   if (error || !data) return { error: "Doğrulama uygulaması bağlanamadı." };
-  return { id: data.id, secret: data.totp.secret };
+  return { id: data.id, secret: data.totp.secret, qrCode: data.totp.qr_code };
 }
 export async function verifyFactor(
   _state: LoginState,
