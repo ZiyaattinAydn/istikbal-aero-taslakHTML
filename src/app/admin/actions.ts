@@ -1,6 +1,7 @@
 "use server";
 import { revalidatePath } from "next/cache";
 import { invalidateDocument } from "@/lib/cms/invalidate";
+import { legacyRoutesForContent } from "@/lib/cms/legacy-content";
 import { requireAdmin } from "@/lib/cms/server";
 import {
   kinds,
@@ -100,6 +101,13 @@ export async function changeStatus(
       revalidatePath(`/admin/pages/${affected.slug}`);
       if (["publish", "archive"].includes(operation)) {
         invalidateDocument({ id: docId, ...affected });
+        // Cache keys alone do not guarantee that prerendered legacy routes
+        // refresh. Explicitly revalidate every affected public alias.
+        for (const slug of legacyRoutesForContent(affected.kind, affected.slug)) {
+          if (slug === "index") revalidatePath("/");
+          revalidatePath("/" + slug);
+          revalidatePath("/" + slug + ".html");
+        }
       }
     }
     return {
