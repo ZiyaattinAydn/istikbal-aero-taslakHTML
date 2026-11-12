@@ -266,7 +266,7 @@ export function ContentEditor({
                 Metni önizle
               </button>
               <Link
-                href="/admin"
+                href="/admin/library"
                 onClick={(e) => {
                   if (
                     dirty &&
