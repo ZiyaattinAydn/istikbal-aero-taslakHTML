@@ -69,7 +69,6 @@ test("versioned relations, media metadata, publisher withdrawal and stale revisi
       [image, expected, operation, JSON.stringify(payload)],
     );
   const publish = async (id: string, rev = 1) => {
-    await mutate(id, rev, "approve");
     await mutate(id, rev, "publish");
   };
   try {
@@ -106,7 +105,6 @@ test("versioned relations, media metadata, publisher withdrawal and stale revisi
       () => mutate(project, 1, "save", { ...base, related_ids: [image] }),
       /Invalid relation/,
     );
-    await mutate(project, 1, "approve");
     await assert.rejects(
       () => mutate(project, 1, "publish"),
       /Image must be approved/,
@@ -179,7 +177,6 @@ test("versioned relations, media metadata, publisher withdrawal and stale revisi
       (await db.query("select * from public.cms_media")).rows.length,
       1,
     );
-    await mutate(project, 3, "approve");
     await assert.rejects(
       () => mutate(project, 3, "publish"),
       /Image must be approved/,

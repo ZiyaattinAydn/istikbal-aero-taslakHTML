@@ -17,6 +17,12 @@ export default async function Edit({
     .eq("id", id)
     .maybeSingle();
   if (error || !data || data.kind === "page") notFound();
+  const { data: publication, error: publicationError } = await db
+    .from("cms_published")
+    .select("document_id")
+    .eq("document_id", id)
+    .maybeSingle();
+  if (publicationError) throw Error("Yayın durumu yüklenemedi.");
   const { data: versions } = await db
     .from("cms_versions")
     .select("revision,created_at")
@@ -30,7 +36,7 @@ export default async function Edit({
         <div>
           <div className="cms-eyebrow">İÇERİK KÜTÜPHANESİ / DÜZENLE</div>
           <h1>{data.body.title || "İçeriği düzenle"}</h1>
-          <p>Revizyon {data.revision} · Önce taslağı kaydedin, ardından inceleyip yayımlayın.</p>
+          <p>Revizyon {data.revision} · Taslağı kaydedin, ardından doğrudan yayımlayın.</p>
         </div>
         <Link href="/admin/library" className="cms-editor-back">← İçeriklere dön</Link>
       </div>
@@ -40,6 +46,7 @@ export default async function Edit({
         document={data}
         kind={data.kind}
         publisher={role === "publisher"}
+        published={Boolean(publication)}
         versions={versions || []}
       />
     </section>

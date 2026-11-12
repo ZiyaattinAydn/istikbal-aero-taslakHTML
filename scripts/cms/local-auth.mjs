@@ -202,21 +202,57 @@ async function main() {
   const anonRead = await client(anon).from("cms_documents").select("id");
   assert.ok(anonRead.error || anonRead.data?.length === 0);
   checks.push("Anonymous API cannot read drafts");
-  for (const operation of ["approve", "publish"]) {
-    const result = await db.rpc("cms_mutate", {
-      doc: id,
-      expected: 1,
-      operation,
-      payload: {},
+  // No review or approval operation exists, even for a publisher.
+  for (const oldOperation of ["review", "approve"]) {
+    const legacy = await db.rpc("cms_mutate", {
+      doc: id, expected: 1, operation: oldOperation, payload: {},
     });
-    assert.equal(result.error, null);
+    assert.ok(legacy.error);
   }
-  const published = await client(anon)
-    .from("cms_published")
-    .select("document_id")
-    .eq("document_id", id);
+  checks.push("Legacy review/approve operations rejected by CMS RPC");
+  // An AAL2 authenticated editor cannot publish: publisher role is verified
+  // again inside the locked database mutation, never from client UI state.
+  const demote = await admin.from("cms_roles").update({ role: "editor" })
+    .eq("user_id", created.user.id);
+  assert.equal(demote.error, null);
+  const denied = await db.rpc("cms_mutate", {
+    doc: id, expected: 1, operation: "publish", payload: {},
+  });
+  assert.ok(denied.error);
+  assert.equal((await client(anon).from("cms_published").select("document_id")
+    .eq("document_id", id)).data?.length, 0);
+  assert.equal((await admin.from("cms_roles").update({ role: "publisher" })
+    .eq("user_id", created.user.id)).error, null);
+  checks.push("AAL2 editor cannot publish; only fresh publisher role authorizes it");
+  const publication = await db.rpc("cms_mutate", {
+    doc: id, expected: 1, operation: "publish", payload: {},
+  });
+  assert.equal(publication.error, null);
+  let published = await client(anon)
+    .from("cms_published").select("document_id").eq("document_id", id);
   assert.equal(published.data?.length, 1);
-  checks.push("Approved publication available through anonymous API");
+  checks.push("Publisher publishes draft directly without approval");
+  const withdrawn = await db.rpc("cms_mutate", {
+    doc: id, expected: 1, operation: "unpublish", payload: {},
+  });
+  assert.equal(withdrawn.error, null);
+  published = await client(anon)
+    .from("cms_published").select("document_id").eq("document_id", id);
+  assert.equal(published.data?.length, 0);
+  const { data: retainedDraft } = await db.from("cms_documents")
+    .select("status,body,revision").eq("id", id).single();
+  assert.equal(retainedDraft?.status, "draft");
+  assert.equal(retainedDraft?.revision, 1);
+  assert.deepEqual(retainedDraft?.body, body);
+  const duplicatedWithdrawal = await db.rpc("cms_mutate", {
+    doc: id, expected: 1, operation: "unpublish", payload: {},
+  });
+  assert.ok(duplicatedWithdrawal.error);
+  const republished = await db.rpc("cms_mutate", {
+    doc: id, expected: 1, operation: "publish", payload: {},
+  });
+  assert.equal(republished.error, null);
+  checks.push("Unpublish removes public snapshot, retains draft/history and allows direct republish");
   const privateStorage = await client(anon).storage.from("cms-media").list();
   assert.ok(privateStorage.error || privateStorage.data?.length === 0);
   checks.push("Anonymous Storage access reveals no private files");

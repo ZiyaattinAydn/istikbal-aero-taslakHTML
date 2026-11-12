@@ -26,6 +26,7 @@ export function PageEditor({
   record,
   versions = [],
   publisher = false,
+  published = false,
 }: {
   slug: string;
   revision: number;
@@ -36,6 +37,7 @@ export function PageEditor({
   record?: ContentDocument;
   versions?: { revision: number; created_at: string }[];
   publisher?: boolean;
+  published?: boolean;
   media?: { id: string; alt: string; visibility: string }[];
   canonical?: CanonicalPageItem[];
 }) {
@@ -388,6 +390,7 @@ export function PageEditor({
             kind="page"
             versions={versions}
             publisher={publisher}
+            published={published}
             externalDirty={dirty}
           />
         </div>

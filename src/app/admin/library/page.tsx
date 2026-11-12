@@ -30,6 +30,12 @@ export default async function Library() {
 
   const docs = [...(imported.data || []), ...(latest.data || [])];
   const existing = [...new Map(docs.map((item) => [item.id, item])).values()];
+  const { data: activePublications, error: publicationError } = existing.length
+    ? await db.from("cms_published").select("document_id")
+        .in("document_id", existing.map((item) => item.id))
+    : { data: [], error: null };
+  if (publicationError) throw Error("İçeriklerin yayın durumları yüklenemedi.");
+  const publishedIds = new Set((activePublications || []).map((item) => item.document_id));
   const canonical: LibraryItem[] = legacyRecords.map((record) => {
     const saved = existing.find((item) =>
       item.kind === record.kind && item.slug === record.slug,
@@ -41,6 +47,7 @@ export default async function Library() {
       summary: saved?.body?.summary || record.body.summary,
       id: saved?.id,
       status: saved?.status,
+      published: Boolean(saved?.id && publishedIds.has(saved.id)),
       canonical: true,
     };
   });
@@ -53,6 +60,7 @@ export default async function Library() {
       summary: item.body?.summary || "",
       id: item.id,
       status: item.status,
+      published: publishedIds.has(item.id),
       canonical: false,
     }));
   return (

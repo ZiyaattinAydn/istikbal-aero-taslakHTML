@@ -11,6 +11,7 @@ export type LibraryItem = {
   summary: string;
   id?: string;
   status?: string;
+  published?: boolean;
   canonical: boolean;
 };
 
@@ -33,8 +34,8 @@ const typeNames: Record<string, string> = {
 
 const statuses: Record<string, string> = {
   draft: "Taslak",
-  in_review: "İncelemede",
-  approved: "Yayına hazır",
+  in_review: "Taslak",
+  approved: "Taslak",
   published: "Yayında",
   archived: "Arşiv",
 };
@@ -54,8 +55,8 @@ export function ContentLibrary({
     return items.filter((item) => {
       if (kind !== "all" && item.kind !== kind) return false;
       if (status === "missing" && item.id) return false;
-      if (status === "published" && item.status !== "published") return false;
-      if (status === "draft" && (!item.id || item.status === "published")) return false;
+      if (status === "published" && !item.published) return false;
+      if (status === "draft" && (!item.id || item.published)) return false;
       return !term || normalizePageSearch(item.title + " " + item.summary).includes(term);
     });
   }, [items, kind, query, status]);
@@ -127,8 +128,10 @@ export function ContentLibrary({
             <article key={item.kind + ":" + item.slug} className="cms-canonical-card">
               <div className="cms-canonical-card-meta">
                 <span>{typeNames[item.kind] || "İçerik"}</span>
-                <span className={"cms-canonical-status" + (item.status === "published" ? " is-published" : "")}>
-                  {item.id ? statuses[item.status || "draft"] || "Taslak" : "Aktarım bekliyor"}
+                <span className={"cms-canonical-status" + (item.published ? " is-published" : "")}>
+                  {!item.id ? "Aktarım bekliyor"
+                    : item.published && item.status !== "published" ? "Yayında · Yeni taslak var"
+                    : item.published ? "Yayında" : statuses[item.status || "draft"] || "Taslak"}
                 </span>
               </div>
               <h2>{item.title}</h2>

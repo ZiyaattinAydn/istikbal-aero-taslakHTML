@@ -39,7 +39,7 @@ test("isolated physical fixture restore preserves 21 pages, versions, publicatio
     )).rows[0].id;
     const target = await create("technology", body);
     const id = await create("project", { ...body, related_ids: [target] });
-    await source.query("select cms_mutate($1,1,'approve','{}');", [id]);
+    // Direct publisher publication must be preserved byte-for-byte in backups.
     await source.query("select cms_mutate($1,1,'publish','{}');", [id]);
     await source.query("select cms_mutate($1,1,'save',$2)", [id, JSON.stringify({ ...body, title: "Unpublished edit", related_ids: [target] })]);
     await source.exec("reset role");
