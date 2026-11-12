@@ -292,6 +292,28 @@ async function main() {
     auth: { persistSession: false },
     global: { headers: { Authorization: `Bearer ${session.access_token}` } },
   });
+  if (process.env.CMS_TEST_UI === "true") {
+    // Prepare the shared editorial fixture through the same AAL2-protected
+    // mutation as a real publisher, never through a direct table INSERT.
+    const canonical = await db.rpc("cms_mutate", {
+      doc: null,
+      expected: 0,
+      operation: "create",
+      content_kind: "news",
+      content_slug: "tengri-ai-announcement",
+      payload: {
+        title: "QA ortak haber kaydı",
+        summary: "QA tek kaynaktan yönetilen haber",
+        paragraphs: ["QA giriş metni", "QA ikinci paragraf"],
+        date: null,
+        source: null,
+        stage: null,
+      },
+    });
+    assert.equal(canonical.error, null);
+    assert.ok(canonical.data);
+    checks.push("Canonical editorial fixture created through AAL2-protected mutation");
+  }
   await db.auth.signOut();
   checks.push("Sign out completes");
   assert.ok(
