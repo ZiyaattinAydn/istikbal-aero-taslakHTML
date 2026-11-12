@@ -559,3 +559,7 @@
   .cms .cms-content-block-heading span { white-space: nowrap; }
   .cms-content-block-fields { padding: 0 9px 10px; }
 }
+
+
+.cms-link-editor { display: grid; gap: 9px; min-width: 0; }
+.cms .cms-link-editor input, .cms .cms-link-editor select { margin: 0 !important; min-width: 0; width: 100%; }
