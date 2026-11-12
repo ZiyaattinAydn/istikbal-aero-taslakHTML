@@ -202,7 +202,7 @@ export function PageEditor({
                     <div className="cms-content-block-fields">
                       {block.fields.map((field) => {
                         const previewText = (current[field.key] ?? field.value)
-                          .replace(/\\s+/g, " ").trim();
+                          .replace(/\s+/g, " ").trim();
                         const id = "cms-content-field-" + field.key.replace(/[^a-z0-9-]/gi, "-");
                         return (
                           <div
