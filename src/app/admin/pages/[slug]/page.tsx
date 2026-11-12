@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { requireAdmin } from "@/lib/cms/server";
 import { pageSchema } from "@/lib/cms/pages";
@@ -45,7 +46,7 @@ export default async function EditPage({
           <h1>{schema.title.split("|")[0]}</h1>
           <p>Metinleri ve görselleri düzenleyin. Taslak kaydından sonra gerçek şablonda önizleyebilirsiniz.</p>
         </div>
-        <a href="/admin/pages" className="cms-editor-back">← Sayfalara dön</a>
+        <Link href="/admin/pages" className="cms-editor-back">← Sayfalara dön</Link>
       </div>
       <PageEditor
         key={`${slug}:${doc.revision}`}

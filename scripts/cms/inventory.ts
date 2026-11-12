@@ -56,8 +56,16 @@ const result =
   JSON.stringify({ version: 1, routes, sources: records }, null, 2) + "\n";
 const target = "docs/cms/content-inventory.json";
 if (process.argv.includes("--check")) {
-  if (readFileSync(target, "utf8") !== result)
+  if (readFileSync(target, "utf8") !== result) {
+    const previous = JSON.parse(readFileSync(target, "utf8")) as {
+      sources: typeof records;
+    };
+    const mismatches = records.filter(
+      (record) => JSON.stringify(previous.sources.find((item) => item.path === record.path)) !== JSON.stringify(record),
+    );
+    console.error("Changed CMS inventory source records:", JSON.stringify(mismatches));
     throw Error("Content inventory is stale; regenerate and review");
+  }
 } else writeFileSync(target, result);
 console.log(
   `${routes.length} routes; ${records.length} sources; ${records.reduce((n, s) => n + s.fields.length, 0)} source literals (candidates require editorial mapping)`,

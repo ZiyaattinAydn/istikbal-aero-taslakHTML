@@ -76,9 +76,9 @@ export async function runUiChecks({ status, admin, totp }) {
     stage = "login-otp";
     await page.goto(url + "/admin/login");
     const forms = page.locator("form");
-    await forms.nth(0).getByLabel("E-posta", { exact: true }).fill(email);
+    await forms.nth(0).getByLabel("E-posta adresi", { exact: true }).fill(email);
     await page
-      .getByRole("button", { name: "Kodu gönder", exact: true })
+      .getByRole("button", { name: "Doğrulama kodu gönder", exact: true })
       .click();
     let token;
     await until(
@@ -104,18 +104,26 @@ export async function runUiChecks({ status, admin, totp }) {
       "otp_mail",
       30000,
     );
-    await forms.nth(1).getByLabel("E-posta", { exact: true }).fill(email);
-    await page.getByLabel("E-posta kodu", { exact: true }).fill(token);
-    await page.getByRole("button", { name: "Devam et", exact: true }).click();
+    await forms.nth(1).getByLabel("E-posta adresi", { exact: true }).fill(email);
+    await page.getByLabel("6 haneli giriş kodu", { exact: true }).fill(token);
+    await page.getByRole("button", { name: "Girişe devam et", exact: true }).click();
     await page.waitForURL("**/admin/mfa");
     stage = "login-totp";
     await page
-      .getByRole("button", { name: "Doğrulama uygulaması bağla", exact: true })
+      .getByRole("button", { name: "QR kodu oluştur", exact: true })
       .click();
-    await page.locator("code").waitFor();
-    const secret = await page.locator("code").innerText();
-    await page.getByLabel("Uygulama kodu", { exact: true }).fill(totp(secret));
-    await page.getByRole("button", { name: "Doğrula", exact: true }).click();
+    // The QR enrollment deliberately hides the manual secret in a disclosure.
+    // Open it only inside the disposable local Auth test fixture.
+    await page.locator(".cms-mfa-enroll details").evaluate((element) => {
+      element.open = true;
+    });
+    await page.locator(".cms-mfa-enroll code").waitFor({ state: "visible" });
+    const secret = await page.locator(".cms-mfa-enroll code").innerText();
+    await page.locator(".cms-mfa-verify select[name=factor]").selectOption({
+      label: "Yeni uygulama",
+    });
+    await page.getByLabel("6 haneli uygulama kodu", { exact: true }).fill(totp(secret));
+    await page.getByRole("button", { name: "Doğrula ve panele geç", exact: true }).click();
     await page.waitForURL("**/admin");
     checks.push(
       "Browser OTP and first-time TOTP enrollment; real HttpOnly session",
@@ -147,7 +155,15 @@ export async function runUiChecks({ status, admin, totp }) {
       const field = entry.fields.find((f) => f.kind === "text");
       assert.ok(field);
       const area = form.locator(`textarea[data-field="${field.key}"]`);
-      await area.waitFor();
+      // Semantic field groups are collapsible; open the exact group containing
+      // the field before exercising the same real save/preview/publish checks.
+      const revealArea = async () => {
+        await area.locator("xpath=ancestor::details[1]").evaluate((section) => {
+          section.open = true;
+        });
+        await area.waitFor({ state: "visible" });
+      };
+      await revealArea();
       timings.navigation.push(Date.now() - navStart);
       const { data: doc } = await admin
         .from("cms_documents")
@@ -188,7 +204,7 @@ export async function runUiChecks({ status, admin, totp }) {
       await until(async()=>Number(await form.locator('input[name=revision]').inputValue())===doc.revision+1,'page_refresh',30000);
       timings.save.push(Date.now() - saveStart);
       await page.reload();
-      await area.waitFor();
+      await revealArea();
       assert.equal(await area.inputValue(), "QA sayfa " + entry.slug);
       stage = "page-" + entry.slug + ":preview";
       const preview = await context.newPage();
@@ -434,10 +450,10 @@ export async function runUiChecks({ status, admin, totp }) {
         () => document.documentElement.scrollWidth <= innerWidth + 1,
       ),
     );
-    await page.getByRole("textbox", { name: "Alan ara", exact: true }).focus();
+    await page.getByRole("searchbox", { name: "Alan ara", exact: true }).focus();
     assert.equal(
       await page
-        .getByRole("textbox", { name: "Alan ara", exact: true })
+        .getByRole("searchbox", { name: "Alan ara", exact: true })
         .evaluate((el) => el === document.activeElement),
       true,
     );
@@ -457,7 +473,7 @@ export async function runUiChecks({ status, admin, totp }) {
     });
     await page.goto(url + "/admin");
     await page
-      .getByRole("button", { name: "Oturumu kapat", exact: true })
+      .getByRole("button", { name: /Oturumu kapat$/ })
       .click();
     await page.waitForURL("**/admin/login");
     await page.goto(url + "/admin/pages");

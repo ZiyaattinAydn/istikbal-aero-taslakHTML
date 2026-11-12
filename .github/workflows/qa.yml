@@ -3,7 +3,8 @@ on:
   push:
     branches: [main]
   pull_request:
-    branches: [main]
+    # Validate stacked CMS PRs without merging unfinished features into main.
+    branches: [main, feat/cms-foundation, feat/cms-admin-experience, feat/cms-visual-preview]
 permissions:
   contents: read
 concurrency:

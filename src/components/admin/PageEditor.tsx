@@ -1,11 +1,13 @@
 "use client";
 
-import { useActionState, useEffect, useRef, useState } from "react";
+import { useActionState, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ContentEditor, type ContentDocument } from "./ContentEditor";
+import { PageLinkField } from "./PageLinkField";
 import { savePage } from "@/app/admin/pages/actions";
 import type { PageField, PageValues } from "@/lib/cms/page-values";
+import { pageContentBlocks, pageFieldLabel } from "@/lib/cms/page-organization";
 
 const CHANNEL = "istikbal:visual-editor:v1";
 
@@ -99,6 +101,7 @@ export function PageEditor({
         const element = [...document.querySelectorAll<HTMLElement>("[data-cms-field-key]")]
           .find((el) => el.dataset.cmsFieldKey === key);
         if (element) {
+          element.closest("details")?.setAttribute("open", "");
           element.scrollIntoView({ behavior: "smooth", block: "center" });
           element.querySelector<HTMLTextAreaElement | HTMLSelectElement>("textarea,select")?.focus();
         } else {
@@ -124,15 +127,19 @@ export function PageEditor({
     setMatch("ready");
   };
 
-  const visibleFields = fields
-    .map((field, index) => ({ field, index }))
-    .filter(({ field }) =>
-      !query ||
-      (current[field.key] ?? field.value)
-        .toLocaleLowerCase("tr")
-        .includes(query.toLocaleLowerCase("tr")) ||
-      field.label.toLocaleLowerCase("tr").includes(query.toLocaleLowerCase("tr")),
-    );
+  const blocks = useMemo(() => pageContentBlocks(fields), [fields]);
+  const visibleBlocks = blocks
+    .map((block) => ({
+      ...block,
+      fields: block.fields.filter((field) => {
+        if (!query) return true;
+        const term = query.toLocaleLowerCase("tr-TR");
+        return [block.title, pageFieldLabel(field), current[field.key] ?? field.value]
+          .some((value) => value.toLocaleLowerCase("tr-TR").includes(term));
+      }),
+    }))
+    .filter((block) => block.fields.length > 0);
+  const visibleCount = visibleBlocks.reduce((total, block) => total + block.fields.length, 0);
 
   return (
     <>
@@ -143,7 +150,7 @@ export function PageEditor({
             <p>Alanı seçin veya “Sayfada göster” düğmesine basın. Sağda ilgili yeri göreceksiniz. Metin değişiklikleri kaydedilmeden önizlemede görünür; herkese açık site değişmez.</p>
           </div>
           <div className="cms-editor-search">
-            <label htmlFor="cms-field-search">Sayfadaki alanlarda ara</label>
+            <label htmlFor="cms-field-search">Alan ara</label>
             <input
               id="cms-field-search"
               type="search"
@@ -182,75 +189,83 @@ export function PageEditor({
               </div>
 
               <div className="cms-editor-subtitle">
-                Sayfa içeriği <span>{visibleFields.length} / {fields.length} alan</span>
+                Sayfa içeriği <span>{visibleCount} / {fields.length} alan</span>
               </div>
               <div className="cms-fields-list">
-                {visibleFields.map(({ field, index }) => {
-                  const previewText = (current[field.key] ?? field.value)
-                    .replace(/\s+/g, " ")
-                    .trim();
-                  const id = "cms-content-field-" + index;
-                  return (
-                    <div
-                      key={field.key}
-                      className={"cms-edit-field" + (selected === field.key ? " is-selected" : "")}
-                      data-cms-field-key={field.key}
-                    >
-                      <div className="cms-edit-field-top">
-                        <label htmlFor={id}>{index + 1}. {field.label}</label>
-                        <button
-                          type="button"
-                          className="cms-locate-button"
-                          onClick={() => showField(field.key)}
-                          aria-label={index + 1 + ". alanı sayfada göster"}
-                        >◎ Sayfada göster</button>
-                      </div>
-                      <p className="cms-field-context" title={previewText}>
-                        {field.kind === "image"
-                          ? "Sayfadaki görsel alanı"
-                          : field.kind === "link"
-                            ? "Sayfadaki bağlantı"
-                            : previewText || "Boş metin alanı"}
-                      </p>
-                      {field.kind === "image" ? (
-                        <select
-                          id={id}
-                          data-field={field.key}
-                          value={current[field.key] ?? field.value}
-                          onFocus={() => showField(field.key)}
-                          onChange={(event) => update(field.key, event.target.value)}
-                        >
-                          <option value={field.value}>Mevcut görsel</option>
-                          {media.map((item) => (
-                            <option key={item.id} value={"cms:" + item.id}>
-                              {item.alt}
-                              {item.visibility === "private" ? " (özel — yayın öncesi açılmalı)" : ""}
-                            </option>
-                          ))}
-                        </select>
-                      ) : (
-                        <textarea
-                          id={id}
-                          data-field={field.key}
-                          rows={field.value.length > 160 ? 4 : 2}
-                          value={current[field.key] ?? field.value}
-                          maxLength={8000}
-                          onFocus={() => showField(field.key)}
-                          onChange={(event) => update(field.key, event.target.value)}
-                        />
-                      )}
-                      {selected === field.key && (
-                        <small className="cms-field-match" role="status">
-                          {match === "found"
-                            ? "✓ Bu alan sağdaki sayfada işaretlendi."
-                            : match === "missing"
-                              ? "Bu alan önizlemede otomatik bulunamadı; metin farklı bölümlerde kullanılıyor olabilir."
-                              : "Sayfadaki konumu aranıyor..."}
-                        </small>
-                      )}
+                {visibleBlocks.map((block, blockIndex) => (
+                  <details key={block.id} className="cms-content-block"
+                    open={Boolean(query) || blockIndex === 0}>
+                    <summary className="cms-content-block-heading">
+                      <strong>{block.title}</strong>
+                      <span>{block.fields.length} düzenlenebilir alan</span>
+                    </summary>
+                    <p className="cms-content-block-description">{block.description}</p>
+                    <div className="cms-content-block-fields">
+                      {block.fields.map((field) => {
+                        const previewText = (current[field.key] ?? field.value)
+                          .replace(/\s+/g, " ").trim();
+                        const id = "cms-content-field-" + field.key.replace(/[^a-z0-9-]/gi, "-");
+                        return (
+                          <div
+                            key={field.key}
+                            className={"cms-edit-field" + (selected === field.key ? " is-selected" : "")}
+                            data-cms-field-key={field.key}
+                          >
+                            <div className="cms-edit-field-top">
+                              <label htmlFor={id}>{pageFieldLabel(field)}</label>
+                              <button type="button" className="cms-locate-button"
+                                onClick={() => showField(field.key)}
+                                aria-label={pageFieldLabel(field) + " alanını sayfada göster"}>
+                                ◎ Sayfada göster
+                              </button>
+                            </div>
+                            <p className="cms-field-context" title={previewText}>
+                              {field.kind === "image" ? "Sayfadaki görsel" :
+                                field.kind === "link" ? "Site içi veya güvenli dış bağlantı" :
+                                previewText || "Bu bölüm için metin"}
+                            </p>
+                            {field.kind === "image" ? (
+                              <select id={id} data-field={field.key}
+                                value={current[field.key] ?? field.value}
+                                onFocus={() => showField(field.key)}
+                                onChange={(event) => update(field.key, event.target.value)}>
+                                <option value={field.value}>Mevcut görsel</option>
+                                {media.map((item) => (
+                                  <option key={item.id} value={"cms:" + item.id}>
+                                    {item.alt}
+                                    {item.visibility === "private" ? " (özel — yayın öncesi açılmalı)" : ""}
+                                  </option>
+                                ))}
+                              </select>
+                            ) : field.kind === "link" ? (
+                              <PageLinkField id={id} value={current[field.key] ?? field.value}
+                                onFocus={() => showField(field.key)}
+                                onChange={(next) => update(field.key, next)} />
+                            ) : (
+                              <textarea id={id} data-field={field.key}
+                                rows={field.value.length > 160 ? 4 : 2}
+                                value={current[field.key] ?? field.value} maxLength={8000}
+                                onFocus={() => showField(field.key)}
+                                onChange={(event) => update(field.key, event.target.value)} />
+                            )}
+                            {selected === field.key && (
+                              <small className="cms-field-match" role="status">
+                                {match === "found"
+                                  ? "✓ Bu alan sağdaki sayfada işaretlendi."
+                                  : match === "missing"
+                                    ? "Bu alan önizlemede otomatik bulunamadı; metin farklı bölümlerde olabilir."
+                                    : "Sayfadaki konumu aranıyor..."}
+                              </small>
+                            )}
+                          </div>
+                        );
+                      })}
                     </div>
-                  );
-                })}
+                  </details>
+                ))}
+                {!visibleBlocks.length && (
+                  <p className="cms-empty-field-result">Bu aramayla eşleşen alan yok. Başka bir ifade deneyin.</p>
+                )}
               </div>
               <div className="cms-editor-actions">
                 <button className="cms-primary-btn" disabled={pending}>

@@ -24,7 +24,7 @@ test("CMS remains closed without explicit configuration", async ({
   }
   await page.goto("/admin/login");
   await expect(
-    page.getByRole("heading", { name: "Yönetici girişi" }),
+    page.getByRole("heading", { name: "Tekrar hoş geldiniz." }),
   ).toBeVisible();
   await expect(
     page.getByText("Yönetim girişi henüz kullanıma açılmadı."),

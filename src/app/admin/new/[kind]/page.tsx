@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { editorOptions } from "@/lib/cms/editor-options";
 import { notFound } from "next/navigation";
 import { requireAdmin } from "@/lib/cms/server";
@@ -20,7 +21,7 @@ export default async function New({
           <h1>Yeni içerik</h1>
           <p>İçeriğinizi oluşturun ve taslak olarak kaydedin. Yayınlama ayrı bir onay adımıdır.</p>
         </div>
-        <a href="/admin" className="cms-editor-back">← İçeriklere dön</a>
+        <Link href="/admin" className="cms-editor-back">← İçeriklere dön</Link>
       </div>
       <ContentEditor
         {...options}

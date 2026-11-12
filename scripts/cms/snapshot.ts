@@ -53,7 +53,22 @@ const snapshots = routes.map((route) => {
 const output = JSON.stringify(snapshots, null, 2) + "\n",
   path = "docs/cms/page-snapshots.json";
 if (process.argv.includes("--check")) {
-  if (readFileSync(path, "utf8") !== output)
+  if (readFileSync(path, "utf8") !== output) {
+    const previous = JSON.parse(readFileSync(path, "utf8")) as typeof snapshots;
+    const changed = snapshots.filter((current, index) =>
+      JSON.stringify(previous[index]) !== JSON.stringify(current),
+    );
+    const hashesOnly = changed.every((current) => {
+      const previousPage = previous.find((item) => item.route === current.route);
+      if (!previousPage) return false;
+      return JSON.stringify({ ...previousPage, renderSha256: "" }) ===
+        JSON.stringify({ ...current, renderSha256: "" });
+    });
+    console.error(
+      "Changed CMS page snapshot records:",
+      JSON.stringify(hashesOnly ? changed.map(({ route, renderSha256 }) => ({ route, renderSha256 })) : changed),
+    );
     throw Error("Rendered content changed");
+  }
 } else writeFileSync(path, output);
 console.log(`Verified ${snapshots.length} rendered page snapshots`);

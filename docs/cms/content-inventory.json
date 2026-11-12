@@ -3536,7 +3536,7 @@
     },
     {
       "path": "src/components/pages/FocusContent.tsx",
-      "sha256": "862f9ca8da3631fc1ee7b5ff3fbde965d33c059e71b350d08d28de802cd05961",
+      "sha256": "3df5a74fab20e41d58a95612d3e8a5e2b168c4edb88f213e4c3316ee9cb84a30",
       "fields": [
         {
           "key": "src/components/pages/FocusContent.tsx:53",
@@ -3689,182 +3689,200 @@
           "candidate": false
         },
         {
-          "key": "src/components/pages/FocusContent.tsx:2270",
-          "line": 84,
+          "key": "src/components/pages/FocusContent.tsx:2246",
+          "line": 82,
           "value": "FocusContent.text.5",
           "candidate": false
         },
         {
-          "key": "src/components/pages/FocusContent.tsx:2305",
+          "key": "src/components/pages/FocusContent.tsx:2330",
           "line": 85,
+          "value": "FocusContent.text.5",
+          "candidate": false
+        },
+        {
+          "key": "src/components/pages/FocusContent.tsx:2367",
+          "line": 86,
           "value": "Sistemler birlikte çalışır:",
           "candidate": true
         },
         {
-          "key": "src/components/pages/FocusContent.tsx:2390",
-          "line": 87,
+          "key": "src/components/pages/FocusContent.tsx:2473",
+          "line": 89,
           "value": "FocusContent.text.6",
           "candidate": false
         },
         {
-          "key": "src/components/pages/FocusContent.tsx:2413",
-          "line": 87,
+          "key": "src/components/pages/FocusContent.tsx:2515",
+          "line": 89,
+          "value": "FocusContent.text.6",
+          "candidate": false
+        },
+        {
+          "key": "src/components/pages/FocusContent.tsx:2538",
+          "line": 89,
           "value": "ile",
           "candidate": false
         },
         {
-          "key": "src/components/pages/FocusContent.tsx:2505",
+          "key": "src/components/pages/FocusContent.tsx:2613",
           "line": 91,
           "value": "FocusContent.text.7",
           "candidate": false
         },
         {
-          "key": "src/components/pages/FocusContent.tsx:2540",
-          "line": 92,
+          "key": "src/components/pages/FocusContent.tsx:2697",
+          "line": 94,
+          "value": "FocusContent.text.7",
+          "candidate": false
+        },
+        {
+          "key": "src/components/pages/FocusContent.tsx:2734",
+          "line": 95,
           "value": "birbirini tamamlayan mühendislik alanlarıdır. Teknoloji başlıkları birbirinden bağımsız değildir.",
           "candidate": true
         },
         {
-          "key": "src/components/pages/FocusContent.tsx:3057",
-          "line": 113,
+          "key": "src/components/pages/FocusContent.tsx:3271",
+          "line": 117,
           "value": "PLATFORMLAR /",
           "candidate": true
         },
         {
-          "key": "src/components/pages/FocusContent.tsx:3173",
-          "line": 117,
+          "key": "src/components/pages/FocusContent.tsx:3387",
+          "line": 121,
           "value": "focus-intro",
           "candidate": false
         },
         {
-          "key": "src/components/pages/FocusContent.tsx:3232",
-          "line": 119,
+          "key": "src/components/pages/FocusContent.tsx:3446",
+          "line": 123,
           "value": "eyebrow",
           "candidate": false
         },
         {
-          "key": "src/components/pages/FocusContent.tsx:3277",
-          "line": 120,
+          "key": "src/components/pages/FocusContent.tsx:3491",
+          "line": 124,
           "value": "FocusContent.text.8",
           "candidate": false
         },
         {
-          "key": "src/components/pages/FocusContent.tsx:3300",
-          "line": 120,
+          "key": "src/components/pages/FocusContent.tsx:3514",
+          "line": 124,
           "value": "SİSTEM ODAĞI",
           "candidate": true
         },
         {
-          "key": "src/components/pages/FocusContent.tsx:3421",
-          "line": 125,
+          "key": "src/components/pages/FocusContent.tsx:3635",
+          "line": 129,
           "value": "FocusContent.text.9",
           "candidate": false
         },
         {
-          "key": "src/components/pages/FocusContent.tsx:3460",
-          "line": 126,
+          "key": "src/components/pages/FocusContent.tsx:3674",
+          "line": 130,
           "value": "Birlikte çalışan teknolojiler.",
           "candidate": true
         },
         {
-          "key": "src/components/pages/FocusContent.tsx:3630",
-          "line": 133,
+          "key": "src/components/pages/FocusContent.tsx:3844",
+          "line": 137,
           "value": "inner-panel",
           "candidate": false
         },
         {
-          "key": "src/components/pages/FocusContent.tsx:3731",
-          "line": 137,
+          "key": "src/components/pages/FocusContent.tsx:3945",
+          "line": 141,
           "value": "FocusContent.kicker.10",
           "candidate": false
         },
         {
-          "key": "src/components/pages/FocusContent.tsx:3769",
-          "line": 138,
+          "key": "src/components/pages/FocusContent.tsx:3983",
+          "line": 142,
           "value": "MÜHENDİSLİK KATMANLARI",
           "candidate": true
         },
         {
-          "key": "src/components/pages/FocusContent.tsx:3807",
-          "line": 139,
+          "key": "src/components/pages/FocusContent.tsx:4021",
+          "line": 143,
           "value": "text",
           "candidate": false
         },
         {
-          "key": "src/components/pages/FocusContent.tsx:3827",
-          "line": 140,
+          "key": "src/components/pages/FocusContent.tsx:4041",
+          "line": 144,
           "value": "Bölüm etiketi",
           "candidate": true
         },
         {
-          "key": "src/components/pages/FocusContent.tsx:3918",
-          "line": 144,
+          "key": "src/components/pages/FocusContent.tsx:4132",
+          "line": 148,
           "value": "FocusContent.title.11",
           "candidate": false
         },
         {
-          "key": "src/components/pages/FocusContent.tsx:3955",
-          "line": 145,
+          "key": "src/components/pages/FocusContent.tsx:4169",
+          "line": 149,
           "value": "Sistem bütünlüğü.",
           "candidate": true
         },
         {
-          "key": "src/components/pages/FocusContent.tsx:3988",
-          "line": 146,
+          "key": "src/components/pages/FocusContent.tsx:4202",
+          "line": 150,
           "value": "text",
           "candidate": false
         },
         {
-          "key": "src/components/pages/FocusContent.tsx:4008",
-          "line": 147,
+          "key": "src/components/pages/FocusContent.tsx:4222",
+          "line": 151,
           "value": "Başlık",
           "candidate": true
         },
         {
-          "key": "src/components/pages/FocusContent.tsx:4091",
-          "line": 151,
+          "key": "src/components/pages/FocusContent.tsx:4305",
+          "line": 155,
           "value": "FocusContent.lead.12",
           "candidate": false
         },
         {
-          "key": "src/components/pages/FocusContent.tsx:4127",
-          "line": 152,
+          "key": "src/components/pages/FocusContent.tsx:4341",
+          "line": 156,
           "value": "Havacılık çalışmalarında birbirini tamamlayan temel mühendislik başlıkları.",
           "candidate": true
         },
         {
-          "key": "src/components/pages/FocusContent.tsx:4218",
-          "line": 153,
+          "key": "src/components/pages/FocusContent.tsx:4432",
+          "line": 157,
           "value": "text",
           "candidate": false
         },
         {
-          "key": "src/components/pages/FocusContent.tsx:4238",
-          "line": 154,
+          "key": "src/components/pages/FocusContent.tsx:4452",
+          "line": 158,
           "value": "Açıklama",
           "candidate": true
         },
         {
-          "key": "src/components/pages/FocusContent.tsx:4297",
-          "line": 157,
+          "key": "src/components/pages/FocusContent.tsx:4511",
+          "line": 161,
           "value": "focus-modules",
           "candidate": false
         },
         {
-          "key": "src/components/pages/FocusContent.tsx:4602",
-          "line": 167,
+          "key": "src/components/pages/FocusContent.tsx:4816",
+          "line": 171,
           "value": "editorial-note",
           "candidate": false
         },
         {
-          "key": "src/components/pages/FocusContent.tsx:4675",
-          "line": 170,
+          "key": "src/components/pages/FocusContent.tsx:4889",
+          "line": 174,
           "value": "FocusContent.text.13",
           "candidate": false
         },
         {
-          "key": "src/components/pages/FocusContent.tsx:4711",
-          "line": 171,
+          "key": "src/components/pages/FocusContent.tsx:4925",
+          "line": 175,
           "value": "Otonom sistemler, gömülü donanım ve sensör füzyonu bu mimarilerle ilişkili mühendislik disiplinleridir.",
           "candidate": true
         }
