@@ -713,3 +713,66 @@
   .cms .cms-editor-preview.is-fullscreen .cms-preview-guidance { padding: 4px 10px 9px; }
   .cms .cms-editor-preview.is-fullscreen .cms-preview-footer { padding: 7px 11px; }
 }
+
+
+/* Final QA: prioritize visible media over the optional uploader. */
+.cms .cms-media-upload-collapsible {
+  padding: 0;
+  margin: 0 0 22px;
+  overflow: hidden;
+}
+.cms .cms-media-upload-collapsible > summary {
+  padding: 16px 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  list-style: none;
+  color: #e6f5fc;
+}
+.cms .cms-media-upload-collapsible > summary::-webkit-details-marker { display: none; }
+.cms-media-upload-summary-text { display: grid; gap: 5px; min-width: 0; }
+.cms-media-upload-summary-text strong { font-size: 13px; }
+.cms-media-upload-summary-text small { font-size: 10px; color: #99bacf; line-height: 1.5; }
+.cms-media-upload-expand {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  color: #7bd4fb;
+  background: rgba(46,148,196,.12);
+  font-size: 21px;
+  transition: transform .2s;
+}
+.cms-media-upload-collapsible[open] .cms-media-upload-expand { transform: rotate(180deg); }
+.cms-media-upload-body {
+  padding: 0 20px 20px;
+  border-top: 1px solid var(--cms-border);
+}
+.cms-media-upload-body > p { margin: 15px 0 10px !important; }
+.cms-media-upload-body form { margin-bottom: 0; }
+
+/* The inspector still announces selected fields to screen readers, but must
+   never obscure the real website inside its authenticated iframe. The editor
+   has its own visible matched-field status beside the selected control. */
+.cms-preview .cms-inspector-toolbar {
+  position: absolute !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
+  width: 1px !important;
+  height: 1px !important;
+  min-width: 1px !important;
+  min-height: 1px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
