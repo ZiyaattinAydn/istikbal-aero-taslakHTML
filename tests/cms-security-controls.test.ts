@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs";
 import { test } from "node:test";
 import assert from "node:assert/strict";
+import { boundedCmsCookieOptions, CMS_COOKIE_MAX_AGE_SECONDS } from "../src/lib/cms/cookie-policy";
 
 const source = (path: string) => readFileSync(path, "utf8");
 
@@ -55,4 +56,24 @@ test("fresh AAL2 session, publisher role and media publication rights are checke
   assert.match(auth, /r\.active and \(not publisher_only or r\.role='publisher'\)/);
   assert.match(media, /m\.visibility='public' and m\.rights_approved/);
   assert.match(direct, /cms_private\.allowed\(true\)/);
+});
+
+test("real Set-Cookie boundary enforces seven-day cap without preventing logout", () => {
+  const longLived = boundedCmsCookieOptions({ maxAge: 400 * 24 * 60 * 60 });
+  assert.equal(longLived.maxAge, CMS_COOKIE_MAX_AGE_SECONDS);
+  assert.equal(longLived.httpOnly, true);
+  assert.equal(longLived.path, "/admin");
+  assert.equal(longLived.sameSite, "lax");
+  const now = Date.now();
+  assert.ok(longLived.expires.getTime() <= now + CMS_COOKIE_MAX_AGE_SECONDS * 1000 + 1000);
+
+  const logout = boundedCmsCookieOptions({ maxAge: 0 });
+  assert.equal(logout.maxAge, 0, "Logout must still remove the browser cookie");
+  assert.ok(logout.expires.getTime() < Date.now());
+
+  const expired = boundedCmsCookieOptions({ expires: new Date(0) });
+  assert.equal(expired.maxAge, 0);
+
+  const shorter = boundedCmsCookieOptions({ maxAge: 3600 });
+  assert.equal(shorter.maxAge, 3600, "Respect a shorter server-side lifetime");
 });
