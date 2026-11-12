@@ -29,6 +29,16 @@ const nextConfig: NextConfig = {
           { key: "X-Frame-Options", value: "DENY" },
         ],
       },
+      {
+        // Visual editor: permit only our authenticated editor to embed this
+        // same-origin preview. Other routes stay DENY / frame-ancestors 'none'.
+        source: "/admin/pages/:slug/preview",
+        headers: [
+          { key: "Content-Security-Policy", value: "frame-ancestors 'self'" },
+          { key: "X-Frame-Options", value: "SAMEORIGIN" },
+          { key: "Cache-Control", value: "private, no-store, max-age=0" },
+        ],
+      },
     ];
   },
 };
