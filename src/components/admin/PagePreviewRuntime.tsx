@@ -82,6 +82,10 @@ export function PagePreviewRuntime({
       {/* Diagnostics expose only counts/boolean state, never content or credentials. */}
       <span hidden data-cms-preview-runtime
         data-cms-preview-syncs={syncCount}
+        data-cms-preview-title-changed={
+          liveValues["NewsContent.title.0"] !== asPreviewMedia(initialValues["NewsContent.title.0"] ?? "")
+            ? "true" : "false"
+        }
         data-cms-preview-dirty={fields.some((field) =>
           liveValues[field.key] !== asPreviewMedia(initialValues[field.key] ?? ""),
         ) ? "true" : "false"} />
