@@ -69,12 +69,12 @@ export async function changeStatus(
   try {
     const operation = String(form.get("operation") || "");
     if (
-      !["review", "approve", "publish", "archive", "restore"].includes(
+      !["publish", "unpublish", "archive", "restore"].includes(
         operation,
       )
     )
       throw Error("İşlem geçersiz.");
-    if (["approve", "publish", "archive"].includes(operation))
+    if (["publish", "unpublish", "archive"].includes(operation))
       requirePublisher(role);
     const docId = String(form.get("id"));
     const { data: affected } = await db
@@ -94,12 +94,12 @@ export async function changeStatus(
     if (error)
       return {
         message:
-          "İşlem tamamlanamadı. Yetki, onay ve güncel sürümü kontrol edin.",
+          "İşlem tamamlanamadı. Yayın yetkisini, görsel izinlerini ve güncel sürümü kontrol edin.",
       };
     revalidatePath("/admin");
     if (affected) {
       revalidatePath(`/admin/pages/${affected.slug}`);
-      if (["publish", "archive"].includes(operation)) {
+      if (["publish", "unpublish", "archive"].includes(operation)) {
         invalidateDocument({ id: docId, ...affected });
         // Cache keys alone do not guarantee that prerendered legacy routes
         // refresh. Explicitly revalidate every affected public alias.
@@ -114,8 +114,12 @@ export async function changeStatus(
       ok: true,
       message:
         operation === "publish"
-          ? "Kayıt onaylı yayın deposuna alındı. Etkin CMS önizlemesinde önbellek yenilenir."
-          : "İşlem kaydedildi.",
+          ? "Kayıt yayımlandı. Genel sitede görünmesi için CMS yayın okuması etkin olmalıdır."
+          : operation === "unpublish"
+            ? "Kayıt yayından kaldırıldı. Taslak ve sürüm geçmişi korundu."
+            : operation === "archive"
+              ? "Kayıt arşivlendi ve varsa yayından kaldırıldı."
+              : "İşlem kaydedildi.",
     };
   } catch (error) {
     return {
