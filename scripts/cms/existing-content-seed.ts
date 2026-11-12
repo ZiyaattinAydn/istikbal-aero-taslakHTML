@@ -55,10 +55,8 @@ if (process.argv.includes("--write")) {
   console.log("Wrote staging-only seed; inspect before running.");
 } else {
   console.log("Dry run: " + legacyRecords.length + " canonical identities");
-  console.log(
-    Object.entries(Object.groupBy(legacyRecords, (item) => item.kind))
-      .map(([kind, records]) => kind + "=" + records.length)
-      .join(", ")
-  );
+  const totals: Record<string, number> = {};
+  for (const item of legacyRecords) totals[item.kind] = (totals[item.kind] ?? 0) + 1;
+  console.log(Object.entries(totals).map(([kind, total]) => kind + "=" + total).join(", "));
   console.log("No SQL executed and no database mutated.");
 }
