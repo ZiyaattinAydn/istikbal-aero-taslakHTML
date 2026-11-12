@@ -5,7 +5,7 @@ import { pageSchemas } from "../src/lib/cms/pages";
 import { validateBody } from "../src/lib/cms/model";
 import {
   legacyRecords, legacyRecord, isExistingContent, legacyKindsForPage,
-  legacyNewsIdForPage, overlayExistingPublished,
+  legacyNewsIdForPage, overlayExistingPublished, legacyRoutesForContent,
 } from "../src/lib/cms/legacy-content";
 
 test("one canonical identity for each preexisting article/project/platform/technology", () => {
@@ -104,4 +104,16 @@ test("invalid, unrecognized and unpublished entries cannot overwrite static page
       assert.ok(keys.has(key), page.slug + " gained an undeclared CMS field: " + key);
     }
   }
+});
+
+test("publishing a canonical item invalidates existing clean and .html route aliases", () => {
+  const news = legacyRoutesForContent("news", "tengri-ai-announcement");
+  for (const slug of ["index", "haberler", "haber-detay", "ucus-kontrol-paylasimi"]) {
+    assert.ok(news.includes(slug), slug + " should refresh");
+  }
+  const platform = legacyRoutesForContent("platform", "iha-sistemleri");
+  assert.ok(platform.includes("index"));
+  assert.ok(platform.includes("platformlar"));
+  assert.ok(legacyRoutesForContent("technology", "otonom-sistemler").length >= 1);
+  assert.deepEqual(legacyRoutesForContent("news", "unknown"), []);
 });
