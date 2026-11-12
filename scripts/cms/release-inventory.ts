@@ -37,7 +37,8 @@ assert.deepEqual(
   "Every public page needs exactly one CMS schema",
 );
 assert.equal(fields.length, 537, "Existing 537 field keys must remain");
-assert.ok(unique(fields.map((f) => f.key)), "CMS field keys must remain unique");
+assert.ok(schemas.every((s) => unique(s.fields.map((f) => f.key))),
+  "CMS field keys must be unique within each page; shared component keys may repeat across pages");
 assert.equal(imageFields.length, 43, "Existing 43 image fields must remain");
 assert.equal(siteMedia.length, 9, "All existing public assets must remain in catalog");
 assert.ok(unique(siteMedia.map((f) => f.name)), "Public media paths must be unique");
