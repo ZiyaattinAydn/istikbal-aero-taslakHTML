@@ -2,7 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync, readdirSync } from "node:fs";
 import { PGlite } from "@electric-sql/pglite";
-test("Postgres RLS: MFA, fresh roles, session revocation, draft isolation, approval, concurrency and restore", async () => {
+test("Postgres RLS: MFA, fresh roles, revoked sessions, direct publication, concurrency and restore", async () => {
   const db = new PGlite();
   await db.exec(
     `create role anon;create role authenticated;create role service_role;create schema auth;create schema storage;create table storage.buckets(id text primary key,name text,public boolean,file_size_limit bigint,allowed_mime_types text[]);create table storage.objects(id uuid default gen_random_uuid(),bucket_id text,name text);alter table storage.objects enable row level security;grant usage on schema storage to anon,authenticated;grant select,insert on storage.objects to anon,authenticated;create table auth.users(id uuid primary key,email text,encrypted_password text,email_confirmed_at timestamptz);create table auth.sessions(id uuid primary key,user_id uuid);create function auth.uid() returns uuid language sql as $$select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid$$;create function auth.jwt() returns jsonb language sql as $$select coalesce(nullif(current_setting('request.jwt.claims',true),''),'{}')::jsonb$$;grant usage on schema auth to authenticated,anon;grant execute on all functions in schema auth to authenticated,anon;`,
@@ -92,8 +92,17 @@ test("Postgres RLS: MFA, fresh roles, session revocation, draft isolation, appro
       [uid],
     );
     await claims();
-    await assert.rejects(() => mutate(id, 1, "publish"), /Approval required/);
-    await mutate(id, 1, "approve");
+    await assert.rejects(() => mutate(id, 1, "approve"), /Invalid operation/);
+    await assert.rejects(() => mutate(id, 1, "review"), /Invalid operation/);
+    await mutate(id, 1, "publish");
+    await mutate(id, 1, "unpublish");
+    assert.equal((await db.query("select * from public.cms_published")).rows.length, 0);
+    const retained = await db.query<{status:string;revision:number}>(
+      "select status,revision from public.cms_documents where id=$1", [id],
+    );
+    assert.equal(retained.rows[0].status, "draft");
+    assert.equal(retained.rows[0].revision, 1);
+    await assert.rejects(() => mutate(id, 1, "unpublish"), /Publication not found/);
     await mutate(id, 1, "publish");
     await mutate(id, 1, "save", { ...body, title: "Taslak değişikliği" });
     assert.equal(
