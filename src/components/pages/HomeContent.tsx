@@ -264,6 +264,7 @@ export function HomeContent({ content = {} }: { content?: PageValues }) {
         <div className={"split-feature"}>
           <div
             className={"visual"}
+            data-cms-field="HomeContent.image.24"
             style={{
               backgroundImage: pageImageStyle(
                 content,
@@ -331,6 +332,7 @@ export function HomeContent({ content = {} }: { content?: PageValues }) {
         <div className={"news-feature"}>
           <div
             className={"news-feature-art"}
+            data-cms-field="HomeContent.image.31"
             style={{
               backgroundImage: pageImageStyle(
                 content,
@@ -396,6 +398,7 @@ export function HomeContent({ content = {} }: { content?: PageValues }) {
         <div className={"split-feature reverse"}>
           <div
             className={"visual"}
+            data-cms-field="HomeContent.image.37"
             style={{
               backgroundImage: pageImageStyle(
                 content,
