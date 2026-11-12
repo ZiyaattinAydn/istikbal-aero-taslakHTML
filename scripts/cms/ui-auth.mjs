@@ -401,6 +401,11 @@ export async function runUiChecks({ status, admin, totp }) {
     assert.ok(await page.locator('a[href="/assets/hero-flight.webp"]').count());
     checks.push("All nine existing public assets visible in media library without Storage copies");
     stage = "media-upload";
+    const mediaDrawer = page.locator("details.cms-media-upload-panel");
+    assert.equal(await mediaDrawer.getAttribute("open"), null,
+      "Existing site images should appear without a giant open upload form");
+    await mediaDrawer.locator("summary").click();
+    assert.ok(await mediaDrawer.evaluate((node) => node.open));
     await page
       .locator("input[type=file]")
       .setInputFiles("public/assets/hero-flight.webp");
