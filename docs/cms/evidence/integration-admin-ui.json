@@ -1,0 +1,25 @@
+{
+  "status": "passed",
+  "checks": [
+    "Browser OTP and first-time TOTP enrollment; real HttpOnly session",
+    "All 21 seeded pages: edit/save, actual template preview, approval/publication, baseline restore and republish",
+    "Real UI CRUD: versioned relations, draft-target isolation, archive invalidation, cover and media metadata",
+    "Withdrawal atomically removes dependent publication; anonymous image/detail now 404; draft/file preserved",
+    "Mobile editor has no horizontal overflow and keyboard focus works",
+    "Browser logout protects subsequent admin navigation"
+  ],
+  "pages": 21,
+  "timings": {
+    "save": {
+      "samples": 21,
+      "medianMs": 307,
+      "p95Ms": 336
+    },
+    "navigation": {
+      "samples": 21,
+      "medianMs": 333,
+      "p95Ms": 563
+    }
+  },
+  "environment": "GitHub runner; Next development, disposable local Supabase; navigation includes route compilation; NOT hosted/production performance"
+}

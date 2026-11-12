@@ -1,0 +1,64 @@
+{
+  "checked_at": "2026-11-12",
+  "starting_commit": "f8066a6ecd69098e143f3597832782ac565fc0e2",
+  "starting_ci": {
+    "migration_qa": {
+      "run": 43226877965,
+      "conclusion": "success"
+    },
+    "codeql": {
+      "run": 43226878100,
+      "conclusion": "success"
+    }
+  },
+  "hosted": {
+    "project": "uftnykormtwlzolwbhfb",
+    "status": "ACTIVE_HEALTHY",
+    "migration_count": 5,
+    "pages": 21,
+    "fields": 537,
+    "auth_user_count": 0,
+    "admin_allowlisted": true,
+    "direct_authenticated_media_visibility_update": false,
+    "security_advisor_findings": 0,
+    "auth_admin_access": false,
+    "auth_config_verified": false,
+    "changed": false
+  },
+  "access": {
+    "cloudflare_plugin": false,
+    "resend_plugin": false,
+    "private_operator_credentials_present": false,
+    "cloudflare_browser": "login wall",
+    "resend_browser": "login wall",
+    "supabase_browser": "login wall"
+  },
+  "sql_probe": {
+    "scope": "Hosted READ ONLY / SET LOCAL ROLE anon / empty cms_published table; single sample; DB server time only",
+    "query": "select body from public.cms_published where kind='page' and slug='kurumsal' limit 1",
+    "index": "cms_published_kind_slug_key",
+    "rows": 0,
+    "planning_ms": 4.404,
+    "execution_ms": 0.73,
+    "shared_hit_blocks": 2,
+    "network_or_worker_measurement": false
+  },
+  "release": "NO-GO",
+  "staging_url": null,
+  "hosted_smtp_tested": false,
+  "hosted_backup_restored": false,
+  "validated_code_commit": "74357ff2c26c699cc2e61943e9a4fcfbe8f300d5",
+  "integration_ci": {
+    "run": 43234722434,
+    "conclusion": "success",
+    "unit_sql_tests": 58,
+    "local_auth_api_checks": 16,
+    "admin_ui_pages": 21,
+    "chromium_dev": 71,
+    "chromium_production": 71,
+    "performance": "success",
+    "codeql_run": 43234722768,
+    "codeql": "success",
+    "hosted_acceptance": false
+  }
+}

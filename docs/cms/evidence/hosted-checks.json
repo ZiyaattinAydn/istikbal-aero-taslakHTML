@@ -1,0 +1,19 @@
+{
+  "date": "2026-11-11",
+  "project": "uftnykormtwlzolwbhfb",
+  "quotedMonthlyCostUSD": 0,
+  "pages": 21,
+  "controlledFields": 537,
+  "privateMediaBuckets": 1,
+  "authorizedEmailEntries": 1,
+  "authUsers": 0,
+  "activePublisherUsers": 0,
+  "allPublicCmsTablesHaveRLS": true,
+  "anonymousDraftRead": "rejected by actual hosted database role test",
+  "anonymousPublicationAndMediaVisibility": "empty as expected",
+  "securityAdvisorFindings": 0,
+  "hostedAuthConfiguration": "blocked: Auth Admin/config capability and dashboard session unavailable",
+  "localNativeOtp": "blocked: service archive download EAI_AGAIN; CI Docker/Mailpit test prepared",
+  "resendDelivery": "not tested; domain verification deliberately deferred",
+  "cloudflareStaging": "not deployed; no usable account connection"
+}

@@ -14,14 +14,26 @@
     "lint": "eslint src tests next.config.ts playwright.config.ts",
     "test": "node --import tsx --test tests/*.test.ts",
     "preview": "node scripts/preview.mjs",
-    "test:browser": "playwright test"
+    "test:browser": "playwright test",
+    "cms:inventory": "node --import tsx scripts/cms/inventory.ts",
+    "cms:inventory:check": "node --import tsx scripts/cms/inventory.ts --check",
+    "cms:snapshots:check": "node --import tsx scripts/cms/snapshot.ts --check",
+    "cms:seed:check": "node --import tsx scripts/cms/seed.ts --check",
+    "cms:pages:check": "node --import tsx scripts/cms/page-schema.ts --check && node --import tsx scripts/cms/page-seed.ts --check",
+    "cms:test:auth": "node scripts/cms/local-auth.mjs",
+    "cms:hosting:prepare": "node scripts/cms/prepare-cloudflare.mjs",
+    "cms:admin:provision": "node scripts/cms/provision-admin.mjs"
   },
   "dependencies": {
+    "@supabase/ssr": "0.12.7",
+    "@supabase/supabase-js": "2.119.0",
+    "image-size": "2.1.0",
     "next": "16.4.5",
     "react": "19.3.1",
     "react-dom": "19.3.1"
   },
   "devDependencies": {
+    "@electric-sql/pglite": "0.5.16",
     "@playwright/test": "1.65.0",
     "@types/node": "26.6.6",
     "@types/react": "19.3.0",

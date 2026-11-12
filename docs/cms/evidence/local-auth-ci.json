@@ -1,0 +1,43 @@
+{
+  "recordedAt": "2026-11-11",
+  "status": "passed",
+  "source": "GitHub Actions job log; sanitized summary, not the raw artifact",
+  "commit": "dfa9266ecccb42a7d383fb373e2b1e476c8dc221",
+  "runId": 43067794522,
+  "jobId": 130687369757,
+  "runUrl": "https://github.com/ZiyaattinAydn/istikbal-aerospace-web/actions/runs/43067794522",
+  "artifact": {
+    "id": 13876692421,
+    "name": "cms-local-auth-sanitized",
+    "digest": "sha256:61039cbe3290a348f2234b013cb47b36e63c5e6310b1b2b3f630b0185029e7f8"
+  },
+  "checksPassed": 15,
+  "templateReadiness": "All four endpoints serve exact configured OTP template",
+  "observedMailClass": "custom_auth",
+  "delivery": "Local Mailpit only; Resend/domain delivery NOT tested",
+  "checks": [
+    "Invited passwordless admin created",
+    "Open signup blocked",
+    "Unknown OTP cannot provision account",
+    "Incorrect email OTP rejected",
+    "Email OTP delivered to local Mailpit and verified",
+    "Consumed email OTP cannot be replayed",
+    "AAL1 cannot write CMS content",
+    "Real TOTP challenge upgrades to AAL2",
+    "Anonymous API cannot read drafts",
+    "Approved publication available through anonymous API",
+    "Anonymous Storage access reveals no private files",
+    "Private uploaded object cannot be downloaded anonymously",
+    "Publisher-approved image becomes readable",
+    "Sign out completes",
+    "Revoked session cannot reuse an existing JWT for writes"
+  ],
+  "secrets": "No OTP, keys or tokens included",
+  "otherJobs": {
+    "checks": "success",
+    "browserDev": "71 passed",
+    "browserProduction": "71 passed",
+    "performance": "success",
+    "codeQL": "success"
+  }
+}

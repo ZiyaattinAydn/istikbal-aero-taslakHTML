@@ -1,0 +1,42 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> istikbal-aerospace@0.1.0 build
+> next build
+
+▲ Next.js 16.4.5 (Turbopack)
+✓ Running next.config.ts took 72ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 421ms
+  Running TypeScript ...
+  Finished TypeScript in 2.1s ...
+  Collecting page data using 8 workers ...
+  Generating static pages using 8 workers (0/45) ...
+  Generating static pages using 8 workers (11/45)
+  Generating static pages using 8 workers (22/45)
+  Generating static pages using 8 workers (33/45)
+✓ Generating static pages using 8 workers (45/45) in 364ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /[slug]
+├   /[slug]
+│ ├ ● /gomulu-sistemler
+│ ├ ● /gomulu-sistemler.html
+│ ├ ● /haberler
+│ └ ● [+35 more paths]
+├ ƒ /admin
+├ ƒ /admin/content/[id]
+├ ƒ /admin/login
+├ ƒ /admin/mfa
+├ ƒ /admin/new/[kind]
+└ ƒ /admin/pages
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand

@@ -1,0 +1,39 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> istikbal-aerospace@0.1.0 build
+> next build
+
+▲ Next.js 16.4.5 (Turbopack)
+✓ Running next.config.ts took 47ms
+Attention: Next.js now collects completely anonymous telemetry regarding usage.
+This information is used to shape Next.js' roadmap and prioritize features.
+You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+https://nextjs.org/telemetry
+
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 2.0s
+  Running TypeScript ...
+  Finished TypeScript in 2.5s ...
+  Collecting page data using 5 workers ...
+  Generating static pages using 5 workers (0/45) ...
+  Generating static pages using 5 workers (11/45)
+  Generating static pages using 5 workers (22/45)
+  Generating static pages using 5 workers (33/45)
+✓ Generating static pages using 5 workers (45/45) in 588ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+└ ƒ /[slug]
+└   /[slug]
+  ├ ● /gomulu-sistemler
+  ├ ● /gomulu-sistemler.html
+  ├ ● /haberler
+  └ ● [+35 more paths]
+
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand

@@ -1,0 +1,36 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+  vinext check
+
+  Scanning project...
+
+
+  vinext compatibility report
+  ========================================
+
+  Imports: 2/2 fully supported
+    ✓  next/navigation (1 file)
+    ✓  next/link (1 file)
+
+  Config: 3/3 options supported
+    ✓  headers
+    ✓  allowedDevOrigins — dev server cross-origin allowlist
+    ✓  poweredByHeader — vinext never sends an X-Powered-By header
+
+  Project structure:
+    ✓  App Router (src/app/)
+    ✓  2 page(s)
+    ✓  1 layout(s)
+    ✓  1 not-found page(s)
+
+  ----------------------------------------
+  Overall: 100% compatible (9 supported, 0 partial, 0 issues)
+
+  Recommended next steps:
+    Run vinext init to set up your project automatically
+
+  Or manually:
+    1. Add "type": "module" to package.json
+    2. Install: npm install -D vinext vite @vitejs/plugin-react @vitejs/plugin-rsc react-server-dom-webpack
+    3. Create vite.config.ts with plugins: [vinext()]
+    4. Run: npx vite dev

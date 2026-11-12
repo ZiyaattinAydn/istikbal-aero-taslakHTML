@@ -1,3 +1,5 @@
+import { publishedPage } from "@/lib/cms/public";
+import { PublishedCards } from "@/components/pages/PublishedCards";
 import { notFound } from "next/navigation";
 import { getRoute, routes } from "@/data/routes";
 import { SiteShell } from "@/components/layout/SiteShell";
@@ -16,12 +18,13 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props) {
   const route = getRoute((await params).slug);
   if (!route) return { title: "Sayfa Bulunamadı | İstikbal Aerospace" };
+  const content = await publishedPage(route.slug);
   return {
-    title: route.title,
-    description: route.description,
+    title: content?.title || route.title,
+    description: content?.summary || route.description,
     openGraph: {
-      title: route.title,
-      description: route.description,
+      title: content?.title || route.title,
+      description: content?.summary || route.description,
       type: "website" as const,
     },
   };
@@ -30,6 +33,7 @@ export default async function ContentPage({ params, searchParams }: Props) {
   const { slug } = await params;
   const route = getRoute(slug);
   if (!route) notFound();
+  const content = await publishedPage(route.slug);
   const newsId =
     route.page === "newsDetail" || route.page === "flightControlNews"
       ? (await searchParams).id
@@ -47,7 +51,12 @@ export default async function ContentPage({ params, searchParams }: Props) {
           fetchPriority="high"
         />
       )}
-      <PageContent page={route.page} newsId={newsId} />
+      <PageContent
+        page={route.page}
+        newsId={newsId}
+        content={content?.fields}
+      />
+      <PublishedCards page={route.page} />
     </SiteShell>
   );
 }

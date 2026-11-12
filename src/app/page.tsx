@@ -1,8 +1,9 @@
+import { publishedPage } from "@/lib/cms/public";
 import { getRoute } from "@/data/routes";
 import { SiteShell } from "@/components/layout/SiteShell";
 import { PageContent } from "@/components/pages/PageContent";
 const route = getRoute("index")!;
-export const metadata = {
+const defaultMetadata = {
   title: route.title,
   description: route.description,
   openGraph: {
@@ -11,7 +12,14 @@ export const metadata = {
     type: "website",
   },
 };
-export default function Home() {
+export async function generateMetadata() {
+  const content = await publishedPage("index");
+  return content
+    ? { ...defaultMetadata, title: content.title, description: content.summary }
+    : defaultMetadata;
+}
+export default async function Home() {
+  const content = await publishedPage("index");
   return (
     <SiteShell page="home">
       <link
@@ -20,7 +28,7 @@ export default function Home() {
         href="/assets/hero-flight.webp"
         fetchPriority="high"
       />
-      <PageContent page="home" />
+      <PageContent page="home" content={content?.fields} />
     </SiteShell>
   );
 }
