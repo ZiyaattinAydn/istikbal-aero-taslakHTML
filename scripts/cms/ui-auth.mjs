@@ -416,11 +416,22 @@ export async function runUiChecks({ status, admin, totp }) {
     // Search opens relevant semantic sections through the actual editor UI,
     // rather than forcing a details.open DOM state that React may reset.
     await page.getByRole("searchbox", { name: "Alan ara", exact: true }).fill("Görsel");
+    const pickerDiagnostics = await page.evaluate(() => {
+      const fields = [...document.querySelectorAll(".cms-image-picker")];
+      return {
+        pickerCount: fields.length,
+        shown: fields.filter((field) => field.getClientRects().length > 0).length,
+        firstSectionOpen: fields[0]?.closest("details")?.open ?? null,
+        firstButtonPresent: Boolean(fields[0]?.querySelector("button.cms-image-open")),
+        firstButtonVisible: Boolean(fields[0]?.querySelector("button.cms-image-open")?.getClientRects().length),
+      };
+    });
+    console.log("Inline picker structure (non-sensitive):", pickerDiagnostics);
+    assert.ok(pickerDiagnostics.pickerCount > 0, "No image picker rendered on the page");
     const imageInput = page.locator(".cms-image-picker").first();
     stage = "page-inline-image-upload:open-picker";
-    await imageInput.getByRole("button", { name: "Görsel seç veya yükle" })
-      .waitFor({ state: "visible" });
-    await imageInput.getByRole("button", { name: "Görsel seç veya yükle" }).click();
+    await imageInput.locator("button.cms-image-open").waitFor({ state: "visible" });
+    await imageInput.locator("button.cms-image-open").click();
     // No visit to /admin/media, no manual pre-registration or separate form.
     stage = "page-inline-image-upload:convert";
     await imageInput.locator('input[type="file"]').setInputFiles("public/assets/hero-flight.webp");
