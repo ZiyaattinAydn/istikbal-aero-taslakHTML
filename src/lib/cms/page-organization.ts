@@ -118,9 +118,9 @@ export function pageContentBlocks(fields: readonly PageField[]): PageEditBlock[]
       continue;
     }
 
-    const module = key.match(/^((?:focus|platformFocus)\.[^.]+\.modules\.\d+)\./);
-    if (module) {
-      const heading = fields.find((candidate) => candidate.key === module[1] + ".1")?.value ?? "";
+    const moduleMatch = key.match(/^((?:focus|platformFocus)\.[^.]+\.modules\.\d+)\./);
+    if (moduleMatch) {
+      const heading = fields.find((candidate) => candidate.key === moduleMatch[1] + ".1")?.value ?? "";
       append(module[1], compact(heading, "Mühendislik konusu"), "Aynı konuya ait başlık ve açıklama", field);
       continue;
     }
