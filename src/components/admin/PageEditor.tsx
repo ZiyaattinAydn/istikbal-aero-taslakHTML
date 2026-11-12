@@ -38,6 +38,7 @@ export function PageEditor({
   const [current, setCurrent] = useState(values);
   const [query, setQuery] = useState("");
   const [selected, setSelected] = useState("");
+  const [focusRequest, setFocusRequest] = useState(0);
   const [previewOpen, setPreviewOpen] = useState(true);
   const [match, setMatch] = useState<"ready" | "found" | "missing">("ready");
 
@@ -67,7 +68,7 @@ export function PageEditor({
 
   const sendPreview = () => {
     iframeRef.current?.contentWindow?.postMessage(
-      { channel: CHANNEL, kind: "sync", values: current, selected },
+      { channel: CHANNEL, kind: "sync", values: current, selected, focusRequest },
       window.location.origin,
     );
   };
@@ -76,7 +77,7 @@ export function PageEditor({
     if (previewOpen) sendPreview();
     // Sync is intentionally repeated when a text field or selected field changes.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [current, selected, previewOpen]);
+  }, [current, selected, focusRequest, previewOpen]);
 
   useEffect(() => {
     const onMessage = (event: MessageEvent) => {
@@ -119,6 +120,7 @@ export function PageEditor({
   const showField = (key: string) => {
     setPreviewOpen(true);
     setSelected(key);
+    setFocusRequest((count) => count + 1);
     setMatch("ready");
   };
 
