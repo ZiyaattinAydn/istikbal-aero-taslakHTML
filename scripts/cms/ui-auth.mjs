@@ -128,11 +128,29 @@ export async function runUiChecks({ status, admin, totp }) {
     checks.push(
       "Browser OTP and first-time TOTP enrollment; real HttpOnly session",
     );
-    assert.ok(
-      (await context.cookies())
-        .filter((c) => c.name.includes("auth-token"))
-        .every((c) => c.httpOnly && c.path === "/admin"),
-    );
+    const authCookies = (await context.cookies())
+      .filter((cookie) => cookie.name.includes("auth-token"));
+    assert.ok(authCookies.length > 0, "Browser must receive a session cookie");
+    const now = Date.now() / 1000;
+    console.log("Authenticated cookie policy (no names/values):", {
+      count: authCookies.length,
+      flags: authCookies.map((cookie) => ({
+        path: cookie.path,
+        httpOnly: cookie.httpOnly,
+        sameSite: cookie.sameSite,
+        hasExpiry: cookie.expires > 0,
+        expiryHours: cookie.expires > 0 ? Math.round((cookie.expires - now) / 3600) : null,
+      })),
+    });
+    for (const cookie of authCookies) {
+      assert.equal(cookie.httpOnly, true);
+      assert.equal(cookie.path, "/admin");
+      assert.equal(cookie.sameSite, "Lax");
+      if (cookie.expires > 0)
+        assert.ok(cookie.expires <= now + 7 * 24 * 60 * 60 + 120,
+          "CMS cookie must not exceed the seven-day upper bound");
+    }
+    checks.push("Admin session cookies are HttpOnly, SameSite=Lax, path-scoped and time-bounded");
     const schema = JSON.parse(
       readFileSync("src/data/cms-page-schema.json", "utf8"),
     );

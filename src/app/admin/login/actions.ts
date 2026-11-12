@@ -1,6 +1,7 @@
 "use server";
 import { redirect } from "next/navigation";
 import { cmsClient, requireAdmin } from "@/lib/cms/server";
+import { allowedCmsEmail } from "@/lib/cms/allowed-email";
 export type LoginState = { message: string };
 export async function requestCode(
   _state: LoginState,
@@ -9,10 +10,7 @@ export async function requestCode(
   const email = String(form.get("email") || "")
     .trim()
     .toLowerCase();
-  const allow = (process.env.CMS_ALLOWED_EMAILS || "")
-    .split(",")
-    .map((e) => e.trim().toLowerCase());
-  if (allow.includes(email) && email.length < 255) {
+  if (allowedCmsEmail(email)) {
     const db = await cmsClient();
     await db.auth.signInWithOtp({
       email,
@@ -34,6 +32,8 @@ export async function verifyCode(
     token = String(form.get("code") || "");
   if (!/^\d{6}$/.test(token))
     return { message: "Altı haneli kodu kontrol edin." };
+  if (!allowedCmsEmail(email))
+    return { message: "Kod doğrulanamadı. Süresi dolmuş olabilir." };
   const db = await cmsClient();
   const { error } = await db.auth.verifyOtp({ email, token, type: "email" });
   if (error) return { message: "Kod doğrulanamadı. Süresi dolmuş olabilir." };
@@ -50,9 +50,11 @@ export async function enrollFactor() {
   // Do not create multiple verified factors. Existing unverified enrollments are reused by restarting explicitly.
   if (factors?.totp.some((f) => f.status === "verified"))
     return { error: "Doğrulama uygulamanız zaten bağlı." };
-  for (const f of factors?.all || [])
-    if (f.status === "unverified")
-      await db.auth.mfa.unenroll({ factorId: f.id });
+  for (const f of factors?.all || []) {
+    if (f.status !== "unverified") continue;
+    const { error: cleanupError } = await db.auth.mfa.unenroll({ factorId: f.id });
+    if (cleanupError) return { error: "Eski tamamlanmamış MFA kurulumu temizlenemedi." };
+  }
   const { data, error } = await db.auth.mfa.enroll({
     factorType: "totp",
     friendlyName: "İstikbal CMS",
@@ -67,8 +69,12 @@ export async function verifyFactor(
   const { db } = await requireAdmin(false);
   const code = String(form.get("code") || ""),
     factorId = String(form.get("factor") || "");
-  if (!/^\d{6}$/.test(code))
-    return { message: "Altı haneli kodu kontrol edin." };
+  if (!/^\d{6}$/.test(code) || !/^[0-9a-f-]{36}$/i.test(factorId))
+    return { message: "Doğrulama kodunu ve cihazını kontrol edin." };
+  const { data: factors, error: listError } = await db.auth.mfa.listFactors();
+  if (listError || !factors?.all.some((factor) => factor.id === factorId &&
+      factor.factor_type === "totp"))
+    return { message: "Doğrulama cihazı bulunamadı." };
   const { error } = await db.auth.mfa.challengeAndVerify({ factorId, code });
   if (error)
     return { message: "Doğrulama başarısız. Yeni kodla tekrar deneyin." };

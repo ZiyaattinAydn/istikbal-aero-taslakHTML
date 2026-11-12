@@ -1,4 +1,5 @@
 import "server-only";
+import { CMS_AUTH_COOKIE_OPTIONS, boundedCmsCookieOptions } from "@/lib/cms/cookie-policy";
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 import { notFound, redirect } from "next/navigation";
@@ -16,20 +17,13 @@ export async function cmsClient() {
     process.env.SUPABASE_URL!,
     process.env.SUPABASE_PUBLISHABLE_KEY!,
     {
-      cookieOptions: {
-        httpOnly: true,
-        // Keep the browser session across restarts; Supabase still controls token validity.
-        maxAge: 60 * 60 * 24 * 365,
-        sameSite: "lax",
-        secure: process.env.NODE_ENV === "production",
-        path: "/admin",
-      },
+      cookieOptions: CMS_AUTH_COOKIE_OPTIONS,
       cookies: {
         getAll: () => jar.getAll(),
         setAll: (items) => {
           for (const { name, value, options } of items) {
             try {
-              jar.set(name, value, options);
+              jar.set(name, value, boundedCmsCookieOptions(options));
             } catch {
               /* Server components cannot rotate cookies; actions can. */
             }
