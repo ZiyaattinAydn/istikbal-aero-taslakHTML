@@ -185,6 +185,7 @@ export async function runUiChecks({ status, admin, totp }) {
         "page_save",
         30000,
       );
+      await until(async()=>Number(await form.locator('input[name=revision]').inputValue())===doc.revision+1,'page_refresh',30000);
       timings.save.push(Date.now() - saveStart);
       await page.reload();
       await area.waitFor();
@@ -224,6 +225,7 @@ export async function runUiChecks({ status, admin, totp }) {
         doc.id,
         (d) => d.revision === doc.revision + 2,
       );
+      await until(async()=>Number(await form.locator('input[name=revision]').inputValue())===doc.revision+2,'restore_refresh',30000);
       await page.reload();
       assert.notEqual(await area.inputValue(), "QA sayfa " + entry.slug);
       await submitStatus("approve", doc.id, (d) => d.approval === "approved");
