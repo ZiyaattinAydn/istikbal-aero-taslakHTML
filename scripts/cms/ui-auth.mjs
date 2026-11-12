@@ -445,12 +445,19 @@ export async function runUiChecks({ status, admin, totp }) {
     stage = "page-inline-image-upload:upload";
     await sendInline.click();
     stage = "page-inline-image-upload:verify-private";
-    const { data: inlineMedia, error: inlineError } = await admin
-      .from("cms_media")
-      .select("id,visibility")
-      .eq("alt", "QA doğrudan yükleme")
-      .single();
-    assert.equal(inlineError, null);
+    let inlineMedia;
+    await until(async () => {
+      const { data, error } = await admin.from("cms_media")
+        .select("id,visibility").eq("alt", "QA doğrudan yükleme").maybeSingle();
+      if (error) throw Error("inline_media_lookup_rejected");
+      inlineMedia = data;
+      if (!data) {
+        const messages = await imageInput.locator('[role="status"]').allTextContents();
+        if (messages.some((message) => /yüklenemedi|yükleme tamamlanamadı|izin verilmiyor/i.test(message)))
+          throw Error("inline_upload_rejected");
+      }
+      return Boolean(data?.id);
+    }, "inline_upload_complete", 30000);
     assert.equal(inlineMedia?.visibility, "private");
     const selectedField = await imageInput.getAttribute("data-image-picker");
     const imageKey = selectedField.slice("cms-content-field-".length);
