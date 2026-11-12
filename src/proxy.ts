@@ -16,6 +16,8 @@ export async function proxy(request: NextRequest) {
     {
       cookieOptions: {
         httpOnly: true,
+        // Keep the browser session across restarts; Supabase still controls token validity.
+        maxAge: 60 * 60 * 24 * 365,
         sameSite: "lax",
         secure: process.env.NODE_ENV === "production",
         path: "/admin",

@@ -38,8 +38,15 @@ export default async function EditPage({
       .limit(100),
   ]);
   return (
-    <section>
-      <h1>{schema.title.split("|")[0]}</h1>
+    <section className="cms-editor-page">
+      <div className="cms-page-heading">
+        <div>
+          <div className="cms-eyebrow">WEB SAYFALARI / DÜZENLE</div>
+          <h1>{schema.title.split("|")[0]}</h1>
+          <p>Metinleri ve görselleri düzenleyin. Taslak kaydından sonra gerçek şablonda önizleyebilirsiniz.</p>
+        </div>
+        <a href="/admin/pages" className="cms-editor-back">← Sayfalara dön</a>
+      </div>
       <PageEditor
         key={`${slug}:${doc.revision}`}
         slug={slug}

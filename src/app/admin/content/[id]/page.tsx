@@ -24,8 +24,15 @@ export default async function Edit({
     .limit(30);
   const options = await editorOptions(db, id);
   return (
-    <section>
-      <h1>İçeriği düzenle</h1>
+    <section className="cms-editor-page">
+      <div className="cms-page-heading">
+        <div>
+          <div className="cms-eyebrow">İÇERİK KÜTÜPHANESİ / DÜZENLE</div>
+          <h1>{data.body.title || "İçeriği düzenle"}</h1>
+          <p>Revizyon {data.revision} · Önce taslağı kaydedin, ardından inceleyip yayımlayın.</p>
+        </div>
+        <a href="/admin" className="cms-editor-back">← İçeriklere dön</a>
+      </div>
       <ContentEditor
         {...options}
         key={`${id}:${data.revision}`}
