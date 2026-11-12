@@ -21,7 +21,7 @@ export default async function New({
           <h1>Yeni içerik</h1>
           <p>İçeriğinizi oluşturun ve taslak olarak kaydedin. Yayınlama ayrı bir onay adımıdır.</p>
         </div>
-        <Link href="/admin" className="cms-editor-back">← İçeriklere dön</Link>
+        <Link href="/admin/library" className="cms-editor-back">← İçeriklere dön</Link>
       </div>
       <ContentEditor
         {...options}
