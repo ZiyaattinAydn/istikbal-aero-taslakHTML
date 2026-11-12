@@ -4,7 +4,7 @@ on:
     branches: [main]
   pull_request:
     # Validate stacked CMS PRs without merging unfinished features into main.
-    branches: [main, feat/cms-foundation, feat/cms-admin-experience, feat/cms-visual-preview, feat/cms-completion-audit, feat/cms-existing-content-bridge, feat/cms-single-source-admin, feat/cms-unified-media-library, feat/cms-deterministic-preview, feat/cms-direct-publication]
+    branches: [main, feat/cms-foundation, feat/cms-admin-experience, feat/cms-visual-preview, feat/cms-completion-audit, feat/cms-existing-content-bridge, feat/cms-single-source-admin, feat/cms-unified-media-library, feat/cms-deterministic-preview, feat/cms-direct-publication, feat/cms-security-controls, feat/cms-release-qa]
 permissions:
   contents: read
 concurrency:
@@ -63,6 +63,7 @@ jobs:
         run: node --check scripts/cms/media-backup.mjs
       - run: npm test
       - run: npm run cms:inventory:check
+      - run: npm run cms:release:check
       - run: npm run cms:snapshots:check
       - run: npm run cms:seed:check
       - run: npm run cms:pages:check
