@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useState } from "react";
 import { SiteShell } from "@/components/layout/SiteShell";
 import { PageContent } from "@/components/pages/PageContent";
-import { PagePreviewBridge } from "./PagePreviewBridge";
+import { PagePreviewBridge, findFieldTargets } from "./PagePreviewBridge";
 import type { PageId } from "@/data/routes";
 import type { PageField, PageValues } from "@/lib/cms/page-values";
 
@@ -79,6 +79,25 @@ export function PagePreviewRuntime({
     window.addEventListener("message", onMessage);
     return () => window.removeEventListener("message", onMessage);
   }, [allowed]);
+
+  useLayoutEffect(() => {
+    const root = document.getElementById("main");
+    if (!root) return;
+    const targets = findFieldTargets(root, fields, initialValues);
+    for (const [key, target] of targets) {
+      const live = liveValues[key];
+      const originalValue = initialValues[key] ?? target.field.value;
+      if (target.field.kind !== "text" || typeof live !== "string" ||
+          live === originalValue || !target.textNode || !target.originalText ||
+          !root.contains(target.textNode)) continue;
+      // Only a uniquely matched real Text node is writable. React has just
+      // committed this subtree; apply unsaved text before the browser paints.
+      const original = target.originalText;
+      target.textNode.data = original.includes(target.source)
+        ? original.replace(target.source, live)
+        : original.trim() === target.source.trim() ? live : original;
+    }
+  }, [fields, initialValues, liveValues, renderKey]);
 
   return (
     <>
