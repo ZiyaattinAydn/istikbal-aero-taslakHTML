@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ContentEditor, type ContentDocument } from "./ContentEditor";
 import { PageLinkField } from "./PageLinkField";
+import { ImageFieldPicker } from "./ImageFieldPicker";
 import { CanonicalContentPanel, type CanonicalPageItem } from "./CanonicalContentPanel";
 import { savePage } from "@/app/admin/pages/actions";
 import type { PageField, PageValues } from "@/lib/cms/page-values";
@@ -253,18 +254,13 @@ export function PageEditor({
                                 previewText || "Bu bölüm için metin"}
                             </p>
                             {field.kind === "image" ? (
-                              <select id={id} data-field={field.key}
+                              <ImageFieldPicker
+                                id={id}
                                 value={current[field.key] ?? field.value}
+                                media={media}
                                 onFocus={() => showField(field.key)}
-                                onChange={(event) => update(field.key, event.target.value)}>
-                                <option value={field.value}>Mevcut görsel</option>
-                                {media.map((item) => (
-                                  <option key={item.id} value={"cms:" + item.id}>
-                                    {item.alt}
-                                    {item.visibility === "private" ? " (özel — yayın öncesi açılmalı)" : ""}
-                                  </option>
-                                ))}
-                              </select>
+                                onChange={(next) => update(field.key, next)}
+                              />
                             ) : field.kind === "link" ? (
                               <PageLinkField id={id} value={current[field.key] ?? field.value}
                                 onFocus={() => showField(field.key)}
