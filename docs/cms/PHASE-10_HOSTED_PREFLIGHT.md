@@ -65,6 +65,30 @@ Bunları tamamlamadan hosted migration/seed yapma:
 
 **Durum:** Bu sohbetten yalnız metaveri envanteri ve kod QA gerçekleştirilebildi. MCP Supabase bağlantısında full db dump/restore ve private Storage baytlarını dışa aktarma yeteneği yok; **gerçek hosted yedeğinin alındığı veya restore edildiği iddia edilmez**.
 
+### Salt okunur yedek alma yardımcısı (Windows / Node)
+
+Bu repodaki `scripts/cms/backup-hosted.mjs`, hosted veritabanı yedeği için **yalnız SELECT yapan `pg_dump`** tabanlı bir operatör yardımcısıdır. Bulut kaynaklarında tablo/migration/izin/dosya değiştirmez.
+
+**Önkoşul:** PostgreSQL 17 veya daha yeni `pg_dump` + `pg_restore` kurulu olmalı; `pg_dump --version` ile kontrol edilebilir. Supabase paneli **Connect → Session Pooler (5432)** üzerindeki resmi host ve **Database password** gerekli. Script şifreyi istemci aracının kendi gizli terminal istemine bırakır; komut satırına, kod dosyalarına, GitHub'a veya sohbete yazdırmaz. `PGPASSWORD` ortam değişkenini bile devralmaz. **Şifreyi sohbet mesajı olarak paylaşma.**
+
+Repo kökünden:
+
+```powershell
+node scripts/cms/backup-hosted.mjs
+```
+
+Host sorulduğunda Supabase Connect bölümündeki **Session pooler host** bilgisini gir. Proje güvenliği için yalnız `uftnykormtwlzolwbhfb` ref'li direct host veya resmi Supabase pooler host + `postgres.uftnykormtwlzolwbhfb` kullanıcı adı ve 5432 portu kabul edilir. Veritabanı adı sabit `postgres` olur.
+
+Dosya varsayılan olarak kullanıcının yerel `AppData/Local/IstikbalAerospace/cms-backups/hosted-...` dizinine kaydedilir; repoya, GitHub Actions artifact'e veya paylaşılan bir bağlantıya **yüklenmez**. Script şunları doğrular:
+
+- `pg_dump` sıfır exit code ile tamamlandı, dosya boş değil.
+- `pg_restore --list` custom-format arşivi okuyabiliyor.
+- Liste içinde `cms_documents`, `cms_versions`, `cms_page_fields`, `auth.users`, `auth.sessions`, `storage.objects`, `supabase_migrations.schema_migrations` var.
+- Dosyanın SHA-256 özeti ve operatör için sır içermeyen `manifest.json` yerel olarak yazılıyor.
+- Kontrollerde eksik varsa arşive `.INCOMPLETE` ekleniyor ve geçiş engelleniyor.
+
+**Sınır ve güvenlik:** Bu bir **logical PostgreSQL arşividir**, henüz restore edilmiş/veri bütünlüğü kanıtlanmış **tam platform yedeği değildir**. `auth` tablosundaki hassas kayıtları içerir; diskte özel ve şifreli ortamda korunmalıdır. Supabase Storage nesne baytları, SMTP ayarları, Dashboard Auth yapılandırması ve bazı cluster/global roller `pg_dump` çıktısında bulunmaz. Storage gerçek dosyaları ayrıca yedeklenmeli; **restore provası ve preflight sonrası 21/537 eşitliği yapılmadan SQL migration veya seed uygulanmaz**. Kaynak: https://supabase.com/docs/guides/platform/migrating-within-supabase/backup-restore
+
 ## 4. Kontrollü geçiş sırası
 
 1. **Sıfır-dokunuş preflight** — `scripts/cms/hosted-readiness.sql` sonucu, tüm 5 migration ledger kaydı, RLS/trigger/role sayıları aynı proje üzerinden yeniden doğrulansın.
