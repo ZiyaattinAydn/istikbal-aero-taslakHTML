@@ -1,0 +1,23 @@
+{
+  "status": "passed",
+  "checks": [
+    "Invited passwordless admin created",
+    "Open signup blocked",
+    "Unknown OTP cannot provision account",
+    "Incorrect email OTP rejected",
+    "Email OTP delivered to local Mailpit and verified",
+    "Consumed email OTP cannot be replayed",
+    "AAL1 cannot write CMS content",
+    "Real TOTP challenge upgrades to AAL2",
+    "Anonymous API cannot read drafts",
+    "Approved publication available through anonymous API",
+    "Anonymous Storage access reveals no private files",
+    "Private uploaded object cannot be downloaded anonymously",
+    "Private media archive restores identical bytes without anonymous exposure",
+    "Publisher-approved image becomes readable",
+    "Sign out completes",
+    "Revoked session cannot reuse an existing JWT for writes"
+  ],
+  "emailDelivery": "Local Mailpit only; Resend/domain delivery NOT tested",
+  "project": "Disposable local Supabase CLI stack; no hosted keys"
+}

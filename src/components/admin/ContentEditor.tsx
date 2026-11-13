@@ -1,0 +1,386 @@
+"use client";
+import Link from "next/link";
+import { useActionState, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { saveContent, changeStatus } from "@/app/admin/actions";
+import type { ContentBody } from "@/lib/cms/model";
+import { ImageFieldPicker } from "./ImageFieldPicker";
+export type ContentDocument = {
+  id: string;
+  kind: string;
+  body: ContentBody;
+  revision: number;
+  approval: string;
+  status: string;
+};
+export function ContentEditor({
+  document,
+  creationId,
+  kind,
+  versions = [],
+  publisher = false,
+  published = false,
+  statusOnly = false,
+  externalDirty = false,
+  relations = [],
+  media = [],
+}: {
+  document?: ContentDocument;
+  creationId?: string;
+  kind: string;
+  versions?: { revision: number; created_at: string }[];
+  publisher?: boolean;
+  published?: boolean;
+  statusOnly?: boolean;
+  externalDirty?: boolean;
+  relations?: { id: string; title: string; kind: string }[];
+  media?: { id: string; alt: string; visibility: string }[];
+}) {
+  const router = useRouter();
+  const [dirty, setDirty] = useState(false);
+  const [state, save, pending] = useActionState(
+    async (
+      previous: { message: string; ok?: boolean; id?: string },
+      form: FormData,
+    ) => {
+      const result = await saveContent(previous, form);
+      if (result.ok) setDirty(false);
+      return result;
+    },
+    { message: "" },
+  );
+  const [status, change, changing] = useActionState(changeStatus, {
+    message: "",
+  });
+  const [relationSearch, setRelationSearch] = useState("");
+  const [preview, setPreview] = useState(false),
+    [body, setBody] = useState<ContentBody>(
+      document?.body || {
+        title: "",
+        summary: "",
+        paragraphs: [],
+        date: null,
+        source: null,
+        stage: null,
+      },
+    );
+  useEffect(() => {
+    const before = (e: BeforeUnloadEvent) => {
+      if (dirty) {
+        e.preventDefault();
+        e.returnValue = "";
+      }
+    };
+    window.addEventListener("beforeunload", before);
+    return () => window.removeEventListener("beforeunload", before);
+  }, [dirty]);
+  useEffect(() => {
+    if (state.ok) {
+      if (state.id) router.replace(`/admin/content/${state.id}`);
+      router.refresh();
+    }
+  }, [state, router]);
+  useEffect(() => {
+    if (status.ok) router.refresh();
+  }, [status, router]);
+  const update = (
+    key: keyof ContentBody,
+    value: ContentBody[keyof ContentBody],
+  ) => {
+    setDirty(true);
+    setBody((b) => ({ ...b, [key]: value }));
+  };
+  return (
+    <>
+      <p>
+        Önce taslağı kaydedin. Yayın yetkisi olan yönetici, başkasından onay beklemeden doğrudan yayımlayabilir.
+      </p>
+      {!statusOnly && (
+        <form action={save}>
+          <fieldset disabled={pending}>
+            <input type="hidden" name="id" value={document?.id || ""} />
+            <input type="hidden" name="creationId" value={creationId || ""} />
+            <input
+              type="hidden"
+              name="revision"
+              value={document?.revision || 0}
+            />
+            <input type="hidden" name="kind" value={kind} />
+            <label>
+              Başlık
+              <input
+                name="title"
+                value={body.title}
+                maxLength={160}
+                required
+                onChange={(e) => update("title", e.target.value)}
+              />
+            </label>
+            <label>
+              Kısa açıklama
+              <textarea
+                name="summary"
+                value={body.summary}
+                maxLength={1000}
+                onChange={(e) => update("summary", e.target.value)}
+              />
+            </label>
+            <label>
+              İçerik (paragraflar arasında boş satır bırakın)
+              <textarea
+                name="paragraphs"
+                rows={12}
+                value={body.paragraphs.join("\n\n")}
+                onChange={(e) =>
+                  update("paragraphs", e.target.value.split("\n\n"))
+                }
+              />
+            </label>
+            <label>
+              Tarih (bilinmiyorsa boş bırakın)
+              <input
+                name="date"
+                type="date"
+                value={body.date || ""}
+                onChange={(e) => update("date", e.target.value || null)}
+              />
+            </label>
+            <label>
+              Kaynak bağlantısı
+              <input
+                name="source"
+                type="url"
+                value={body.source || ""}
+                onChange={(e) => update("source", e.target.value || null)}
+              />
+            </label>
+            <label>
+              Çalışmanın aşaması
+              <input
+                name="stage"
+                value={body.stage || ""}
+                maxLength={100}
+                onChange={(e) => update("stage", e.target.value || null)}
+              />
+            </label>
+            <div className="cms-cover-field">
+              <strong>Kapak görseli</strong>
+              <input type="hidden" name="cover" value={body.cover_id || ""} />
+              <ImageFieldPicker
+                id="cms-cover-selector"
+                value={body.cover_id ? "cms:" + body.cover_id : ""}
+                media={media}
+                includeSite={false}
+                allowEmpty
+                onChange={(next) => update("cover_id", next.startsWith("cms:") ? next.slice(4) : null)}
+              />
+            </div>
+            <input
+              type="hidden"
+              name="related"
+              value={JSON.stringify(body.related_ids || [])}
+            />
+            {["project", "platform", "technology"].includes(kind) && (
+              <fieldset>
+                <legend>İlişkili içerikler (en fazla 12)</legend>
+                <label>
+                  İlişkili içerik ara
+                  <input
+                    value={relationSearch}
+                    onChange={(e) => setRelationSearch(e.target.value)}
+                  />
+                </label>
+                {relations
+                  .filter(
+                    (r) =>
+                      !relationSearch ||
+                      r.title
+                        .toLocaleLowerCase("tr")
+                        .includes(relationSearch.toLocaleLowerCase("tr")),
+                  )
+                  .map((r) => (
+                    <label key={r.id}>
+                      <input
+                        type="checkbox"
+                        value={r.id}
+                        checked={body.related_ids?.includes(r.id) || false}
+                        onChange={(e) =>
+                          update(
+                            "related_ids",
+                            e.target.checked
+                              ? [...(body.related_ids || []), r.id]
+                              : (body.related_ids || []).filter(
+                                  (id) => id !== r.id,
+                                ),
+                          )
+                        }
+                      />
+                      {r.title} —{" "}
+                      {
+                        {
+                          project: "Proje",
+                          platform: "Platform",
+                          technology: "Teknoloji",
+                        }[r.kind]
+                      }
+                    </label>
+                  ))}
+                {!relations.length && (
+                  <p>Önce bir proje, platform veya teknoloji kaydedin.</p>
+                )}
+                {(body.related_ids || [])
+                  .filter((id) => !relations.some((r) => r.id === id))
+                  .map((id, i) => (
+                    <label key={id}>
+                      <input
+                        type="checkbox"
+                        checked
+                        onChange={() =>
+                          update(
+                            "related_ids",
+                            (body.related_ids || []).filter((v) => v !== id),
+                          )
+                        }
+                      />
+                      Kayıtlı ilişki {i + 1} (seçim aralığı dışında)
+                    </label>
+                  ))}
+                <small>
+                  Yalnız yayımlanmış hedefler halka açık detayda gösterilir.
+                  Seçimler bu taslakla birlikte kaydedilir ve geri alınır.
+                </small>
+              </fieldset>
+            )}
+            <div className="actions">
+              <button disabled={pending}>Taslak kaydet</button>
+              <button type="button" onClick={() => setPreview(!preview)}>
+                Metni önizle
+              </button>
+              <Link
+                href="/admin/library"
+                onClick={(e) => {
+                  if (
+                    dirty &&
+                    !window.confirm(
+                      "Kaydedilmemiş değişiklikler var. Ayrılmak istiyor musunuz?",
+                    )
+                  )
+                    e.preventDefault();
+                }}
+              >
+                Listeye dön
+              </Link>
+            </div>
+            <p role="status">{state.message}</p>
+          </fieldset>
+        </form>
+      )}
+      {preview && (
+        <article aria-label="Metin önizlemesi">
+          <small>Metin önizlemesi — kurumsal sayfa şablonu değildir</small>
+          <h2>{body.title}</h2>
+          <p>{body.summary}</p>
+          {body.paragraphs.map((p, i) => (
+            <p key={i}>{p}</p>
+          ))}
+        </article>
+      )}
+      {document && (
+        <>
+          <p>
+            Durum:{" "}
+            {
+              (
+                {
+                  draft: "Taslak",
+                  in_review: "Eski inceleme kaydı",
+                  approved: "Eski onay kaydı",
+                  published: "Yayında",
+                  archived: "Arşivde",
+                } as Record<string, string>
+              )[document.status]
+            }
+          </p>
+          {published && document.status !== "published" && (
+            <p role="status">Önceki sürüm hâlâ yayında. Kaydettiğiniz yeni taslak, Yayımla düğmesine basılana kadar ziyaretçilere gösterilmez.</p>
+          )}
+          {!statusOnly && !dirty && (
+            <p>
+              <Link
+                href={`/admin/content/${document.id}/preview`}
+                target="_blank"
+              >
+                Gerçek şablonda önizle
+              </Link>
+            </p>
+          )}
+          <form action={change}>
+            <input type="hidden" name="id" value={document.id} />
+            <input type="hidden" name="revision" value={document.revision} />
+            <div className="actions">
+              {publisher && (
+                <>
+                  <button
+                    type="submit"
+                    name="operation"
+                    value="publish"
+                    disabled={dirty || externalDirty || changing || (published && document.status === "published")}
+                  >
+                    {published ? "Yeni taslağı yayımla" : "Yayımla"}
+                  </button>
+                  {published && (
+                    <button
+                      type="submit"
+                      name="operation"
+                      value="unpublish"
+                      disabled={dirty || externalDirty || changing}
+                      onClick={(event) => {
+                        if (!window.confirm("Bu içeriği herkese açık yayından kaldırmak istiyor musunuz? Taslak ve sürümler saklanacak.")) {
+                          event.preventDefault();
+                        }
+                      }}
+                    >
+                      Yayından kaldır
+                    </button>
+                  )}
+                  <button
+                    type="submit"
+                    name="operation"
+                    value="archive"
+                    disabled={dirty || externalDirty || changing}
+                    onClick={(event) => {
+                      if (!window.confirm("İçeriği arşivlemek istiyor musunuz? Yayımlanmışsa yayından da kaldırılacak.")) {
+                        event.preventDefault();
+                      }
+                    }}
+                  >
+                    Arşivle
+                  </button>
+                </>
+              )}
+            </div>
+            <label>
+              Geçmiş sürüm
+              <select name="version">
+                {versions.map((v) => (
+                  <option key={v.revision} value={v.revision}>
+                    {new Date(v.created_at).toLocaleString("tr-TR")} — sürüm{" "}
+                    {v.revision}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <button
+              name="operation"
+              value="restore"
+              disabled={dirty || externalDirty || changing || !versions.length}
+            >
+              Taslak olarak geri al
+            </button>
+            <p role="status">{status.message}</p>
+          </form>
+        </>
+      )}
+    </>
+  );
+}

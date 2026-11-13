@@ -3,7 +3,8 @@ on:
   push:
     branches: [main]
   pull_request:
-    branches: [main]
+    # Validate stacked CMS PRs without merging unfinished features into main.
+    branches: [main, feat/cms-foundation, feat/cms-admin-experience, feat/cms-visual-preview, feat/cms-completion-audit, feat/cms-existing-content-bridge, feat/cms-single-source-admin, feat/cms-unified-media-library, feat/cms-deterministic-preview, feat/cms-direct-publication, feat/cms-security-controls, feat/cms-release-qa]
 permissions:
   contents: read
 concurrency:
@@ -21,14 +22,14 @@ jobs:
         uses: gitleaks/gitleaks-action@e0c47f4f8be36e29cdc102c57e68cb5cbf0e8d1e # v3.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITLEAKS_ENABLE_COMMENTS: 'false'
-          GITLEAKS_ENABLE_UPLOAD_ARTIFACT: 'false'
-          GITLEAKS_ENABLE_SUMMARY: 'false'
-          GITLEAKS_VERSION: '8.30.1'
+          GITLEAKS_ENABLE_COMMENTS: "false"
+          GITLEAKS_ENABLE_UPLOAD_ARTIFACT: "false"
+          GITLEAKS_ENABLE_SUMMARY: "false"
+          GITLEAKS_VERSION: "8.30.1"
       - name: Scan all reachable Git history (redacted output)
         shell: bash
         env:
-          GITLEAKS_VERSION: '8.30.1'
+          GITLEAKS_VERSION: "8.30.1"
         run: |
           set -euo pipefail
           scanner="/tmp/gitleaks-${GITLEAKS_VERSION}/gitleaks"
@@ -58,7 +59,15 @@ jobs:
         run: npm audit --omit=dev --audit-level=moderate
       - run: npm run typecheck
       - run: npm run lint
+      - name: Validate operator backup script syntax
+        run: node --check scripts/cms/media-backup.mjs
       - run: npm test
+      - run: npm run cms:inventory:check
+      - run: npm run cms:release:check
+      - run: npm run cms:snapshots:check
+      - run: npm run cms:seed:check
+      - run: npm run cms:pages:check
+      - run: node --import tsx scripts/cms/existing-content-seed.ts
       - run: cd legacy-ref && node scripts/verify-static.mjs
       - run: npm run build
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
@@ -99,4 +108,85 @@ jobs:
           path: |
             playwright-report/
             test-results/
+          retention-days: 7
+  cms-local-auth:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Start isolated Supabase CLI and Mailpit
+        shell: bash
+        run: |
+          set -euo pipefail
+          umask 077
+          npx --yes supabase@3.1.0 start --exclude realtime,imgproxy,studio,edge-runtime,logflare,vector,supavisor,postgres-meta > /dev/null 2>&1
+          npx --yes supabase@3.1.0 status -o json > /tmp/istikbal-local-status.json
+      - name: Wait for CLI email templates before clearing Auth fallback cache
+        run: node scripts/cms/prepare-local-auth.mjs
+      - run: npx playwright install --with-deps chromium
+      - name: Exercise real local OTP, TOTP, RLS, Storage and authenticated UI
+        env:
+          CMS_TEST_UI: "true"
+        run: npm run cms:test:auth
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: success()
+        with:
+          name: cms-local-auth-sanitized
+          path: |
+            docs/cms/evidence/local-auth.json
+            docs/cms/evidence/admin-ui.json
+            docs/cms/evidence/admin-mobile.png
+            docs/cms/evidence/admin-media.png
+          retention-days: 7
+      - name: Classify local database failures without secrets
+        if: failure()
+        shell: bash
+        run: |
+          docker logs supabase_db_istikbal-aerospace-cms 2>&1 | python3 -c 'import re,sys; text=sys.stdin.read(); known=re.findall(r"Account creation is restricted|Password authentication is disabled|permission denied for [a-z_.]+|column [a-z_.]+ does not exist|Invalid page field|Invalid link|Invalid image|Revision conflict|violates check constraint",text); print("Database error classes:",sorted(set(known)))'
+      - name: Classify template failures without email bodies or credentials
+        if: failure()
+        shell: bash
+        run: |
+          docker logs supabase_auth_istikbal-aerospace-cms 2>&1 | python3 -c 'import sys; text=sys.stdin.read(); print("Auth template failure classes:",{k:k in text for k in ["templatemailer_template_body_parse_error","templatemailer_template_body_fetch_error","connection refused","Error loading template","permission denied"]})'
+      - name: Stop disposable local services
+        if: always()
+        run: npx --yes supabase@3.1.0 stop > /dev/null 2>&1 || true
+  cms-performance:
+    needs: checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: ${{ github.event.pull_request.base.sha || github.sha }}
+          path: performance-base
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm ci && npm run build
+        working-directory: performance-base
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53
+        with:
+          name: production-build
+          path: .next
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/cms/compare-performance.mjs
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: success()
+        with:
+          name: cms-browser-performance
+          path: docs/cms/evidence/browser-*.json
           retention-days: 7

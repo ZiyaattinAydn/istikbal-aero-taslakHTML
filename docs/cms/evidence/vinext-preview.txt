@@ -1,0 +1,26 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> istikbal-aerospace@0.1.0 start:vinext
+> vite preview
+
+error when starting preview server:
+SystemError [ERR_SYSTEM_ERROR]: A system error occurred: uv_interface_addresses returned Unknown system error 1 (Unknown system error 1)
+    at Object.networkInterfaces (node:os:218:16)
+    at getLocalHosts (file:///tmp/istikbal-vinext-poc/node_modules/@cloudflare/vite-plugin/dist/index.mjs:69056:24)
+    at getPorts (file:///tmp/istikbal-vinext-poc/node_modules/@cloudflare/vite-plugin/dist/index.mjs:69111:16)
+    at getFirstAvailablePort (file:///tmp/istikbal-vinext-poc/node_modules/@cloudflare/vite-plugin/dist/index.mjs:88606:9)
+    at getInputInspectorPort (file:///tmp/istikbal-vinext-poc/node_modules/@cloudflare/vite-plugin/dist/index.mjs:88601:77)
+    at async getPreviewMiniflareOptions (file:///tmp/istikbal-vinext-poc/node_modules/@cloudflare/vite-plugin/dist/index.mjs:91173:29)
+    at async BasicMinimalPluginContext.configurePreviewServer (file:///tmp/istikbal-vinext-poc/node_modules/@cloudflare/vite-plugin/dist/index.mjs:91655:50)
+    at async preview (file:///tmp/istikbal-vinext-poc/node_modules/vite/dist/node/chunks/node.js:35065:91)
+    at async CAC.<anonymous> (file:///tmp/istikbal-vinext-poc/node_modules/vite/dist/node/cli.js:811:18) {
+  code: 'ERR_SYSTEM_ERROR',
+  info: {
+    errno: 1,
+    code: 'Unknown system error 1',
+    message: 'Unknown system error 1',
+    syscall: 'uv_interface_addresses'
+  },
+  errno: [Getter/Setter: 1],
+  syscall: [Getter/Setter: 'uv_interface_addresses']
+}

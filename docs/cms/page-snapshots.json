@@ -1,0 +1,1660 @@
+[
+  {
+    "key": "embedded",
+    "route": "gomulu-sistemler",
+    "title": "Gömülü Sistemler | İstikbal Aerospace",
+    "description": "PCB tasarımı, elektronik donanım ve gömülü yazılım mühendisliği.",
+    "renderSha256": "14ad17143afcaecf69af949da211908cf86a33469a88772da83e40035a6f7b22",
+    "sections": [
+      {
+        "tag": "h1",
+        "text": "Gömülü Sistemler"
+      },
+      {
+        "tag": "p",
+        "text": "Donanımla yazılımın birlikte düşünüldüğü sistemler."
+      },
+      {
+        "tag": "h2",
+        "text": "Bir disiplinin farklı katmanları."
+      },
+      {
+        "tag": "p",
+        "text": "Gömülü sistem geliştirme; işlem birimi, çevre birimleri, yazılım ve haberleşme arayüzlerinin birlikte ele alınmasını gerektirir. Buradaki başlıklar teknik yaklaşımın genel bir açıklamasıdır."
+      },
+      {
+        "tag": "h2",
+        "text": "Mühendislik bileşenleri."
+      },
+      {
+        "tag": "p",
+        "text": "Konuya ait kavramlar ve çalışma ilkeleri; doğrulanmış proje bilgileri ayrıca yayınlanacaktır."
+      },
+      {
+        "tag": "h3",
+        "text": "Elektronik mimari"
+      },
+      {
+        "tag": "p",
+        "text": "Elektronik bileşenlerin işlevsel bir sistem içinde düzenlenmesine dair temel yaklaşım."
+      },
+      {
+        "tag": "h3",
+        "text": "Gömülü yazılım"
+      },
+      {
+        "tag": "p",
+        "text": "Donanım kaynaklarını yöneten ve sistem davranışını tanımlayan yazılım katmanı."
+      },
+      {
+        "tag": "h3",
+        "text": "Entegrasyon ve test"
+      },
+      {
+        "tag": "p",
+        "text": "Donanım ve yazılımın birlikte değerlendirilmesi, arayüzlerin doğrulanması."
+      },
+      {
+        "tag": "p",
+        "text": "Sistemler birlikte çalışır: Gömülü Sistemler ile Sensör Füzyonu birbirini tamamlayan mühendislik alanlarıdır. Teknoloji başlıkları birbirinden bağımsız değildir."
+      }
+    ],
+    "media": [
+      "background-image:url('/assets/platform-systems.svg')"
+    ],
+    "links": [
+      "/index.html"
+    ]
+  },
+  {
+    "key": "newsDetail",
+    "route": "haber-detay",
+    "title": "Tengri AI Paylaşımı | İstikbal Aerospace",
+    "description": "Tengri AI ve bağlantılı savunma ağları konusunda kamuya açık şirket tanıtımı.",
+    "renderSha256": "709ed3b1077a801abb16fa4a67f72f9c534b58e5c9fbb860ba596df7349a97e0",
+    "sections": [
+      {
+        "tag": "h1",
+        "text": "Tengri AI"
+      },
+      {
+        "tag": "p",
+        "text": "Yapay zekâ destekli savunma ağı yaklaşımı üzerine şirket paylaşımı."
+      },
+      {
+        "tag": "h2",
+        "text": "Tengri AI ve bağlantılı savunma sistemleri."
+      },
+      {
+        "tag": "p",
+        "text": "İstikbal Aerospace, Tengri AI tanıtımında çok katmanlı yapay zekâ, tehdit değerlendirme, hava ve kara sistemleri arasında koordinasyon ve ağ tabanlı karar desteği hedeflerini paylaştı."
+      },
+      {
+        "tag": "h2",
+        "text": "Teknoloji vizyonu"
+      },
+      {
+        "tag": "p",
+        "text": "Sensör verilerinin bir araya getirilmesi, çoklu hedeflerin değerlendirilmesi ve bilgi paylaşımı, tanıtımda öne çıkan ana başlıklardır. Açıklanan konseptler doğrulanmış operasyonel performans bilgisi olarak sunulmamaktadır."
+      },
+      {
+        "tag": "p",
+        "text": "Orijinal LinkedIn paylaşımı ↗"
+      }
+    ],
+    "media": [
+      "background-image:url('/assets/tengri-network.svg')",
+      "/assets/tengri-network.svg"
+    ],
+    "links": [
+      "/index.html",
+      "https://tr.linkedin.com/posts/i%CC%87stikbal-aerospace_tengriai-defenseai-savunmasanayi-activity-7370532002627878912-WIXo"
+    ]
+  },
+  {
+    "key": "news",
+    "route": "haberler",
+    "title": "Haberler & Duyurular | İstikbal Aerospace",
+    "description": "İstikbal Aerospace Tengri AI ve uçuş kontrolcüsü teknoloji paylaşımları.",
+    "renderSha256": "b114cb0142543aab5fc08d9f2bbc80d1177cf661ec3f250a39681d944298cad0",
+    "sections": [
+      {
+        "tag": "h1",
+        "text": "Haberler & Duyurular"
+      },
+      {
+        "tag": "p",
+        "text": "İstikbal Aerospace’in kamuya açık açıklamaları ve teknoloji paylaşımları."
+      },
+      {
+        "tag": "h2",
+        "text": "Teknoloji gündemi."
+      },
+      {
+        "tag": "p",
+        "text": "İstikbal Aerospace’in kamuya açık teknoloji tanıtımlarından seçilen içerikler. Paylaşım ve duyurular ayrı kategorilerde izlenebilir."
+      },
+      {
+        "tag": "h3",
+        "text": "Tengri AI: Yapay zekâ ve karar destek vizyonu"
+      },
+      {
+        "tag": "p",
+        "text": "Şirketin Tengri AI tanıtımında ağ bağlantılı savunma sistemleri ve çok katmanlı yapay zekâ vizyonu anlatılıyor."
+      },
+      {
+        "tag": "h3",
+        "text": "Yapay zekâ destekli yeni nesil uçuş kontrolcüsü"
+      },
+      {
+        "tag": "p",
+        "text": "Şirketin uçuş kontrol sistemlerine yönelik yapay zekâ ve kontrol algoritmaları odaklı teknoloji paylaşımı."
+      },
+      {
+        "tag": "p",
+        "text": "Bu kategoride yayımlanmış bir içerik bulunmuyor."
+      }
+    ],
+    "media": [
+      "background-image:url('/assets/hero-hangar-photo.webp')",
+      "background-image:url('/assets/tengri-network.svg')",
+      "background-image:url('/assets/platform-systems.svg')"
+    ],
+    "links": [
+      "/index.html",
+      "/haber-detay.html",
+      "/ucus-kontrol-paylasimi.html"
+    ]
+  },
+  {
+    "key": "airDefense",
+    "route": "hava-savunma-aglari",
+    "title": "Hava Savunma Ağları | İstikbal Aerospace",
+    "description": "Hava savunma ağları, bağlantılı sistemler ve karar destek teknolojileri.",
+    "renderSha256": "96f833be8a28a87134e4f1b05c24d83f9273785ecb96d8fae6dde0836306a30d",
+    "sections": [
+      {
+        "tag": "h1",
+        "text": "Hava Savunma Ağları"
+      },
+      {
+        "tag": "p",
+        "text": "Algılama, bağlantı ve karar destek yaklaşımı."
+      },
+      {
+        "tag": "h2",
+        "text": "Birlikte çalışan teknolojiler."
+      },
+      {
+        "tag": "p",
+        "text": "İstikbal Aerospace’in kamuya açık açıklamalarında hava savunma ağları ve yapay zekâ destekli koordinasyon yaklaşımları çalışma alanları arasında yer alır."
+      },
+      {
+        "tag": "h2",
+        "text": "Sistem bütünlüğü."
+      },
+      {
+        "tag": "p",
+        "text": "Havacılık çalışmalarında birbirini tamamlayan temel mühendislik başlıkları."
+      },
+      {
+        "tag": "h3",
+        "text": "Algılama"
+      },
+      {
+        "tag": "p",
+        "text": "Farklı veri kaynaklarından durumsal bilgi elde etme yaklaşımı."
+      },
+      {
+        "tag": "h3",
+        "text": "Veri bağlantısı"
+      },
+      {
+        "tag": "p",
+        "text": "Bağlı sistemler arasında haberleşme ve bilgi akışı."
+      },
+      {
+        "tag": "h3",
+        "text": "Karar desteği"
+      },
+      {
+        "tag": "p",
+        "text": "Tengri AI başlığıyla ilişkili değerlendirme ve koordinasyon katmanları."
+      },
+      {
+        "tag": "p",
+        "text": "Otonom sistemler, gömülü donanım ve sensör füzyonu bu mimarilerle ilişkili mühendislik disiplinleridir."
+      }
+    ],
+    "media": [
+      "background-image:url('/assets/tengri-network.svg')"
+    ],
+    "links": [
+      "/index.html"
+    ]
+  },
+  {
+    "key": "iha",
+    "route": "iha-sistemleri",
+    "title": "İnsansız Hava Sistemleri | İstikbal Aerospace",
+    "description": "İnsansız hava platformlarında kontrol, haberleşme ve algılama teknolojilerine genel bakış.",
+    "renderSha256": "4a3baccbff86849a172b70845c2f53775779e0dccf05de41d9d337633c1312b1",
+    "sections": [
+      {
+        "tag": "h1",
+        "text": "İnsansız Hava Sistemleri"
+      },
+      {
+        "tag": "p",
+        "text": "Hava platformları, otonom uçuş ve sistem mühendisliği."
+      },
+      {
+        "tag": "h2",
+        "text": "Birlikte çalışan teknolojiler."
+      },
+      {
+        "tag": "p",
+        "text": "İnsansız hava araçları; gövde, elektronik, uçuş kontrolü, haberleşme ve sensör sistemlerinin birlikte çalışmasını gerektiren bütünleşik platformlardır."
+      },
+      {
+        "tag": "h2",
+        "text": "Sistem bütünlüğü."
+      },
+      {
+        "tag": "p",
+        "text": "Havacılık çalışmalarında birbirini tamamlayan temel mühendislik başlıkları."
+      },
+      {
+        "tag": "h3",
+        "text": "Uçuş elektroniği"
+      },
+      {
+        "tag": "p",
+        "text": "Uçuş kontrolü ve gömülü sistemler ile platform yönetimi."
+      },
+      {
+        "tag": "h3",
+        "text": "Otonom hareket"
+      },
+      {
+        "tag": "p",
+        "text": "Sensör verileri, karar mekanizmaları ve kontrol katmanları."
+      },
+      {
+        "tag": "h3",
+        "text": "Haberleşme"
+      },
+      {
+        "tag": "p",
+        "text": "Verinin platform bileşenleri arasında ve bağlantılı sistemlerde iletilmesi."
+      },
+      {
+        "tag": "p",
+        "text": "Otonom sistemler, gömülü donanım ve sensör füzyonu bu mimarilerle ilişkili mühendislik disiplinleridir."
+      }
+    ],
+    "media": [
+      "background-image:url('/assets/hero-hangar-photo.webp')"
+    ],
+    "links": [
+      "/index.html"
+    ]
+  },
+  {
+    "key": "communications",
+    "route": "ileri-haberlesme",
+    "title": "İleri Haberleşme | İstikbal Aerospace",
+    "description": "Bağlantılı platformlarda veri iletimi, haberleşme ve sistem entegrasyonu.",
+    "renderSha256": "1b794ebc4029a6db89aaeea66efdf2593e66341194b197dc7b195b9f6ec504dd",
+    "sections": [
+      {
+        "tag": "h1",
+        "text": "İleri Haberleşme"
+      },
+      {
+        "tag": "p",
+        "text": "Bağlantılı sistemler arasında bilgi akışı ve entegrasyon."
+      },
+      {
+        "tag": "h2",
+        "text": "Bir disiplinin farklı katmanları."
+      },
+      {
+        "tag": "p",
+        "text": "İstikbal Aerospace’in kamuya açık şirket özetinde haberleşme sistemleri ve şifreli taktik veri bağlantıları çalışma alanları arasında anılmaktadır. Burada haberleşme mimarilerinin genel ilkeleri yer alır; doğrulanmamış teknik uygulama, kapasite veya operasyonel ürün iddiası sunulmaz."
+      },
+      {
+        "tag": "h2",
+        "text": "Mühendislik bileşenleri."
+      },
+      {
+        "tag": "p",
+        "text": "Konuya ait kavramlar ve çalışma ilkeleri; doğrulanmış proje bilgileri ayrıca yayınlanacaktır."
+      },
+      {
+        "tag": "h3",
+        "text": "Veri iletimi"
+      },
+      {
+        "tag": "p",
+        "text": "Bağlantılı platformlar arasında durum ve ölçüm bilgilerinin aktarılmasına dair temel yaklaşım."
+      },
+      {
+        "tag": "h3",
+        "text": "Güvenlik ve bütünlük"
+      },
+      {
+        "tag": "p",
+        "text": "İletilen bilginin güvenliğinin ve tutarlılığının sistem tasarımında değerlendirilmesi."
+      },
+      {
+        "tag": "h3",
+        "text": "Sistem entegrasyonu"
+      },
+      {
+        "tag": "p",
+        "text": "Haberleşme katmanının sensörler, gömülü yazılım ve üst sistemlerle birlikte ele alınması."
+      },
+      {
+        "tag": "p",
+        "text": "Sistemler birlikte çalışır: İleri Haberleşme ile Sensör Füzyonu birbirini tamamlayan mühendislik alanlarıdır. Teknoloji başlıkları birbirinden bağımsız değildir."
+      }
+    ],
+    "media": [
+      "background-image:url('/assets/tengri-network.svg')"
+    ],
+    "links": [
+      "/index.html"
+    ]
+  },
+  {
+    "key": "contact",
+    "route": "iletisim",
+    "title": "İletişim | İstikbal Aerospace",
+    "description": "İstikbal Aerospace kurumsal iletişim bilgileri.",
+    "renderSha256": "9884536829554f73b1e3ae5f50306490d7d0592ef3b79e7d71f69804fc427d05",
+    "sections": [
+      {
+        "tag": "h1",
+        "text": "İletişim"
+      },
+      {
+        "tag": "p",
+        "text": "İstikbal Aerospace ile iletişime geçin."
+      },
+      {
+        "tag": "h2",
+        "text": "Birlikte iletişime geçelim."
+      },
+      {
+        "tag": "p",
+        "text": "Genel sorular, kurumsal iş birlikleri ve teknoloji alanları hakkında bilgi için."
+      },
+      {
+        "tag": "p",
+        "text": "İletişim formu henüz sunucuya bağlı değildir. Doğrudan e-posta veya telefon yoluyla ulaşabilirsiniz."
+      },
+      {
+        "tag": "p",
+        "text": "Bu form şu anda mesaj göndermiyor. Göndermek için yukarıdaki doğrudan iletişim bilgilerini kullanın."
+      }
+    ],
+    "media": [
+      "background-image:url('/assets/platform-systems.svg')"
+    ],
+    "links": [
+      "/index.html",
+      "mailto:abdullahdemiral@istikbalaerospace.com",
+      "tel:+905462781931"
+    ]
+  },
+  {
+    "key": "home",
+    "route": "index",
+    "title": "Ana Sayfa | İstikbal Aerospace",
+    "description": "İstikbal Aerospace havacılık, otonom sistemler, gömülü elektronik ve mühendislik alanları.",
+    "renderSha256": "cb42b697d7aeea076c3c58ed5c82283e3c5980f606009d3f3f03ce587ba4e212",
+    "sections": [
+      {
+        "tag": "h1",
+        "text": "Geleceğinsistemlerinitasarlıyoruz."
+      },
+      {
+        "tag": "p",
+        "text": "Havacılık, gömülü elektronik ve otonom sistemlerin kesişiminde mühendislik."
+      },
+      {
+        "tag": "p",
+        "text": "Gömülü elektronik.Otonom hareket.Entegre sistemler."
+      },
+      {
+        "tag": "h2",
+        "text": "Havacılığın farklı katmanları."
+      },
+      {
+        "tag": "p",
+        "text": "İnsansız hava platformlarından uçuş elektroniğine, bağlantılı sistem mimarilerinden otonom çözümlere uzanan çalışma alanları."
+      },
+      {
+        "tag": "h3",
+        "text": "İnsansız Hava Sistemleri"
+      },
+      {
+        "tag": "p",
+        "text": "İnsansız platform mimarileri ve hava aracı sistemleri."
+      },
+      {
+        "tag": "h3",
+        "text": "Gömülü Uçuş Mimarileri"
+      },
+      {
+        "tag": "p",
+        "text": "Donanım, yazılım ve kontrol katmanları."
+      },
+      {
+        "tag": "h3",
+        "text": "Hava Savunma Ağları"
+      },
+      {
+        "tag": "p",
+        "text": "Birbirine bağlı savunma sistemleri yaklaşımı."
+      },
+      {
+        "tag": "h2",
+        "text": "Sistemin ardındaki mühendislik."
+      },
+      {
+        "tag": "p",
+        "text": "Elektronik tasarımdan verinin birleştirilmesine uzanan temel çalışma alanları."
+      },
+      {
+        "tag": "h3",
+        "text": "Otonom Sistemler"
+      },
+      {
+        "tag": "p",
+        "text": "Algılama, karar süreçleri ve kontrol algoritmaları."
+      },
+      {
+        "tag": "h3",
+        "text": "Gömülü Sistemler & PCB"
+      },
+      {
+        "tag": "p",
+        "text": "Elektronik kart tasarımı, donanım ve gömülü yazılım."
+      },
+      {
+        "tag": "h3",
+        "text": "Sensör Füzyonu"
+      },
+      {
+        "tag": "p",
+        "text": "Farklı algılayıcılardan gelen verilerin bütünleştirilmesi."
+      },
+      {
+        "tag": "h3",
+        "text": "Yapay Zekâ & Tengri AI"
+      },
+      {
+        "tag": "p",
+        "text": "Ağ tabanlı karar destek ve savunma teknolojileri yaklaşımı."
+      },
+      {
+        "tag": "h2",
+        "text": "TENGRİ AI"
+      },
+      {
+        "tag": "p",
+        "text": "Hava ve kara sistemlerinin koordinasyonuna yönelik yapay zekâ temelli savunma ağı yaklaşımı. Algılama, tehdit değerlendirme ve karar destek katmanları üzerine çalışmalar."
+      },
+      {
+        "tag": "h2",
+        "text": "Araştırmadan uygulamaya."
+      },
+      {
+        "tag": "p",
+        "text": "PCB tasarımı, otonom hareket mühendisliği ve gömülü donanım gibi alanlarda araştırma ve geliştirme yaklaşımı."
+      },
+      {
+        "tag": "h2",
+        "text": "Sistemler, detaylarda şekillenir."
+      },
+      {
+        "tag": "p",
+        "text": "Elektronik donanım, gömülü yazılım ve otonom kontrolün birbirini tamamlayan disiplinler olarak ele alındığı mühendislik alanları."
+      },
+      {
+        "tag": "h2",
+        "text": "Kamuya açık gelişmeler."
+      },
+      {
+        "tag": "p",
+        "text": "Şirketin paylaştığı teknoloji çalışmalarına ve duyurularına göz atın."
+      },
+      {
+        "tag": "h3",
+        "text": "Tengri AI: Yapay zekâ destekli savunma ağı yaklaşımı"
+      },
+      {
+        "tag": "p",
+        "text": "İstikbal Aerospace tarafından kamuya açık olarak tanıtılan Tengri AI'ın odaklandığı teknoloji alanlarını keşfedin."
+      },
+      {
+        "tag": "h2",
+        "text": "Antalya'dan geleceğin teknolojilerine."
+      },
+      {
+        "tag": "p",
+        "text": "Antalya merkezli İstikbal Aerospace; havacılık, gömülü elektronik, PCB tasarımı ve otonom sistem mühendisliğini bir araya getiren çalışmalar yürütür."
+      }
+    ],
+    "media": [
+      "background-image:url('/assets/hero-hangar-photo.webp')",
+      "background-image:url('/assets/platform-systems.svg')",
+      "background-image:url('/assets/platform-flight.svg')",
+      "background-image:url('/assets/research-lab.svg')",
+      "background-image:url('/assets/tengri-network.svg')"
+    ],
+    "links": [
+      "/platformlar.html",
+      "/iletisim.html",
+      "/iha-sistemleri.html",
+      "/ucus-mimarileri.html",
+      "/hava-savunma-aglari.html",
+      "/otonom-sistemler.html",
+      "/gomulu-sistemler.html",
+      "/sensor-fuzyonu.html",
+      "/tengri-ai.html",
+      "/haber-detay.html"
+    ]
+  },
+  {
+    "key": "capabilities",
+    "route": "kabiliyetler",
+    "title": "Kabiliyetler | İstikbal Aerospace",
+    "description": "İstikbal Aerospace'in kamuya açık mühendislik uzmanlık ve teknoloji alanları.",
+    "renderSha256": "dce9c104920e225f87087aa30108c7680327599b685741020a74eb8c7bc0171c",
+    "sections": [
+      {
+        "tag": "h1",
+        "text": "Kabiliyetler"
+      },
+      {
+        "tag": "p",
+        "text": "İnsansız sistemlerden gömülü elektroniğe uzanan mühendislik çalışma alanları."
+      },
+      {
+        "tag": "h2",
+        "text": "Sistemlerin yapı taşları."
+      },
+      {
+        "tag": "p",
+        "text": "İstikbal Aerospace’in kamuya açık faaliyet ve uzmanlık tanıtımlarında yer alan başlıklar: insansız hava sistemleri, roket sistemleri, hava savunma ağları, haberleşme, gömülü donanım ve algılama."
+      },
+      {
+        "tag": "h3",
+        "text": "İnsansız Hava Araçları"
+      },
+      {
+        "tag": "p",
+        "text": "Hava platformları ve otonom uçuş mimarileri."
+      },
+      {
+        "tag": "h3",
+        "text": "Hava Savunma Ağları"
+      },
+      {
+        "tag": "p",
+        "text": "Ağ bağlantılı hava savunma ve karar destek yaklaşımı."
+      },
+      {
+        "tag": "h3",
+        "text": "İleri Haberleşme"
+      },
+      {
+        "tag": "p",
+        "text": "Bağlantılı platformlar ve taktik veri iletimi odağı."
+      },
+      {
+        "tag": "h3",
+        "text": "Roket Sistemleri"
+      },
+      {
+        "tag": "p",
+        "text": "Roket projelerinde uçuş elektroniği ve sistem entegrasyonu hakkında genel mühendislik çerçevesi."
+      },
+      {
+        "tag": "h3",
+        "text": "Gömülü Donanım & PCB"
+      },
+      {
+        "tag": "p",
+        "text": "Elektronik kart tasarımı ve donanım-yazılım bütünlüğü."
+      },
+      {
+        "tag": "h3",
+        "text": "Sensör Füzyonu"
+      },
+      {
+        "tag": "p",
+        "text": "Birden fazla veri kaynağının birlikte değerlendirilmesi."
+      },
+      {
+        "tag": "h2",
+        "text": "Otonom Sistemler"
+      },
+      {
+        "tag": "p",
+        "text": "Veri analizi, kontrol mantığı ve karar mekanizmalarının bir arada ele alındığı sistemler."
+      },
+      {
+        "tag": "h2",
+        "text": "Gömülü Donanım & PCB"
+      },
+      {
+        "tag": "p",
+        "text": "Elektronik kart tasarımı, gömülü işlemciler ve donanım-yazılım entegrasyonu."
+      },
+      {
+        "tag": "h2",
+        "text": "Sensör Füzyonu"
+      },
+      {
+        "tag": "p",
+        "text": "Farklı sensör verilerinin işlenmesi ve tek bir sistem görünümüne dönüştürülmesi."
+      },
+      {
+        "tag": "h2",
+        "text": "Tengri AI."
+      },
+      {
+        "tag": "p",
+        "text": "Şirketin yapay zekâ ve ağ merkezli karar desteği üzerine kamuya açık teknoloji yaklaşımı, diğer mühendislik disiplinleriyle ilişkilidir."
+      }
+    ],
+    "media": [
+      "background-image:url('/assets/research-lab.svg')",
+      "background-image:url('/assets/platform-flight.svg')",
+      "background-image:url('/assets/platform-systems.svg')",
+      "background-image:url('/assets/tengri-network.svg')"
+    ],
+    "links": [
+      "/index.html",
+      "/iha-sistemleri.html",
+      "/hava-savunma-aglari.html",
+      "/ileri-haberlesme.html",
+      "/roket-sistemleri.html",
+      "/gomulu-sistemler.html",
+      "/sensor-fuzyonu.html"
+    ]
+  },
+  {
+    "key": "about",
+    "route": "kurumsal",
+    "title": "Kurumsal | İstikbal Aerospace",
+    "description": "İstikbal Aerospace mühendislik yaklaşımı, prototipleme ve sistem entegrasyonu.",
+    "renderSha256": "ae42f189d00f5c6a05cd82e48739fc0e4d2e1ab9d9916f6eb31d314f77a03aa7",
+    "sections": [
+      {
+        "tag": "h1",
+        "text": "Kurumsal"
+      },
+      {
+        "tag": "p",
+        "text": "Havacılık, gömülü sistemler ve otonom yazılım odağında disiplinler arası mühendislik."
+      },
+      {
+        "tag": "h2",
+        "text": "Fikirden çalışan sisteme."
+      },
+      {
+        "tag": "p",
+        "text": "İstikbal Aerospace, Antalya / Kepez merkezli; havacılık, uzay ve savunma teknolojilerine yönelik alt sistemler, gömülü elektronik ve otonom yazılım çalışmalarına odaklanan bir teknoloji ve AR-GE girişimidir."
+      },
+      {
+        "tag": "h2",
+        "text": "Donanım, yazılım ve otonomi bir arada."
+      },
+      {
+        "tag": "p",
+        "text": "Elektronik tasarım, gömülü uçuş mimarileri ve otonom algoritmalar birbirinden bağımsız parçalar değildir. İstikbal Aerospace, kamuya açık kurumsal tanıtımında bu disiplinleri birlikte ele alan, çevik ve prototip geliştirmeye odaklı bir mühendislik yaklaşımı benimsediğini ifade eder."
+      },
+      {
+        "tag": "p",
+        "text": "Yaklaşımın odağında, kavramsal tasarımların donanım ve yazılımla buluşturulması; alt sistemlerin birlikte çalışabilir, incelenebilir ve test edilebilir yapılar olarak değerlendirilmesi bulunur."
+      },
+      {
+        "tag": "h2",
+        "text": "Tasarım. Prototipleme. Entegrasyon."
+      },
+      {
+        "tag": "p",
+        "text": "İstikbal Aerospace’in kamuya açık tanıtımında öne çıkan mühendislik süreçleri."
+      },
+      {
+        "tag": "h3",
+        "text": "Sistem Tasarımı"
+      },
+      {
+        "tag": "p",
+        "text": "Elektronik donanım, uçuş mimarileri ve yazılım bileşenlerini ortak bir sistem çerçevesinde değerlendirme."
+      },
+      {
+        "tag": "h3",
+        "text": "Hızlı Prototipleme"
+      },
+      {
+        "tag": "p",
+        "text": "Kavramsal fikirlerin elektronik tasarım, gömülü yazılım ve algoritma geliştirmeyle somutlaştırılması."
+      },
+      {
+        "tag": "h3",
+        "text": "Entegrasyon"
+      },
+      {
+        "tag": "p",
+        "text": "Farklı bileşenler arasında veri akışı, kontrol ve sistem davranışının bütün olarak ele alınması."
+      },
+      {
+        "tag": "h2",
+        "text": "Birbirini tamamlayan mühendislik alanları."
+      },
+      {
+        "tag": "p",
+        "text": "Şirketin kamuya açık tanıtımlarında yer alan çalışma başlıklarını ilgili sayfalardan inceleyebilirsiniz."
+      },
+      {
+        "tag": "h3",
+        "text": "Gömülü Uçuş Sistemleri"
+      },
+      {
+        "tag": "p",
+        "text": "Hava araçları için donanım ve yazılım mimarilerinin tasarımı."
+      },
+      {
+        "tag": "h3",
+        "text": "Otonom Algoritmalar"
+      },
+      {
+        "tag": "p",
+        "text": "Algılama, karar mekanizmaları ve otonom sistemlerin mühendislik temelleri."
+      },
+      {
+        "tag": "h3",
+        "text": "Yapay Zekâ & Sistemler"
+      },
+      {
+        "tag": "p",
+        "text": "Tengri AI çevresinde ele alınan yapay zekâ destekli savunma ağı konseptleri."
+      },
+      {
+        "tag": "h2",
+        "text": "Kepez, Antalya."
+      },
+      {
+        "tag": "p",
+        "text": "İstikbal Aerospace’in kamuya açık şirket profilinde merkez konumu Kepez / Antalya olarak belirtilmektedir. İş birliği ve iletişim talepleri için iletişim sayfamıza ulaşabilirsiniz."
+      }
+    ],
+    "media": [
+      "background-image:url('/assets/hero-hangar-photo.webp')",
+      "background-image:url('/assets/research-lab.svg')"
+    ],
+    "links": [
+      "/index.html",
+      "/ucus-mimarileri.html",
+      "/otonom-sistemler.html",
+      "/tengri-ai.html"
+    ]
+  },
+  {
+    "key": "autonomy",
+    "route": "otonom-sistemler",
+    "title": "Otonom Sistemler | İstikbal Aerospace",
+    "description": "Algılama, karar mekanizmaları ve kontrol sistemlerine genel bakış.",
+    "renderSha256": "85363cb6ce0762eb54dc5b676cd47213aff97d54f0bdf08c131a9c64c11af637",
+    "sections": [
+      {
+        "tag": "h1",
+        "text": "Otonom Sistemler"
+      },
+      {
+        "tag": "p",
+        "text": "Algılama, karar verme ve kontrolün buluştuğu alan."
+      },
+      {
+        "tag": "h2",
+        "text": "Bir disiplinin farklı katmanları."
+      },
+      {
+        "tag": "p",
+        "text": "Otonom sistemler; çevreyi algılama, veriyi yorumlama ve belirlenen hedeflere göre hareket üretme gibi farklı mühendislik disiplinlerini bir araya getirir. Bu sayfa, konunun genel yaklaşımını tanıtır."
+      },
+      {
+        "tag": "h2",
+        "text": "Mühendislik bileşenleri."
+      },
+      {
+        "tag": "p",
+        "text": "Konuya ait kavramlar ve çalışma ilkeleri; doğrulanmış proje bilgileri ayrıca yayınlanacaktır."
+      },
+      {
+        "tag": "h3",
+        "text": "Algılama ve veri"
+      },
+      {
+        "tag": "p",
+        "text": "Sensörlerden gelen verilerin sistem tarafından yorumlanmasına yönelik mühendislik yaklaşımı."
+      },
+      {
+        "tag": "h3",
+        "text": "Karar mekanizmaları"
+      },
+      {
+        "tag": "p",
+        "text": "Algılanan duruma göre kuralların ve algoritmaların rolünü açıklayan genel çerçeve."
+      },
+      {
+        "tag": "h3",
+        "text": "Kontrol ve geri bildirim"
+      },
+      {
+        "tag": "p",
+        "text": "Ölçüm, kontrol ve geri bildirim döngülerinin sistem tasarımındaki yeri."
+      },
+      {
+        "tag": "p",
+        "text": "Sistemler birlikte çalışır: Otonom Sistemler ile Gömülü Sistemler birbirini tamamlayan mühendislik alanlarıdır. Teknoloji başlıkları birbirinden bağımsız değildir."
+      }
+    ],
+    "media": [
+      "background-image:url('/assets/platform-flight.svg')"
+    ],
+    "links": [
+      "/index.html"
+    ]
+  },
+  {
+    "key": "platformDetail",
+    "route": "platform-detay",
+    "title": "Platform Detayı | İstikbal Aerospace",
+    "description": "Havacılık platformları, uçuş elektroniği ve sistem entegrasyonunun temelleri.",
+    "renderSha256": "9c650ee744d2c4fb8e091bd3d6a83c06ad10009844f656c19316d2a2b5c0c91f",
+    "sections": [
+      {
+        "tag": "h1",
+        "text": "Havacılık Sistemleri"
+      },
+      {
+        "tag": "p",
+        "text": "Platform mühendisliği, uçuş elektroniği ve sistem entegrasyonu."
+      },
+      {
+        "tag": "h2",
+        "text": "Mühendislik disiplinleri."
+      },
+      {
+        "tag": "p",
+        "text": "İstikbal Aerospace’in gömülü donanım, otonom sistemler ve mühendislik çalışma alanları birlikte ele alınır."
+      }
+    ],
+    "media": [
+      "background-image:url('/assets/platform-flight.svg')"
+    ],
+    "links": [
+      "/index.html"
+    ]
+  },
+  {
+    "key": "platforms",
+    "route": "platformlar",
+    "title": "Platformlar | İstikbal Aerospace",
+    "description": "İnsansız hava sistemleri, gömülü uçuş mimarileri ve hava savunma sistemleri çalışma alanları.",
+    "renderSha256": "dc2712acf00d19578e2e585353be8caf4a26804a177cd71122233ebfa99dcdcb",
+    "sections": [
+      {
+        "tag": "h1",
+        "text": "Platformlar"
+      },
+      {
+        "tag": "p",
+        "text": "Hava platformları, uçuş kontrolü ve sistem mühendisliği odağındaki çalışma başlıkları."
+      },
+      {
+        "tag": "h2",
+        "text": "Platformdan alt sisteme."
+      },
+      {
+        "tag": "p",
+        "text": "İstikbal Aerospace’in kamuya açık uzmanlık alanlarından hareketle sunulan sistem aileleri. Bu başlıklar bir ürün kataloğu değil, mühendislik alanlarıdır."
+      },
+      {
+        "tag": "h3",
+        "text": "İnsansız Hava Sistemleri"
+      },
+      {
+        "tag": "p",
+        "text": "Uçuş kontrolü, algılama ve bağlantılı alt sistemlerin bütünleşik mimarisi."
+      },
+      {
+        "tag": "h3",
+        "text": "Gömülü Uçuş Mimarileri"
+      },
+      {
+        "tag": "p",
+        "text": "Uçuş elektroniği, gömülü yazılım ve platform kontrolünün bileşenleri."
+      },
+      {
+        "tag": "h3",
+        "text": "Hava Savunma Ağları"
+      },
+      {
+        "tag": "p",
+        "text": "Bağlantılı sistemler ve karar destek teknolojileri yaklaşımı."
+      },
+      {
+        "tag": "h2",
+        "text": "Yapay zekâ destekli uçuş kontrolü."
+      },
+      {
+        "tag": "p",
+        "text": "Şirketin paylaştığı yeni nesil uçuş kontrolcüsü tanıtımında yapay zekâ ile ilişkili kontrol algoritmaları, uçuş güvenliği ve verimlilik hedefleri öne çıkıyor. Teknolojinin mühendislik temellerini inceleyin."
+      },
+      {
+        "tag": "h2",
+        "text": "Bir platformun ötesindeki sistemler."
+      },
+      {
+        "tag": "p",
+        "text": "Elektronik tasarım, yazılım ve sensör verisinin birlikte değerlendirilmesi platform mühendisliğinin temelindedir."
+      },
+      {
+        "tag": "h3",
+        "text": "Otonom Sistemler"
+      },
+      {
+        "tag": "p",
+        "text": "Algılama ve kontrolün birleştiği yazılım alanı."
+      },
+      {
+        "tag": "h3",
+        "text": "Gömülü Sistemler"
+      },
+      {
+        "tag": "p",
+        "text": "Uçuş elektroniği ve sistem denetimi."
+      },
+      {
+        "tag": "h3",
+        "text": "Sensör Füzyonu"
+      },
+      {
+        "tag": "p",
+        "text": "Çoklu veri kaynağının birlikte değerlendirilmesi."
+      }
+    ],
+    "media": [
+      "background-image:url('/assets/hero-hangar-photo.webp')",
+      "background-image:url('/assets/platform-systems.svg')",
+      "background-image:url('/assets/platform-flight.svg')"
+    ],
+    "links": [
+      "/index.html",
+      "/iha-sistemleri.html",
+      "/ucus-mimarileri.html",
+      "/hava-savunma-aglari.html",
+      "/ucus-kontrol-paylasimi.html",
+      "/otonom-sistemler.html",
+      "/gomulu-sistemler.html",
+      "/sensor-fuzyonu.html"
+    ]
+  },
+  {
+    "key": "projectDetail",
+    "route": "proje-detay",
+    "title": "AR-GE Detayı | İstikbal Aerospace",
+    "description": "Elektronik tasarım, gömülü sistemler ve otonom mühendislik çalışma alanları.",
+    "renderSha256": "93e3e7879729b03f903673f1fc3a7c8a979b733ed276d6b06e72dbb3c52c6087",
+    "sections": [
+      {
+        "tag": "h1",
+        "text": "AR-GE"
+      },
+      {
+        "tag": "p",
+        "text": "Elektronik tasarım ve otonom mühendislik çalışmaları."
+      },
+      {
+        "tag": "h2",
+        "text": "Mühendislik disiplinleri."
+      },
+      {
+        "tag": "p",
+        "text": "İstikbal Aerospace’in gömülü donanım, otonom sistemler ve mühendislik çalışma alanları birlikte ele alınır."
+      }
+    ],
+    "media": [
+      "background-image:url('/assets/research-lab.svg')"
+    ],
+    "links": [
+      "/index.html"
+    ]
+  },
+  {
+    "key": "projects",
+    "route": "projeler",
+    "title": "Projeler & AR-GE | İstikbal Aerospace",
+    "description": "İstikbal Aerospace kamuya açık teknoloji paylaşımları ve AR-GE çalışma alanları.",
+    "renderSha256": "b7004185691070d7d0a5b2517916feb68b153adca66cb03c8d05bf1b02288620",
+    "sections": [
+      {
+        "tag": "h1",
+        "text": "Projeler & AR-GE"
+      },
+      {
+        "tag": "p",
+        "text": "Kamuya açık teknoloji tanıtımları ve mühendislik çalışma alanları."
+      },
+      {
+        "tag": "h2",
+        "text": "Teknoloji fikirlerinden paylaşılan çalışmalara."
+      },
+      {
+        "tag": "p",
+        "text": "İstikbal Aerospace’in kamuya açık tanıtımlarında yer alan çalışmalar. Geliştirme ve test aşamalarına ilişkin ayrıntılar şirket onayına bağlıdır."
+      },
+      {
+        "tag": "h3",
+        "text": "Tengri AI — Yapay zekâ ve savunma ağı konsepti"
+      },
+      {
+        "tag": "p",
+        "text": "Bağlantılı hava ve kara sistemleri arasında durumsal farkındalık ve karar desteği vizyonu."
+      },
+      {
+        "tag": "h3",
+        "text": "Yeni nesil uçuş kontrolcüsü tanıtımı"
+      },
+      {
+        "tag": "p",
+        "text": "Yapay zekâ destekli kontrol algoritmalarını ve uçuş sistemlerini bir araya getirmeyi hedefleyen teknoloji paylaşımı."
+      },
+      {
+        "tag": "h2",
+        "text": "Elektronikten sisteme."
+      },
+      {
+        "tag": "p",
+        "text": "Kurumsal faaliyet tanıtımında yer alan çalışma alanları; bunlar tek başına tamamlanmış projeler olarak listelenmemektedir."
+      },
+      {
+        "tag": "h3",
+        "text": "PCB Tasarımı"
+      },
+      {
+        "tag": "p",
+        "text": "Gömülü donanım için elektronik kart mimarileri."
+      },
+      {
+        "tag": "h3",
+        "text": "Otonom Hareket"
+      },
+      {
+        "tag": "p",
+        "text": "Karar, kontrol ve geri bildirim mekanizmaları."
+      },
+      {
+        "tag": "h3",
+        "text": "Algılama & Veri"
+      },
+      {
+        "tag": "p",
+        "text": "Sensör bilgisi ve sistem entegrasyonu."
+      },
+      {
+        "tag": "h2",
+        "text": "Araştırma, uygulama, bütünleştirme."
+      },
+      {
+        "tag": "p",
+        "text": "Fikirlerin donanım ve yazılımla buluştuğu sistem geliştirme adımları. PCB tasarımı ve gömülü yazılımın uçuş elektroniğiyle kurduğu ilişki bütünleşik sistem yaklaşımının parçasıdır."
+      },
+      {
+        "tag": "h3",
+        "text": "İhtiyaç Analizi"
+      },
+      {
+        "tag": "p",
+        "text": "Görev ve sistem gereksinimlerinin belirlenmesi."
+      },
+      {
+        "tag": "h3",
+        "text": "Elektronik Tasarım"
+      },
+      {
+        "tag": "p",
+        "text": "Donanım ve arayüzlerin tasarlanması."
+      },
+      {
+        "tag": "h3",
+        "text": "Yazılım & Kontrol"
+      },
+      {
+        "tag": "p",
+        "text": "Gömülü yazılım ve kontrol algoritmalarının geliştirilmesi."
+      },
+      {
+        "tag": "h3",
+        "text": "Sistem Entegrasyonu"
+      },
+      {
+        "tag": "p",
+        "text": "Alt sistemlerin birlikte değerlendirilmesi."
+      }
+    ],
+    "media": [
+      "background-image:url('/assets/research-lab.svg')",
+      "background-image:url('/assets/tengri-network.svg')",
+      "background-image:url('/assets/platform-systems.svg')"
+    ],
+    "links": [
+      "/index.html",
+      "/tengri-ai.html",
+      "/ucus-kontrol-paylasimi.html",
+      "/gomulu-sistemler.html",
+      "/otonom-sistemler.html",
+      "/sensor-fuzyonu.html"
+    ]
+  },
+  {
+    "key": "rockets",
+    "route": "roket-sistemleri",
+    "title": "Roket Sistemleri | İstikbal Aerospace",
+    "description": "Roket teknolojileriyle ilişkili uçuş elektroniği, telemetri ve sistem mühendisliği.",
+    "renderSha256": "b14c229b78bc2d032d8eeab8200622aeae734548a1eba1de1aef6a7a67745244",
+    "sections": [
+      {
+        "tag": "h1",
+        "text": "Roket Sistemleri"
+      },
+      {
+        "tag": "p",
+        "text": "Uçuş elektroniği, telemetri ve sistem bütünlüğü."
+      },
+      {
+        "tag": "h2",
+        "text": "Bir disiplinin farklı katmanları."
+      },
+      {
+        "tag": "p",
+        "text": "Roket sistemleri, İstikbal Aerospace’in kamuya açık uzmanlık alanları listesinde geçmektedir. Bu sayfa roket projelerinde ele alınan genel mühendislik disiplinlerini tanıtır; şirkete ait belirli bir ürün, uçuş testi veya performans iddiası içermez."
+      },
+      {
+        "tag": "h2",
+        "text": "Mühendislik bileşenleri."
+      },
+      {
+        "tag": "p",
+        "text": "Konuya ait kavramlar ve çalışma ilkeleri; doğrulanmış proje bilgileri ayrıca yayınlanacaktır."
+      },
+      {
+        "tag": "h3",
+        "text": "Uçuş elektroniği"
+      },
+      {
+        "tag": "p",
+        "text": "Algılama, kontrol ve uçuş bilgisinin değerlendirilmesinde elektronik bileşenlerin genel rolü."
+      },
+      {
+        "tag": "h3",
+        "text": "Telemetri ve haberleşme"
+      },
+      {
+        "tag": "p",
+        "text": "Sistem verilerinin izlenmesi ve bağlantılı birimlerle bilgi alışverişi."
+      },
+      {
+        "tag": "h3",
+        "text": "Entegrasyon ve doğrulama"
+      },
+      {
+        "tag": "p",
+        "text": "Elektronik, yazılım ve mekanik alt sistemlerin bütün halinde ele alınması."
+      },
+      {
+        "tag": "p",
+        "text": "Sistemler birlikte çalışır: Roket Sistemleri ile Gömülü Uçuş Mimarileri birbirini tamamlayan mühendislik alanlarıdır. Teknoloji başlıkları birbirinden bağımsız değildir."
+      }
+    ],
+    "media": [
+      "background-image:url('/assets/platform-flight.svg')"
+    ],
+    "links": [
+      "/index.html"
+    ]
+  },
+  {
+    "key": "sensors",
+    "route": "sensor-fuzyonu",
+    "title": "Sensör Füzyonu | İstikbal Aerospace",
+    "description": "Farklı algılayıcılardan gelen verilerin birlikte değerlendirilmesi.",
+    "renderSha256": "fd58cc7117e279041eb19812ac068c2ab9ec7952ab9ba5c517801c0e3b8d469e",
+    "sections": [
+      {
+        "tag": "h1",
+        "text": "Sensör Füzyonu"
+      },
+      {
+        "tag": "p",
+        "text": "Birden fazla veri kaynağından daha tutarlı bir tablo."
+      },
+      {
+        "tag": "h2",
+        "text": "Bir disiplinin farklı katmanları."
+      },
+      {
+        "tag": "p",
+        "text": "Sensör füzyonu, farklı algılayıcılardan elde edilen bilgilerin değerlendirilerek birlikte kullanılmasına yönelik mühendislik alanıdır. Açıklamalar genel teknoloji tanıtımıdır; şirkete özgü performans iddiası içermez."
+      },
+      {
+        "tag": "h2",
+        "text": "Mühendislik bileşenleri."
+      },
+      {
+        "tag": "p",
+        "text": "Konuya ait kavramlar ve çalışma ilkeleri; doğrulanmış proje bilgileri ayrıca yayınlanacaktır."
+      },
+      {
+        "tag": "h3",
+        "text": "Veri kaynakları"
+      },
+      {
+        "tag": "p",
+        "text": "Farklı ölçümlerin nitelikleri, zamanlaması ve kullanılabilirliği."
+      },
+      {
+        "tag": "h3",
+        "text": "Birleştirme yaklaşımı"
+      },
+      {
+        "tag": "p",
+        "text": "Farklı kaynaklardan gelen bilgilerin karşılaştırılması ve birlikte ele alınması."
+      },
+      {
+        "tag": "h3",
+        "text": "Sistem ilişkileri"
+      },
+      {
+        "tag": "p",
+        "text": "Algılama katmanının otonomi ve gömülü sistemlerle bağlantısı."
+      },
+      {
+        "tag": "p",
+        "text": "Sistemler birlikte çalışır: Sensör Füzyonu ile Otonom Sistemler birbirini tamamlayan mühendislik alanlarıdır. Teknoloji başlıkları birbirinden bağımsız değildir."
+      }
+    ],
+    "media": [
+      "background-image:url('/assets/tengri-network.svg')"
+    ],
+    "links": [
+      "/index.html"
+    ]
+  },
+  {
+    "key": "tech",
+    "route": "teknolojiler",
+    "title": "Teknolojiler | İstikbal Aerospace",
+    "description": "Gömülü sistemler, yapay zekâ, otonomi, sensör füzyonu, roket sistemleri ve haberleşme.",
+    "renderSha256": "c72209069546110a3302edb6bbf24db487d380769fe79fd106e6cf77f19000e3",
+    "sections": [
+      {
+        "tag": "h1",
+        "text": "Teknolojiler"
+      },
+      {
+        "tag": "p",
+        "text": "Donanım, kontrol, algılama ve yapay zekâ tabanlı sistemlerin buluştuğu mühendislik alanları."
+      },
+      {
+        "tag": "h2",
+        "text": "Donanımdan otonomiye."
+      },
+      {
+        "tag": "p",
+        "text": "Elektronik tasarım, gömülü yazılım, sensör füzyonu ve sistem entegrasyonu birbirini tamamlayan disiplinlerdir. Teknoloji alanları, sistemlerin alt katmanlarını birlikte ele alır."
+      },
+      {
+        "tag": "h3",
+        "text": "Otonom Sistemler"
+      },
+      {
+        "tag": "p",
+        "text": "Sensör verilerinin değerlendirilmesi, karar ve kontrol algoritmaları."
+      },
+      {
+        "tag": "h3",
+        "text": "Gömülü Donanım & PCB"
+      },
+      {
+        "tag": "p",
+        "text": "Elektronik kart tasarımı, işlemci tabanlı sistemler ve gömülü yazılım."
+      },
+      {
+        "tag": "h3",
+        "text": "Sensör Füzyonu"
+      },
+      {
+        "tag": "p",
+        "text": "Birden fazla algılayıcıdan gelen bilginin birlikte işlenmesi."
+      },
+      {
+        "tag": "h3",
+        "text": "Yapay Zekâ / Tengri AI"
+      },
+      {
+        "tag": "p",
+        "text": "Karar destek ve bağlantılı savunma ağlarına odaklanan teknoloji yaklaşımı."
+      },
+      {
+        "tag": "h3",
+        "text": "Roket Sistemleri"
+      },
+      {
+        "tag": "p",
+        "text": "Roket teknolojileriyle ilişkili uçuş elektroniği, telemetri ve sistem mühendisliğine genel bakış."
+      },
+      {
+        "tag": "h3",
+        "text": "İleri Haberleşme"
+      },
+      {
+        "tag": "p",
+        "text": "Bağlantılı platformlarda veri iletimi, güvenli haberleşme ve sistem entegrasyonu."
+      },
+      {
+        "tag": "h2",
+        "text": "Ağ bağlantılı karar destek."
+      },
+      {
+        "tag": "p",
+        "text": "Tengri AI, şirketin kamuya açık tanıtımında bağlı hava ve kara sistemlerinin koordinasyonunu hedefleyen yapay zekâ yaklaşımı olarak anlatılıyor."
+      }
+    ],
+    "media": [
+      "background-image:url('/assets/platform-systems.svg')",
+      "background-image:url('/assets/tengri-network.svg')"
+    ],
+    "links": [
+      "/index.html",
+      "/otonom-sistemler.html",
+      "/gomulu-sistemler.html",
+      "/sensor-fuzyonu.html",
+      "/tengri-ai.html",
+      "/roket-sistemleri.html",
+      "/ileri-haberlesme.html"
+    ]
+  },
+  {
+    "key": "tengri",
+    "route": "tengri-ai",
+    "title": "Tengri AI | İstikbal Aerospace",
+    "description": "Tengri AI yapay zekâ, durumsal farkındalık ve karar destek teknoloji vizyonu.",
+    "renderSha256": "7ff4c5a22dcf67e0b40d87033bb2429589afee423ab87271d9cc4b86837298cc",
+    "sections": [
+      {
+        "tag": "h1",
+        "text": "TENGRİ AI"
+      },
+      {
+        "tag": "p",
+        "text": "Çok katmanlı yapay zekâ, durumsal farkındalık ve bağlantılı savunma sistemleri vizyonu."
+      },
+      {
+        "tag": "h2",
+        "text": "Birden fazla sistem. Ortak bir karar resmi."
+      },
+      {
+        "tag": "p",
+        "text": "Tengri AI; hava savunma ağları, insansız sistemler, roket teknolojileri ve haberleşme altyapılarının birlikte ele alındığı çok katmanlı bir yapay zekâ ve karar destek vizyonudur."
+      },
+      {
+        "tag": "h2",
+        "text": "Veriyi anlamlandıran, sistemleri buluşturan yaklaşım."
+      },
+      {
+        "tag": "p",
+        "text": "Tengri AI’ın odağında sensör ve platform verilerinden durumsal farkındalık oluşturulması, tehditlerin değerlendirilmesi ve karar süreçlerinin desteklenmesi yer alır. Amaç, birbirinden ayrı sistemleri daha bütünlüklü bir bilgi ve koordinasyon yapısı içinde değerlendirmektir."
+      },
+      {
+        "tag": "p",
+        "text": "Tasarımın temelinde çoklu kaynak verisi, tahmine dayalı analiz ve bağlantılı sistem mimarileri bulunur."
+      },
+      {
+        "tag": "h2",
+        "text": "Algılama. Değerlendirme. Koordinasyon."
+      },
+      {
+        "tag": "p",
+        "text": "Tengri AI yaklaşımının temelini oluşturan teknoloji başlıkları."
+      },
+      {
+        "tag": "h3",
+        "text": "Veri & Sensör Birleşimi"
+      },
+      {
+        "tag": "p",
+        "text": "Farklı kaynaklardan elde edilen bilgilerin ortak bir durum görünümüne katkıda bulunması."
+      },
+      {
+        "tag": "h3",
+        "text": "Çoklu Hedef Takibi"
+      },
+      {
+        "tag": "p",
+        "text": "Birden fazla hava unsuruna ilişkin iz bilgilerinin birlikte değerlendirilmesi fikri."
+      },
+      {
+        "tag": "h3",
+        "text": "Tehdit Analizi"
+      },
+      {
+        "tag": "p",
+        "text": "Yapay zekâ destekli değerlendirme ve önceliklendirme süreçlerinin karar desteğindeki rolü."
+      },
+      {
+        "tag": "h3",
+        "text": "Öngörüsel Değerlendirme"
+      },
+      {
+        "tag": "p",
+        "text": "Gelişen durumların ve olası senaryoların önceden değerlendirilmesine yönelik yaklaşım."
+      },
+      {
+        "tag": "h3",
+        "text": "Komuta & Kontrol"
+      },
+      {
+        "tag": "p",
+        "text": "Bağlı unsurlardan alınan bilgilerin ortak bir karar ve koordinasyon çerçevesinde incelenmesi."
+      },
+      {
+        "tag": "h3",
+        "text": "Ağ Tabanlı Entegrasyon"
+      },
+      {
+        "tag": "p",
+        "text": "Farklı platform ve sistemlerin haberleşme ve veri paylaşımı yoluyla birlikte ele alınması."
+      },
+      {
+        "tag": "h2",
+        "text": "Bağlantılı bir teknoloji ekosistemi."
+      },
+      {
+        "tag": "p",
+        "text": "Tengri AI’ın kamuya açık vizyonunda farklı sistem ailelerinin ortak bir yapıda değerlendirilmesi hedefleniyor."
+      },
+      {
+        "tag": "h3",
+        "text": "İnsansız Hava Platformları"
+      },
+      {
+        "tag": "p",
+        "text": "Hava araçları ve uçuş sistemlerinin sağladığı verilerin daha geniş bir durum değerlendirmesine dahil edilmesi yaklaşımı."
+      },
+      {
+        "tag": "h3",
+        "text": "Savunma Alt Sistemleri"
+      },
+      {
+        "tag": "p",
+        "text": "Hava savunma ve roket sistemleri gibi farklı bileşenler arasında ortak bilgi ve koordinasyon gereksinimi."
+      },
+      {
+        "tag": "h3",
+        "text": "Haberleşme Altyapısı"
+      },
+      {
+        "tag": "p",
+        "text": "Bağlantılı birimler arasında bilgi aktarımı, veri bütünlüğü ve sistemler arası iletişim kavramları."
+      },
+      {
+        "tag": "h2",
+        "text": "Kritik alanlar için durumsal farkındalık."
+      },
+      {
+        "tag": "p",
+        "text": "Kritik altyapılar, stratejik bölgeler ve olası tehdit senaryoları için durumsal farkındalık, önceliklendirme ve öngörüye dayalı değerlendirme bu teknoloji vizyonunun kullanım alanları arasında yer alır. Bunlar mevcut operasyonel yetenek olarak değil, hedeflenen çalışma alanları olarak ele alınmaktadır."
+      },
+      {
+        "tag": "h2",
+        "text": "Tengri AI ve sistem mühendisliği."
+      },
+      {
+        "tag": "p",
+        "text": "Gömülü yazılım, sensör füzyonu, otonomi ve haberleşme; ağ bağlantılı yapay zekâ yaklaşımlarını tamamlayan mühendislik alanlarıdır."
+      }
+    ],
+    "media": [
+      "background-image:url('/assets/tengri-network.svg')",
+      "background-image:url('/assets/research-lab.svg')"
+    ],
+    "links": [
+      "/index.html",
+      "/sensor-fuzyonu.html",
+      "/hava-savunma-aglari.html",
+      "/otonom-sistemler.html",
+      "/ileri-haberlesme.html"
+    ]
+  },
+  {
+    "key": "flightControlNews",
+    "route": "ucus-kontrol-paylasimi",
+    "title": "Uçuş Kontrolcüsü Paylaşımı | İstikbal Aerospace",
+    "description": "Yapay zekâ ile entegre uçuş kontrolcüsü hakkında kamuya açık teknoloji tanıtımı.",
+    "renderSha256": "7a4e4e21a6651fd572fe19396c1b8730db6b56f2f66cf7e694a466241d90374d",
+    "sections": [
+      {
+        "tag": "h1",
+        "text": "Uçuş Kontrolcüsü"
+      },
+      {
+        "tag": "p",
+        "text": "Yapay zekâ ile entegre yeni nesil uçuş kontrolcüsü tanıtımı."
+      },
+      {
+        "tag": "h2",
+        "text": "Yapay zekâ ile entegre uçuş kontrolü."
+      },
+      {
+        "tag": "p",
+        "text": "İstikbal Aerospace’in LinkedIn üzerinden paylaşılan yeni nesil uçuş kontrolcüsü tanıtımında, yapay zekâ destekli kontrol algoritmaları ve uçuş sistemlerinde güvenlik ile verimlilik hedefleri öne çıkarılıyor."
+      },
+      {
+        "tag": "h2",
+        "text": "Mühendislik yaklaşımı"
+      },
+      {
+        "tag": "p",
+        "text": "Uçuş elektroniği; gömülü işlem birimleri, sensör verileri, kontrol yazılımı ve geri bildirim mekanizmalarını bir araya getirir. Bu tanıtım, doğrulanmış test sonuçları veya sertifikasyon bilgisi içermediğinden performans değerleri yayımlanmamaktadır."
+      },
+      {
+        "tag": "p",
+        "text": "Şirketin kamuya açık paylaşımı LinkedIn faaliyetinde yer almakta; tam yayın tarihi ve ayrıntılı teknik dokümanları henüz doğrulanmamıştır."
+      }
+    ],
+    "media": [
+      "background-image:url('/assets/platform-systems.svg')",
+      "/assets/platform-systems.svg"
+    ],
+    "links": [
+      "/index.html"
+    ]
+  },
+  {
+    "key": "flightArch",
+    "route": "ucus-mimarileri",
+    "title": "Gömülü Uçuş Mimarileri | İstikbal Aerospace",
+    "description": "Uçuş elektroniği, gömülü yazılım ve sistem entegrasyonunun mühendislik temelleri.",
+    "renderSha256": "57270f744169810768d92cb673f15862ebcc1796831b5b9dc7469cacd9a6b5e1",
+    "sections": [
+      {
+        "tag": "h1",
+        "text": "Gömülü Uçuş Mimarileri"
+      },
+      {
+        "tag": "p",
+        "text": "Donanım ve yazılımın birlikte geliştirildiği uçuş sistemleri."
+      },
+      {
+        "tag": "h2",
+        "text": "Birlikte çalışan teknolojiler."
+      },
+      {
+        "tag": "p",
+        "text": "Uçuş sistemlerinde gömülü mimari; kart tasarımı, işlem birimi, çevre birimleri, veri arabirimleri ve kontrol yazılımının birlikte değerlendirilmesini gerektirir."
+      },
+      {
+        "tag": "h2",
+        "text": "Sistem bütünlüğü."
+      },
+      {
+        "tag": "p",
+        "text": "Havacılık çalışmalarında birbirini tamamlayan temel mühendislik başlıkları."
+      },
+      {
+        "tag": "h3",
+        "text": "Elektronik tasarım"
+      },
+      {
+        "tag": "p",
+        "text": "PCB ve temel elektronik bileşenlerin sistem ihtiyaçlarına göre ele alınması."
+      },
+      {
+        "tag": "h3",
+        "text": "Gömülü yazılım"
+      },
+      {
+        "tag": "p",
+        "text": "Donanım kaynakları, zamanlama ve sistem davranışı."
+      },
+      {
+        "tag": "h3",
+        "text": "Entegrasyon"
+      },
+      {
+        "tag": "p",
+        "text": "Bileşenlerin bütünleşik yapı içinde çalışmasının değerlendirilmesi."
+      },
+      {
+        "tag": "p",
+        "text": "Otonom sistemler, gömülü donanım ve sensör füzyonu bu mimarilerle ilişkili mühendislik disiplinleridir."
+      }
+    ],
+    "media": [
+      "background-image:url('/assets/platform-systems.svg')"
+    ],
+    "links": [
+      "/index.html"
+    ]
+  }
+]

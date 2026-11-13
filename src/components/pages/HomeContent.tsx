@@ -1,48 +1,133 @@
+import {
+  pageValue,
+  pageData,
+  pageImageStyle,
+  type PageValues,
+} from "@/lib/cms/page-values";
 import { SiteLink } from "@/components/ui/SiteLink";
 import { Section, SectionHeading } from "@/components/ui/content";
 import { TechnologyCard, PlatformCard } from "@/components/cards/Cards";
-import { cards } from "@/data/cards";
+import { cards as basecards } from "@/data/cards";
 import { Hero } from "@/components/home/Hero";
 
-export function HomeContent() {
+export function HomeContent({ content = {} }: { content?: PageValues }) {
+  const cards = pageData(basecards, "cards", content);
   return (
     <>
-      <Hero />
+      <Hero content={content} />
       {"\n"}
       <Section>
         <div id={"homepage-intro"} className={"intro"}>
           <div>
-            <span className={"eyebrow"}>{"SİSTEM MÜHENDİSLİĞİ"}</span>
+            <span className={"eyebrow"}>
+              {pageValue(
+                content,
+                "HomeContent.text.0",
+                "SİSTEM MÜHENDİSLİĞİ",
+                "text",
+                "Metin",
+              )}
+            </span>
             <p className={"intro-quote"}>
-              {"Gömülü elektronik."}
+              {pageValue(
+                content,
+                "HomeContent.text.1",
+                "Gömülü elektronik.",
+                "text",
+                "Metin",
+              )}
               <br />
-              {"Otonom hareket."}
+              {pageValue(
+                content,
+                "HomeContent.text.2",
+                "Otonom hareket.",
+                "text",
+                "Metin",
+              )}
               <br />
-              {"Entegre sistemler."}
+              {pageValue(
+                content,
+                "HomeContent.text.3",
+                "Entegre sistemler.",
+                "text",
+                "Metin",
+              )}
             </p>
             <div className={"stat-lines"}>
-              <span>{"DONANIM"}</span>
-              <span>{"YAZILIM"}</span>
-              <span>{"SİSTEM ENTEGRASYONU"}</span>
+              <span>
+                {pageValue(
+                  content,
+                  "HomeContent.text.4",
+                  "DONANIM",
+                  "text",
+                  "Metin",
+                )}
+              </span>
+              <span>
+                {pageValue(
+                  content,
+                  "HomeContent.text.5",
+                  "YAZILIM",
+                  "text",
+                  "Metin",
+                )}
+              </span>
+              <span>
+                {pageValue(
+                  content,
+                  "HomeContent.text.6",
+                  "SİSTEM ENTEGRASYONU",
+                  "text",
+                  "Metin",
+                )}
+              </span>
             </div>
           </div>
           <div className={"intro-copy"}>
-            <strong>{"Birbiriyle çalışan teknolojiler."}</strong>
+            <strong>
+              {pageValue(
+                content,
+                "HomeContent.text.7",
+                "Birbiriyle çalışan teknolojiler.",
+                "text",
+                "Metin",
+              )}
+            </strong>
             <br />
-            {
-              "İstikbal Aerospace; insansız hava araçları, PCB tasarımı, gömülü sistemler ve otonom algoritmalar çevresinde şekillenen mühendislik alanlarına odaklanıyor. Sensörlerden elde edilen verinin işlenmesinden sistem düzeyinde entegrasyona kadar uzanan bir teknoloji yaklaşımı."
-            }
+            {pageValue(
+              content,
+              "HomeContent.text.8",
+              "İstikbal Aerospace; insansız hava araçları, PCB tasarımı, gömülü sistemler ve otonom algoritmalar çevresinde şekillenen mühendislik alanlarına odaklanıyor. Sensörlerden elde edilen verinin işlenmesinden sistem düzeyinde entegrasyona kadar uzanan bir teknoloji yaklaşımı.",
+              "text",
+              "Metin",
+            )}
           </div>
         </div>
       </Section>
       {"\n"}
       <Section>
         <SectionHeading
-          kicker={"01 / HAVA & SİSTEMLER"}
-          title={"Havacılığın farklı katmanları."}
-          lead={
-            "İnsansız hava platformlarından uçuş elektroniğine, bağlantılı sistem mimarilerinden otonom çözümlere uzanan çalışma alanları."
-          }
+          kicker={pageValue(
+            content,
+            "HomeContent.kicker.9",
+            "01 / HAVA & SİSTEMLER",
+            "text",
+            "Bölüm etiketi",
+          )}
+          title={pageValue(
+            content,
+            "HomeContent.title.10",
+            "Havacılığın farklı katmanları.",
+            "text",
+            "Başlık",
+          )}
+          lead={pageValue(
+            content,
+            "HomeContent.lead.11",
+            "İnsansız hava platformlarından uçuş elektroniğine, bağlantılı sistem mimarilerinden otonom çözümlere uzanan çalışma alanları.",
+            "text",
+            "Açıklama",
+          )}
         />
         <div className={"platform-grid"}>
           <PlatformCard {...cards.platform[0]} />
@@ -53,11 +138,27 @@ export function HomeContent() {
       {"\n"}
       <Section className={"inner-panel"}>
         <SectionHeading
-          kicker={"02 / TEKNOLOJİLER"}
-          title={"Sistemin ardındaki mühendislik."}
-          lead={
-            "Elektronik tasarımdan verinin birleştirilmesine uzanan temel çalışma alanları."
-          }
+          kicker={pageValue(
+            content,
+            "HomeContent.kicker.12",
+            "02 / TEKNOLOJİLER",
+            "text",
+            "Bölüm etiketi",
+          )}
+          title={pageValue(
+            content,
+            "HomeContent.title.13",
+            "Sistemin ardındaki mühendislik.",
+            "text",
+            "Başlık",
+          )}
+          lead={pageValue(
+            content,
+            "HomeContent.lead.14",
+            "Elektronik tasarımdan verinin birleştirilmesine uzanan temel çalışma alanları.",
+            "text",
+            "Açıklama",
+          )}
         />
         <div className={"cards-2"}>
           <TechnologyCard {...cards.technology[0]} />
@@ -76,19 +177,58 @@ export function HomeContent() {
         <div className={"wrapper"}>
           <div className={"tengri-inner"}>
             <span className={"eyebrow"}>
-              {"03 / YAPAY ZEKÂ VE KOMUTA KONTROL"}
+              {pageValue(
+                content,
+                "HomeContent.text.15",
+                "03 / YAPAY ZEKÂ VE KOMUTA KONTROL",
+                "text",
+                "Metin",
+              )}
             </span>
-            <h2>{"TENGRİ AI"}</h2>
+            <h2>
+              {pageValue(
+                content,
+                "HomeContent.text.16",
+                "TENGRİ AI",
+                "text",
+                "Metin",
+              )}
+            </h2>
             <p>
-              {
-                "Hava ve kara sistemlerinin koordinasyonuna yönelik yapay zekâ temelli savunma ağı yaklaşımı. Algılama, tehdit değerlendirme ve karar destek katmanları üzerine çalışmalar."
-              }
+              {pageValue(
+                content,
+                "HomeContent.text.17",
+                "Hava ve kara sistemlerinin koordinasyonuna yönelik yapay zekâ temelli savunma ağı yaklaşımı. Algılama, tehdit değerlendirme ve karar destek katmanları üzerine çalışmalar.",
+                "text",
+                "Metin",
+              )}
             </p>
             <div style={{ marginBottom: "27px" }} className={"tengri-outline"}>
-              {"YAPAY ZEKÂ · AĞ MİMARİLERİ · KARAR DESTEK"}
+              {pageValue(
+                content,
+                "HomeContent.text.18",
+                "YAPAY ZEKÂ · AĞ MİMARİLERİ · KARAR DESTEK",
+                "text",
+                "Metin",
+              )}
             </div>
-            <SiteLink className={"btn solid"} href={"tengri-ai.html"}>
-              {"Tengri AI"}
+            <SiteLink
+              className={"btn solid"}
+              href={pageValue(
+                content,
+                "HomeContent.href.19",
+                "tengri-ai.html",
+                "link",
+                "Bağlantı",
+              )}
+            >
+              {pageValue(
+                content,
+                "HomeContent.text.20",
+                "Tengri AI",
+                "text",
+                "Metin",
+              )}
               <span className={"arrow"} aria-hidden={"true"}>
                 {"↗"}
               </span>
@@ -99,24 +239,67 @@ export function HomeContent() {
       {"\n"}
       <Section>
         <SectionHeading
-          kicker={"04 / PROJELER & AR-GE"}
-          title={"Araştırmadan uygulamaya."}
-          lead={
-            "PCB tasarımı, otonom hareket mühendisliği ve gömülü donanım gibi alanlarda araştırma ve geliştirme yaklaşımı."
-          }
+          kicker={pageValue(
+            content,
+            "HomeContent.kicker.21",
+            "04 / PROJELER & AR-GE",
+            "text",
+            "Bölüm etiketi",
+          )}
+          title={pageValue(
+            content,
+            "HomeContent.title.22",
+            "Araştırmadan uygulamaya.",
+            "text",
+            "Başlık",
+          )}
+          lead={pageValue(
+            content,
+            "HomeContent.lead.23",
+            "PCB tasarımı, otonom hareket mühendisliği ve gömülü donanım gibi alanlarda araştırma ve geliştirme yaklaşımı.",
+            "text",
+            "Açıklama",
+          )}
         />
         <div className={"split-feature"}>
           <div
             className={"visual"}
-            style={{ backgroundImage: "url('/assets/research-lab.svg')" }}
+            data-cms-field="HomeContent.image.24"
+            style={{
+              backgroundImage: pageImageStyle(
+                content,
+                "HomeContent.image.24",
+                "research-lab.svg",
+              )!.backgroundImage,
+            }}
           ></div>
           <div className={"copy"}>
-            <span className={"tag cool"}>{"AR-GE & ELEKTRONİK"}</span>
-            <h2>{"Sistemler, detaylarda şekillenir."}</h2>
+            <span className={"tag cool"}>
+              {pageValue(
+                content,
+                "HomeContent.text.25",
+                "AR-GE & ELEKTRONİK",
+                "text",
+                "Metin",
+              )}
+            </span>
+            <h2>
+              {pageValue(
+                content,
+                "HomeContent.text.26",
+                "Sistemler, detaylarda şekillenir.",
+                "text",
+                "Metin",
+              )}
+            </h2>
             <p>
-              {
-                "Elektronik donanım, gömülü yazılım ve otonom kontrolün birbirini tamamlayan disiplinler olarak ele alındığı mühendislik alanları."
-              }
+              {pageValue(
+                content,
+                "HomeContent.text.27",
+                "Elektronik donanım, gömülü yazılım ve otonom kontrolün birbirini tamamlayan disiplinler olarak ele alındığı mühendislik alanları.",
+                "text",
+                "Metin",
+              )}
             </p>
           </div>
         </div>
@@ -124,29 +307,85 @@ export function HomeContent() {
       {"\n"}
       <Section className={"inner-panel"}>
         <SectionHeading
-          kicker={"05 / HABERLER & DUYURULAR"}
-          title={"Kamuya açık gelişmeler."}
-          lead={
-            "Şirketin paylaştığı teknoloji çalışmalarına ve duyurularına göz atın."
-          }
+          kicker={pageValue(
+            content,
+            "HomeContent.kicker.28",
+            "05 / HABERLER & DUYURULAR",
+            "text",
+            "Bölüm etiketi",
+          )}
+          title={pageValue(
+            content,
+            "HomeContent.title.29",
+            "Kamuya açık gelişmeler.",
+            "text",
+            "Başlık",
+          )}
+          lead={pageValue(
+            content,
+            "HomeContent.lead.30",
+            "Şirketin paylaştığı teknoloji çalışmalarına ve duyurularına göz atın.",
+            "text",
+            "Açıklama",
+          )}
         />
         <div className={"news-feature"}>
           <div
             className={"news-feature-art"}
-            style={{ backgroundImage: "url('/assets/tengri-network.svg')" }}
+            data-cms-field="HomeContent.image.31"
+            style={{
+              backgroundImage: pageImageStyle(
+                content,
+                "HomeContent.image.31",
+                "tengri-network.svg",
+              )!.backgroundImage,
+            }}
           ></div>
           <div className={"news-feature-copy"}>
             <span className={"eyebrow no-rule"}>
-              {"ŞİRKET PAYLAŞIMI / TENGRİ AI"}
+              {pageValue(
+                content,
+                "HomeContent.text.32",
+                "ŞİRKET PAYLAŞIMI / TENGRİ AI",
+                "text",
+                "Metin",
+              )}
             </span>
-            <h3>{"Tengri AI: Yapay zekâ destekli savunma ağı yaklaşımı"}</h3>
+            <h3>
+              {pageValue(
+                content,
+                "HomeContent.text.33",
+                "Tengri AI: Yapay zekâ destekli savunma ağı yaklaşımı",
+                "text",
+                "Metin",
+              )}
+            </h3>
             <p>
-              {
-                "İstikbal Aerospace tarafından kamuya açık olarak tanıtılan Tengri AI'ın odaklandığı teknoloji alanlarını keşfedin."
-              }
+              {pageValue(
+                content,
+                "HomeContent.text.34",
+                "İstikbal Aerospace tarafından kamuya açık olarak tanıtılan Tengri AI'ın odaklandığı teknoloji alanlarını keşfedin.",
+                "text",
+                "Metin",
+              )}
             </p>
-            <SiteLink className={"btn text"} href={"haber-detay.html"}>
-              {"Gelişmeyi İncele"}
+            <SiteLink
+              className={"btn text"}
+              href={pageValue(
+                content,
+                "HomeContent.href.35",
+                "haber-detay.html",
+                "link",
+                "Bağlantı",
+              )}
+            >
+              {pageValue(
+                content,
+                "HomeContent.text.36",
+                "Gelişmeyi İncele",
+                "text",
+                "Metin",
+              )}
               <span className={"arrow"} aria-hidden={"true"}>
                 {"↗"}
               </span>
@@ -159,17 +398,42 @@ export function HomeContent() {
         <div className={"split-feature reverse"}>
           <div
             className={"visual"}
-            style={{ backgroundImage: "url('/assets/hero-hangar-photo.webp')" }}
+            data-cms-field="HomeContent.image.37"
+            style={{
+              backgroundImage: pageImageStyle(
+                content,
+                "HomeContent.image.37",
+                "hero-hangar-photo.webp",
+              )!.backgroundImage,
+            }}
           ></div>
           <div className={"copy"}>
             <span className={"eyebrow no-rule"}>
-              {"06 / İSTİKBAL AEROSPACE"}
+              {pageValue(
+                content,
+                "HomeContent.text.38",
+                "06 / İSTİKBAL AEROSPACE",
+                "text",
+                "Metin",
+              )}
             </span>
-            <h2>{"Antalya'dan geleceğin teknolojilerine."}</h2>
+            <h2>
+              {pageValue(
+                content,
+                "HomeContent.text.39",
+                "Antalya'dan geleceğin teknolojilerine.",
+                "text",
+                "Metin",
+              )}
+            </h2>
             <p>
-              {
-                "Antalya merkezli İstikbal Aerospace; havacılık, gömülü elektronik, PCB tasarımı ve otonom sistem mühendisliğini bir araya getiren çalışmalar yürütür."
-              }
+              {pageValue(
+                content,
+                "HomeContent.text.40",
+                "Antalya merkezli İstikbal Aerospace; havacılık, gömülü elektronik, PCB tasarımı ve otonom sistem mühendisliğini bir araya getiren çalışmalar yürütür.",
+                "text",
+                "Metin",
+              )}
             </p>
           </div>
         </div>

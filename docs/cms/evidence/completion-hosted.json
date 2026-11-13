@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-12",
+  "project": "uftnykormtwlzolwbhfb",
+  "health": "ACTIVE_HEALTHY",
+  "pages": 21,
+  "fields": 537,
+  "authUsers": 0,
+  "lifecycleFunctions": 1,
+  "directVisibilityUpdateAllowed": false,
+  "securityAdvisors": [],
+  "migration": {
+    "source": "20261111214959_cms_relations_media_lifecycle.sql",
+    "hostedVersion": "20261112131818",
+    "sha256": "119f7e1f4d363e724adeefbe2d37da67e92a524975f40cfee4a7846c795422a1"
+  },
+  "note": "First confirmation expired; one retry succeeded. No old migration repeated, no hosted fixtures/users created."
+}

@@ -1,0 +1,425 @@
+{
+  "environment": "Local production, Chromium, no CPU/network throttling; three loads per route/device; no field INP",
+  "rows": [
+    {
+      "mobile": false,
+      "path": "/",
+      "run": 0,
+      "lcp": 256,
+      "cls": 0.007147530596279149,
+      "ttfb": 5.7999999999883585,
+      "requests": 19,
+      "jsBytes": 147188
+    },
+    {
+      "mobile": false,
+      "path": "/",
+      "run": 1,
+      "lcp": 184,
+      "cls": 0.00004911513256601509,
+      "ttfb": 4.100000000005821,
+      "requests": 19,
+      "jsBytes": 147188
+    },
+    {
+      "mobile": false,
+      "path": "/",
+      "run": 2,
+      "lcp": 160,
+      "cls": 0.007147530596279149,
+      "ttfb": 3.3999999999941792,
+      "requests": 19,
+      "jsBytes": 147188
+    },
+    {
+      "mobile": false,
+      "path": "/kurumsal",
+      "run": 0,
+      "lcp": 148,
+      "cls": 0.000043900854793595684,
+      "ttfb": 13.39999999999418,
+      "requests": 15,
+      "jsBytes": 147188
+    },
+    {
+      "mobile": false,
+      "path": "/kurumsal",
+      "run": 1,
+      "lcp": 156,
+      "cls": 0.000043900854793595684,
+      "ttfb": 3,
+      "requests": 15,
+      "jsBytes": 147188
+    },
+    {
+      "mobile": false,
+      "path": "/kurumsal",
+      "run": 2,
+      "lcp": 152,
+      "cls": 0.000043900854793595684,
+      "ttfb": 4.300000000017462,
+      "requests": 15,
+      "jsBytes": 147188
+    },
+    {
+      "mobile": false,
+      "path": "/platformlar",
+      "run": 0,
+      "lcp": 156,
+      "cls": 0.000047092599960348074,
+      "ttfb": 6.899999999994179,
+      "requests": 15,
+      "jsBytes": 147188
+    },
+    {
+      "mobile": false,
+      "path": "/platformlar",
+      "run": 1,
+      "lcp": 148,
+      "cls": 0.000047092599960348074,
+      "ttfb": 5,
+      "requests": 15,
+      "jsBytes": 147188
+    },
+    {
+      "mobile": false,
+      "path": "/platformlar",
+      "run": 2,
+      "lcp": 152,
+      "cls": 0.000047092599960348074,
+      "ttfb": 6.600000000005821,
+      "requests": 15,
+      "jsBytes": 147188
+    },
+    {
+      "mobile": false,
+      "path": "/teknolojiler",
+      "run": 0,
+      "lcp": 252,
+      "cls": 0.019216570483967764,
+      "ttfb": 9.5,
+      "requests": 15,
+      "jsBytes": 147188
+    },
+    {
+      "mobile": false,
+      "path": "/teknolojiler",
+      "run": 1,
+      "lcp": 252,
+      "cls": 0.007119000537176355,
+      "ttfb": 2.1000000000058208,
+      "requests": 15,
+      "jsBytes": 147188
+    },
+    {
+      "mobile": false,
+      "path": "/teknolojiler",
+      "run": 2,
+      "lcp": 256,
+      "cls": 0.019216570483967764,
+      "ttfb": 2.7999999999883585,
+      "requests": 15,
+      "jsBytes": 147188
+    },
+    {
+      "mobile": false,
+      "path": "/projeler",
+      "run": 0,
+      "lcp": 112,
+      "cls": 0.019216570483967764,
+      "ttfb": 6.7000000000116415,
+      "requests": 16,
+      "jsBytes": 147188
+    },
+    {
+      "mobile": false,
+      "path": "/projeler",
+      "run": 1,
+      "lcp": 96,
+      "cls": 0.019216570483967764,
+      "ttfb": 2.5,
+      "requests": 16,
+      "jsBytes": 147188
+    },
+    {
+      "mobile": false,
+      "path": "/projeler",
+      "run": 2,
+      "lcp": 116,
+      "cls": 0.019216570483967764,
+      "ttfb": 2.5,
+      "requests": 16,
+      "jsBytes": 147188
+    },
+    {
+      "mobile": false,
+      "path": "/haberler",
+      "run": 0,
+      "lcp": 140,
+      "cls": 0.019216570483967764,
+      "ttfb": 7.7000000000116415,
+      "requests": 15,
+      "jsBytes": 147188
+    },
+    {
+      "mobile": false,
+      "path": "/haberler",
+      "run": 1,
+      "lcp": 164,
+      "cls": 0.000043900854793595684,
+      "ttfb": 2,
+      "requests": 15,
+      "jsBytes": 147188
+    },
+    {
+      "mobile": false,
+      "path": "/haberler",
+      "run": 2,
+      "lcp": 144,
+      "cls": 0.019216570483967764,
+      "ttfb": 2,
+      "requests": 15,
+      "jsBytes": 147188
+    },
+    {
+      "mobile": false,
+      "path": "/haber-detay",
+      "run": 0,
+      "lcp": 288,
+      "cls": 0.019216570483967764,
+      "ttfb": 95.29999999998836,
+      "requests": 14,
+      "jsBytes": 147188
+    },
+    {
+      "mobile": false,
+      "path": "/haber-detay",
+      "run": 1,
+      "lcp": 156,
+      "cls": 0.000043900854793595684,
+      "ttfb": 17.5,
+      "requests": 14,
+      "jsBytes": 147188
+    },
+    {
+      "mobile": false,
+      "path": "/haber-detay",
+      "run": 2,
+      "lcp": 208,
+      "cls": 0.019216570483967764,
+      "ttfb": 12.299999999988358,
+      "requests": 14,
+      "jsBytes": 147188
+    },
+    {
+      "mobile": true,
+      "path": "/",
+      "run": 0,
+      "lcp": 156,
+      "cls": 0,
+      "ttfb": 4.7999999999883585,
+      "requests": 19,
+      "jsBytes": 147188
+    },
+    {
+      "mobile": true,
+      "path": "/",
+      "run": 1,
+      "lcp": 176,
+      "cls": 0,
+      "ttfb": 2,
+      "requests": 19,
+      "jsBytes": 147188
+    },
+    {
+      "mobile": true,
+      "path": "/",
+      "run": 2,
+      "lcp": 192,
+      "cls": 0,
+      "ttfb": 2.599999999976717,
+      "requests": 19,
+      "jsBytes": 147188
+    },
+    {
+      "mobile": true,
+      "path": "/kurumsal",
+      "run": 0,
+      "lcp": 156,
+      "cls": 0,
+      "ttfb": 4,
+      "requests": 15,
+      "jsBytes": 147188
+    },
+    {
+      "mobile": true,
+      "path": "/kurumsal",
+      "run": 1,
+      "lcp": 140,
+      "cls": 0,
+      "ttfb": 2.300000000046566,
+      "requests": 15,
+      "jsBytes": 147188
+    },
+    {
+      "mobile": true,
+      "path": "/kurumsal",
+      "run": 2,
+      "lcp": 124,
+      "cls": 0,
+      "ttfb": 2.2000000000116415,
+      "requests": 15,
+      "jsBytes": 147188
+    },
+    {
+      "mobile": true,
+      "path": "/platformlar",
+      "run": 0,
+      "lcp": 120,
+      "cls": 0,
+      "ttfb": 3.400000000023283,
+      "requests": 15,
+      "jsBytes": 147188
+    },
+    {
+      "mobile": true,
+      "path": "/platformlar",
+      "run": 1,
+      "lcp": 160,
+      "cls": 0,
+      "ttfb": 2.2999999999883585,
+      "requests": 15,
+      "jsBytes": 147188
+    },
+    {
+      "mobile": true,
+      "path": "/platformlar",
+      "run": 2,
+      "lcp": 152,
+      "cls": 0,
+      "ttfb": 4,
+      "requests": 15,
+      "jsBytes": 147188
+    },
+    {
+      "mobile": true,
+      "path": "/teknolojiler",
+      "run": 0,
+      "lcp": 124,
+      "cls": 0,
+      "ttfb": 4.399999999965075,
+      "requests": 15,
+      "jsBytes": 147188
+    },
+    {
+      "mobile": true,
+      "path": "/teknolojiler",
+      "run": 1,
+      "lcp": 116,
+      "cls": 0,
+      "ttfb": 2.3999999999650754,
+      "requests": 15,
+      "jsBytes": 147188
+    },
+    {
+      "mobile": true,
+      "path": "/teknolojiler",
+      "run": 2,
+      "lcp": 156,
+      "cls": 0,
+      "ttfb": 2.400000000023283,
+      "requests": 15,
+      "jsBytes": 147188
+    },
+    {
+      "mobile": true,
+      "path": "/projeler",
+      "run": 0,
+      "lcp": 156,
+      "cls": 0,
+      "ttfb": 6.7000000000116415,
+      "requests": 16,
+      "jsBytes": 147188
+    },
+    {
+      "mobile": true,
+      "path": "/projeler",
+      "run": 1,
+      "lcp": 160,
+      "cls": 0,
+      "ttfb": 5.300000000046566,
+      "requests": 16,
+      "jsBytes": 147188
+    },
+    {
+      "mobile": true,
+      "path": "/projeler",
+      "run": 2,
+      "lcp": 120,
+      "cls": 0,
+      "ttfb": 2.2000000000116415,
+      "requests": 16,
+      "jsBytes": 147188
+    },
+    {
+      "mobile": true,
+      "path": "/haberler",
+      "run": 0,
+      "lcp": 116,
+      "cls": 0,
+      "ttfb": 2.6000000000349246,
+      "requests": 15,
+      "jsBytes": 147188
+    },
+    {
+      "mobile": true,
+      "path": "/haberler",
+      "run": 1,
+      "lcp": 124,
+      "cls": 0,
+      "ttfb": 2.2999999999883585,
+      "requests": 15,
+      "jsBytes": 147188
+    },
+    {
+      "mobile": true,
+      "path": "/haberler",
+      "run": 2,
+      "lcp": 108,
+      "cls": 0,
+      "ttfb": 2.2000000000116415,
+      "requests": 15,
+      "jsBytes": 147188
+    },
+    {
+      "mobile": true,
+      "path": "/haber-detay",
+      "run": 0,
+      "lcp": 108,
+      "cls": 0,
+      "ttfb": 14.299999999988358,
+      "requests": 14,
+      "jsBytes": 147188
+    },
+    {
+      "mobile": true,
+      "path": "/haber-detay",
+      "run": 1,
+      "lcp": 88,
+      "cls": 0,
+      "ttfb": 12.399999999965075,
+      "requests": 14,
+      "jsBytes": 147188
+    },
+    {
+      "mobile": true,
+      "path": "/haber-detay",
+      "run": 2,
+      "lcp": 116,
+      "cls": 0,
+      "ttfb": 15.900000000023283,
+      "requests": 14,
+      "jsBytes": 147188
+    }
+  ]
+}

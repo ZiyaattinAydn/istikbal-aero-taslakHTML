@@ -1,0 +1,39 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> istikbal-aerospace@0.1.0 test
+> node --import tsx --test tests/*.test.ts
+
+✔ all 21 source documents have both extension and clean routes (1.978007ms)
+✔ gomulu-sistemler.html: all source text, main headings and linked documents survive SSR (30.510627ms)
+✔ haber-detay.html: all source text, main headings and linked documents survive SSR (14.343861ms)
+✔ haberler.html: all source text, main headings and linked documents survive SSR (16.961893ms)
+✔ hava-savunma-aglari.html: all source text, main headings and linked documents survive SSR (14.676717ms)
+✔ iha-sistemleri.html: all source text, main headings and linked documents survive SSR (11.27986ms)
+✔ ileri-haberlesme.html: all source text, main headings and linked documents survive SSR (7.849726ms)
+✔ iletisim.html: all source text, main headings and linked documents survive SSR (9.222542ms)
+✔ index.html: all source text, main headings and linked documents survive SSR (14.17027ms)
+✔ kabiliyetler.html: all source text, main headings and linked documents survive SSR (11.199169ms)
+✔ kurumsal.html: all source text, main headings and linked documents survive SSR (9.829176ms)
+✔ otonom-sistemler.html: all source text, main headings and linked documents survive SSR (8.34466ms)
+✔ platform-detay.html: all source text, main headings and linked documents survive SSR (5.463795ms)
+✔ platformlar.html: all source text, main headings and linked documents survive SSR (8.55635ms)
+✔ proje-detay.html: all source text, main headings and linked documents survive SSR (6.238921ms)
+✔ projeler.html: all source text, main headings and linked documents survive SSR (8.199442ms)
+✔ roket-sistemleri.html: all source text, main headings and linked documents survive SSR (6.863321ms)
+✔ sensor-fuzyonu.html: all source text, main headings and linked documents survive SSR (6.400305ms)
+✔ teknolojiler.html: all source text, main headings and linked documents survive SSR (7.56648ms)
+✔ tengri-ai.html: all source text, main headings and linked documents survive SSR (7.560891ms)
+✔ ucus-kontrol-paylasimi.html: all source text, main headings and linked documents survive SSR (5.732689ms)
+✔ ucus-mimarileri.html: all source text, main headings and linked documents survive SSR (5.502332ms)
+✔ news query selects records, supports both legacy defaults and rejects hostile IDs (6.991084ms)
+✔ media, internal URLs and publication sources cannot become script destinations (0.164407ms)
+✔ route effect registry removes listeners including capture flags on disposal (0.289085ms)
+✔ all original visuals are available; CI verifies byte identity (0.240683ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 952.267341

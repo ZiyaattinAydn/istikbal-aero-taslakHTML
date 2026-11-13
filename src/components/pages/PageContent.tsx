@@ -1,3 +1,4 @@
+import { pageData, type PageValues } from "@/lib/cms/page-values";
 import type { PageId } from "@/data/routes";
 import { HomeContent } from "./HomeContent";
 import { PlatformsContent } from "./PlatformsContent";
@@ -16,49 +17,56 @@ import { findNews } from "@/lib/news";
 export function PageContent({
   page,
   newsId,
+  content = {},
 }: {
   page: PageId;
   newsId?: string | string[];
+  content?: PageValues;
 }) {
   switch (page) {
     case "home":
-      return <HomeContent />;
+      return <HomeContent content={content} />;
     case "platforms":
-      return <PlatformsContent />;
+      return <PlatformsContent content={content} />;
     case "tech":
-      return <TechContent />;
+      return <TechContent content={content} />;
     case "capabilities":
-      return <CapabilitiesContent />;
+      return <CapabilitiesContent content={content} />;
     case "tengri":
-      return <TengriContent />;
+      return <TengriContent content={content} />;
     case "projects":
-      return <ProjectsContent />;
+      return <ProjectsContent content={content} />;
     case "news":
-      return <NewsContent />;
+      return <NewsContent content={content} />;
     case "about":
-      return <AboutContent />;
+      return <AboutContent content={content} />;
     case "contact":
-      return <ContactContent />;
+      return <ContactContent content={content} />;
     case "platformDetail":
-      return <PlatformDetailContent />;
+      return <PlatformDetailContent content={content} />;
     case "projectDetail":
-      return <ProjectDetailContent />;
+      return <ProjectDetailContent content={content} />;
     case "newsDetail":
     case "flightControlNews":
       return (
         <NewsDetailContent
-          item={findNews(newsId, page === "flightControlNews")}
+          content={content}
+          item={pageData(
+            findNews(newsId, page === "flightControlNews"),
+            "news",
+            content,
+          )}
         />
       );
     case "iha":
     case "flightArch":
     case "airDefense":
-      return <PlatformFocusContent name={page} />;
+      return <PlatformFocusContent name={page} content={content} />;
     case "autonomy":
     case "embedded":
     case "sensors":
     case "rockets":
     case "communications":
-      return <FocusContent name={page} />;
+      return <FocusContent name={page} content={content} />;
   }
 }

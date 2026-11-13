@@ -1,0 +1,91 @@
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { requireAdmin } from "@/lib/cms/server";
+import { pageSchema } from "@/lib/cms/pages";
+import { canonicalContentForPage } from "@/lib/cms/legacy-content";
+import { PageEditor } from "@/components/admin/PageEditor";
+export default async function EditPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { db, role } = await requireAdmin();
+  const { slug } = await params;
+  const schema = pageSchema(slug);
+  if (!schema) notFound();
+  const { data: doc } = await db
+    .from("cms_documents")
+    .select("id,kind,body,revision,approval,status")
+    .eq("kind", "page")
+    .eq("slug", slug)
+    .maybeSingle();
+  if (!doc)
+    return (
+      <section>
+        <h1>{schema.title.split("|")[0]}</h1>
+        <p>Sayfa şablonu hazır; veritabanı aktarımı tamamlanmalı.</p>
+      </section>
+    );
+  const references = canonicalContentForPage(slug);
+  const [{ data: versions }, { data: media }, linked, publication] = await Promise.all([
+    db
+      .from("cms_versions")
+      .select("revision,created_at")
+      .eq("document_id", doc.id)
+      .order("revision", { ascending: false })
+      .limit(30),
+    db
+      .from("cms_media")
+      .select("id,alt,visibility")
+      .order("created_at", { ascending: false })
+      .limit(100),
+    references.length
+      ? db.from("cms_documents")
+          .select("id,kind,slug,status,body")
+          .in("slug", references.map((item) => item.slug))
+          .in("kind", ["news", "project", "platform", "technology"])
+          .limit(50)
+      : Promise.resolve({ data: [], error: null }),
+    db.from("cms_published").select("document_id").eq("document_id", doc.id).maybeSingle(),
+  ]);
+  if (publication.error) throw Error("Yayın durumu yüklenemedi.");
+  if (linked.error) throw Error("Ortak içerik kayıtları yüklenemedi.");
+  const canonical = references.map((item) => {
+    const document = linked.data?.find((entry) =>
+      entry.kind === item.kind && entry.slug === item.slug,
+    );
+    return {
+      ...item,
+      title: document?.body?.title || item.title,
+      id: document?.id,
+      status: document?.status,
+    };
+  });
+  return (
+    <section className="cms-editor-page">
+      <div className="cms-page-heading">
+        <div>
+          <div className="cms-eyebrow">WEB SAYFALARI / DÜZENLE</div>
+          <h1>{schema.title.split("|")[0]}</h1>
+          <p>Metinleri ve görselleri düzenleyin. Taslak kaydından sonra gerçek şablonda önizleyebilirsiniz.</p>
+        </div>
+        <Link href="/admin/pages" className="cms-editor-back">← Sayfalara dön</Link>
+      </div>
+      <PageEditor
+        key={`${slug}:${doc.revision}`}
+        slug={slug}
+        revision={doc.revision}
+        title={doc.body.title}
+        summary={doc.body.summary}
+        fields={schema.fields}
+        canonical={canonical}
+        values={doc.body.fields || {}}
+        media={media || []}
+        record={doc}
+        versions={versions || []}
+        publisher={role === "publisher"}
+        published={Boolean(publication.data)}
+      />
+    </section>
+  );
+}

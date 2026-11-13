@@ -1,24 +1,80 @@
+import { pageValue, type PageValues } from "@/lib/cms/page-values";
 import type { PublicNews } from "@/data/models";
 import { InnerHero, Section } from "@/components/ui/content";
 import { SiteLink } from "@/components/ui/SiteLink";
-import { safeMediaName, safeExternalSource } from "@/lib/urls";
-export function NewsDetailContent({ item }: { item: PublicNews | undefined }) {
+import { safeMediaName, safeExternalSource, mediaUrl } from "@/lib/urls";
+export function NewsDetailContent({
+  item,
+  content = {},
+}: {
+  item: PublicNews | undefined;
+  content?: PageValues;
+}) {
   if (!item)
     return (
       <>
         <InnerHero
-          title="İçerik bulunamadı"
-          description="Aradığınız yayın mevcut değil."
-          image="research-lab.svg"
-          breadcrumb="HABERLER / İÇERİK BULUNAMADI"
+          title={pageValue(
+            content,
+            "NewsDetailContent.title.0",
+            "İçerik bulunamadı",
+            "text",
+            "Başlık",
+          )}
+          description={pageValue(
+            content,
+            "NewsDetailContent.description.1",
+            "Aradığınız yayın mevcut değil.",
+            "text",
+            "Açıklama",
+          )}
+          image={pageValue(
+            content,
+            "NewsDetailContent.image.2",
+            "research-lab.svg",
+            "image",
+            "Görsel",
+          )}
+          breadcrumb={pageValue(
+            content,
+            "NewsDetailContent.breadcrumb.3",
+            "HABERLER / İÇERİK BULUNAMADI",
+            "text",
+            "Gezinme metni",
+          )}
         />
         <Section>
           <article className="article">
-            <h2>Yayın bulunamadı.</h2>
-            <p>Bağlantı hatalı veya içerik kaldırılmış olabilir.</p>
+            <h2>
+              {pageValue(
+                content,
+                "NewsDetailContent.text.4",
+                "Yayın bulunamadı.",
+              )}
+            </h2>
             <p>
-              <SiteLink href="haberler.html" className="text-link">
-                Haberler ve Duyurular ↗
+              {pageValue(
+                content,
+                "NewsDetailContent.text.5",
+                "Bağlantı hatalı veya içerik kaldırılmış olabilir.",
+              )}
+            </p>
+            <p>
+              <SiteLink
+                href={pageValue(
+                  content,
+                  "NewsDetailContent.href.6",
+                  "haberler.html",
+                  "link",
+                  "Bağlantı",
+                )}
+                className="text-link"
+              >
+                {pageValue(
+                  content,
+                  "NewsDetailContent.text.7",
+                  "Haberler ve Duyurular ↗",
+                )}
               </SiteLink>
             </p>
           </article>
@@ -42,7 +98,7 @@ export function NewsDetailContent({ item }: { item: PublicNews | undefined }) {
           <p>{a.intro || item.summary}</p>
           <div className="article-img">
             <img
-              src={`/assets/${safeMediaName(item.image)}`}
+              src={mediaUrl(item.image)}
               alt={`Temsili görsel: ${a.heroTitle || item.title}`}
               loading="lazy"
               decoding="async"
@@ -61,7 +117,11 @@ export function NewsDetailContent({ item }: { item: PublicNews | undefined }) {
                 rel="noopener noreferrer"
                 className="text-link"
               >
-                Orijinal LinkedIn paylaşımı ↗
+                {pageValue(
+                  content,
+                  "NewsDetailContent.text.8",
+                  "Orijinal LinkedIn paylaşımı ↗",
+                )}
               </a>
             </p>
           )}
