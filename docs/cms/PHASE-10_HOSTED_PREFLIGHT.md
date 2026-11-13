@@ -27,6 +27,8 @@
 | Supabase performance advisor | 5 INFO | Kullanılmayan indeks uyarıları; boş/az kullanılan tablolarda indeks silme |
 | Supabase health advisor | 0 | Kritik ek sağlık uyarısı görülmedi |
 
+**Ek kaynak/hosted nesne mutabakatı:** İlk beş GitHub migration dosyasındaki beklenen 14 CMS fonksiyon adı ve imzasının 14'ü de hosted `pg_proc` içinde mevcut. `auth.users` üzerindeki iki yönetici koruma trigger'ı ile CMS belgeleri/yayınları üzerindeki beş trigger etkin (7/7). **Bu sadece nesne varlığı denetimidir**; fonksiyonların SQL gövdelerinin, policy/GRANT'lerin, constraint'lerin kaynakla birebir aynı olduğunu kanıtlamaz. Mevcut 5 migration'ı doğrudan eşdeğer saymayacağız.
+
 Mevcut `cms_private.mutate` tanımı MD5 envanter izi: `3c906585828587e9dbac4ef27fdaebe7`. **Bu iz bir şema eşdeğerliği ya da kriptografik güvenlik kanıtı değildir**, yalnız daha sonra değişip değişmediğini karşılaştırmak içindir.
 
 ## 2. Migration geçmişi — isim eşleşmesi, SHA eşdeğerliği değil
